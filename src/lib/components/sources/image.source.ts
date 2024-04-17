@@ -6,40 +6,40 @@ import { SourceLib } from '@/lib/lib/source.lib';
 import { useSource } from '@/lib/composable/useSource';
 
 const sourceOpts = AllSourceOptions<ImageSourceSpecification>({
-	url        : undefined,
-	coordinates: undefined,
+  url        : undefined,
+  coordinates: undefined,
 });
 
 export default /*#__PURE__*/ defineComponent({
-	name : 'MglImageSource',
-	props: {
-		sourceId   : {
-			type    : String as PropType<string>,
-			required: true
-		},
-		url        : String as PropType<string>,
-		coordinates: Array as unknown as PropType<Coordinates>
-	},
-	slots: Object as SlotsType<{ default: {} }>,
-	setup(props, { slots }) {
+  name : 'MglImageSource',
+  props: {
+    sourceId   : {
+      type    : String as PropType<string>,
+      required: true
+    },
+    url        : String as PropType<string>,
+    coordinates: Array as unknown as PropType<Coordinates>
+  },
+  slots: Object as SlotsType<{ default: {} }>,
+  setup(props, { slots }) {
 
-		const cid      = inject(componentIdSymbol)!,
-			  source   = SourceLib.getSourceRef<ImageSource>(cid, props.sourceId),
-			  registry = new SourceLayerRegistry();
+    const cid      = inject(componentIdSymbol)!,
+    source   = SourceLib.getSourceRef<ImageSource>(cid, props.sourceId),
+    registry = new SourceLayerRegistry();
 
-		provide(sourceIdSymbol, props.sourceId);
-		provide(sourceLayerRegistry, registry);
+    provide(sourceIdSymbol, props.sourceId);
+    provide(sourceLayerRegistry, registry);
 
-		useSource<ImageSourceSpecification>(source, props, 'image', sourceOpts, registry);
+    useSource<ImageSourceSpecification>(source, props, 'image', sourceOpts, registry);
 
-		watch(isRef(props.coordinates) ? props.coordinates : () => props.coordinates, v => {
-			source.value?.setCoordinates(v as Coordinates);
-		}, { immediate: true });
+    watch(isRef(props.coordinates) ? props.coordinates : () => props.coordinates, v => {
+      source.value?.setCoordinates(v as Coordinates);
+    }, { immediate: true });
 
-		return () => [
-			createCommentVNode('Image Source'),
-			source.value && slots.default ? slots.default({}) : undefined
-		];
+    return () => [
+      createCommentVNode('Image Source'),
+      source.value && slots.default ? slots.default({}) : undefined
+    ];
 
-	}
+  }
 });

@@ -6,42 +6,42 @@ import { SourceLib } from '@/lib/lib/source.lib';
 import { useSource } from '@/lib/composable/useSource';
 
 const sourceOpts = AllSourceOptions<CanvasSourceSpecification>({
-	animate    : undefined,
-	canvas     : undefined,
-	coordinates: undefined,
+  animate    : undefined,
+  canvas     : undefined,
+  coordinates: undefined,
 });
 
 export default /*#__PURE__*/ defineComponent({
-	name : 'MglCanvasSource',
-	props: {
-		sourceId   : {
-			type    : String as PropType<string>,
-			required: true
-		},
-		coordinates: Array as unknown as PropType<Coordinates>,
-		animate    : Boolean as PropType<boolean>,
-		canvas     : [ Object, String ] as PropType<HTMLCanvasElement | string>
-	},
-	slots: Object as SlotsType<{ default: {} }>,
-	setup(props, { slots }) {
+  name : 'MglCanvasSource',
+  props: {
+    sourceId   : {
+      type    : String as PropType<string>,
+      required: true
+    },
+    coordinates: Array as unknown as PropType<Coordinates>,
+    animate    : Boolean as PropType<boolean>,
+    canvas     : [ Object, String ] as PropType<HTMLCanvasElement | string>
+  },
+  slots: Object as SlotsType<{ default: {} }>,
+  setup(props, { slots }) {
 
-		const cid      = inject(componentIdSymbol)!,
-			  source   = SourceLib.getSourceRef<CanvasSource>(cid, props.sourceId),
-			  registry = new SourceLayerRegistry();
+    const cid      = inject(componentIdSymbol)!,
+    source   = SourceLib.getSourceRef<CanvasSource>(cid, props.sourceId),
+    registry = new SourceLayerRegistry();
 
-		provide(sourceIdSymbol, props.sourceId);
-		provide(sourceLayerRegistry, registry);
+    provide(sourceIdSymbol, props.sourceId);
+    provide(sourceLayerRegistry, registry);
 
-		useSource<CanvasSourceSpecification>(source, props, 'canvas', sourceOpts, registry);
+    useSource<CanvasSourceSpecification>(source, props, 'canvas', sourceOpts, registry);
 
-		watch(isRef(props.coordinates) ? props.coordinates : () => props.coordinates, v => {
-			source.value?.setCoordinates(v as Coordinates);
-		}, { immediate: true });
+    watch(isRef(props.coordinates) ? props.coordinates : () => props.coordinates, v => {
+      source.value?.setCoordinates(v as Coordinates);
+    }, { immediate: true });
 
-		return () => [
-			createCommentVNode('Canvas Source'),
-			source.value && slots.default ? slots.default({}) : undefined
-		];
+    return () => [
+      createCommentVNode('Canvas Source'),
+      source.value && slots.default ? slots.default({}) : undefined
+    ];
 
-	}
+  }
 });

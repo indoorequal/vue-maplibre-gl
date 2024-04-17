@@ -6,9 +6,9 @@ import * as components from '@/lib/components';
 
 // install function executed by Vue.use()
 const install: Exclude<Plugin['install'], undefined> = function installVueMaplibreGl(app: App) {
-	Object.entries(components).forEach(([ componentName, component ]) => {
-		app.component(componentName, component);
-	});
+  Object.entries(components).forEach(([ componentName, component ]) => {
+    app.component(componentName, component);
+  });
 };
 
 // Create module definition for Vue.use()

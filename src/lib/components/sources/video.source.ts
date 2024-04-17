@@ -6,40 +6,40 @@ import { SourceLib } from '@/lib/lib/source.lib';
 import { useSource } from '@/lib/composable/useSource';
 
 const sourceOpts = AllSourceOptions<VideoSourceSpecification>({
-	urls       : undefined,
-	coordinates: undefined
+  urls       : undefined,
+  coordinates: undefined
 });
 
 export default /*#__PURE__*/ defineComponent({
-	name : 'MglVideoSource',
-	props: {
-		sourceId   : {
-			type    : String as PropType<string>,
-			required: true
-		},
-		urls       : Array as PropType<string[]>,
-		coordinates: Array as unknown as PropType<Coordinates>
-	},
-	slots: Object as SlotsType<{ default: {} }>,
-	setup(props, { slots }) {
+  name : 'MglVideoSource',
+  props: {
+    sourceId   : {
+      type    : String as PropType<string>,
+      required: true
+    },
+    urls       : Array as PropType<string[]>,
+    coordinates: Array as unknown as PropType<Coordinates>
+  },
+  slots: Object as SlotsType<{ default: {} }>,
+  setup(props, { slots }) {
 
-		const cid      = inject(componentIdSymbol)!,
-			  source   = SourceLib.getSourceRef<VideoSource>(cid, props.sourceId),
-			  registry = new SourceLayerRegistry();
+    const cid      = inject(componentIdSymbol)!,
+    source   = SourceLib.getSourceRef<VideoSource>(cid, props.sourceId),
+    registry = new SourceLayerRegistry();
 
-		provide(sourceIdSymbol, props.sourceId);
-		provide(sourceLayerRegistry, registry);
+    provide(sourceIdSymbol, props.sourceId);
+    provide(sourceLayerRegistry, registry);
 
-		useSource<VideoSourceSpecification>(source, props, 'video', sourceOpts, registry);
+    useSource<VideoSourceSpecification>(source, props, 'video', sourceOpts, registry);
 
-		watch(isRef(props.coordinates) ? props.coordinates : () => props.coordinates, v => {
-			source.value?.setCoordinates(v as Coordinates);
-		}, { immediate: true });
+    watch(isRef(props.coordinates) ? props.coordinates : () => props.coordinates, v => {
+      source.value?.setCoordinates(v as Coordinates);
+    }, { immediate: true });
 
-		return () => [
-			createCommentVNode('Video Source'),
-			source.value && slots.default ? slots.default({}) : undefined
-		];
+    return () => [
+      createCommentVNode('Video Source'),
+      source.value && slots.default ? slots.default({}) : undefined
+    ];
 
-	}
+  }
 });
