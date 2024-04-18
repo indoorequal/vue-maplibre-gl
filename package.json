@@ -38,8 +38,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "upgrade": "taze major -I"
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@babel/types": "^7.23.9",
@@ -52,7 +51,6 @@
     "mitt": "^3.0.1",
     "modular-maptiler-sdk": "^1.0.16",
     "sass": "^1.71.0",
-    "taze": "^0.13.3",
     "typescript": "^5.3.3",
     "vite": "^5.1.3",
     "vite-plugin-banner": "^0.7.1",
