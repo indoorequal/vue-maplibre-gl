@@ -76,15 +76,15 @@ or in a parent components `.vue` file
 
 # Usage
 
-See [src/App.vue](src/App.vue) for a real world example.
+See [examples/App.vue](src/App.vue) for a real world example.
 
 # Demo
 
 ```shell
-git clone https://github.com/razorness/vue-maplibre-gl.git
+git clone https://github.com/indoorequal/vue-maplibre-gl.git
 cd vue-maplibre-gl
 yarn
-yarn dev
+yarn examples
 ```
 
 ## PRs welcome ♥

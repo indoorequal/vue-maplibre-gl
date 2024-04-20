@@ -6,12 +6,12 @@
       ref="map"
       :center="center"
       :zoom="zoom"
-      :attribution-control="true"
+      :attribution-control="false"
       language="fr"
       @map:load="onLoad"
       @map:zoomstart="isZooming = true"
       @map:zoomend="isZooming = false"
-      >
+    >
       <mgl-frame-rate-control/>
       <mgl-fullscreen-control/>
       <mgl-attribution-control/>
@@ -57,7 +57,7 @@
     <input type="radio" id="four" value="bottom-right" v-model="controlPosition"/>
     <label for="four">bottom-right</label>
     <br/>
-    <span>Attribution Position: {{ controlPosition }}</span>
+    <span>Style Position: {{ controlPosition }}</span>
   </div>
   <div>
     <input type="checkbox" v-model="useClasses" id="noclasses">
@@ -85,26 +85,33 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, onMounted, ref, watch } from 'vue';
-import { MglDefaults, MglEvent, Position, StyleSwitchItem, useMap, ValidLanguages } from '@/lib/main';
+import { defineComponent, onMounted, ref, watch } from 'vue';
+import {
+  MglDefaults,
+  MglEvent,
+  Position,
+  StyleSwitchItem,
+  useMap,
+  ValidLanguages,
+  MglMap,
+  MglFrameRateControl,
+  MglFullscreenControl,
+  MglAttributionControl,
+  MglNavigationControl,
+  MglScaleControl,
+  MglGeolocationControl,
+  MglCustomControl,
+  MglButton,
+  MglStyleSwitchControl,
+  MglMarker,
+  MglGeoJsonSource,
+  MglLineLayer,
+  MglVectorSource,
+  MglCircleLayer
+} from 'vue-maplibre-gl';
 import { mdiCursorDefaultClick } from '@mdi/js';
 import { CircleLayerSpecification, LineLayerSpecification, LngLatLike, MapLayerMouseEvent } from 'maplibre-gl';
-import MglMap from '@/lib/components/map.component';
-import MglFrameRateControl from '@/lib/components/controls/frameRate.control';
-import MglFullscreenControl from '@/lib/components/controls/fullscreen.control';
-import MglAttributionControl from '@/lib/components/controls/attribution.control';
-import MglNavigationControl from '@/lib/components/controls/navigation.control';
-import MglScaleControl from '@/lib/components/controls/scale.control';
-import MglGeolocationControl from '@/lib/components/controls/geolocation.control';
-import MglCustomControl from '@/lib/components/controls/custom.control';
-import MglButton from '@/lib/components/button.component';
-import MglStyleSwitchControl from '@/lib/components/controls/styleSwitch.control';
-import MglMarker from '@/lib/components/marker.component';
-import MglGeoJsonSource from '@/lib/components/sources/geojson.source';
-import MglLineLayer from '@/lib/components/layers/line.layer';
 import { FeatureCollection, LineString } from 'geojson';
-import MglVectorSource from '@/lib/components/sources/vector.source';
-import MglCircleLayer from '@/lib/components/layers/circle.layer';
 
 MglDefaults.style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
 console.log('MglDefaults', MglDefaults);
@@ -266,8 +273,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "~maplibre-gl/dist/maplibre-gl.css";
-@import "@/lib/css/maplibre.scss";
+@import "maplibre-gl/dist/maplibre-gl.css";
+@import "../dist/vue-maplibre-gl.css";
 
 body {
   margin: 0;
