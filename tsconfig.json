@@ -1,50 +1,50 @@
 {
-	"compilerOptions": {
-		"baseUrl"                : ".",
-		"target"                 : "ESNext",
-		"useDefineForClassFields": true,
-		"module"                 : "ESNext",
-		"moduleResolution"       : "Node",
-		"strict"                 : true,
-		"jsx"                    : "preserve",
-		"sourceMap"              : true,
-		"resolveJsonModule"      : true,
-		"esModuleInterop"        : true,
-		"isolatedModules"        : true,
-		"skipLibCheck"           : true,
-		"newLine"                : "lf",
-		"lib"                    : [
-			"ESNext",
-			"DOM",
-			"dom.iterable",
-			"scripthost"
-		],
-		"paths"                  : {
-			"@/*": [
-				"src/*"
-			]
-		},
-		"types"                  : [
-			"node",
-			"vue",
-			"geojson",
-			"maplibre-gl"
-		]
-	},
-	"include"        : [
-		"src/**/*.ts",
-		"src/**/*.d.ts",
-		"src/**/*.tsx",
-		"src/**/*.vue",
-		"package.json"
-	],
-	"exclude"        : [
-		"dist",
-		"node_modules"
-	],
-	"references"     : [
-		{
-			"path": "./tsconfig.node.json"
-		}
-	]
+  "compilerOptions": {
+    "baseUrl"                : ".",
+    "target"                 : "ESNext",
+    "useDefineForClassFields": true,
+    "module"                 : "ESNext",
+    "moduleResolution"       : "Node",
+    "strict"                 : true,
+    "jsx"                    : "preserve",
+    "sourceMap"              : true,
+    "resolveJsonModule"      : true,
+    "esModuleInterop"        : true,
+    "isolatedModules"        : true,
+    "skipLibCheck"           : true,
+    "newLine"                : "lf",
+    "lib"                    : [
+      "ESNext",
+      "DOM",
+      "dom.iterable",
+      "scripthost"
+    ],
+    "paths"                  : {
+      "@/*": [
+	"./*"
+      ]
+    },
+    "types"                  : [
+      "node",
+      "vue",
+      "geojson",
+      "maplibre-gl"
+    ]
+  },
+  "include"        : [
+    "lib/**/*.ts",
+    "lib/**/*.d.ts",
+    "lib/**/*.tsx",
+    "lib/**/*.vue",
+    "package.json"
+  ],
+  "exclude"        : [
+    "dist",
+    "node_modules"
+  ],
+  "references"     : [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

@@ -11,8 +11,7 @@ import { fileURLToPath } from 'url';
 export default defineConfig({
   resolve: {
     alias: [
-      { find: '@', replacement: fileURLToPath(new URL('./', import.meta.url)) },
-      { find: /^~(.+)/, replacement: '$1' }
+      { find: '@', replacement: fileURLToPath(new URL('.', import.meta.url)) }
     ]
   },
   plugins: [
