@@ -15,8 +15,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org/
-      - run: yarn install
+          cache: 'yarn'
+      - run: yarn install --immutable
       - run: yarn build
       - run: yarn npm publish
         env:
