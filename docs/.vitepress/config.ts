@@ -5,6 +5,13 @@ import examplesPath from '../examples/[example].paths.js';
 export default defineConfig({
   title: "vue-maplibre-gl",
   description: "Vue 3 plugin for maplibre-gl",
+  transformPageData: (pageData, { siteConfig }) => {
+    if (pageData.filePath.startsWith('examples/') && pageData.filePath != 'examples/index.md') {
+      return {
+        title: `${pageData.params.title} - Examples`
+      }
+    }
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
