@@ -17,5 +17,5 @@ hero:
 features:
   - title: Support Maplibre-gl-js 3.x
   - title: Vue 3 support
-  - title: Feature C
+  - title: Typescript support
 ---
