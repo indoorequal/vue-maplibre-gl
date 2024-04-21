@@ -33,7 +33,7 @@
   "types": "dist/main.d.ts",
   "files": [
     "dist/**/*",
-    "src/lib/**/*"
+    "lib/**/*"
   ],
   "scripts": {
     "build": "vue-tsc --noEmit && vite build",

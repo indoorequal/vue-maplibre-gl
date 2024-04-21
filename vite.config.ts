@@ -11,7 +11,7 @@ import { fileURLToPath } from 'url';
 export default defineConfig({
   resolve: {
     alias: [
-      { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
+      { find: '@', replacement: fileURLToPath(new URL('./', import.meta.url)) },
       { find: /^~(.+)/, replacement: '$1' }
     ]
   },
@@ -31,7 +31,7 @@ export default defineConfig({
     cssCodeSplit : true,
     sourcemap    : true,
     lib          : {
-      entry   : resolve(__dirname, 'src/lib/main.ts'),
+      entry   : resolve(__dirname, 'lib/main.ts'),
       name    : 'VueMaplibreGl',
       fileName: format => `vue-maplibre-gl.${format}.js`
     },
@@ -63,11 +63,4 @@ export default defineConfig({
       },
     }
   },
-  server : {
-    host : '0.0.0.0',
-    watch: {
-      // to avoid full page reloads on file changes
-      ignored: [ /\.idea/, /ts\.timestamp-\d+\.mjs/, /\.git/, /node_modules/ ]
-    }
-  }
 });
