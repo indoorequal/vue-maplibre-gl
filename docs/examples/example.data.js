@@ -14,7 +14,11 @@ export default {
       const description = removeComment(vueContent[2]);
       const content = `
 <script setup>
-import Example from './${path.basename(file)}';
+import { defineClientComponent } from 'vitepress';
+
+const Example = defineClientComponent(() => {
+  return import('./${path.basename(file)}');
+})
 </script>
 <Example style="height: 500px" />
 \`\`\`vue
