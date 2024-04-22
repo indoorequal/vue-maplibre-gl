@@ -11,8 +11,8 @@ hero:
       text: Examples
       link: /examples/
     - theme: alt
-      text: API
-      link: /api-examples
+      text: Guide
+      link: /guide/installation
 
 features:
   - title: Support Maplibre-gl-js 3.x
