@@ -1,5 +1,5 @@
 import type { InjectionKey, Ref, ShallowRef } from 'vue';
-import type { Map, SourceSpecification, StyleSpecification } from 'maplibre-gl';
+import type { Map, Marker, SourceSpecification, StyleSpecification } from 'maplibre-gl';
 import type { MglMap } from '@/lib/components';
 import type { Emitter } from 'mitt';
 import type { SourceLayerRegistry } from '@/lib/lib/sourceLayer.registry';
@@ -10,7 +10,8 @@ export const mapSymbol           = Symbol('map') as InjectionKey<ShallowRef<Map 
              componentIdSymbol   = Symbol('componentId') as InjectionKey<number>,
              sourceIdSymbol      = Symbol('sourceId') as InjectionKey<string>,
              sourceLayerRegistry = Symbol('sourceLayerRegistry') as InjectionKey<SourceLayerRegistry>,
-             emitterSymbol       = Symbol('emitter') as InjectionKey<Emitter<MglEvents>>;
+             emitterSymbol       = Symbol('emitter') as InjectionKey<Emitter<MglEvents>>,
+             markerSymbol        = Symbol('marker') as InjectionKey<ShallowRef<Marker | undefined>>;
 
 export interface MglEvent<T = any> {
   type: string;

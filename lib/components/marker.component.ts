@@ -1,7 +1,7 @@
-import { defineComponent, inject, onBeforeUnmount, type PropType, unref, watch } from 'vue';
+import { defineComponent, inject, provide, onBeforeUnmount, type PropType, unref, watch, shallowRef, h } from 'vue';
 import { type LngLatLike, Marker, type MarkerOptions, type PointLike, type PositionAnchor } from 'maplibre-gl';
 import { MapLib } from '@/lib/lib/map.lib';
-import { mapSymbol } from '@/lib/types';
+import { mapSymbol, markerSymbol } from '@/lib/types';
 
 export default /*#__PURE__*/ defineComponent({
   name : 'MglMarker',
@@ -20,7 +20,7 @@ export default /*#__PURE__*/ defineComponent({
     pitchAlignment   : String as PropType<'map' | 'viewport' | 'auto'>,
     scale            : Number as PropType<number>
   },
-  setup(props) {
+  setup(props, { slots }) {
 
     const map                = inject(mapSymbol)!,
          opts: MarkerOptions = Object.keys(props)
@@ -32,6 +32,7 @@ export default /*#__PURE__*/ defineComponent({
 
     const marker = new Marker(opts);
     marker.setLngLat(props.coordinates).addTo(map.value!);
+    provide(markerSymbol, shallowRef(marker));
 
     watch(() => props.coordinates, v => marker.setLngLat(v));
     // watch(() => props.draggable, v => marker.setDraggable(v || false));
@@ -41,10 +42,8 @@ export default /*#__PURE__*/ defineComponent({
 
     onBeforeUnmount(marker.remove.bind(marker));
 
-    return { marker };
-
-  },
-  render() {
-    // nothing
+    return () => [
+      h('div', slots.default ? slots.default({}) : undefined)
+    ];
   }
 });

@@ -10,6 +10,7 @@ export { default as MglScaleControl } from './controls/scale.control';
 export { default as MglStyleSwitchControl } from './controls/styleSwitch.control';
 export { default as MglButton } from './button.component';
 export { default as MglMarker } from './marker.component';
+export { default as MglPopup } from './popup.component';
 export { default as MglCanvasSource } from './sources/canvas.source';
 export { default as MglGeoJsonSource } from './sources/geojson.source';
 export { default as MglImageSource } from './sources/image.source';

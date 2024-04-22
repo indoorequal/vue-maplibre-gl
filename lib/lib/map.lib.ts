@@ -1,4 +1,4 @@
-import type { Map, MapOptions, MarkerOptions } from 'maplibre-gl';
+import type { Map, MapOptions, MarkerOptions, PopupOptions } from 'maplibre-gl';
 import type { MglMap } from '@/lib/components';
 import type { MglEvent } from '@/lib/types';
 
@@ -17,6 +17,10 @@ export class MapLib {
 
   static readonly MARKER_OPTION_KEYS: Array<keyof MarkerOptions> = [
     'element', 'offset', 'anchor', 'color', 'draggable', 'clickTolerance', 'rotation', 'rotationAlignment', 'pitchAlignment', 'scale'
+  ];
+
+  static readonly POPUP_OPTION_KEYS: Array<keyof PopupOptions> = [
+    'closeButton', 'closeOnClick', 'closeOnMove', 'focusAfterOpen', 'anchor', 'offset', 'className', 'maxWidth'
   ];
 
   static readonly MAP_EVENT_TYPES = [
