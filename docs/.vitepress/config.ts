@@ -5,6 +5,7 @@ import examplesPath from '../examples/[example].paths.js';
 export default defineConfig({
   title: "vue-maplibre-gl",
   description: "Vue 3 plugin for maplibre-gl",
+  base: process.env.NODE_ENV === 'production' ? '/vue-maplibre-gl/': '/',
   transformPageData: (pageData, { siteConfig }) => {
     if (pageData.filePath.startsWith('examples/') && pageData.filePath != 'examples/index.md') {
       return {
