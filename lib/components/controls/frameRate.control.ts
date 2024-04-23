@@ -196,24 +196,21 @@ export default /*#__PURE__*/ defineComponent({
   setup(props) {
 
     const map           = inject(mapSymbol)!,
-    isInitialized = inject(isInitializedSymbol)!,
-    control       = new FrameRateControl(
-      props.background,
-      props.barWidth,
-      props.color,
-      props.font,
-      props.graphHeight,
-      props.graphWidth,
-      props.graphTop,
-      props.graphRight,
-      props.width
-    );
+          isInitialized = inject(isInitializedSymbol)!,
+          control       = new FrameRateControl(
+            props.background,
+            props.barWidth,
+            props.color,
+            props.font,
+            props.graphHeight,
+            props.graphWidth,
+            props.graphTop,
+            props.graphRight,
+            props.width
+          );
 
     usePositionWatcher(() => props.position, map, control);
     onBeforeUnmount(() => isInitialized.value && map.value?.removeControl(control));
 
   },
-  render() {
-    // nothing
-  }
 });

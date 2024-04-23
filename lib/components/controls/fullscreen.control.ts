@@ -22,8 +22,8 @@ export default /*#__PURE__*/ defineComponent({
   setup(props) {
 
     const map           = inject(mapSymbol)!,
-    isInitialized = inject(isInitializedSymbol)!,
-    control       = new FullscreenControl({ container: props.container || undefined });
+          isInitialized = inject(isInitializedSymbol)!,
+          control       = new FullscreenControl({ container: props.container || undefined });
 
     // fire map.resize just a 2nd time
     function triggerResize() {
@@ -41,7 +41,4 @@ export default /*#__PURE__*/ defineComponent({
     });
 
   },
-  render() {
-    // nothing
-  }
 });

@@ -21,14 +21,11 @@ export default /*#__PURE__*/ defineComponent({
   setup(props) {
 
     const map           = inject(mapSymbol)!,
-    isInitialized = inject(isInitializedSymbol)!,
-    control       = new NavigationControl({ showCompass: props.showCompass, showZoom: props.showZoom, visualizePitch: props.visualizePitch });
+          isInitialized = inject(isInitializedSymbol)!,
+          control       = new NavigationControl({ showCompass: props.showCompass, showZoom: props.showZoom, visualizePitch: props.visualizePitch });
 
     usePositionWatcher(() => props.position, map, control);
     onBeforeUnmount(() => isInitialized.value && map.value?.removeControl(control));
 
   },
-  render() {
-    // nothing
-  }
 });

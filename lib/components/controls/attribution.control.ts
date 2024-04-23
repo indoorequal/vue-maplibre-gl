@@ -4,7 +4,6 @@ import { Position, type PositionProp, PositionValues } from '@/lib/components/co
 import { isInitializedSymbol, mapSymbol } from '@/lib/types';
 import { usePositionWatcher } from '@/lib/composable/usePositionWatcher';
 
-
 export default /*#__PURE__*/ defineComponent({
   name : 'MglAttributionControl',
   props: {
@@ -18,16 +17,12 @@ export default /*#__PURE__*/ defineComponent({
     customAttribution: [ String, Array ] as PropType<string | string[]>
   },
   setup(props) {
-
     const map           = inject(mapSymbol)!,
-    isInitialized = inject(isInitializedSymbol)!,
-    control       = new AttributionControl({ compact: props.compact, customAttribution: props.customAttribution });
+          isInitialized = inject(isInitializedSymbol)!,
+          control       = new AttributionControl({ compact: props.compact, customAttribution: props.customAttribution });
 
     usePositionWatcher(() => props.position, map, control);
     onBeforeUnmount(() => isInitialized.value && map.value!.removeControl(control));
 
-  },
-  render() {
-    // nothing
   }
 });

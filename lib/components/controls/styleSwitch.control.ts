@@ -44,7 +44,7 @@ export default /*#__PURE__*/ defineComponent({
     mapStyles : {
       type    : Array as PropType<StyleSwitchItem[]>,
       required: true,
-      default : []
+      default : () => []
     },
     modelValue: {
       type: Object as PropType<StyleSwitchItem>
@@ -59,14 +59,14 @@ export default /*#__PURE__*/ defineComponent({
   setup(props, { emit, slots }) {
 
     const map           = inject(mapSymbol)!,
-    isInitialized = inject(isInitializedSymbol)!,
-    isMapLoaded   = inject(isLoadedSymbol)!,
-    emitter       = inject(emitterSymbol)!,
-    isAdded       = ref(false),
-    isOpen        = ref(props.isOpen === undefined ? false : props.isOpen),
-    modelValue    = shallowRef(props.modelValue === undefined ? (props.mapStyles.length ? props.mapStyles[ 0 ] : null) : props.modelValue),
-    control       = new CustomControl(isAdded, false),
-    closer        = toggleOpen.bind(null, false);
+          isInitialized = inject(isInitializedSymbol)!,
+          isMapLoaded   = inject(isLoadedSymbol)!,
+          emitter       = inject(emitterSymbol)!,
+          isAdded       = ref(false),
+          isOpen        = ref(props.isOpen === undefined ? false : props.isOpen),
+          modelValue    = shallowRef(props.modelValue === undefined ? (props.mapStyles.length ? props.mapStyles[ 0 ] : null) : props.modelValue),
+          control       = new CustomControl(isAdded, false),
+          closer        = toggleOpen.bind(null, false);
 
     function setStyleByMap() {
       const name = map.value!.getStyle().name;

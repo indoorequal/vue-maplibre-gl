@@ -42,7 +42,4 @@ export default /*#__PURE__*/ defineComponent({
     onBeforeUnmount(() => isInitialized.value && map.value?.removeControl(control));
 
   },
-  render() {
-    // nothing
-  }
 });

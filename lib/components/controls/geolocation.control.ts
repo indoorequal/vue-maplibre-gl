@@ -38,20 +38,17 @@ export default /*#__PURE__*/ defineComponent({
   setup(props) {
 
     const map           = inject(mapSymbol)!,
-    isInitialized = inject(isInitializedSymbol)!,
-    control       = new GeolocateControl({
-      positionOptions   : props.positionOptions,
-      fitBoundsOptions  : props.fitBoundsOptions,
-      trackUserLocation : props.trackUserLocation,
-      showAccuracyCircle: props.showAccuracyCircle,
-      showUserLocation  : props.showUserLocation
-    });
+          isInitialized = inject(isInitializedSymbol)!,
+          control       = new GeolocateControl({
+            positionOptions   : props.positionOptions,
+            fitBoundsOptions  : props.fitBoundsOptions,
+            trackUserLocation : props.trackUserLocation,
+            showAccuracyCircle: props.showAccuracyCircle,
+            showUserLocation  : props.showUserLocation
+          });
 
     usePositionWatcher(() => props.position, map, control);
     onBeforeUnmount(() => isInitialized.value && map.value?.removeControl(control));
 
   },
-  render() {
-    // nothing
-  }
 });

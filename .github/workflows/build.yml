@@ -14,3 +14,4 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable
       - run: yarn build
+      - run: yarn lint

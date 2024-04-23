@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 export { default as MglMap } from './map.component';
 export { default as MglAttributionControl } from './controls/attribution.control';
 export { default as MglCustomControl } from './controls/custom.control';
