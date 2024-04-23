@@ -21,7 +21,7 @@ This is a fork of [vue-maplibre-gl](https://github.com/razorness/vue-maplibre-gl
 - Frame rate control included
 - Support for multiple instances and global access by `useMap(key: string | symbol)`
 - Simple way to switch displayed map language
-- Automatic restart on CONTEXT_LOST_WEBGL which can happen on mobile devices when tab was in background for longer time 
+- Automatic restart on CONTEXT_LOST_WEBGL which can happen on mobile devices when tab was in background for longer time
 - Small size
 
 ## Table of contents
@@ -65,14 +65,14 @@ or in a parent components `.vue` file
 ```html
 
 <script>
-	import { MglMap } from '@indoorequal/vue-maplibre-gl'
+  import { MglMap } from '@indoorequal/vue-maplibre-gl'
 
-	export default {
-		components: {
-			MglMap
-		},
-		// ...
-	}
+  export default {
+    components: {
+      MglMap
+    },
+    // ...
+  }
 </script>
 ```
 
