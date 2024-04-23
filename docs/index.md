@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "vue-maplibre-gl"
+  name: "@indoorequal/vue-maplibre-gl"
   text: "Vue 3 plugin for maplibre-gl"
   tagline:
   actions:

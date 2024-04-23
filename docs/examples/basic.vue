@@ -15,7 +15,7 @@
 import {
   MglMap,
   MglNavigationControl,
-} from 'vue-maplibre-gl';
+} from '@indoorequal/vue-maplibre-gl';
 
 const style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
 const center = [12.550343, 55.665957];
@@ -24,7 +24,7 @@ const zoom = 8;
 
 <style lang="scss">
 @import "maplibre-gl/dist/maplibre-gl.css";
-@import "vue-maplibre-gl/dist/vue-maplibre-gl.css";
+@import "@indoorequal/vue-maplibre-gl/dist/vue-maplibre-gl.css";
 
 body {
   margin: 0;

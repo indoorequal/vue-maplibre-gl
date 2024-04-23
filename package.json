@@ -1,5 +1,5 @@
 {
-  "name": "vue-maplibre-gl",
+  "name": "@indoorequal/vue-maplibre-gl",
   "version": "3.1.3",
   "description": "Vue 3 plugin for maplibre-gl",
   "keywords": [
@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/razorness/vue-maplibre-gl.git"
+    "url": "https://github.com/indoorequal/vue-maplibre-gl.git"
   },
   "license": "MIT",
   "type": "module",
@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@babel/types": "^7.23.9",
+    "@indoorequal/vue-maplibre-gl": "workspace:^",
     "@mdi/js": "^7.4.47",
     "@types/geojson": "^7946.0.14",
     "@types/node": "^20.11.17",
@@ -59,7 +60,6 @@
     "vite-plugin-dts": "^3.7.2",
     "vitepress": "^1.1.3",
     "vue": "^3.4.19",
-    "vue-maplibre-gl": "workspace:^",
     "vue-tsc": "^2.0.0"
   },
   "peerDependencies": {

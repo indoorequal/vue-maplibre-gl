@@ -108,7 +108,7 @@ import {
   MglLineLayer,
   MglVectorSource,
   MglCircleLayer
-} from 'vue-maplibre-gl';
+} from '@indoorequal/vue-maplibre-gl';
 import { mdiCursorDefaultClick } from '@mdi/js';
 import { CircleLayerSpecification, LineLayerSpecification, LngLatLike, MapLayerMouseEvent } from 'maplibre-gl';
 import { FeatureCollection, LineString } from 'geojson';

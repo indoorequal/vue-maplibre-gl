@@ -3,7 +3,7 @@ import examplesPath from '../examples/[example].paths.js';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "vue-maplibre-gl",
+  title: "@indoorequal/vue-maplibre-gl",
   description: "Vue 3 plugin for maplibre-gl",
   base: process.env.NODE_ENV === 'production' ? '/vue-maplibre-gl/': '/',
   transformPageData: (pageData, { siteConfig }) => {

@@ -30,7 +30,7 @@ A small Vue 3 plugin for [maplibre-gl-js](https://github.com/maplibre/maplibre-g
 # Installation
 
 ```shell
-yarn add vue-maplibre-gl maplibre-gl mitt
+yarn add @indoorequal/vue-maplibre-gl maplibre-gl mitt
 ```
 
 ## Default import
@@ -38,7 +38,7 @@ yarn add vue-maplibre-gl maplibre-gl mitt
 Global Install:
 
 ```typescript
-import VueMaplibreGl from 'vue-maplibre-gl'
+import VueMaplibreGl from '@indoorequal/vue-maplibre-gl'
 
 app.use(VueMaplibreGl)
 ```
@@ -47,13 +47,13 @@ Add CSS:
 
 ```scss
 @import "~maplibre-gl/dist/maplibre-gl.css";
-@import "~vue-maplibre-gl/dist/vue-maplibre-gl.css";
+@import "~@indoorequal/vue-maplibre-gl/dist/vue-maplibre-gl.css";
 ```
 
 Use specific components:
 
 ```typescript
-import { MglMap } from 'vue-maplibre-gl'
+import { MglMap } from '@indoorequal/vue-maplibre-gl'
 
 app.component('MglMap', MglMap)
 ```
@@ -63,7 +63,7 @@ or in a parent components `.vue` file
 ```html
 
 <script>
-	import { MglMap } from 'vue-maplibre-gl'
+	import { MglMap } from '@indoorequal/vue-maplibre-gl'
 
 	export default {
 		components: {
