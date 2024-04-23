@@ -552,6 +552,7 @@ __metadata:
     maplibre-gl: "npm:^3.0.0"
     mitt: "npm:^3.0.1"
     modular-maptiler-sdk: "npm:^1.0.16"
+    prettier: "npm:3.2.5"
     sass: "npm:^1.71.0"
     typescript: "npm:^5.3.3"
     typescript-eslint: "npm:^7.7.1"
@@ -3553,6 +3554,15 @@ __metadata:
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
   checksum: 10/0b9d2c76801ca652a7f64892dd37b7e3fab149a37d2424920099bf894acccc62abb4424af2155ab36dea8744843060a2d8ddc983518d0b1e22265a22324b72ed
+  languageName: node
+  linkType: hard
+
+"prettier@npm:3.2.5":
+  version: 3.2.5
+  resolution: "prettier@npm:3.2.5"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: 10/d509f9da0b70e8cacc561a1911c0d99ec75117faed27b95cc8534cb2349667dee6351b0ca83fa9d5703f14127faa52b798de40f5705f02d843da133fc3aa416a
   languageName: node
   linkType: hard
 

@@ -41,7 +41,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "lint": "eslint lib"
+    "lint": "eslint lib",
+    "prettier": "prettier lib --write"
   },
   "devDependencies": {
     "@babel/types": "^7.23.9",
@@ -58,6 +59,7 @@
     "maplibre-gl": "^3.0.0",
     "mitt": "^3.0.1",
     "modular-maptiler-sdk": "^1.0.16",
+    "prettier": "3.2.5",
     "sass": "^1.71.0",
     "typescript": "^5.3.3",
     "typescript-eslint": "^7.7.1",

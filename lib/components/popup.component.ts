@@ -1,15 +1,30 @@
-import { defineComponent, inject, onMounted, PropType, unref, watch, ref, h } from 'vue';
-import { LngLatLike, Popup, Offset, PositionAnchor, PopupOptions } from 'maplibre-gl';
-import { MapLib } from '@/lib/lib/map.lib';
-import { mapSymbol, markerSymbol } from '@/lib/types';
+import {
+  defineComponent,
+  inject,
+  onMounted,
+  PropType,
+  unref,
+  watch,
+  ref,
+  h,
+} from "vue";
+import {
+  LngLatLike,
+  Popup,
+  Offset,
+  PositionAnchor,
+  PopupOptions,
+} from "maplibre-gl";
+import { MapLib } from "@/lib/lib/map.lib";
+import { mapSymbol, markerSymbol } from "@/lib/types";
 
 export default /*#__PURE__*/ defineComponent({
-  name : 'MglPopup',
-  emits: ['open', 'close'],
+  name: "MglPopup",
+  emits: ["open", "close"],
   props: {
     coordinates: {
-      type: [ Object, Array ] as unknown as PropType<LngLatLike>,
-      required: false
+      type: [Object, Array] as unknown as PropType<LngLatLike>,
+      required: false,
     },
     closeButton: {
       type: Boolean,
@@ -33,7 +48,7 @@ export default /*#__PURE__*/ defineComponent({
     },
     anchor: {
       type: String as PropType<PositionAnchor>,
-      required: false
+      required: false,
     },
     offset: {
       type: [Number, Object, Array] as PropType<Offset>,
@@ -45,12 +60,12 @@ export default /*#__PURE__*/ defineComponent({
     },
     maxWidth: {
       type: String,
-      default: '240px',
+      default: "240px",
     },
     text: {
       type: String,
-      required: false
-    }
+      required: false,
+    },
   },
   setup(props, { slots, emit }) {
     const map = inject(mapSymbol);
@@ -58,10 +73,14 @@ export default /*#__PURE__*/ defineComponent({
     const root = ref();
 
     const opts: PopupOptions = Object.keys(props)
-      .filter(opt => (props as any)[ opt ] !== undefined && MapLib.POPUP_OPTION_KEYS.indexOf(opt as keyof PopupOptions) !== -1)
+      .filter(
+        (opt) =>
+          (props as any)[opt] !== undefined &&
+          MapLib.POPUP_OPTION_KEYS.indexOf(opt as keyof PopupOptions) !== -1,
+      )
       .reduce((obj, opt) => {
-	(obj as any)[ opt ] = unref((props as any)[ opt ]);
-	return obj;
+        (obj as any)[opt] = unref((props as any)[opt]);
+        return obj;
       }, {});
 
     const popup = new Popup(opts);
@@ -76,13 +95,29 @@ export default /*#__PURE__*/ defineComponent({
       popup.setText(props.text);
     }
 
-    popup.on('open', () => emit('open'));
-    popup.on('close', () => emit('close'));
+    popup.on("open", () => emit("open"));
+    popup.on("close", () => emit("close"));
 
-    watch(() => props.coordinates, (v) => { if (v) { popup.setLngLat(v) } });
-    watch(() => props.text, v => popup.setText(v || ''));
-    watch(() => props.offset, v => popup.setOffset(v));
-    watch(() => props.maxWidth, v => popup.setMaxWidth(v));
+    watch(
+      () => props.coordinates,
+      (v) => {
+        if (v) {
+          popup.setLngLat(v);
+        }
+      },
+    );
+    watch(
+      () => props.text,
+      (v) => popup.setText(v || ""),
+    );
+    watch(
+      () => props.offset,
+      (v) => popup.setOffset(v),
+    );
+    watch(
+      () => props.maxWidth,
+      (v) => popup.setMaxWidth(v),
+    );
 
     onMounted(() => {
       if (root.value && !props.text) {
@@ -91,7 +126,7 @@ export default /*#__PURE__*/ defineComponent({
     });
 
     return () => [
-      h('div', {ref: root}, slots.default ? slots.default() : undefined)
+      h("div", { ref: root }, slots.default ? slots.default() : undefined),
     ];
   },
 });

@@ -7,7 +7,7 @@ export function debounce(fn: Function, wait = 250, immediate = false) {
       timeout = undefined;
       if (immediate !== true) {
         // @ts-expect-error TS7019: Rest parameter 'args' implicitly has an 'any[]' type.
-	fn.apply(this, args);
+        fn.apply(this, args);
       }
     };
 

@@ -1,5 +1,4 @@
 .maplibregl-ctrl {
-
   .maplibregl-style-switch {
     display: block;
 
@@ -24,18 +23,18 @@
         font-weight: bold;
       }
     }
-
   }
-
 }
 
-.maplibregl-ctrl-top-left, .maplibregl-ctrl-bottom-left {
+.maplibregl-ctrl-top-left,
+.maplibregl-ctrl-bottom-left {
   .maplibregl-style-list button {
     text-align: left;
   }
 }
 
-.maplibregl-ctrl-top-right, .maplibregl-ctrl-bottom-right {
+.maplibregl-ctrl-top-right,
+.maplibregl-ctrl-bottom-right {
   .maplibregl-style-list button {
     text-align: right;
   }

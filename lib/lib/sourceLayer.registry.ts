@@ -1,7 +1,6 @@
-export type SourceLayerRegistryHandler = () => void
+export type SourceLayerRegistryHandler = () => void;
 
 export class SourceLayerRegistry {
-
   private unmountHandlers = new Map<string, SourceLayerRegistryHandler>();
 
   registerUnmountHandler(id: string, handler: SourceLayerRegistryHandler) {
@@ -15,5 +14,4 @@ export class SourceLayerRegistry {
   unmount() {
     this.unmountHandlers.forEach((h) => h());
   }
-
 }
