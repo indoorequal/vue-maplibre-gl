@@ -8,7 +8,7 @@ Discover the examples.
 
 <ul>
   <li v-for="example of data">
-    <a :href="`/examples/${example.params.example}`">{{ example.params.title }}</a>:
+    <a :href="`${example.params.example}`">{{ example.params.title }}</a>:
     {{ example.params.description }}
   </li>
 </ul>
