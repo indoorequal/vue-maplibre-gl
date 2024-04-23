@@ -1,4 +1,4 @@
-# vue-maplibre-gl
+# @indoorequal/vue-maplibre-gl
 
 [![npm](https://img.shields.io/npm/v/@indoorequal/vue-maplibre-gl.svg?style=flat-square)](https://www.npmjs.com/package/@indoorequal/vue-maplibre-gl)
 [![npm](https://img.shields.io/npm/dm/@indoorequal/vue-maplibre-gl?style=flat-square)](https://www.npmjs.com/package/@indoorequal/vue-maplibre-gl)
@@ -8,6 +8,8 @@
 [![TypeScript](https://img.shields.io/badge/-TypeScript-informational?style=flat-square)](https://www.typescriptlang.org/)
 
 A small Vue 3 plugin for [maplibre-gl-js](https://github.com/maplibre/maplibre-gl-js). Only additional dependency is [mitt](https://github.com/developit/mitt).
+
+This is a fork of [vue-maplibre-gl](https://github.com/razorness/vue-maplibre-gl).
 
 ## Features
 
