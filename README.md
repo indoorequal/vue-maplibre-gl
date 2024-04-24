@@ -24,57 +24,10 @@ This is a fork of [vue-maplibre-gl](https://github.com/razorness/vue-maplibre-gl
 - Automatic restart on CONTEXT_LOST_WEBGL which can happen on mobile devices when tab was in background for longer time
 - Small size
 
-## Table of contents
 
-- [Installation](#installation)
-- [Usage](#usage)
+## Documentation
 
-# Installation
-
-```shell
-yarn add @indoorequal/vue-maplibre-gl maplibre-gl mitt
-```
-
-## Default import
-
-Global Install:
-
-```typescript
-import VueMaplibreGl from '@indoorequal/vue-maplibre-gl'
-
-app.use(VueMaplibreGl)
-```
-
-Add CSS:
-
-```scss
-@import "~maplibre-gl/dist/maplibre-gl.css";
-@import "~@indoorequal/vue-maplibre-gl/dist/vue-maplibre-gl.css";
-```
-
-Use specific components:
-
-```typescript
-import { MglMap } from '@indoorequal/vue-maplibre-gl'
-
-app.component('MglMap', MglMap)
-```
-
-or in a parent components `.vue` file
-
-```html
-
-<script>
-  import { MglMap } from '@indoorequal/vue-maplibre-gl'
-
-  export default {
-    components: {
-      MglMap
-    },
-    // ...
-  }
-</script>
-```
+https://indoorequal.github.io/vue-maplibre-gl/
 
 # Usage
 
