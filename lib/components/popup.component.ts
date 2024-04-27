@@ -22,10 +22,17 @@ export default /*#__PURE__*/ defineComponent({
   name: "MglPopup",
   emits: ["open", "close"],
   props: {
+    /**
+     * The geographical location of the popup's anchor.
+     * Unused when placed inside a marker.
+     */
     coordinates: {
       type: [Object, Array] as unknown as PropType<LngLatLike>,
       required: false,
     },
+    /**
+     * Display a close button in the top right corner
+     */
     closeButton: {
       type: Boolean,
       required: false,

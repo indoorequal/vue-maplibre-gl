@@ -21,7 +21,7 @@ import type { ControlPosition, IControl } from "maplibre-gl";
 import { isInitializedSymbol, mapSymbol } from "@/lib/types";
 import { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
 
-export class CustomControl implements IControl {
+class CustomControl implements IControl {
   public static readonly CONTROL_CLASS = "maplibregl-ctrl";
   public static readonly CONTROL_GROUP_CLASS = "maplibregl-ctrl-group";
 

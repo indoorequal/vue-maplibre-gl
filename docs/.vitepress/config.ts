@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import examplesPath from '../examples/[example].paths.js';
+import componentsPath from '../api/[component].paths.js';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -10,6 +11,10 @@ export default defineConfig({
     if (pageData.filePath.startsWith('examples/') && pageData.filePath != 'examples/index.md') {
       return {
         title: `${pageData.params.title} - Examples`
+      }
+    } else if (pageData.filePath.startsWith('api/') && pageData.filePath != 'api/index.md') {
+      return {
+        title: `${pageData.params.title} - API`
       }
     }
   },
@@ -37,6 +42,16 @@ export default defineConfig({
           return {
             text: example.params.title,
             link: `/examples/${example.params.example}`
+          };
+        })
+      },
+      {
+        text: 'API',
+        link: '/api/',
+        items: (await componentsPath.paths()).map((component) => {
+          return {
+            text: component.params.title,
+            link: `/api/${component.params.component}`
           };
         })
       }

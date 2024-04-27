@@ -8,7 +8,7 @@ import {
 import { isInitializedSymbol, mapSymbol } from "@/lib/types";
 import { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
 
-export class FrameRateControl implements IControl {
+class FrameRateControl implements IControl {
   private frames = 0;
   private totalTime = 0;
   private totalFrames = 0;
