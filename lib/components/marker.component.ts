@@ -141,4 +141,12 @@ export default defineComponent({
 
     return () => [h("div", slots.default ? slots.default({}) : undefined)];
   },
+
+  /**
+   * Slot for popup component
+   * @slot default
+   */
+  render() {
+    return null;
+  }
 });

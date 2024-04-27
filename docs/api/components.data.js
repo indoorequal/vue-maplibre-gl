@@ -32,6 +32,37 @@ ${componentInfo.events.map((event) => {
  }).join('\n')}
 ` : '';
 
+
+      const formatBindings = (bindings) => {
+	if (!bindings) {
+	  return ''
+	}
+	return bindings
+	  .map(binding => {
+	    const { name, description, type } = binding
+	    if (!type) {
+	      return ''
+	    }
+	    return `**${name}** \`${
+				type.name === 'union' && type.elements
+					? type.elements.map(({ name: insideName }) => insideName).join(', ')
+					: type.name
+			}\` - ${description}`
+	  })
+	  .join('\n')
+      }
+      const slotsMarkdown = componentInfo.slots ? `
+## Slots
+
+| Name          | Description  | Bindings |
+| ------------- | ------------ | -------- |
+${componentInfo.slots.map((slot) => {
+  const { description, bindings, name } = slot;
+  const readableBindings = bindings ? formatBindings(bindings) : '';
+  return [name, description, bindings].join('|');
+}).join('\n')}
+` : '';
+
       return {
         params: {
           component: componentInfo.displayName,
@@ -49,6 +80,8 @@ import { ${componentInfo.displayName} } from '@indoorequal/vue-maplibre-gl';
 ${propsMarkdown}
 
 ${eventsMarkdown}
+
+${slotsMarkdown}
 
 See [source](https://github.com/indoorequal/vue-maplibre-gl/tree/master/${componentInfo.sourceFiles[0]}).
 `

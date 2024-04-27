@@ -179,5 +179,13 @@ export default defineComponent({
     return () => [
       h("div", { ref: root }, slots.default ? slots.default() : undefined),
     ];
-  },
+  }
+,
+  /**
+   * Slot for popup content
+   * @slot default
+   */
+  render() {
+    return null;
+  }
 });
