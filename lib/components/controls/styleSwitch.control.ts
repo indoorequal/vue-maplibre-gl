@@ -25,7 +25,7 @@ import {
   mapSymbol,
   type StyleSwitchItem,
 } from "@/lib/types";
-import { CustomControl } from "@/lib/components/controls/custom.control";
+import { CustomControl } from "@/lib/components/controls/custom";
 import { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
 import { MglButton } from "@/lib/components";
 import { ButtonType } from "@/lib/components/button.component";

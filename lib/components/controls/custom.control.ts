@@ -3,11 +3,9 @@ import {
   defineComponent,
   h,
   inject,
-  nextTick,
   onBeforeUnmount,
   type PropType,
   ref,
-  Ref,
   type SlotsType,
   Teleport,
   watch,
@@ -17,48 +15,9 @@ import {
   type PositionProp,
   PositionValues,
 } from "@/lib/components/controls/position.enum";
-import type { ControlPosition, IControl } from "maplibre-gl";
 import { isInitializedSymbol, mapSymbol } from "@/lib/types";
 import { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
-
-class CustomControl implements IControl {
-  public static readonly CONTROL_CLASS = "maplibregl-ctrl";
-  public static readonly CONTROL_GROUP_CLASS = "maplibregl-ctrl-group";
-
-  public readonly container: HTMLDivElement;
-
-  constructor(
-    private isAdded: Ref<boolean>,
-    noClasses: boolean,
-  ) {
-    this.container = document.createElement("div");
-    this.setClasses(noClasses);
-  }
-
-  getDefaultPosition(): ControlPosition {
-    return Position.TOP_LEFT;
-  }
-
-  onAdd(): HTMLElement {
-    nextTick(() => (this.isAdded.value = true));
-    return this.container;
-  }
-
-  onRemove(): void {
-    this.isAdded.value = false;
-    this.container.remove();
-  }
-
-  setClasses(noClasses: boolean) {
-    if (noClasses) {
-      this.container.classList.remove(CustomControl.CONTROL_CLASS);
-      this.container.classList.remove(CustomControl.CONTROL_GROUP_CLASS);
-    } else {
-      this.container.classList.add(CustomControl.CONTROL_CLASS);
-      this.container.classList.add(CustomControl.CONTROL_GROUP_CLASS);
-    }
-  }
-}
+import { CustomControl } from "@/lib/components/controls/custom";
 
 export default /*#__PURE__*/ defineComponent({
   name: "MglCustomControl",
