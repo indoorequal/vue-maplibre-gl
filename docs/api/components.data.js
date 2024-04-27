@@ -8,9 +8,10 @@ export default {
     '../../lib/components/layers/*.layer.ts',
   ],
   async load(watchedFiles) {
-    return Promise.all(watchedFiles.sort().map(async (file) => {
+    return Promise.all(watchedFiles.map(async (file) => {
       let componentInfo = await parse(file);
 
+      const type = file.split('/').reverse()[1];
       const propsMarkdown = componentInfo.props ? `
 ## Props
 
@@ -34,7 +35,8 @@ ${componentInfo.events.map((event) => {
       return {
         params: {
           component: componentInfo.displayName,
-          title: componentInfo.displayName
+          title: componentInfo.displayName,
+          type,
         },
         content: `
 ${componentInfo.description}

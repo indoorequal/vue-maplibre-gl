@@ -48,12 +48,38 @@ export default defineConfig({
       {
         text: 'API',
         link: '/api/',
-        items: (await componentsPath.paths()).map((component) => {
-          return {
-            text: component.params.title,
-            link: `/api/${component.params.component}`
-          };
-        })
+        items: [
+          {
+            text: 'Components',
+            items: [...(await componentsPath.paths()).reduce((memo, component) => {
+              const type = component.params.type;
+              if (!memo.has(type)) {
+                memo.set(type, []);
+              }
+              memo.get(type).push(component);
+              return memo;
+            }, new Map()).entries()].flatMap(([type, components]) => {
+              components.sort((a, b) => a.params.component.localeCompare(b.params.component) );
+              if (type === 'components') {
+                return components.map((component) => {
+                  return {
+                    text: component.params.title,
+                    link: `/api/${component.params.component}`
+                  };
+                });
+              }
+              return {
+                text: type[0].toUpperCase() + type.slice(1),
+                items: components.map((component) => {
+                  return {
+                    text: component.params.title,
+                    link: `/api/${component.params.component}`
+                  };
+                })
+              };
+            })
+          }
+        ]
       }
     ],
 
