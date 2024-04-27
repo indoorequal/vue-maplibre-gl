@@ -1,4 +1,4 @@
-// Marker draggable
+// Draggable Marker
 //
 // A map with a draggable marker
 <template>
@@ -10,7 +10,7 @@
   >
     <mgl-navigation-control />
     <mgl-marker
-      :coordinates="coordinates"
+      v-model:coordinates="coordinates"
       :draggable="draggable"
       color="#cc0000"
       @dragstart="console.log('dragstart')"
@@ -19,6 +19,7 @@
     />
   </mgl-map>
   <button @click="draggable = !draggable">Toggle draggable state</button>
+  {{ coordinates }}
 </template>
 
 <script setup>
@@ -32,7 +33,7 @@ import { ref } from 'vue';
 const style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
 const center = [12.550343, 55.665957];
 const zoom = 8;
-const coordinates = [12.550343, 55.665957];
+const coordinates = ref([12.550343, 55.665957]);
 const draggable = ref(true);
 </script>
 

@@ -19,7 +19,12 @@ import {
 import { MapLib } from "@/lib/lib/map.lib";
 import { mapSymbol, markerSymbol } from "@/lib/types";
 
-export default /*#__PURE__*/ defineComponent({
+/**
+ * Creates a marker component
+ *
+ * See [Marker](https://maplibre.org/maplibre-gl-js/docs/API/classes/Marker).
+ */
+export default defineComponent({
   name: "MglMarker",
   emits: [
     /**
@@ -33,7 +38,13 @@ export default /*#__PURE__*/ defineComponent({
     /**
      * Fired when the marker is finished being dragged
      */
-    "dragend"
+    "dragend",
+    /**
+     * Fired when the coordinates have been updated
+     *
+     * @property {LgnLatLike} coordinates the new coordinates
+     */
+    "update:coordinates",
   ],
   props: {
     /**
@@ -99,8 +110,14 @@ export default /*#__PURE__*/ defineComponent({
     provide(markerSymbol, shallowRef(marker));
 
     marker.on("dragstart", () => emit("dragstart"));
-    marker.on("drag", () => emit("drag"));
-    marker.on("dragend", () => emit("dragend"));
+    marker.on("drag", () => {
+      emit("update:coordinates", marker.getLngLat());
+      emit("drag");
+    });
+    marker.on("dragend", () => {
+      emit("update:coordinates", marker.getLngLat());
+      emit("dragend");
+    });
 
     watch(
       () => props.coordinates,

@@ -18,7 +18,7 @@ export default {
 | Name | Description | Type | Required | Default value |
 |------|-------------|------|----------|---------------|
 ${componentInfo.props.map((prop) => {
-  return [prop.name, prop?.description?.replaceAll('\n', '  '), prop.type?.name, prop.required, prop.defaultValue?.value].join('|')
+  return [prop.name, prop?.description?.replaceAll('\n', '  '), prop.type?.name, prop.required || false, prop.defaultValue?.value].join('|')
  }).join('\n')}
 ` : '';
 
@@ -36,6 +36,7 @@ ${componentInfo.events.map((event) => {
         params: {
           component: componentInfo.displayName,
           title: componentInfo.displayName,
+          description: componentInfo.description,
           type,
         },
         content: `
