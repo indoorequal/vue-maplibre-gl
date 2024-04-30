@@ -12,7 +12,7 @@ export default defineConfig({
       return {
         title: `${pageData.params.title} - Examples`
       }
-    } else if (pageData.filePath.startsWith('api/') && pageData.filePath != 'api/index.md') {
+    } else if (pageData.filePath.startsWith('api/') && !['api/index.md', 'api/composables.md'].includes(pageData.filePath)) {
       return {
         title: `${pageData.params.title} - API`
       }
@@ -84,6 +84,10 @@ export default defineConfig({
                 })
               };
             })
+          },
+          {
+            text: 'Composables',
+            link: '/api/composables'
           }
         ]
       }

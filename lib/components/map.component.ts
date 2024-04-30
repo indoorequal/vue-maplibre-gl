@@ -243,6 +243,9 @@ export default defineComponent({
       type: Number as PropType<number>,
       default: () => defaults.maxTileCacheSize,
     },
+    /**
+     * The name or symbol to reference a map via useMap composable
+     */
     mapKey: { type: [String, Symbol] as PropType<string | symbol> },
     pixelRatio: {
       type: Number as PropType<number>,

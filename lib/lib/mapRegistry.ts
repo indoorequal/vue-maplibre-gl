@@ -35,11 +35,10 @@ export function registerMap(
     instances.set(key, component);
   }
 
-  component.isLoaded = false;
+  component.isLoaded = map.value?.loaded() || false;;
   component.isMounted = false;
   component.component = instance;
   component.map = map.value;
-  component.isLoaded = map.value?.loaded() || false;
 
   return component;
 }

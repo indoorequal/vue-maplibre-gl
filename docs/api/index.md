@@ -27,3 +27,7 @@ The API documentation is in progress
      </li>
   </ul>
 </template>
+
+## Composables
+
+- [useMap](./composables.md#usemap)
