@@ -71,6 +71,10 @@ ${componentInfo.slots.map((slot) => {
           type,
         },
         content: `
+::: warning
+The API documentation is in progress
+:::
+
 ${componentInfo.description}
 
 \`\`\`typescript
