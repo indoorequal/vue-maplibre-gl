@@ -37,7 +37,6 @@
   ],
   "scripts": {
     "build": "vue-tsc --noEmit && vite build",
-    "examples": "yarn workspace @indoorequal/vue-maplibre-gl-examples play",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",

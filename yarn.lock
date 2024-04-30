@@ -511,22 +511,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@indoorequal/vue-maplibre-gl-examples@workspace:examples":
-  version: 0.0.0-use.local
-  resolution: "@indoorequal/vue-maplibre-gl-examples@workspace:examples"
-  dependencies:
-    "@indoorequal/vue-maplibre-gl": "workspace:^"
-    "@types/node": "npm:^20.12.7"
-    "@vitejs/plugin-vue": "npm:^5.0.4"
-    "@vue/compiler-sfc": "npm:^3.4.23"
-    "@vue/tsconfig": "npm:^0.5.1"
-    maplibre-gl: "npm:^3.6.2"
-    typescript: "npm:~5.3.3"
-    vite: "npm:^5.2.9"
-    vue: "npm:^3.4.23"
-  languageName: unknown
-  linkType: soft
-
 "@indoorequal/vue-maplibre-gl@workspace:., @indoorequal/vue-maplibre-gl@workspace:^":
   version: 0.0.0-use.local
   resolution: "@indoorequal/vue-maplibre-gl@workspace:."
@@ -1068,7 +1052,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.11.17, @types/node@npm:^20.12.7":
+"@types/node@npm:^20.11.17":
   version: 20.12.7
   resolution: "@types/node@npm:20.12.7"
   dependencies:
@@ -1319,7 +1303,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/compiler-sfc@npm:3.4.25, @vue/compiler-sfc@npm:^3.2.0, @vue/compiler-sfc@npm:^3.4.23":
+"@vue/compiler-sfc@npm:3.4.25, @vue/compiler-sfc@npm:^3.2.0":
   version: 3.4.25
   resolution: "@vue/compiler-sfc@npm:3.4.25"
   dependencies:
@@ -1467,13 +1451,6 @@ __metadata:
   version: 3.4.25
   resolution: "@vue/shared@npm:3.4.25"
   checksum: 10/2454cf79ab4be89242f1ca1cf1571db0d7efd3c496b83f9045c48f996a854d4c8d5a8d9802b73b9d2ec959937426b2c82f1e48770e9c921ef33311b8059cd0c7
-  languageName: node
-  linkType: hard
-
-"@vue/tsconfig@npm:^0.5.1":
-  version: 0.5.1
-  resolution: "@vue/tsconfig@npm:0.5.1"
-  checksum: 10/1f8e51eae0aae92ea518f0713394135bf1f8a80decd486417fb3701851e903a4c18bc12db6c8d3223e1e0bd1dc01c70668bd7703382a130fd250867b772002ce
   languageName: node
   linkType: hard
 
@@ -3309,7 +3286,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"maplibre-gl@npm:^3.0.0, maplibre-gl@npm:^3.6.2":
+"maplibre-gl@npm:^3.0.0":
   version: 3.6.2
   resolution: "maplibre-gl@npm:3.6.2"
   dependencies:
@@ -4629,16 +4606,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:~5.3.3":
-  version: 5.3.3
-  resolution: "typescript@npm:5.3.3"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10/6e4e6a14a50c222b3d14d4ea2f729e79f972fa536ac1522b91202a9a65af3605c2928c4a790a4a50aa13694d461c479ba92cedaeb1e7b190aadaa4e4b96b8e18
-  languageName: node
-  linkType: hard
-
 "typescript@patch:typescript@npm%3A5.4.2#optional!builtin<compat/typescript>":
   version: 5.4.2
   resolution: "typescript@patch:typescript@npm%3A5.4.2#optional!builtin<compat/typescript>::version=5.4.2&hash=5adc0c"
@@ -4656,16 +4623,6 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10/760f7d92fb383dbf7dee2443bf902f4365db2117f96f875cf809167f6103d55064de973db9f78fe8f31ec08fff52b2c969aee0d310939c0a3798ec75d0bca2e1
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@npm%3A~5.3.3#optional!builtin<compat/typescript>":
-  version: 5.3.3
-  resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10/c93786fcc9a70718ba1e3819bab56064ead5817004d1b8186f8ca66165f3a2d0100fee91fa64c840dcd45f994ca5d615d8e1f566d39a7470fc1e014dbb4cf15d
   languageName: node
   linkType: hard
 
@@ -4789,7 +4746,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.1.3, vite@npm:^5.2.10, vite@npm:^5.2.9":
+"vite@npm:^5.1.3, vite@npm:^5.2.10":
   version: 5.2.10
   resolution: "vite@npm:5.2.10"
   dependencies:
@@ -4984,7 +4941,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue@npm:^3.4.19, vue@npm:^3.4.23, vue@npm:^3.4.25":
+"vue@npm:^3.4.19, vue@npm:^3.4.25":
   version: 3.4.25
   resolution: "vue@npm:3.4.25"
   dependencies:

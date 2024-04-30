@@ -29,19 +29,6 @@ This is a fork of [vue-maplibre-gl](https://github.com/razorness/vue-maplibre-gl
 
 https://indoorequal.github.io/vue-maplibre-gl/
 
-# Usage
-
-See [examples/App.vue](src/App.vue) for a real world example.
-
-# Demo
-
-```shell
-git clone https://github.com/indoorequal/vue-maplibre-gl.git
-cd vue-maplibre-gl
-yarn
-yarn examples
-```
-
 ## PRs welcome ♥
 
 If you have ideas, improvements, suggestions etc. don't hesitate to open a pull request.
