@@ -20,7 +20,7 @@ const Example = defineClientComponent(() => {
   return import('./${path.basename(file)}');
 })
 </script>
-<Example style="height: 500px" />
+<Example style="min-height: 500px" />
 \`\`\`vue
 ${vueContent.slice(3).join('\n')}
 \`\`\`
