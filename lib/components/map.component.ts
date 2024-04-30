@@ -42,33 +42,59 @@ import { registerMap } from "@/lib/lib/mapRegistry";
 import { debounce } from "@/lib/lib/debounce";
 import { setPrimaryLanguage } from "modular-maptiler-sdk/src/language";
 
-export default /*#__PURE__*/ defineComponent({
+/**
+ * The map component
+ *
+ * See [Map](https://maplibre.org/maplibre-gl-js/docs/API/classes/Map/).
+ */
+export default defineComponent({
   name: "MglMap",
   props: {
+    /**
+     * Width of the map container
+     */
     width: {
       type: [Number, String] as PropType<number | string>,
       default: "100%",
     },
+    /**
+     * Height of the map container
+     */
     height: {
       type: [Number, String] as PropType<number | string>,
       default: "100%",
     },
+    /**
+     * If true, the gl context will be created with MSAA antialiasing, which can be useful for antialiasing custom layers. This is false by default as a performance optimization.
+     */
     antialias: {
       type: Boolean as PropType<boolean>,
       default: () => defaults.antialias,
     },
+    /**
+     * If set, an AttributionControl will be added to the map with the provided options. To disable the attribution control, pass false. Note: showing the logo of MapLibre is not required for using MapLibre. Default Value ts compact: true, customAttribution: "MapLibre ...".
+     */
     attributionControl: {
       type: Boolean as PropType<boolean>,
       default: () => defaults.attributionControl,
     },
+    /**
+     * The initial bearing (rotation) of the map, measured in degrees counter-clockwise from north. If bearing is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to 0. Default Value `0`
+     */
     bearing: {
       type: Number as PropType<number>,
       default: () => defaults.bearing,
     },
+    /**
+     * The threshold, measured in degrees, that determines when the map's bearing will snap to north. For example, with a bearingSnap of 7, if the user rotates the map within 7 degrees of north, the map will automatically snap to exact north. Default Value `7`
+     */
     bearingSnap: {
       type: Number as PropType<number>,
       default: () => defaults.bearingSnap,
     },
+    /**
+     * The initial bounds of the map. If bounds is specified, it overrides center and zoom constructor options.
+     */
     bounds: {
       type: [Array, Object] as PropType<LngLatBoundsLike>,
       default: () => defaults.bounds,
@@ -566,4 +592,12 @@ export default /*#__PURE__*/ defineComponent({
         ],
       );
   },
+
+  /**
+   * Slot for controls, sources, marker and popup
+   * @slot default
+   */
+  render() {
+    return null;
+  }
 });
