@@ -79,8 +79,5 @@
   "engines": {
     "node": ">=18"
   },
-  "workspaces": [
-    "examples/"
-  ],
   "packageManager": "yarn@4.1.1"
 }
