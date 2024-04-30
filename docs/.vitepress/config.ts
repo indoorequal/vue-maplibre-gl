@@ -21,7 +21,7 @@ export default defineConfig({
   head: [
     [
       'script',
-      { defer: '', 'data-domain': 'github.com/indoorequal/vue-maplibre-gl', src: 'https://plausible.io/js/script.js' }
+      { defer: '', 'data-domain': 'indoorequal.github.io/vue-maplibre-gl', src: 'https://plausible.io/js/script.js' }
     ],
   ],
   themeConfig: {
