@@ -2,8 +2,10 @@ import {
   defineComponent,
   inject,
   provide,
+  onMounted,
   onBeforeUnmount,
   type PropType,
+  ref,
   unref,
   watch,
   shallowRef,
@@ -103,48 +105,65 @@ export default defineComponent({
         .reduce((obj, opt) => {
           (obj as any)[opt] = unref((props as any)[opt]);
           return obj;
-        }, {});
+        }, {}),
+      marker = shallowRef<Marker>(),
+      markerRoot = ref(),
+      isMounted = ref(false);
 
-    const marker = new Marker(opts);
-    marker.setLngLat(props.coordinates).addTo(map.value!);
-    provide(markerSymbol, shallowRef(marker));
+    provide(markerSymbol, marker);
 
-    marker.on("dragstart", () => emit("dragstart"));
-    marker.on("drag", () => {
-      emit("update:coordinates", marker.getLngLat());
-      emit("drag");
-    });
-    marker.on("dragend", () => {
-      emit("update:coordinates", marker.getLngLat());
-      emit("dragend");
-    });
+    onMounted(() => {
+      if (slots.marker) {
+        opts.element = markerRoot.value!;
+      }
+      marker.value = new Marker(opts);
+      marker.value.setLngLat(props.coordinates).addTo(map.value!);
+
+      marker.value.on("dragstart", () => emit("dragstart"));
+      marker.value.on("drag", () => {
+        emit("update:coordinates", marker.value?.getLngLat());
+        emit("drag");
+      });
+      marker.value.on("dragend", () => {
+        emit("update:coordinates", marker.value?.getLngLat());
+        emit("dragend");
+      });
+      isMounted.value = true;
+    })
 
     watch(
       () => props.coordinates,
-      (v) => marker.setLngLat(v),
+      (v) => marker.value?.setLngLat(v),
     );
-    watch(() => props.draggable, v => marker.setDraggable(v));
+    watch(() => props.draggable, v => marker.value?.setDraggable(v));
     watch(
       () => props.offset,
-      (v) => marker.setOffset(v || [0, 0]),
+      (v) => marker.value?.setOffset(v || [0, 0]),
     );
     watch(
       () => props.pitchAlignment,
-      (v) => marker.setPitchAlignment(v || "auto"),
+      (v) => marker.value?.setPitchAlignment(v || "auto"),
     );
     watch(
       () => props.rotationAlignment,
-      (v) => marker.setRotationAlignment(v || "auto"),
+      (v) => marker.value?.setRotationAlignment(v || "auto"),
     );
 
-    onBeforeUnmount(marker.remove.bind(marker));
+    onBeforeUnmount(() => marker.value?.remove());
 
-    return () => [h("div", slots.default ? slots.default({}) : undefined)];
+    return () => [
+      h("div", slots.default && isMounted.value ? slots.default({}) : undefined),
+      h("div", { ref: markerRoot }, slots.marker ? slots.marker() : undefined),
+    ];
   },
 
   /**
    * Slot for popup component
    * @slot default
+   */
+  /**
+   * Slot for custom marker
+   * @slot marker
    */
   render() {
     return null;

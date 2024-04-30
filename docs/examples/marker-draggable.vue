@@ -12,7 +12,6 @@
     <mgl-marker
       v-model:coordinates="coordinates"
       :draggable="draggable"
-      color="#cc0000"
       @dragstart="console.log('dragstart')"
       @drag="console.log('drag')"
       @dragend="console.log('dragend')"

@@ -1,18 +1,16 @@
-// Popup
+// Custom Marker
 //
-// A map with a marker and a popup
+// A map with a custom marker
 <template>
   <mgl-map
     :map-style="style"
     :center="center"
     :zoom="zoom"
   >
-    <mgl-navigation-control />
     <mgl-marker :coordinates="coordinates">
-      <mgl-popup>
-        <h1>Hello</h1>
-        <p>HTML content</p>
-      </mgl-popup>
+      <template v-slot:marker>
+        <div :style="{ backgroundColor: 'red', width: '10px', height: '10px' }"></div>
+      </template>
     </mgl-marker>
   </mgl-map>
 </template>
@@ -21,8 +19,7 @@
 import {
   MglMap,
   MglNavigationControl,
-  MglMarker,
-  MglPopup,
+  MglMarker
 } from '@indoorequal/vue-maplibre-gl';
 
 const style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
