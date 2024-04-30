@@ -8,11 +8,14 @@ hero:
   tagline:
   actions:
     - theme: brand
+      text: Guide
+      link: /guide/installation
+    - theme: alt
       text: Examples
       link: /examples/
     - theme: alt
-      text: Guide
-      link: /guide/installation
+      text: API
+      link: /api/
 
 features:
   - title: Support Maplibre-gl-js 3.x
