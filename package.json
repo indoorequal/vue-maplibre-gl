@@ -1,6 +1,6 @@
 {
   "name": "@indoorequal/vue-maplibre-gl",
-  "version": "4.1.1",
+  "version": "4.1.2",
   "description": "Vue 3 plugin for maplibre-gl",
   "keywords": [
     "vue",
