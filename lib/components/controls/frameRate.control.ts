@@ -216,4 +216,5 @@ export default /*#__PURE__*/ defineComponent({
       () => isInitialized.value && map.value?.removeControl(control),
     );
   },
+  render() { return null; }
 });
