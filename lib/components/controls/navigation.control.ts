@@ -8,9 +8,17 @@ import { isInitializedSymbol, mapSymbol } from "@/lib/types";
 import { NavigationControl } from "maplibre-gl";
 import { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
 
-export default /*#__PURE__*/ defineComponent({
+/**
+ * Render Navigation Control
+ *
+ * See [NavigationControl](https://maplibre.org/maplibre-gl-js/docs/API/classes/NavigationControl/)
+ */
+export default defineComponent({
   name: "MglNavigationControl",
   props: {
+    /**
+     * Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'top-right'.
+     */
     position: {
       type: String as PropType<PositionProp>,
       default: Position.TOP_RIGHT,
