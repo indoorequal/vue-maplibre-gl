@@ -23,6 +23,7 @@ import {
   type RequestTransformFunction,
   type StyleSpecification,
   type CameraUpdateTransformFunction,
+  type AttributionControlOptions,
 } from "maplibre-gl";
 import {
   componentIdSymbol,
@@ -70,7 +71,7 @@ export default defineComponent({
      * If set, an AttributionControl will be added to the map with the provided options. To disable the attribution control, pass false. Note: showing the logo of MapLibre is not required for using MapLibre. Default Value ts compact: true, customAttribution: "MapLibre ...".
      */
     attributionControl: {
-      type: Boolean as PropType<boolean>,
+      type: [Boolean, Object] as PropType<false | AttributionControlOptions>,
       default: () => defaults.attributionControl,
     },
     /**
@@ -130,10 +131,6 @@ export default defineComponent({
     crossSourceCollisions: {
       type: Boolean as PropType<boolean>,
       default: () => defaults.crossSourceCollisions,
-    },
-    customAttribution: {
-      type: [String, Array] as PropType<string | string[]>,
-      default: () => defaults.customAttribution,
     },
     /**
      * If true, the "drag to pan" interaction is enabled. An Object value is passed as options to DragPanHandler#enable. Default Value `true`
@@ -368,7 +365,7 @@ export default defineComponent({
      * Find more details and examples using `cooperativeGestures` in the {@link CooperativeGesturesHandler} section.
      */
     cooperativeGestures: {
-      type: [Boolean, Object] as PropType<boolean | GestureOptions>,
+      type: Object as PropType<GestureOptions>,
       default: () => defaults.cooperativeGestures,
     },
   },

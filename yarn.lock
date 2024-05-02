@@ -943,7 +943,7 @@ __metadata:
     vue-docgen-web-types: "npm:^0.1.8"
     vue-tsc: "npm:^2.0.0"
   peerDependencies:
-    maplibre-gl: ^3.0.0
+    maplibre-gl: ^4.0.0
     vue: ^3.4.18
   languageName: unknown
   linkType: soft
