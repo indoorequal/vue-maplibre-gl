@@ -129,13 +129,16 @@ export default defineComponent({
         emit("dragend");
       });
       isMounted.value = true;
-    })
+    });
 
     watch(
       () => props.coordinates,
       (v) => marker.value?.setLngLat(v),
     );
-    watch(() => props.draggable, v => marker.value?.setDraggable(v));
+    watch(
+      () => props.draggable,
+      (v) => marker.value?.setDraggable(v),
+    );
     watch(
       () => props.offset,
       (v) => marker.value?.setOffset(v || [0, 0]),
@@ -152,7 +155,10 @@ export default defineComponent({
     onBeforeUnmount(() => marker.value?.remove());
 
     return () => [
-      h("div", slots.default && isMounted.value ? slots.default({}) : undefined),
+      h(
+        "div",
+        slots.default && isMounted.value ? slots.default({}) : undefined,
+      ),
       h("div", { ref: markerRoot }, slots.marker ? slots.marker() : undefined),
     ];
   },
@@ -167,5 +173,5 @@ export default defineComponent({
    */
   render() {
     return null;
-  }
+  },
 });

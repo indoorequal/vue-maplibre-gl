@@ -1,11 +1,6 @@
 import type { ControlPosition, IControl } from "maplibre-gl";
-import {
-  nextTick,
-  Ref,
-} from "vue";
-import {
-  Position,
-} from "@/lib/components/controls/position.enum";
+import { nextTick, Ref } from "vue";
+import { Position } from "@/lib/components/controls/position.enum";
 
 export class CustomControl implements IControl {
   public static readonly CONTROL_CLASS = "maplibregl-ctrl";

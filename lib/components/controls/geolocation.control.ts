@@ -28,11 +28,12 @@ export default defineComponent({
     },
     positionOptions: {
       type: Object as PropType<PositionOptions>,
-      default: () => ({ enableHighAccuracy: false, timeout: 6000 } as PositionOptions),
+      default: () =>
+        ({ enableHighAccuracy: false, timeout: 6000 }) as PositionOptions,
     },
     fitBoundsOptions: {
       type: Object as PropType<FitBoundsOptions>,
-      default: () => ({ maxZoom: 15 } as FitBoundsOptions),
+      default: () => ({ maxZoom: 15 }) as FitBoundsOptions,
     },
     trackUserLocation: {
       type: Boolean as PropType<boolean>,
@@ -63,5 +64,7 @@ export default defineComponent({
       () => isInitialized.value && map.value?.removeControl(control),
     );
   },
-  render() { return null; }
+  render() {
+    return null;
+  },
 });

@@ -33,7 +33,7 @@ export default defineComponent({
     /**
      * Fired when the popup is closed manually or programmatically.
      */
-    "close"
+    "close",
   ],
   props: {
     /**
@@ -179,13 +179,12 @@ export default defineComponent({
     return () => [
       h("div", { ref: root }, slots.default ? slots.default() : undefined),
     ];
-  }
-,
+  },
   /**
    * Slot for popup content
    * @slot default
    */
   render() {
     return null;
-  }
+  },
 });

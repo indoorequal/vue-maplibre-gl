@@ -35,7 +35,7 @@ export function registerMap(
     instances.set(key, component);
   }
 
-  component.isLoaded = map.value?.loaded() || false;;
+  component.isLoaded = map.value?.loaded() || false;
   component.isMounted = false;
   component.component = instance;
   component.map = map.value;

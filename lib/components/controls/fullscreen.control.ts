@@ -59,5 +59,7 @@ export default defineComponent({
       isInitialized.value && map.value?.removeControl(control);
     });
   },
-  render() { return null; }
+  render() {
+    return null;
+  },
 });
