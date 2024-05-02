@@ -35,9 +35,9 @@ If you have ideas, improvements, suggestions etc. don't hesitate to open a pull 
 
 ### Todos
 
-- [ ] Usage examples
-- [ ] Demo
-- [ ] API documentation
+- [x] Usage examples
+- [x] Demo
+- [x] API documentation
 - [ ] Support `v-model:...` for some basic props
 - [x] Add layer events
 - [ ] Add [Web-types](https://github.com/JetBrains/web-types)
