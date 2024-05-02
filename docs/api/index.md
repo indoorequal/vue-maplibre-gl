@@ -22,8 +22,8 @@ The API documentation is in progress
   <h3 v-if="type != 'components'">{{ type[0].toUpperCase() }}{{ type.slice(1) }}</h3>
   <ul>
     <li v-for="component of components.sort()">
-      <a :href="`${component.params.component}`">{{ component.params.title }}</a>:
-      {{ component.params.description }}
+      <a :href="`${component.params.component}`">{{ component.params.title }}</a>
+      <div v-html="component.params.description"></div>
      </li>
   </ul>
 </template>

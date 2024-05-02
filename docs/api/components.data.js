@@ -1,4 +1,5 @@
 import { parse } from 'vue-docgen-api';
+import { createMarkdownRenderer } from 'vitepress';
 
 function formatProps(props) {
   return props ? `
@@ -64,7 +65,8 @@ export default {
     '../../lib/components/sources/*.source.ts',
     '../../lib/components/layers/*.layer.ts',
   ],
-  load(watchedFiles) {
+  async load(watchedFiles) {
+    const markdownRenderer = await createMarkdownRenderer();
     return Promise.all(watchedFiles.map(async (file) => {
       let componentInfo = await parse(file);
       const type = file.split('/').reverse()[1];
@@ -76,7 +78,7 @@ export default {
         params: {
           component: componentInfo.displayName,
           title: componentInfo.displayName,
-          description: componentInfo.description,
+          description: markdownRenderer.render(componentInfo.description),
           type,
         },
         content: `
