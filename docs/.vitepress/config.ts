@@ -38,7 +38,8 @@ export default defineConfig({
         text: 'Guide',
         items: [
           { text: 'Installation', link: '/guide/installation' },
-          { text: 'Getting started', link: '/guide/getting-started' }
+          { text: 'Getting started', link: '/guide/getting-started' },
+          { text: 'Nuxt', link: '/guide/nuxt' }
         ]
       },
       {
