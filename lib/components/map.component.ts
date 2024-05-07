@@ -384,6 +384,8 @@ export default defineComponent({
     "map:pitch",
     "map:pitchend",
     "map:wheel",
+    // Zoom property updated
+    "update:zoom"
   ],
   slots: Object as SlotsType<{ default: {} }>,
   setup(props, ctx) {
@@ -582,6 +584,9 @@ export default defineComponent({
       );
       map.value.once("styledata", onStyleReady);
       map.value.on("load", boundMapEvents.get("__load") as any);
+      map.value.on("zoomend", () => {
+        ctx.emit("update:zoom", map.value!.getZoom());
+      });
 
       // bind events
       if (component.vnode.props) {
