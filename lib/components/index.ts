@@ -4,6 +4,7 @@ export { default as MglCustomControl } from "./controls/custom.control";
 export { default as MglFullscreenControl } from "./controls/fullscreen.control";
 export { default as MglFrameRateControl } from "./controls/frameRate.control";
 export { default as MglGeolocationControl } from "./controls/geolocation.control";
+export { default as MglGeolocateControl } from "./controls/geolocation.control";
 export { default as MglNavigationControl } from "./controls/navigation.control";
 export { default as MglScaleControl } from "./controls/scale.control";
 export { default as MglStyleSwitchControl } from "./controls/styleSwitch.control";

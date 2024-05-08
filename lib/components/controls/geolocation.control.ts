@@ -14,7 +14,7 @@ import { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
  * See [GeolocateControl](https://maplibre.org/maplibre-gl-js/docs/API/classes/GeolocateControl/)
  */
 export default defineComponent({
-  name: "MglGeolocationControl",
+  name: "MglGeolocateControl",
   props: {
     /**
      * Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'top-right'.
