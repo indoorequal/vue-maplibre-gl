@@ -437,7 +437,8 @@ export default defineComponent({
     watch(
       () => props.center,
       (v) => {
-        if (v && !isLngLatEqual(v, map.value?.getCenter())) {
+        const center = map.value?.getCenter();
+        if (v && center && !isLngLatEqual(v, center)) {
           map.value?.setCenter(v);
         }
       },
