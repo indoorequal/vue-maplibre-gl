@@ -36,6 +36,7 @@ import {
 } from "@/lib/types";
 import { defaults } from "@/lib/defaults";
 import { MapLib } from "@/lib/lib/map.lib";
+import { isLngLatEqual } from "@/lib/lib/lng_lat";
 import { Position } from "@/lib/components/controls/position.enum";
 import mitt from "mitt";
 import { registerMap } from "@/lib/lib/mapRegistry";
@@ -384,8 +385,14 @@ export default defineComponent({
     "map:pitch",
     "map:pitchend",
     "map:wheel",
-    // Zoom property updated
-    "update:zoom"
+    /**
+     * Center property updated
+     */
+    "update:center",
+    /**
+     * Zoom property updated
+     */
+    "update:zoom",
   ],
   slots: Object as SlotsType<{ default: {} }>,
   setup(props, ctx) {
@@ -430,7 +437,7 @@ export default defineComponent({
     watch(
       () => props.center,
       (v) => {
-        if (v) {
+        if (v && !isLngLatEqual(v, map.value?.getCenter())) {
           map.value?.setCenter(v);
         }
       },
@@ -584,6 +591,9 @@ export default defineComponent({
       );
       map.value.once("styledata", onStyleReady);
       map.value.on("load", boundMapEvents.get("__load") as any);
+      map.value.on("moveend", () => {
+        ctx.emit("update:center", map.value!.getCenter());
+      });
       map.value.on("zoomend", () => {
         ctx.emit("update:zoom", map.value!.getZoom());
       });

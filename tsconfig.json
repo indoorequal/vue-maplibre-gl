@@ -28,7 +28,8 @@
       "node",
       "vue",
       "geojson",
-      "maplibre-gl"
+      "maplibre-gl",
+      "jest"
     ]
   },
   "include"        : [
