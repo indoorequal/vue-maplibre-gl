@@ -209,6 +209,9 @@ export default defineComponent({
       type: Object as PropType<Record<string, string>>,
       default: () => defaults.locale,
     },
+    /**
+     * @deprecated Will be removed in the version 5
+     */
     language: {
       type: String as PropType<ValidLanguages | null>,
       default: () => defaults.language || null,

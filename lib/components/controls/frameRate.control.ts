@@ -150,7 +150,11 @@ class FrameRateControl implements IControl {
   }
 }
 
-export default /*#__PURE__*/ defineComponent({
+/**
+ * Display a frame rate control
+ * @deprecated Will be removed in the version 5
+ */
+export default defineComponent({
   name: "MglFrameRateControl",
   props: {
     position: {

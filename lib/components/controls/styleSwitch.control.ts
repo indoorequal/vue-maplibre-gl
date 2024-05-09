@@ -42,7 +42,11 @@ interface SlotProps {
   currentStyle: Ref<StyleSwitchItem | null>;
 }
 
-export default /*#__PURE__*/ defineComponent({
+/**
+ * Display a switch style control
+ * @deprecated Will be removed in the version 5
+ */
+export default defineComponent({
   name: "MglStyleSwitchControl",
   props: {
     position: {

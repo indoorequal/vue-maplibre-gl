@@ -68,11 +68,20 @@ export default {
   async load(watchedFiles) {
     const markdownRenderer = await createMarkdownRenderer();
     return Promise.all(watchedFiles.map(async (file) => {
-      let componentInfo = await parse(file);
+      const componentInfo = await parse(file);
       const type = file.split('/').reverse()[1];
       const propsMarkdown = formatProps(componentInfo.props);
       const eventsMarkdown = formatEvents(componentInfo.events);
       const slotsMarkdown = formatEvents(componentInfo.slots);
+      const deprecated = componentInfo.tags.deprecated ?
+            componentInfo.tags.deprecated.map((deprecated) => {
+              return `
+::: warning Deprecated
+${deprecated.description}
+:::
+`;
+            }).join('\n') : '';
+
 
       return {
         params: {
@@ -82,9 +91,7 @@ export default {
           type,
         },
         content: `
-::: warning
-The API documentation is in progress
-:::
+${deprecated}
 
 ${componentInfo.description}
 
