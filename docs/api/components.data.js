@@ -2,27 +2,27 @@ import { parse } from 'vue-docgen-api';
 import { createMarkdownRenderer } from 'vitepress';
 
 function formatProps(props) {
-  return props ? `
-## Props
+  return props ? '## Props\n\n' + props.map((prop) => {
+    return `
+### ${prop.name}
 
-| Name | Description | Type | Required | Default value |
-|------|-------------|------|----------|---------------|
-${props.map((prop) => {
-  return [prop.name, prop?.description?.replaceAll('\n', '  '), prop.type?.name, prop.required || false, prop.defaultValue?.value].join('|')
- }).join('\n')}
-` : '';
+- **Type**: \`${prop.type?.name}\`
+- **Required**: \`${prop.required || false}\`
+- **Default**: \`${prop.defaultValue?.value}\`
+
+${prop.description || ''}
+`
+  }).join('\n') : '';
 }
 
 function formatEvents(events) {
-  return events ? `
-## Events
+  return events ? '## Events\n\n' + events.map((event) => {
+    return `
+### ${event.name}
 
-| Name | Description | Properties |
-|------|-------------|------------|
-${events.map((event) => {
-  return [event.name, event.description, event.type].join('|')
- }).join('\n')}
-` : '';
+${event.description || ''}
+`;
+  }).join('\n') : '';
 }
 
 const formatBindings = (bindings) => {
@@ -45,17 +45,17 @@ const formatBindings = (bindings) => {
 }
 
 function formatSlots(slots) {
-  return slots ? `
-## Slots
+  return slots ? '## Slots\n\n' + slots.map((slot) => {
+    const { description, bindings, name } = slot;
+    const readableBindings = bindings ? formatBindings(bindings) : '';
+    return `
+### ${name}
 
-| Name          | Description  | Bindings |
-| ------------- | ------------ | -------- |
-${slots.map((slot) => {
-  const { description, bindings, name } = slot;
-  const readableBindings = bindings ? formatBindings(bindings) : '';
-  return [name, description, bindings].join('|');
-}).join('\n')}
-` : '';
+${description}
+
+${bindings}
+`
+  }).join('\n') : '';
 }
 
 export default {
@@ -72,7 +72,7 @@ export default {
       const type = file.split('/').reverse()[1];
       const propsMarkdown = formatProps(componentInfo.props);
       const eventsMarkdown = formatEvents(componentInfo.events);
-      const slotsMarkdown = formatEvents(componentInfo.slots);
+      const slotsMarkdown = formatSlots(componentInfo.slots);
       const deprecated = componentInfo.tags.deprecated ?
             componentInfo.tags.deprecated.map((deprecated) => {
               return `
