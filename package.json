@@ -15,11 +15,7 @@
     "map",
     "maptiler"
   ],
-  "author": {
-    "name": "Volker Nauruhn",
-    "email": "mensch.meier@live.de",
-    "url": "razorness.de"
-  },
+  "author": "François de Metz <francois@2metz.fr>",
   "repository": {
     "type": "git",
     "url": "https://github.com/indoorequal/vue-maplibre-gl.git"
