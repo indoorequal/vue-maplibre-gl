@@ -32,11 +32,15 @@ export class CustomControl implements IControl {
 
   setClasses(noClasses: boolean) {
     if (noClasses) {
-      this.container.classList.remove(CustomControl.CONTROL_CLASS);
-      this.container.classList.remove(CustomControl.CONTROL_GROUP_CLASS);
+      this.container.classList.remove(
+        CustomControl.CONTROL_CLASS,
+        CustomControl.CONTROL_GROUP_CLASS,
+      );
     } else {
-      this.container.classList.add(CustomControl.CONTROL_CLASS);
-      this.container.classList.add(CustomControl.CONTROL_GROUP_CLASS);
+      this.container.classList.add(
+        CustomControl.CONTROL_CLASS,
+        CustomControl.CONTROL_GROUP_CLASS,
+      );
     }
   }
 }
