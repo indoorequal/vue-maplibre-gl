@@ -3,8 +3,11 @@ import { createMarkdownRenderer } from 'vitepress';
 
 function formatProps(props) {
   return props ? '## Props\n\n' + props.map((prop) => {
+    const deprecated = formatDeprecated(prop.tags);
     return `
 ### ${prop.name}
+
+${deprecated}
 
 - **Type**: \`${prop.type?.name}\`
 - **Required**: \`${prop.required || false}\`
@@ -58,6 +61,17 @@ ${bindings}
   }).join('\n') : '';
 }
 
+function formatDeprecated(tags) {
+  return tags?.deprecated ?
+        tags.deprecated.map((deprecated) => {
+          return `
+::: warning Deprecated
+${deprecated.description}
+:::
+`;
+        }).join('\n') : '';
+}
+
 export default {
   watch: [
     '../../lib/components/*.component.ts',
@@ -73,15 +87,7 @@ export default {
       const propsMarkdown = formatProps(componentInfo.props);
       const eventsMarkdown = formatEvents(componentInfo.events);
       const slotsMarkdown = formatSlots(componentInfo.slots);
-      const deprecated = componentInfo.tags.deprecated ?
-            componentInfo.tags.deprecated.map((deprecated) => {
-              return `
-::: warning Deprecated
-${deprecated.description}
-:::
-`;
-            }).join('\n') : '';
-
+      const deprecated = formatDeprecated(componentInfo.tags);
 
       return {
         params: {
