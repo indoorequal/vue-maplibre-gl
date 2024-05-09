@@ -47,8 +47,15 @@ export default defineComponent({
       default: true,
     },
   },
-  setup(props) {
-    useControl(() => {
+  emits: [
+    "trackuserlocationstart",
+    "trackuserlocationend",
+    "geolocate",
+    "error",
+    "outofmaxbounds",
+  ],
+  setup(props, ctx) {
+    const { control } = useControl(() => {
       return new GeolocateControl({
         positionOptions: props.positionOptions,
         fitBoundsOptions: props.fitBoundsOptions,
@@ -57,6 +64,17 @@ export default defineComponent({
         showUserLocation: props.showUserLocation,
       });
     }, props);
+    control.value.on("trackuserlocationstart", (...args) =>
+      ctx.emit("trackuserlocationstart", ...args),
+    );
+    control.value.on("trackuserlocationend", (...args) =>
+      ctx.emit("trackuserlocationend", ...args),
+    );
+    control.value.on("geolocate", (...args) => ctx.emit("geolocate", ...args));
+    control.value.on("error", (...args) => ctx.emit("error", ...args));
+    control.value.on("outofmaxbounds", (...args) =>
+      ctx.emit("outofmaxbounds", ...args),
+    );
   },
   render() {
     return null;
