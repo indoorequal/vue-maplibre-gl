@@ -1,12 +1,11 @@
-import { defineComponent, inject, onBeforeUnmount, type PropType } from "vue";
+import { defineComponent, type PropType } from "vue";
 import { AttributionControl } from "maplibre-gl";
 import {
   Position,
   type PositionProp,
   PositionValues,
 } from "@/lib/components/controls/position.enum";
-import { isInitializedSymbol, mapSymbol } from "@/lib/types";
-import { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
+import { useControl } from "@/lib/composable/useControl";
 
 /**
  * Render Attribution Control
@@ -17,7 +16,7 @@ export default defineComponent({
   name: "MglAttributionControl",
   props: {
     /**
-     * Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'top-right'.
+     * Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'bottom-right'.
      */
     position: {
       type: String as PropType<PositionProp>,
@@ -35,17 +34,12 @@ export default defineComponent({
     customAttribution: [String, Array] as PropType<string | string[]>,
   },
   setup(props) {
-    const map = inject(mapSymbol)!,
-      isInitialized = inject(isInitializedSymbol)!,
-      control = new AttributionControl({
+    useControl(() => {
+      return new AttributionControl({
         compact: props.compact,
         customAttribution: props.customAttribution,
       });
-
-    usePositionWatcher(() => props.position, map, control);
-    onBeforeUnmount(
-      () => isInitialized.value && map.value!.removeControl(control),
-    );
+    }, props);
   },
   render() {
     return null;

@@ -1,12 +1,11 @@
-import { defineComponent, inject, onBeforeUnmount, type PropType } from "vue";
+import { defineComponent, type PropType } from "vue";
+import { type FitBoundsOptions, GeolocateControl } from "maplibre-gl";
 import {
   Position,
   type PositionProp,
   PositionValues,
 } from "@/lib/components/controls/position.enum";
-import { isInitializedSymbol, mapSymbol } from "@/lib/types";
-import { type FitBoundsOptions, GeolocateControl } from "maplibre-gl";
-import { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
+import { useControl } from "@/lib/composable/useControl";
 
 /**
  * Render GeolocateControl
@@ -49,20 +48,15 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const map = inject(mapSymbol)!,
-      isInitialized = inject(isInitializedSymbol)!,
-      control = new GeolocateControl({
+    useControl(() => {
+      return new GeolocateControl({
         positionOptions: props.positionOptions,
         fitBoundsOptions: props.fitBoundsOptions,
         trackUserLocation: props.trackUserLocation,
         showAccuracyCircle: props.showAccuracyCircle,
         showUserLocation: props.showUserLocation,
       });
-
-    usePositionWatcher(() => props.position, map, control);
-    onBeforeUnmount(
-      () => isInitialized.value && map.value?.removeControl(control),
-    );
+    }, props);
   },
   render() {
     return null;

@@ -1,12 +1,11 @@
-import { defineComponent, inject, onBeforeUnmount, type PropType } from "vue";
+import { defineComponent, type PropType } from "vue";
 import type { IControl, Map as MMap } from "maplibre-gl";
 import {
   Position,
   type PositionProp,
   PositionValues,
 } from "@/lib/components/controls/position.enum";
-import { isInitializedSymbol, mapSymbol } from "@/lib/types";
-import { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
+import { useControl } from "@/lib/composable/useControl";
 
 class FrameRateControl implements IControl {
   private frames = 0;
@@ -201,9 +200,8 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const map = inject(mapSymbol)!,
-      isInitialized = inject(isInitializedSymbol)!,
-      control = new FrameRateControl(
+    useControl(() => {
+      return new FrameRateControl(
         props.background,
         props.barWidth,
         props.color,
@@ -214,11 +212,7 @@ export default defineComponent({
         props.graphRight,
         props.width,
       );
-
-    usePositionWatcher(() => props.position, map, control);
-    onBeforeUnmount(
-      () => isInitialized.value && map.value?.removeControl(control),
-    );
+    }, props);
   },
   render() {
     return null;

@@ -2,8 +2,6 @@ import {
   createCommentVNode,
   defineComponent,
   h,
-  inject,
-  onBeforeUnmount,
   type PropType,
   ref,
   type SlotsType,
@@ -15,11 +13,10 @@ import {
   type PositionProp,
   PositionValues,
 } from "@/lib/components/controls/position.enum";
-import { isInitializedSymbol, mapSymbol } from "@/lib/types";
-import { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
+import { useControl } from "@/lib/composable/useControl";
 import { CustomControl } from "@/lib/components/controls/custom";
 
-export default /*#__PURE__*/ defineComponent({
+export default defineComponent({
   name: "MglCustomControl",
   props: {
     position: {
@@ -35,25 +32,25 @@ export default /*#__PURE__*/ defineComponent({
   },
   slots: Object as SlotsType<{ default: {} }>,
   setup(props, { slots }) {
-    const map = inject(mapSymbol)!,
-      isInitialized = inject(isInitializedSymbol)!,
-      isAdded = ref(false),
-      control = new CustomControl(isAdded, props.noClasses!);
+    const isAdded = ref(false);
+    const { control } = useControl(() => {
+      return new CustomControl(isAdded, props.noClasses!);
+    }, props);
 
-    usePositionWatcher(() => props.position, map, control);
     watch(
       () => props.noClasses,
-      (v) => control.setClasses(v!),
-    );
-    onBeforeUnmount(
-      () => isInitialized.value && map.value?.removeControl(control),
+      (v) => control.value.setClasses(v!),
     );
 
     return () => {
       if (!isAdded.value) {
         return createCommentVNode("custom-component");
       }
-      return h(Teleport as any, { to: control.container }, slots.default?.({}));
+      return h(
+        Teleport as any,
+        { to: control.value.container },
+        slots.default?.({}),
+      );
     };
   },
   render() {

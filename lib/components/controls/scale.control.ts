@@ -1,12 +1,11 @@
-import { defineComponent, inject, onBeforeUnmount, type PropType } from "vue";
+import { defineComponent, type PropType } from "vue";
 import {
   Position,
   type PositionProp,
   PositionValues,
 } from "@/lib/components/controls/position.enum";
-import { isInitializedSymbol, mapSymbol } from "@/lib/types";
 import { ScaleControl } from "maplibre-gl";
-import { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
+import { useControl } from "@/lib/composable/useControl";
 
 export enum ScaleControlUnit {
   IMPERIAL = "imperial",
@@ -26,7 +25,7 @@ export default defineComponent({
   name: "MglScaleControl",
   props: {
     /**
-     * Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'top-right'.
+     * Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'bottom-left'.
      */
     position: {
       type: String as PropType<PositionProp>,
@@ -50,17 +49,12 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const map = inject(mapSymbol)!,
-      isInitialized = inject(isInitializedSymbol)!,
-      control = new ScaleControl({
+    useControl(() => {
+      return new ScaleControl({
         maxWidth: props.maxWidth,
         unit: props.unit,
       });
-
-    usePositionWatcher(() => props.position, map, control);
-    onBeforeUnmount(
-      () => isInitialized.value && map.value?.removeControl(control),
-    );
+    }, props);
   },
   render() {
     return null;

@@ -1,18 +1,11 @@
-import {
-  defineComponent,
-  inject,
-  nextTick,
-  onBeforeUnmount,
-  type PropType,
-} from "vue";
+import { defineComponent, nextTick, onBeforeUnmount, type PropType } from "vue";
+import { FullscreenControl } from "maplibre-gl";
 import {
   Position,
   type PositionProp,
   PositionValues,
 } from "@/lib/components/controls/position.enum";
-import { isInitializedSymbol, mapSymbol } from "@/lib/types";
-import { FullscreenControl } from "maplibre-gl";
-import { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
+import { useControl } from "@/lib/composable/useControl";
 
 /**
  * Render Fullscreen Control
@@ -27,7 +20,6 @@ export default defineComponent({
      */
     position: {
       type: String as PropType<PositionProp>,
-      default: Position.TOP_RIGHT,
       validator: (v: Position) => {
         return PositionValues.indexOf(v) !== -1;
       },
@@ -38,25 +30,23 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const map = inject(mapSymbol)!,
-      isInitialized = inject(isInitializedSymbol)!,
-      control = new FullscreenControl({
+    const { control, map } = useControl(() => {
+      return new FullscreenControl({
         container: props.container || undefined,
       });
+    }, props);
 
     // fire map.resize just a 2nd time
     function triggerResize() {
       nextTick(() => map.value?.resize());
     }
 
-    control.on("fullscreenstart", triggerResize);
-    control.on("fullscreenend", triggerResize);
+    control.value.on("fullscreenstart", triggerResize);
+    control.value.on("fullscreenend", triggerResize);
 
-    usePositionWatcher(() => props.position, map, control);
     onBeforeUnmount(() => {
-      control.off("fullscreenstart", triggerResize);
-      control.off("fullscreenend", triggerResize);
-      isInitialized.value && map.value?.removeControl(control);
+      control.value.off("fullscreenstart", triggerResize);
+      control.value.off("fullscreenend", triggerResize);
     });
   },
   render() {
