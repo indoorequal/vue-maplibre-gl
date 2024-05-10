@@ -19,7 +19,7 @@
       <mgl-attribution-control/>
       <mgl-navigation-control/>
       <mgl-scale-control/>
-      <mgl-geolocation-control/>
+      <mgl-geolocate-control/>
       <mgl-custom-control v-if="showCustomControl" :position="controlPosition" :no-classes="!useClasses">
 	<mgl-button type="mdi" :path="buttonIcon" style="color: deepskyblue"/>
       </mgl-custom-control>
@@ -86,7 +86,7 @@ import {
   MglAttributionControl,
   MglNavigationControl,
   MglScaleControl,
-  MglGeolocationControl,
+  MglGeolocateControl,
   MglCustomControl,
   MglButton,
   MglMarker,
@@ -130,7 +130,7 @@ export default defineComponent({
   name      : 'App',
   components: {
     MglCircleLayer, MglVectorSource, MglLineLayer, MglGeoJsonSource, MglMarker, MglButton, MglCustomControl,
-    MglGeolocationControl, MglScaleControl, MglNavigationControl, MglAttributionControl, MglFullscreenControl, MglMap
+    MglGeolocateControl, MglScaleControl, MglNavigationControl, MglAttributionControl, MglFullscreenControl, MglMap
   },
   setup() {
 
