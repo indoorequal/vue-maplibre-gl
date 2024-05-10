@@ -16,7 +16,6 @@
       @map:zoomstart="isZooming = true"
       @map:zoomend="isZooming = false"
     >
-      <mgl-frame-rate-control/>
       <mgl-fullscreen-control/>
       <mgl-attribution-control/>
       <mgl-navigation-control/>
@@ -98,7 +97,6 @@ import {
   useMap,
   ValidLanguages,
   MglMap,
-  MglFrameRateControl,
   MglFullscreenControl,
   MglAttributionControl,
   MglNavigationControl,
@@ -148,7 +146,7 @@ export default defineComponent({
   name      : 'App',
   components: {
     MglCircleLayer, MglVectorSource, MglLineLayer, MglGeoJsonSource, MglMarker, MglStyleSwitchControl, MglButton, MglCustomControl,
-    MglGeolocationControl, MglScaleControl, MglNavigationControl, MglAttributionControl, MglFullscreenControl, MglFrameRateControl, MglMap
+    MglGeolocationControl, MglScaleControl, MglNavigationControl, MglAttributionControl, MglFullscreenControl, MglMap
   },
   setup() {
 

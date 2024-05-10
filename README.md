@@ -18,7 +18,6 @@ This is a fork of [vue-maplibre-gl](https://github.com/razorness/vue-maplibre-gl
 - Components for map, controls, sources, markers and layers
 - Support for custom controls
 - Customizable style switch which reloads sources and layers automatically
-- Frame rate control included
 - Support for multiple instances and global access by `useMap(key: string | symbol)`
 - Simple way to switch displayed map language
 - Automatic restart on CONTEXT_LOST_WEBGL which can happen on mobile devices when tab was in background for longer time
