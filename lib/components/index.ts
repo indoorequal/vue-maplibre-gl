@@ -5,7 +5,6 @@ export { default as MglFullscreenControl } from "./controls/fullscreen.control";
 export { default as MglGeolocateControl } from "./controls/geolocation.control";
 export { default as MglNavigationControl } from "./controls/navigation.control";
 export { default as MglScaleControl } from "./controls/scale.control";
-export { default as MglButton } from "./button.component";
 export { default as MglMarker } from "./marker.component";
 export { default as MglPopup } from "./popup.component";
 export { default as MglCanvasSource } from "./sources/canvas.source";

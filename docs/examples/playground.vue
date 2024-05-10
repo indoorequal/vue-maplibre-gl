@@ -21,7 +21,9 @@
       <mgl-scale-control/>
       <mgl-geolocate-control/>
       <mgl-custom-control v-if="showCustomControl" :position="controlPosition" :no-classes="!useClasses">
-	<mgl-button type="mdi" :path="buttonIcon" style="color: deepskyblue"/>
+        <button class="maplibregl-ctrl-icon" style="color: deepskyblue">
+          <svg><path :d="buttonIcon" fill="currentColor" /></svg>
+        </button>
       </mgl-custom-control>
       <mgl-marker :coordinates="markerCoordinates" color="#cc0000" :scale="0.5"/>
 
@@ -88,7 +90,6 @@ import {
   MglScaleControl,
   MglGeolocateControl,
   MglCustomControl,
-  MglButton,
   MglMarker,
   MglGeoJsonSource,
   MglLineLayer,
@@ -129,7 +130,7 @@ const lineString = [
 export default defineComponent({
   name      : 'App',
   components: {
-    MglCircleLayer, MglVectorSource, MglLineLayer, MglGeoJsonSource, MglMarker, MglButton, MglCustomControl,
+    MglCircleLayer, MglVectorSource, MglLineLayer, MglGeoJsonSource, MglMarker, MglCustomControl,
     MglGeolocateControl, MglScaleControl, MglNavigationControl, MglAttributionControl, MglFullscreenControl, MglMap
   },
   setup() {
