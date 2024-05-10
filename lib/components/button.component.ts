@@ -38,7 +38,10 @@ const types: { [key in ButtonType]?: Default } = {
   },
 };
 
-export default /*#__PURE__*/ defineComponent({
+/**
+ * @deprecated Will be removed in the version 5
+ */
+export default defineComponent({
   name: "MglButton",
   props: {
     type: {
