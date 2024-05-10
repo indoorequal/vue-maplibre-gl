@@ -6,7 +6,6 @@ export { default as MglGeolocationControl } from "./controls/geolocation.control
 export { default as MglGeolocateControl } from "./controls/geolocation.control";
 export { default as MglNavigationControl } from "./controls/navigation.control";
 export { default as MglScaleControl } from "./controls/scale.control";
-export { default as MglStyleSwitchControl } from "./controls/styleSwitch.control";
 export { default as MglButton } from "./button.component";
 export { default as MglMarker } from "./marker.component";
 export { default as MglPopup } from "./popup.component";

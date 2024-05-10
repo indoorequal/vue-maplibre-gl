@@ -21,11 +21,9 @@
       <mgl-navigation-control/>
       <mgl-scale-control/>
       <mgl-geolocation-control/>
-      <mgl-custom-control v-if="showCustomControl" position="top-left" :no-classes="!useClasses">
+      <mgl-custom-control v-if="showCustomControl" :position="controlPosition" :no-classes="!useClasses">
 	<mgl-button type="mdi" :path="buttonIcon" style="color: deepskyblue"/>
       </mgl-custom-control>
-      <mgl-style-switch-control :map-styles="mapStyles" :position="controlPosition"/>
-
       <mgl-marker :coordinates="markerCoordinates" color="#cc0000" :scale="0.5"/>
 
       <mgl-geo-json-source source-id="geojson" :data="geojsonSource.data as any">
@@ -93,7 +91,6 @@ import {
   MglDefaults,
   MglEvent,
   Position,
-  StyleSwitchItem,
   useMap,
   ValidLanguages,
   MglMap,
@@ -104,7 +101,6 @@ import {
   MglGeolocationControl,
   MglCustomControl,
   MglButton,
-  MglStyleSwitchControl,
   MglMarker,
   MglGeoJsonSource,
   MglLineLayer,
@@ -145,7 +141,7 @@ const lineString = [
 export default defineComponent({
   name      : 'App',
   components: {
-    MglCircleLayer, MglVectorSource, MglLineLayer, MglGeoJsonSource, MglMarker, MglStyleSwitchControl, MglButton, MglCustomControl,
+    MglCircleLayer, MglVectorSource, MglLineLayer, MglGeoJsonSource, MglMarker, MglButton, MglCustomControl,
     MglGeolocationControl, MglScaleControl, MglNavigationControl, MglAttributionControl, MglFullscreenControl, MglMap
   },
   setup() {
@@ -243,18 +239,6 @@ export default defineComponent({
       center                    : [ 10.288107, 49.405078 ] as LngLatLike,
       zoom                      : 3,
       useClasses                : ref(true),
-      mapStyles                 : [
-	{
-	  name : 'Streets',
-	  label: 'Streets',
-	  // icon : { path: mdiRoad },
-	  style: 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh'
-	},
-	{ name: 'Basic', label: 'Basic', style: 'https://api.maptiler.com/maps/basic/style.json?key=cQX2iET1gmOW38bedbUh' },
-	{ name: 'Bright', label: 'Bright', style: 'https://api.maptiler.com/maps/bright/style.json?key=cQX2iET1gmOW38bedbUh' },
-	{ name: 'Satellite', label: 'Satellite', style: 'https://api.maptiler.com/maps/hybrid/style.json?key=cQX2iET1gmOW38bedbUh' },
-	{ name: 'Voyager', label: 'Voyager', style: 'https://api.maptiler.com/maps/voyager/style.json?key=cQX2iET1gmOW38bedbUh' }
-      ] as StyleSwitchItem[],
       buttonIcon                : mdiCursorDefaultClick,
       layout                    : {
 	'line-join': 'round',

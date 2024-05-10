@@ -24,7 +24,7 @@ export default defineConfig({
 */`)
   ],
   ssr    : {
-    external: [ 'vue', 'maplibre-gl', 'geojson', 'mitt' ]
+    external: [ 'vue', 'maplibre-gl', 'geojson' ]
   },
   build  : {
     cssCodeSplit : true,
@@ -40,8 +40,7 @@ export default defineConfig({
       external: [
 	'vue',
 	'maplibre-gl',
-	'geojson',
-	'mitt'
+	'geojson'
       ],
       output  : {
 	assetFileNames: (assetInfo) => {
@@ -56,7 +55,6 @@ export default defineConfig({
 	globals: {
 	  vue          : 'Vue',
 	  'maplibre-gl': 'maplibregl',
-	  mitt         : 'mitt',
 	  geojson      : 'geojson'
 	},
       },

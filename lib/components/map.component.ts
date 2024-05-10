@@ -26,11 +26,9 @@ import {
 } from "maplibre-gl";
 import {
   componentIdSymbol,
-  emitterSymbol,
   isInitializedSymbol,
   isLoadedSymbol,
   mapSymbol,
-  type MglEvents,
   sourceIdSymbol,
   type ValidLanguages,
 } from "@/lib/types";
@@ -38,7 +36,6 @@ import { defaults } from "@/lib/defaults";
 import { MapLib } from "@/lib/lib/map.lib";
 import { isLngLatEqual } from "@/lib/lib/lng_lat";
 import { Position } from "@/lib/components/controls/position.enum";
-import mitt from "mitt";
 import { registerMap } from "@/lib/lib/mapRegistry";
 import { debounce } from "@/lib/lib/debounce";
 import { setPrimaryLanguage } from "modular-maptiler-sdk/src/language";
@@ -418,7 +415,6 @@ export default defineComponent({
       isLoaded = ref(false),
       isStyleReady = ref(false),
       boundMapEvents = new Map<string, Function>(),
-      emitter = mitt<MglEvents>(),
       registryItem = registerMap(component as any, map, props.mapKey);
 
     let resizeObserver: ResizeObserver | undefined;
@@ -428,7 +424,6 @@ export default defineComponent({
     provide(isInitializedSymbol, isInitialized);
     provide(componentIdSymbol, component.uid);
     provide(sourceIdSymbol, "");
-    provide(emitterSymbol, emitter);
 
     /*
      * bind prop watchers

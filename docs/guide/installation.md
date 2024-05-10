@@ -11,15 +11,15 @@
 ::: code-group
 
 ```sh [npm]
-npm install @indoorequal/vue-maplibre-gl maplibre-gl mitt
+npm install @indoorequal/vue-maplibre-gl maplibre-gl
 ```
 
 ```sh [yarn]
-yarn add @indoorequal/vue-maplibre-gl maplibre-gl mitt
+yarn add @indoorequal/vue-maplibre-gl maplibre-gl
 ```
 
 ```sh [pnpm]
-pnpm add @indoorequal/vue-maplibre-gl maplibre-gl mitt
+pnpm add @indoorequal/vue-maplibre-gl maplibre-gl
 ```
 
 :::

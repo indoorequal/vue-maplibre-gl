@@ -1,6 +1,6 @@
 import { inject, onBeforeUnmount, type Ref, watch } from "vue";
 import type { Source, SourceSpecification } from "maplibre-gl";
-import { emitterSymbol, isLoadedSymbol, mapSymbol } from "@/lib/types";
+import { isLoadedSymbol, mapSymbol } from "@/lib/types";
 import type { SourceLayerRegistry } from "@/lib/lib/sourceLayer.registry";
 import { SourceLib } from "@/lib/lib/source.lib";
 
@@ -12,8 +12,7 @@ export function useSource<O extends object>(
   registry: SourceLayerRegistry,
 ) {
   const map = inject(mapSymbol)!,
-    isLoaded = inject(isLoadedSymbol)!,
-    emitter = inject(emitterSymbol)!;
+    isLoaded = inject(isLoadedSymbol)!;
 
   function addSource() {
     if (isLoaded.value) {
@@ -29,13 +28,8 @@ export function useSource<O extends object>(
     }
   }
 
-  function resetSource() {
-    source.value = null;
-  }
-
   watch(isLoaded, addSource, { immediate: true });
   map.value!.on("style.load", addSource);
-  emitter.on("styleSwitched", resetSource);
 
   return onBeforeUnmount(() => {
     if (isLoaded.value) {
@@ -43,6 +37,5 @@ export function useSource<O extends object>(
       map.value!.removeSource(props.sourceId);
     }
     map.value!.off("style.load", addSource);
-    emitter.off("styleSwitched", resetSource);
   });
 }
