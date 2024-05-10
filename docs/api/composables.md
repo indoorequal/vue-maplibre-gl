@@ -15,3 +15,18 @@ console.log(map.instance)
 console.log(map.map)
 </script>
 ```
+
+## useControl(() => IControl, { position: 'top-left' }): { control, map \}
+
+The `useControl` composable allow to add a maplibre control that implement the IControl interface.
+
+```vue
+<script setup>
+import { useControl } from '@indoorequal/vue-maplibre-gl';
+import MaplibreInspect from 'maplibre-gl-inspect';
+
+useControl(() => {
+  return new MaplibreInspect();
+});
+</script>
+```

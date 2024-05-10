@@ -31,3 +31,4 @@ The API documentation is in progress
 ## Composables
 
 - [useMap](./composables.md#usemap)
+- [useControl](./composables.md#usecontrol)
