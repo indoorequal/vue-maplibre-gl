@@ -396,6 +396,10 @@ export default defineComponent({
      * Zoom property updated
      */
     "update:zoom",
+    /**
+     * Pitch property updated
+     */
+    "update:pitch",
   ],
   slots: Object as SlotsType<{ default: {} }>,
   setup(props, ctx) {
@@ -600,6 +604,9 @@ export default defineComponent({
       });
       map.value.on("zoomend", () => {
         ctx.emit("update:zoom", map.value!.getZoom());
+      });
+      map.value.on("pitchend", () => {
+        ctx.emit("update:pitch", map.value!.getPitch());
       });
 
       // bind events

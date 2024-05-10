@@ -7,12 +7,16 @@
       :map-style="style"
       v-model:center="center"
       v-model:zoom="zoom"
+      v-model:pitch="pitch"
       height="400px"
     >
       <mgl-navigation-control />
     </mgl-map>
-    zoom: {{ zoom }}<br>
+    zoom: {{ zoom }}
+    <br>
     center: {{ center }}
+    <br>
+    pitch: {{ pitch }}
   </div>
 </template>
 
@@ -26,6 +30,7 @@ import { ref } from 'vue';
 const style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
 const center = ref([12.550343, 55.665957]);
 const zoom = ref(8);
+const pitch = ref(0);
 </script>
 
 <style lang="scss">
