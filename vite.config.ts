@@ -19,7 +19,7 @@ export default defineConfig({
     dts({ insertTypesEntry: true }),
     banner(`/*!
 * ${pkg.name} v${pkg.version}
-* (c) ${new Date().getFullYear()} ${pkg.author.name}
+* (c) ${new Date().getFullYear()} ${pkg.author}
 * @license ${pkg.license}
 */`)
   ],
