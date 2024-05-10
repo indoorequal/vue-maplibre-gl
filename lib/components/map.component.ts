@@ -400,6 +400,10 @@ export default defineComponent({
      * Pitch property updated
      */
     "update:pitch",
+    /**
+     * Bearing property updated
+     */
+    "update:bearing",
   ],
   slots: Object as SlotsType<{ default: {} }>,
   setup(props, ctx) {
@@ -607,6 +611,9 @@ export default defineComponent({
       });
       map.value.on("pitchend", () => {
         ctx.emit("update:pitch", map.value!.getPitch());
+      });
+      map.value.on("rotateend", () => {
+        ctx.emit("update:bearing", map.value!.getBearing());
       });
 
       // bind events

@@ -8,6 +8,7 @@
       v-model:center="center"
       v-model:zoom="zoom"
       v-model:pitch="pitch"
+      v-model:bearing="bearing"
       height="400px"
     >
       <mgl-navigation-control />
@@ -17,6 +18,8 @@
     center: {{ center }}
     <br>
     pitch: {{ pitch }}
+    <br>
+    bearing: {{ bearing }}
   </div>
 </template>
 
@@ -31,6 +34,7 @@ const style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW
 const center = ref([12.550343, 55.665957]);
 const zoom = ref(8);
 const pitch = ref(0);
+const bearing = ref(0);
 </script>
 
 <style lang="scss">
