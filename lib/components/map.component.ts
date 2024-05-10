@@ -30,7 +30,6 @@ import {
   isLoadedSymbol,
   mapSymbol,
   sourceIdSymbol,
-  type ValidLanguages,
 } from "@/lib/types";
 import { defaults } from "@/lib/defaults";
 import { MapLib } from "@/lib/lib/map.lib";
@@ -38,7 +37,6 @@ import { isLngLatEqual } from "@/lib/lib/lng_lat";
 import { Position } from "@/lib/components/controls/position.enum";
 import { registerMap } from "@/lib/lib/mapRegistry";
 import { debounce } from "@/lib/lib/debounce";
-import { setPrimaryLanguage } from "modular-maptiler-sdk/src/language";
 
 /**
  * The map component
@@ -207,13 +205,6 @@ export default defineComponent({
     locale: {
       type: Object as PropType<Record<string, string>>,
       default: () => defaults.locale,
-    },
-    /**
-     * @deprecated Will be removed in the version 5
-     */
-    language: {
-      type: String as PropType<ValidLanguages | null>,
-      default: () => defaults.language || null,
     },
     localIdeographFontFamily: {
       type: String as PropType<string>,
@@ -541,35 +532,9 @@ export default defineComponent({
         }
       },
     );
-    watch(
-      () => props.language,
-      (v) => {
-        if (
-          isStyleReady.value &&
-          map.value &&
-          registryItem.language !== (v || null)
-        ) {
-          setPrimaryLanguage(map.value as any, v || "");
-          registryItem.language = v || null;
-        }
-      },
-    );
-    watch(
-      () => registryItem.language,
-      (v) => {
-        if (isStyleReady.value && map.value) {
-          setPrimaryLanguage(map.value as any, v || "");
-        }
-      },
-    );
 
     function onStyleReady() {
       isStyleReady.value = true;
-      if (props.language) {
-        registryItem.language = props.language;
-      } else if (registryItem.language) {
-        setPrimaryLanguage(map.value! as any, props.language || "");
-      }
     }
 
     function initialize() {

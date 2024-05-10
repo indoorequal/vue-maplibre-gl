@@ -1,10 +1,8 @@
 import type { LngLatLike, MapOptions as MaplibreMapOptions } from "maplibre-gl";
 import { reactive } from "vue";
-import type { ValidLanguages } from "@/lib/types";
 
 export type MapOptions = Omit<MaplibreMapOptions, "container" | "style"> & {
   style: object | string;
-  language?: ValidLanguages;
 };
 
 export const defaults = reactive<MapOptions>({

@@ -1,14 +1,12 @@
 import type { MglMap } from "@/lib/components";
 import type { Map as MaplibreMap } from "maplibre-gl";
 import { reactive, type ShallowRef } from "vue";
-import type { ValidLanguages } from "@/lib/types";
 
 export interface MapInstance {
   component?: InstanceType<typeof MglMap>;
   map?: MaplibreMap;
   isMounted: boolean;
   isLoaded: boolean;
-  language: ValidLanguages | null;
 }
 
 const instances = new Map<symbol | string, MapInstance>(),

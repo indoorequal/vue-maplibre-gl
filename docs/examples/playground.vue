@@ -11,7 +11,6 @@
       :center="center"
       :zoom="zoom"
       :attribution-control="false"
-      language="fr"
       @map:load="onLoad"
       @map:zoomstart="isZooming = true"
       @map:zoomend="isZooming = false"
@@ -72,16 +71,6 @@
     <input type="checkbox" v-model="showMap" id="showmap">
     <label for="showmap">Show Map</label>
   </div>
-  <div>
-    <label for="cars">Language:</label>
-    <select :value="map?.language" @input="setLanguage">
-      <option value="">n/a</option>
-      <option value="de">German</option>
-      <option value="en">English</option>
-      <option value="fr">French</option>
-      <option value="ja">Japanese</option>
-    </select>
-  </div>
 </div>
 </template>
 
@@ -92,7 +81,6 @@ import {
   MglEvent,
   Position,
   useMap,
-  ValidLanguages,
   MglMap,
   MglFullscreenControl,
   MglAttributionControl,
@@ -225,13 +213,8 @@ export default defineComponent({
       console.log('EVENT', e.type, e.lngLat);
     }
 
-    function setLanguage(e: Event) {
-      console.log('setLanguage', e);
-      map.language = (e.target as HTMLSelectElement).value as ValidLanguages;
-    }
-
     return {
-      showCustomControl, loaded, map, mapVersion, markerCoordinates, geojsonSource, onLoad, onMouseenter, setLanguage,
+      showCustomControl, loaded, map, mapVersion, markerCoordinates, geojsonSource, onLoad, onMouseenter,
       geojsonSourceData         : geojsonSource.data,
       isZooming                 : ref(false),
       controlPosition           : ref(Position.TOP_LEFT),
