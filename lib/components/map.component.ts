@@ -36,7 +36,6 @@ import { MapLib } from "@/lib/lib/map.lib";
 import { isLngLatEqual } from "@/lib/lib/lng_lat";
 import { Position } from "@/lib/components/controls/position.enum";
 import { registerMap } from "@/lib/lib/mapRegistry";
-import { debounce } from "@/lib/lib/debounce";
 
 /**
  * The map component
@@ -408,8 +407,6 @@ export default defineComponent({
       boundMapEvents = new Map<string, Function>(),
       registryItem = registerMap(component as any, map, props.mapKey);
 
-    let resizeObserver: ResizeObserver | undefined;
-
     provide(mapSymbol, map);
     provide(isLoadedSymbol, isLoaded);
     provide(isInitializedSymbol, isInitialized);
@@ -633,45 +630,26 @@ export default defineComponent({
      */
     onMounted(() => {
       initialize();
-
-      // bind resize observer
-      if (map.value) {
-        resizeObserver = new ResizeObserver(
-          debounce(map.value.resize.bind(map.value), 100),
-        );
-        resizeObserver.observe(container.value as HTMLDivElement);
-      }
     });
 
     /*
      * Dispose component
      */
     onBeforeUnmount(() => {
-      // unbind resize observer
-      if (resizeObserver !== undefined) {
-        resizeObserver.disconnect();
-        resizeObserver = undefined;
-      }
-
       dispose();
     });
 
     ctx.expose({ map });
 
-    return () =>
-      h(
-        "div",
-        {
-          class: "mgl-container",
-          style: { height: props.height, width: props.width },
-        },
-        [
-          h("div", { ref: container, class: "mgl-wrapper" }),
-          isInitialized.value && ctx.slots.default
-            ? ctx.slots.default({})
-            : undefined,
-        ],
-      );
+    return () => [
+      h("div", {
+        ref: container,
+        style: { height: props.height, width: props.width },
+      }),
+      isInitialized.value && ctx.slots.default
+        ? ctx.slots.default({})
+        : undefined,
+    ];
   },
 
   /**

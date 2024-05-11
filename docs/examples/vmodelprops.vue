@@ -39,10 +39,4 @@ const bearing = ref(0);
 
 <style lang="scss">
 @import "maplibre-gl/dist/maplibre-gl.css";
-@import "@indoorequal/vue-maplibre-gl/dist/vue-maplibre-gl.css";
-
-body {
-  margin: 0;
-}
-html, body, #app { height: 100%; }
 </style>

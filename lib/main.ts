@@ -1,5 +1,4 @@
 import type { App, Plugin } from "vue";
-import "@/lib/css/maplibre.scss";
 
 // Import vue components
 import * as components from "@/lib/components";

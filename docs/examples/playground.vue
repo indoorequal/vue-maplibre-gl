@@ -244,9 +244,4 @@ export default defineComponent({
 
 <style lang="scss">
 @import "maplibre-gl/dist/maplibre-gl.css";
-@import "@indoorequal/vue-maplibre-gl/dist/vue-maplibre-gl.css";
-
-body {
-  margin: 0;
-}
 </style>

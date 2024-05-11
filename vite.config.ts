@@ -27,7 +27,6 @@ export default defineConfig({
     external: [ 'vue', 'maplibre-gl', 'geojson' ]
   },
   build  : {
-    cssCodeSplit : true,
     sourcemap    : true,
     lib          : {
       entry   : resolve(__dirname, 'lib/main.ts'),
@@ -44,9 +43,6 @@ export default defineConfig({
       ],
       output  : {
 	assetFileNames: (assetInfo) => {
-	  if (assetInfo.name === 'main.css') {
-	    return 'vue-maplibre-gl.css';
-	  }
 	  return assetInfo.name;
 	},
 	exports       : 'named',

@@ -6,6 +6,7 @@
     :map-style="style"
     :center="center"
     :zoom="zoom"
+    height="500px"
   >
     <mgl-navigation-control />
     <mgl-marker :coordinates="coordinates" color="#cc0000" />
@@ -27,10 +28,4 @@ const coordinates = [12.550343, 55.665957];
 
 <style lang="scss">
 @import "maplibre-gl/dist/maplibre-gl.css";
-@import "@indoorequal/vue-maplibre-gl/dist/vue-maplibre-gl.css";
-
-body {
-  margin: 0;
-}
-html, body, #app { height: 100%; }
 </style>
