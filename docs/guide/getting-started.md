@@ -23,14 +23,10 @@ app.component('MglMap', MglMap)
 or in a parent components `.vue` file
 
 ```html
-<script>
-  import { MglMap } from '@indoorequal/vue-maplibre-gl'
-
-  export default {
-    components: {
-      MglMap
-    },
-    // ...
-  }
+<template>
+  <mgl-map /
+</template>
+<script setup>
+  import { MglMap } from '@indoorequal/vue-maplibre-gl';
 </script>
 ```
