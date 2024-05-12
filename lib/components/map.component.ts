@@ -630,16 +630,12 @@ export default defineComponent({
     /*
      * init map
      */
-    onMounted(() => {
-      initialize();
-    });
+    onMounted(initialize);
 
     /*
      * Dispose component
      */
-    onBeforeUnmount(() => {
-      dispose();
-    });
+    onBeforeUnmount(dispose);
 
     ctx.expose({ map });
 
