@@ -403,7 +403,6 @@ export default defineComponent({
       map = shallowRef<MaplibreMap>(),
       isInitialized = ref(false),
       isLoaded = ref(false),
-      isStyleReady = ref(false),
       boundMapEvents = new Map<string, Function>(),
       registryItem = registerMap(component as any, map, props.mapKey);
 
@@ -530,10 +529,6 @@ export default defineComponent({
       },
     );
 
-    function onStyleReady() {
-      isStyleReady.value = true;
-    }
-
     function initialize() {
       registryItem.isMounted = true;
 
@@ -562,7 +557,6 @@ export default defineComponent({
         "__load",
         () => ((isLoaded.value = true), (registryItem.isLoaded = true)),
       );
-      map.value.once("styledata", onStyleReady);
       map.value.on("load", boundMapEvents.get("__load") as any);
       map.value.on("moveend", () => {
         ctx.emit("update:center", map.value!.getCenter());
