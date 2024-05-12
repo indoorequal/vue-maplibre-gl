@@ -2,18 +2,18 @@ import {
   defineComponent,
   inject,
   onMounted,
-  PropType,
+  type PropType,
   unref,
   watch,
   ref,
   h,
 } from "vue";
 import {
-  LngLatLike,
+  type LngLatLike,
   Popup,
-  Offset,
-  PositionAnchor,
-  PopupOptions,
+  type Offset,
+  type PositionAnchor,
+  type PopupOptions,
 } from "maplibre-gl";
 import { MapLib } from "@/lib/lib/map.lib";
 import { mapSymbol, markerSymbol } from "@/lib/types";
