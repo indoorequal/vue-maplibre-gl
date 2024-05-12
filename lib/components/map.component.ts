@@ -558,24 +558,20 @@ export default defineComponent({
         () => ((isLoaded.value = true), (registryItem.isLoaded = true)),
       );
       map.value.on("load", boundMapEvents.get("__load") as any);
-      boundMapEvents.set(
-        "__moveend",
-        () => ctx.emit("update:center", map.value!.getCenter()),
+      boundMapEvents.set("__moveend", () =>
+        ctx.emit("update:center", map.value!.getCenter()),
       );
       map.value.on("moveend", boundMapEvents.get("__moveend") as any);
-      boundMapEvents.set(
-        "__zoomend",
-        () => ctx.emit("update:zoom", map.value!.getZoom()),
+      boundMapEvents.set("__zoomend", () =>
+        ctx.emit("update:zoom", map.value!.getZoom()),
       );
       map.value.on("zoomend", boundMapEvents.get("__zoomend") as any);
-      boundMapEvents.set(
-        "__pitchend",
-        () => ctx.emit("update:pitch", map.value!.getPitch()),
+      boundMapEvents.set("__pitchend", () =>
+        ctx.emit("update:pitch", map.value!.getPitch()),
       );
       map.value.on("pitchend", boundMapEvents.get("__pitchend") as any);
-      boundMapEvents.set(
-        "__rotateend",
-        () => ctx.emit("update:bearing", map.value!.getBearing()),
+      boundMapEvents.set("__rotateend", () =>
+        ctx.emit("update:bearing", map.value!.getBearing()),
       );
       map.value.on("rotateend", boundMapEvents.get("__rotateend") as any);
 
