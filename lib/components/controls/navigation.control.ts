@@ -24,8 +24,17 @@ export default defineComponent({
         return PositionValues.indexOf(v) !== -1;
       },
     },
+    /**
+     * If true the compass button is included.
+     */
     showCompass: { type: Boolean as PropType<boolean>, default: true },
+    /**
+     * If true the zoom-in and zoom-out buttons are included.
+     */
     showZoom: { type: Boolean as PropType<boolean>, default: true },
+    /**
+     * If true the pitch is visualized by rotating X-axis of compass.
+     */
     visualizePitch: Boolean as PropType<boolean>,
   },
   setup(props) {

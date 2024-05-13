@@ -1,4 +1,6 @@
-window.URL.createObjectURL = (obj) => { return ''; };
+window.URL.createObjectURL = (obj) => {
+  return "";
+};
 
 import { type LngLatLike, LngLat } from "maplibre-gl";
 import { isLngLatEqual } from "../lib/lib/lng_lat";
