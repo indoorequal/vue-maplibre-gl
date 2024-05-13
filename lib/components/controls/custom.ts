@@ -3,17 +3,14 @@ import { nextTick, Ref } from "vue";
 import { Position } from "@/lib/components/controls/position.enum";
 
 export class CustomControl implements IControl {
-  public static readonly CONTROL_CLASS = "maplibregl-ctrl";
-  public static readonly CONTROL_GROUP_CLASS = "maplibregl-ctrl-group";
-
   public readonly container: HTMLDivElement;
 
   constructor(
     private isAdded: Ref<boolean>,
-    noClasses: boolean,
+    classes: string,
   ) {
     this.container = document.createElement("div");
-    this.setClasses(noClasses);
+    this.setClasses(classes);
   }
 
   getDefaultPosition(): ControlPosition {
@@ -30,17 +27,7 @@ export class CustomControl implements IControl {
     this.container.remove();
   }
 
-  setClasses(noClasses: boolean) {
-    if (noClasses) {
-      this.container.classList.remove(
-        CustomControl.CONTROL_CLASS,
-        CustomControl.CONTROL_GROUP_CLASS,
-      );
-    } else {
-      this.container.classList.add(
-        CustomControl.CONTROL_CLASS,
-        CustomControl.CONTROL_GROUP_CLASS,
-      );
-    }
+  setClasses(classes: string) {
+    this.container.className = classes;
   }
 }

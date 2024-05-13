@@ -38,7 +38,7 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "lint": "eslint lib",
-    "prettier": "prettier lib --write",
+    "prettier": "prettier lib test --write",
     "test": "jest"
   },
   "devDependencies": {
@@ -50,12 +50,14 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.17",
     "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/test-utils": "^2.4.6",
     "eslint": "^9.1.1",
     "eslint-plugin-vue": "^9.25.0",
     "geojson": "^0.5.0",
     "glob": "^10.3.12",
     "globals": "^15.0.0",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "maplibre-gl": "^3.0.0",
     "prettier": "3.2.5",
     "sass": "^1.71.0",

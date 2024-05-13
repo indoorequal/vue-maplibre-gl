@@ -3,11 +3,11 @@ import type { Map, Marker, SourceSpecification } from "maplibre-gl";
 import type { MglMap } from "@/lib/components";
 import type { SourceLayerRegistry } from "@/lib/lib/sourceLayer.registry";
 
-export const mapSymbol = Symbol("map") as InjectionKey<
-    ShallowRef<Map | undefined>
-  >,
+export const map = Symbol("map"),
+  mapSymbol = map as InjectionKey<ShallowRef<Map | undefined>>,
   isLoadedSymbol = Symbol("isLoaded") as InjectionKey<Ref<boolean>>,
-  isInitializedSymbol = Symbol("isInitialized") as InjectionKey<Ref<boolean>>,
+  isInitialized = Symbol("isInitialized"),
+  isInitializedSymbol = isInitialized as InjectionKey<Ref<boolean>>,
   componentIdSymbol = Symbol("componentId") as InjectionKey<number>,
   sourceIdSymbol = Symbol("sourceId") as InjectionKey<string>,
   sourceLayerRegistry = Symbol(

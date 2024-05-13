@@ -16,6 +16,8 @@ import {
 import { useControl } from "@/lib/composable/useControl";
 import { CustomControl } from "@/lib/components/controls/custom";
 
+const DEFAULT_CLASSES = "maplibregl-ctrl maplibregl-ctrl-group";
+
 /**
  * Render a custom control with your content in the default slot
  */
@@ -33,22 +35,41 @@ export default defineComponent({
     },
     /**
      * By default the control container will have the `maplibregl-ctrl` and `maplibregl-ctrl-group` classes. Set to false to remove them
+     * @deprecated Use the class prop instead
      */
     noClasses: {
       type: Boolean as PropType<boolean>,
       default: false,
     },
+    /**
+     * Set the classes on the control div
+     */
+    class: {
+      type: String as PropType<string>,
+      default: null,
+    },
   },
   slots: Object as SlotsType<{ default: {} }>,
   setup(props, { slots }) {
     const isAdded = ref(false);
+    function getClasses() {
+      if (props.class != null) {
+        return props.class;
+      }
+      return props.noClasses ? "" : DEFAULT_CLASSES;
+    }
     const { control } = useControl(() => {
-      return new CustomControl(isAdded, props.noClasses!);
+      return new CustomControl(isAdded, getClasses());
     }, props);
 
     watch(
       () => props.noClasses,
-      (v) => control.value.setClasses(v!),
+      () => control.value.setClasses(getClasses()),
+    );
+
+    watch(
+      () => props.class,
+      () => control.value.setClasses(getClasses()),
     );
 
     return () => {
