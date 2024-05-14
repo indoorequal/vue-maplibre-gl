@@ -8,9 +8,9 @@ import {
   Teleport,
   watch,
 } from "vue";
+import type { ControlPosition } from "maplibre-gl";
 import {
   Position,
-  type PositionProp,
   PositionValues,
 } from "@/lib/components/controls/position.enum";
 import { useControl } from "@/lib/composable/useControl";
@@ -28,7 +28,7 @@ export default defineComponent({
      * Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'top-left'.
      */
     position: {
-      type: String as PropType<PositionProp>,
+      type: String as PropType<ControlPosition>,
       validator: (v: Position) => {
         return PositionValues.indexOf(v) !== -1;
       },

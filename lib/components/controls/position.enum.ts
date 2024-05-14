@@ -6,10 +6,3 @@ export enum Position {
 }
 
 export const PositionValues = Object.values(Position);
-
-export type PositionProp =
-  | Position
-  | "top-left"
-  | "top-right"
-  | "bottom-left"
-  | "bottom-right";

@@ -1,10 +1,9 @@
 import { defineComponent, type PropType } from "vue";
+import { NavigationControl, type ControlPosition } from "maplibre-gl";
 import {
   Position,
-  type PositionProp,
   PositionValues,
 } from "@/lib/components/controls/position.enum";
-import { NavigationControl } from "maplibre-gl";
 import { useControl } from "@/lib/composable/useControl";
 
 /**
@@ -19,7 +18,7 @@ export default defineComponent({
      * Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'top-right'.
      */
     position: {
-      type: String as PropType<PositionProp>,
+      type: String as PropType<ControlPosition>,
       validator: (v: Position) => {
         return PositionValues.indexOf(v) !== -1;
       },

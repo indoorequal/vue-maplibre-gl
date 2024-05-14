@@ -1,13 +1,12 @@
 import { type ShallowRef, type WatchSource, watch } from "vue";
-import type { IControl, Map } from "maplibre-gl";
+import type { IControl, Map, ControlPosition } from "maplibre-gl";
 import {
   type Position,
-  type PositionProp,
   PositionValues,
 } from "@/lib/components/controls/position.enum";
 
 export function usePositionWatcher(
-  source: WatchSource<PositionProp | undefined>,
+  source: WatchSource<ControlPosition | undefined>,
   map: ShallowRef<Map | undefined>,
   control: IControl,
 ) {
