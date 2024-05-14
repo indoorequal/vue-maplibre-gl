@@ -34,7 +34,8 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/installation' },
       { text: 'Examples', link: '/examples/' },
-      { text: 'API', link: '/api/' }
+      { text: 'API', link: '/api/' },
+      { text: 'Releases', link: 'https://github.com/indoorequal/vue-maplibre-gl/releases/' },
     ],
 
     sidebar: [
