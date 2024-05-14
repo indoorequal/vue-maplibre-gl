@@ -30,16 +30,6 @@ https://indoorequal.github.io/vue-maplibre-gl/
 
 If you have ideas, improvements, suggestions etc. don't hesitate to open a pull request.
 
-### Todos
-
-- [x] Usage examples
-- [x] Demo
-- [x] API documentation
-- [x] Support `v-model:...` for some basic props
-- [x] Add layer events
-- [x] Add [Web-types](https://github.com/JetBrains/web-types)
-- [x] Add [frame rate control](https://github.com/mapbox/mapbox-gl-framerate)
-
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
