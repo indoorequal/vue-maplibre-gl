@@ -46,7 +46,7 @@ export default /*#__PURE__*/ defineComponent({
     attribution: String as PropType<string>,
     volatile: Boolean,
   },
-  slots: Object as SlotsType<{ default: {} }>,
+  slots: Object as SlotsType<{ default: any }>,
   setup(props, { slots }) {
     const cid = inject(componentIdSymbol)!,
       source = SourceLib.getSourceRef<RasterTileSource>(cid, props.sourceId),

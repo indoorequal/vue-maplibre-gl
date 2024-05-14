@@ -69,7 +69,7 @@ export default /*#__PURE__*/ defineComponent({
     promoteId: [Object, String] as PropType<PromoteIdSpecification>,
     filter: [Array, String, Object] as PropType<any>,
   },
-  slots: Object as SlotsType<{ default: {} }>,
+  slots: Object as SlotsType<{ default: any }>,
   setup(props, { slots }) {
     const cid = inject(componentIdSymbol)!,
       source = SourceLib.getSourceRef<GeoJSONSource>(cid, props.sourceId),

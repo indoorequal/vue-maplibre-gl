@@ -49,7 +49,7 @@ export default defineComponent({
       default: null,
     },
   },
-  slots: Object as SlotsType<{ default: {} }>,
+  slots: Object as SlotsType<{ default: any }>,
   setup(props, { slots }) {
     const isAdded = ref(false);
     function getClasses() {

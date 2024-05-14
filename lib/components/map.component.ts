@@ -21,6 +21,7 @@ import {
   type LngLatLike,
   Map as MaplibreMap,
   type MapOptions,
+  type MapLayerEventType,
   type RequestTransformFunction,
   type StyleSpecification,
 } from "maplibre-gl";
@@ -396,14 +397,14 @@ export default defineComponent({
      */
     "update:bearing",
   ],
-  slots: Object as SlotsType<{ default: {} }>,
+  slots: Object as SlotsType<{ default: any }>,
   setup(props, ctx) {
     const component = markRaw(getCurrentInstance()!),
       container = shallowRef<HTMLDivElement>(),
       map = shallowRef<MaplibreMap>(),
       isInitialized = ref(false),
       isLoaded = ref(false),
-      boundMapEvents = new Map<string, Function>(),
+      boundMapEvents = new Map<string, (ev: MapLayerEventType & unknown) => void>(),
       registryItem = registerMap(component as any, map, props.mapKey);
 
     provide(mapSymbol, map);
