@@ -25,6 +25,10 @@ export default defineConfig({
     ],
   ],
   themeConfig: {
+    search: {
+      provider: 'local',
+    },
+
     footer: {
       message: 'Released under the MIT License.',
       copyright: 'Copyright (c) 2021 Volker Nauruhn, 2024 François de Metz'
