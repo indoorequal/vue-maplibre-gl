@@ -25,7 +25,11 @@ export default defineConfig({
     ],
   ],
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright (c) 2021 Volker Nauruhn, 2024 François de Metz'
+    },
+
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/installation' },

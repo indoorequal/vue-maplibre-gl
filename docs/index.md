@@ -4,8 +4,8 @@ layout: home
 
 hero:
   name: "@indoorequal/vue-maplibre-gl"
-  text: "Vue 3 plugin for maplibre-gl"
-  tagline:
+  tagline: "Vue 3 plugin for maplibre-gl-js"
+  image: ./maplibre-logo.png
   actions:
     - theme: brand
       text: Guide
