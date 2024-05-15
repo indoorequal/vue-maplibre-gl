@@ -1,5 +1,10 @@
 import type { Map as MaplibreMap } from "maplibre-gl";
-import { reactive, type ShallowRef, type Raw, type ComponentInternalInstance } from "vue";
+import {
+  reactive,
+  type ShallowRef,
+  type Raw,
+  type ComponentInternalInstance,
+} from "vue";
 
 export interface MapInstance {
   component?: Raw<ComponentInternalInstance>;

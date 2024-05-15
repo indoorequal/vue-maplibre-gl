@@ -76,11 +76,7 @@ export default defineComponent({
       if (!isAdded.value) {
         return createCommentVNode("custom-component");
       }
-      return h(
-        Teleport,
-        { to: control.value.container },
-        slots.default?.({}),
-      );
+      return h(Teleport, { to: control.value.container }, slots.default?.({}));
     };
   },
   /**

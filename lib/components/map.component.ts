@@ -404,7 +404,10 @@ export default defineComponent({
       map = shallowRef<MaplibreMap>(),
       isInitialized = ref(false),
       isLoaded = ref(false),
-      boundMapEvents = new Map<string, (ev: MapLayerEventType & unknown) => void>(),
+      boundMapEvents = new Map<
+        string,
+        (ev: MapLayerEventType & unknown) => void
+      >(),
       registryItem = registerMap(component, map, props.mapKey);
 
     provide(mapSymbol, map);
