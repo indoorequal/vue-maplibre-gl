@@ -1,4 +1,4 @@
-import { defineComponent, type PropType } from "vue";
+import { defineComponent, onBeforeUnmount, type PropType } from "vue";
 import {
   type FitBoundsOptions,
   type ControlPosition,
@@ -9,6 +9,13 @@ import {
   PositionValues,
 } from "@/lib/components/controls/position.enum";
 import { useControl } from "@/lib/composable/useControl";
+
+type GeolocateControlEvent =
+  | "trackuserlocationstart"
+  | "trackuserlocationend"
+  | "geolocate"
+  | "error"
+  | "outofmaxbounds";
 
 /**
  * Render GeolocateControl
@@ -67,17 +74,20 @@ export default defineComponent({
         showUserLocation: props.showUserLocation,
       });
     }, props);
-    control.value.on("trackuserlocationstart", (...args) =>
-      ctx.emit("trackuserlocationstart", ...args),
-    );
-    control.value.on("trackuserlocationend", (...args) =>
-      ctx.emit("trackuserlocationend", ...args),
-    );
-    control.value.on("geolocate", (...args) => ctx.emit("geolocate", ...args));
-    control.value.on("error", (...args) => ctx.emit("error", ...args));
-    control.value.on("outofmaxbounds", (...args) =>
-      ctx.emit("outofmaxbounds", ...args),
-    );
+    function emitEvent<A>(event: GeolocateControlEvent): void {
+      const fun = (arg: A) => {
+        ctx.emit(event, arg);
+      };
+      control.value.on(event, fun);
+      onBeforeUnmount(() => {
+        control.value.off(event, fun);
+      });
+    }
+    emitEvent<undefined>("trackuserlocationstart");
+    emitEvent<undefined>("trackuserlocationend");
+    emitEvent<GeolocationPosition>("geolocate");
+    emitEvent<GeolocationPositionError>("error");
+    emitEvent<GeolocationPosition>("outofmaxbounds");
   },
   render() {
     return null;
