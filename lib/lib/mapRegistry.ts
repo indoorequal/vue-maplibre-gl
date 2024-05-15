@@ -1,9 +1,8 @@
-import type { MglMap } from "@/lib/components";
 import type { Map as MaplibreMap } from "maplibre-gl";
-import { reactive, type ShallowRef } from "vue";
+import { reactive, type ShallowRef, type Raw, type ComponentInternalInstance } from "vue";
 
 export interface MapInstance {
-  component?: InstanceType<typeof MglMap>;
+  component?: Raw<ComponentInternalInstance>;
   map?: MaplibreMap;
   isMounted: boolean;
   isLoaded: boolean;
@@ -23,7 +22,7 @@ export function useMap(key: symbol | string = defaultKey): MapInstance {
 }
 
 export function registerMap(
-  instance: InstanceType<typeof MglMap>,
+  instance: Raw<ComponentInternalInstance>,
   map: ShallowRef<MaplibreMap | undefined>,
   key: symbol | string = defaultKey,
 ): MapInstance {

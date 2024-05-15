@@ -405,7 +405,7 @@ export default defineComponent({
       isInitialized = ref(false),
       isLoaded = ref(false),
       boundMapEvents = new Map<string, (ev: MapLayerEventType & unknown) => void>(),
-      registryItem = registerMap(component as any, map, props.mapKey);
+      registryItem = registerMap(component, map, props.mapKey);
 
     provide(mapSymbol, map);
     provide(isLoadedSymbol, isLoaded);
