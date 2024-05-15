@@ -397,7 +397,7 @@ export default defineComponent({
      */
     "update:bearing",
   ],
-  slots: Object as SlotsType<{ default: any }>,
+  slots: Object as SlotsType<{ default: unknown }>,
   setup(props, ctx) {
     const component = markRaw(getCurrentInstance()!),
       container = shallowRef<HTMLDivElement>(),

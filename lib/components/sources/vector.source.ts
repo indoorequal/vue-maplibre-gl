@@ -52,7 +52,7 @@ export default /*#__PURE__*/ defineComponent({
     promoteId: [Object, String] as PropType<PromoteIdSpecification>,
     volatile: Boolean,
   },
-  slots: Object as SlotsType<{ default: any }>,
+  slots: Object as SlotsType<{ default: unknown }>,
   setup(props, { slots }) {
     const cid = inject(componentIdSymbol)!,
       source = SourceLib.getSourceRef<VectorTileSource>(cid, props.sourceId),

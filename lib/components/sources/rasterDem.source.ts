@@ -57,7 +57,7 @@ export default /*#__PURE__*/ defineComponent({
     greenFactor: Number as PropType<number>,
     baseShift: Number as PropType<number>,
   },
-  slots: Object as SlotsType<{ default: any }>,
+  slots: Object as SlotsType<{ default: unknown }>,
   setup(props, { slots }) {
     const cid = inject(componentIdSymbol)!,
       source = SourceLib.getSourceRef<RasterDEMTileSource>(cid, props.sourceId),

@@ -40,7 +40,7 @@ export default /*#__PURE__*/ defineComponent({
     animate: Boolean as PropType<boolean>,
     canvas: [Object, String] as PropType<HTMLCanvasElement | string>,
   },
-  slots: Object as SlotsType<{ default: any }>,
+  slots: Object as SlotsType<{ default: unknown }>,
   setup(props, { slots }) {
     const cid = inject(componentIdSymbol)!,
       source = SourceLib.getSourceRef<CanvasSource>(cid, props.sourceId),

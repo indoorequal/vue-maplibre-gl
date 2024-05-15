@@ -38,7 +38,7 @@ export default /*#__PURE__*/ defineComponent({
     urls: Array as PropType<string[]>,
     coordinates: Array as unknown as PropType<Coordinates>,
   },
-  slots: Object as SlotsType<{ default: any }>,
+  slots: Object as SlotsType<{ default: unknown }>,
   setup(props, { slots }) {
     const cid = inject(componentIdSymbol)!,
       source = SourceLib.getSourceRef<VideoSource>(cid, props.sourceId),
