@@ -2,7 +2,7 @@ export { default as MglMap } from "./map.component";
 export { default as MglAttributionControl } from "./controls/attribution.control";
 export { default as MglCustomControl } from "./controls/custom.control";
 export { default as MglFullscreenControl } from "./controls/fullscreen.control";
-export { default as MglGeolocateControl } from "./controls/geolocation.control";
+export { default as MglGeolocateControl } from "./controls/geolocate.control";
 export { default as MglNavigationControl } from "./controls/navigation.control";
 export { default as MglScaleControl } from "./controls/scale.control";
 export { default as MglMarker } from "./marker.component";
