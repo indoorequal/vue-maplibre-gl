@@ -77,7 +77,7 @@ export default defineComponent({
         return createCommentVNode("custom-component");
       }
       return h(
-        Teleport as any,
+        Teleport,
         { to: control.value.container },
         slots.default?.({}),
       );

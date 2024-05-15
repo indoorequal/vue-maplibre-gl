@@ -215,7 +215,7 @@ export default defineComponent({
      */
     logoPosition: {
       type: [String] as PropType<Position>,
-      validator: (val: any) => val in Position,
+      validator: (val: Position) => val in Position,
       default: () => defaults.logoPosition,
     },
     /**
