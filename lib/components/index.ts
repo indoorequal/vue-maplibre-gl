@@ -22,4 +22,4 @@ export { default as MglHeatmapLayer } from "./layers/heatmap.layer";
 export { default as MglHillshadeLayer } from "./layers/hillshade.layer";
 export { default as MglLineLayer } from "./layers/line.layer";
 export { default as MglRasterLayer } from "./layers/raster.layer";
-export { default as MglSymbolLayer } from "./layers/smybol.layer";
+export { default as MglSymbolLayer } from "./layers/symbol.layer";
