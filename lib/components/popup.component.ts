@@ -127,7 +127,7 @@ export default defineComponent({
       .filter(
         (opt) =>
           (props as any)[opt] !== undefined &&
-          MapLib.POPUP_OPTION_KEYS.indexOf(opt as keyof PopupOptions) !== -1,
+          MapLib.POPUP_OPTION_KEYS.includes(opt as keyof PopupOptions),
       )
       .reduce((obj, opt) => {
         (obj as any)[opt] = unref((props as any)[opt]);

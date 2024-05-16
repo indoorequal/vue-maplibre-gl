@@ -99,8 +99,7 @@ export default defineComponent({
         .filter(
           (opt) =>
             (props as any)[opt] !== undefined &&
-            MapLib.MARKER_OPTION_KEYS.indexOf(opt as keyof MarkerOptions) !==
-              -1,
+            MapLib.MARKER_OPTION_KEYS.includes(opt as keyof MarkerOptions),
         )
         .reduce((obj, opt) => {
           (obj as any)[opt] = unref((props as any)[opt]);

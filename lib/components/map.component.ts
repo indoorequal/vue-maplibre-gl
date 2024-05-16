@@ -543,7 +543,7 @@ export default defineComponent({
           (opt) =>
             (props as ExtractPublicPropTypes<typeof props>)[opt] !==
               undefined &&
-            MapLib.MAP_OPTION_KEYS.indexOf(opt as keyof MapOptions) !== -1,
+            MapLib.MAP_OPTION_KEYS.includes(opt as keyof MapOptions),
         )
         .reduce<MapOptions>(
           (obj: MapOptions, opt) => {
