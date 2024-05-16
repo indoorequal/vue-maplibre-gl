@@ -11,6 +11,7 @@ import {
   ref,
   shallowRef,
   type SlotsType,
+  type ExtractPublicPropTypes,
   unref,
   watch,
 } from "vue";
@@ -537,20 +538,20 @@ export default defineComponent({
       registryItem.isMounted = true;
 
       // build options
-      const opts: MapOptions = Object.keys(props)
+      const opts: MapOptions = (Object.keys(props) as Array<keyof typeof props>)
         .filter(
           (opt) =>
-            (props as any)[opt] !== undefined &&
+            (props as ExtractPublicPropTypes<typeof props>)[opt] !==
+              undefined &&
             MapLib.MAP_OPTION_KEYS.indexOf(opt as keyof MapOptions) !== -1,
         )
         .reduce<MapOptions>(
-          (obj, opt) => {
-            (obj as any)[opt === "mapStyle" ? "style" : opt] = unref(
-              (props as any)[opt],
-            );
+          (obj: MapOptions, opt) => {
+            obj[(opt === "mapStyle" ? "style" : opt) as keyof MapOptions] =
+              unref(props[opt]);
             return obj;
           },
-          { container: container.value as HTMLDivElement } as any,
+          { container: container.value as HTMLDivElement, style: "" },
         );
 
       // init map
