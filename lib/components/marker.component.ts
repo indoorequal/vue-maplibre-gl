@@ -89,6 +89,15 @@ export default defineComponent({
      * The scale to use for the default marker if options.element is not provided. The default scale corresponds to a height of 41px and a width of 27px. Default Value 1
      */
     scale: Number as PropType<number>,
+    /**
+     * Marker's opacity when it's in clear view (not behind 3d terrain). Default value `1`
+     */
+    opacity: String as PropType<string>,
+    /**
+     * Marker's opacity when it's behind 3d terrain
+     * @defaultValue `0.2`
+     */
+    opacityWhenCovered: String as PropType<string>,
   },
   setup(props, { slots, emit }) {
     const map = inject(mapSymbol)!,
@@ -153,6 +162,14 @@ export default defineComponent({
     watch(
       () => props.rotationAlignment,
       (v) => marker.value?.setRotationAlignment(v || "auto"),
+    );
+    watch(
+      () => props.opacity,
+      (v) => marker.value?.setOpacity(v, props.opacityWhenCovered),
+    );
+    watch(
+      () => props.opacityWhenCovered,
+      (v) => marker.value?.setOpacity(props.opacity, v),
     );
 
     onBeforeUnmount(() => {
