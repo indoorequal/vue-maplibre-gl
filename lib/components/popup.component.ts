@@ -3,6 +3,7 @@ import {
   inject,
   onMounted,
   type PropType,
+  onBeforeUnmount,
   unref,
   watch,
   ref,
@@ -146,8 +147,16 @@ export default defineComponent({
       popup.setText(props.text);
     }
 
-    popup.on("open", () => emit("open"));
-    popup.on("close", () => emit("close"));
+    function emitEvent(eventName: "close" | "open") {
+      const fn = () => emit(eventName);
+      popup.on(eventName, fn);
+      onBeforeUnmount(() => {
+        popup.off(eventName, fn);
+      });
+    }
+
+    emitEvent("open");
+    emitEvent("close");
 
     watch(
       () => props.coordinates,
