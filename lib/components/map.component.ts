@@ -11,8 +11,6 @@ import {
   ref,
   shallowRef,
   type SlotsType,
-  type ExtractPublicPropTypes,
-  unref,
   watch,
 } from "vue";
 import {
@@ -21,7 +19,6 @@ import {
   type LngLatBoundsLike,
   type LngLatLike,
   Map as MaplibreMap,
-  type MapOptions,
   type MapLayerEventType,
   type RequestTransformFunction,
   type StyleSpecification,
@@ -288,9 +285,8 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
       default: () => defaults.scrollZoom,
     },
-    // StyleSpecification triggers TS7056, so users must handle typings themselves
     mapStyle: {
-      type: [String, Object] as PropType<object | string>,
+      type: [String, Object] as PropType<string | StyleSpecification>,
       default: () => defaults.style,
     },
     trackResize: {
@@ -538,21 +534,16 @@ export default defineComponent({
       registryItem.isMounted = true;
 
       // build options
-      const opts: MapOptions = (Object.keys(props) as Array<keyof typeof props>)
-        .filter(
-          (opt) =>
-            (props as ExtractPublicPropTypes<typeof props>)[opt] !==
-              undefined &&
-            MapLib.MAP_OPTION_KEYS.includes(opt as keyof MapOptions),
-        )
-        .reduce<MapOptions>(
-          (obj: MapOptions, opt) => {
-            obj[(opt === "mapStyle" ? "style" : opt) as keyof MapOptions] =
-              unref(props[opt]);
-            return obj;
-          },
-          { container: container.value as HTMLDivElement, style: "" },
-        );
+      const opts: typeof props & {
+        style: string | StyleSpecification;
+        container: HTMLElement;
+      } = { ...props, style: props.mapStyle, container: container.value! };
+
+      for (const opt of (Object.keys(opts) as Array<keyof typeof opts>)) {
+        if (opts[opt] === undefined) {
+          delete opts[opt];
+        }
+      }
 
       // init map
       map.value = markRaw(new MaplibreMap(opts));

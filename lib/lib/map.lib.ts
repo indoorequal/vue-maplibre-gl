@@ -1,57 +1,10 @@
-import type { Map, MapOptions } from "maplibre-gl";
+import type { Map } from "maplibre-gl";
 import type { MglMap } from "@/lib/components";
 import type { MglEvent } from "@/lib/types";
 
 export type MapEventHandler = (e: any) => void;
 
 export class MapLib {
-  static readonly MAP_OPTION_KEYS: Array<keyof MapOptions | "mapStyle"> = [
-    "antialias",
-    "attributionControl",
-    "bearing",
-    "bearingSnap",
-    "bounds",
-    "boxZoom",
-    "center",
-    "clickTolerance",
-    "collectResourceTiming",
-    "crossSourceCollisions",
-    "container",
-    "customAttribution",
-    "dragPan",
-    "dragRotate",
-    "doubleClickZoom",
-    "hash",
-    "fadeDuration",
-    "failIfMajorPerformanceCaveat",
-    "fitBoundsOptions",
-    "interactive",
-    "keyboard",
-    "locale",
-    "localIdeographFontFamily",
-    "logoPosition",
-    "maxBounds",
-    "maxPitch",
-    "maxZoom",
-    "minPitch",
-    "minZoom",
-    "preserveDrawingBuffer",
-    "pitch",
-    "pitchWithRotate",
-    "refreshExpiredTiles",
-    "renderWorldCopies",
-    "scrollZoom",
-    "mapStyle",
-    "trackResize",
-    "transformRequest",
-    "touchZoomRotate",
-    "touchPitch",
-    "zoom",
-    "maxTileCacheSize",
-    "pixelRatio",
-    "cooperativeGestures",
-  ];
-
   static readonly MAP_EVENT_TYPES = [
     "error",
     "load",
