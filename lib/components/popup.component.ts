@@ -3,9 +3,7 @@ import {
   inject,
   onMounted,
   type PropType,
-  type ExtractPublicPropTypes,
   onBeforeUnmount,
-  unref,
   watch,
   ref,
   h,
@@ -15,9 +13,7 @@ import {
   Popup,
   type Offset,
   type PositionAnchor,
-  type PopupOptions,
 } from "maplibre-gl";
-import { MapLib } from "@/lib/lib/map.lib";
 import { mapSymbol, markerSymbol } from "@/lib/types";
 
 /**
@@ -125,18 +121,7 @@ export default defineComponent({
     const marker = inject(markerSymbol);
     const root = ref();
 
-    const opts: PopupOptions = (Object.keys(props) as Array<keyof typeof props>)
-      .filter(
-        (opt) =>
-          (props as ExtractPublicPropTypes<typeof props>)[opt] !== undefined &&
-          MapLib.POPUP_OPTION_KEYS.includes(opt as keyof PopupOptions),
-      )
-      .reduce((obj, opt) => {
-        (obj as any)[opt] = unref((props as any)[opt]);
-        return obj;
-      }, {});
-
-    const popup = new Popup(opts);
+    const popup = new Popup(props);
 
     if (marker && marker.value) {
       marker.value.setPopup(popup);
