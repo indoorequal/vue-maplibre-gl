@@ -539,7 +539,7 @@ export default defineComponent({
         container: HTMLElement;
       } = { ...props, style: props.mapStyle, container: container.value! };
 
-      for (const opt of (Object.keys(opts) as Array<keyof typeof opts>)) {
+      for (const opt of Object.keys(opts) as Array<keyof typeof opts>) {
         if (opts[opt] === undefined) {
           delete opts[opt];
         }
