@@ -3,6 +3,7 @@ import {
   inject,
   onMounted,
   type PropType,
+  type ExtractPublicPropTypes,
   onBeforeUnmount,
   unref,
   watch,
@@ -124,10 +125,10 @@ export default defineComponent({
     const marker = inject(markerSymbol);
     const root = ref();
 
-    const opts: PopupOptions = Object.keys(props)
+    const opts: PopupOptions = (Object.keys(props) as Array<keyof typeof props>)
       .filter(
         (opt) =>
-          (props as any)[opt] !== undefined &&
+          (props as ExtractPublicPropTypes<typeof props>)[opt] !== undefined &&
           MapLib.POPUP_OPTION_KEYS.includes(opt as keyof PopupOptions),
       )
       .reduce((obj, opt) => {
