@@ -1,4 +1,4 @@
-import type { Map, MapOptions, MarkerOptions } from "maplibre-gl";
+import type { Map, MapOptions } from "maplibre-gl";
 import type { MglMap } from "@/lib/components";
 import type { MglEvent } from "@/lib/types";
 
@@ -50,19 +50,6 @@ export class MapLib {
     "maxTileCacheSize",
     "pixelRatio",
     "cooperativeGestures",
-  ];
-
-  static readonly MARKER_OPTION_KEYS: Array<keyof MarkerOptions> = [
-    "element",
-    "offset",
-    "anchor",
-    "color",
-    "draggable",
-    "clickTolerance",
-    "rotation",
-    "rotationAlignment",
-    "pitchAlignment",
-    "scale",
   ];
 
   static readonly MAP_EVENT_TYPES = [

@@ -6,7 +6,6 @@ import {
   onBeforeUnmount,
   type PropType,
   ref,
-  unref,
   watch,
   shallowRef,
   h,
@@ -14,11 +13,9 @@ import {
 import {
   type LngLatLike,
   Marker,
-  type MarkerOptions,
   type PointLike,
   type PositionAnchor,
 } from "maplibre-gl";
-import { MapLib } from "@/lib/lib/map.lib";
 import { mapSymbol, markerSymbol } from "@/lib/types";
 
 /**
@@ -95,16 +92,6 @@ export default defineComponent({
   },
   setup(props, { slots, emit }) {
     const map = inject(mapSymbol)!,
-      opts: MarkerOptions = Object.keys(props)
-        .filter(
-          (opt) =>
-            (props as any)[opt] !== undefined &&
-            MapLib.MARKER_OPTION_KEYS.includes(opt as keyof MarkerOptions),
-        )
-        .reduce((obj, opt) => {
-          (obj as any)[opt] = unref((props as any)[opt]);
-          return obj;
-        }, {}),
       marker = shallowRef<Marker>(),
       markerRoot = ref(),
       isMounted = ref(false);
@@ -112,6 +99,7 @@ export default defineComponent({
     provide(markerSymbol, marker);
 
     onMounted(() => {
+      const opts: typeof props & { element?: HTMLElement } = { ...props };
       if (slots.marker) {
         opts.element = markerRoot.value!;
       }
