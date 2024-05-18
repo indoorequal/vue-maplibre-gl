@@ -14,12 +14,12 @@ import {
   watch,
 } from "vue";
 import {
+  Map as MaplibreMap,
   type FitBoundsOptions,
   type GestureOptions,
   type LngLatBoundsLike,
   type LngLatLike,
-  Map as MaplibreMap,
-  type MapLayerEventType,
+  type MapEventType,
   type RequestTransformFunction,
   type StyleSpecification,
 } from "maplibre-gl";
@@ -31,7 +31,7 @@ import {
   sourceIdSymbol,
 } from "@/lib/types";
 import { defaults } from "@/lib/defaults";
-import { MapLib, MapEvent } from "@/lib/lib/map.lib";
+import { MapLib, MapEvent, MapEventHandler } from "@/lib/lib/map.lib";
 import { isLngLatEqual } from "@/lib/lib/lng_lat";
 import { Position } from "@/lib/components/controls/position.enum";
 import { registerMap } from "@/lib/lib/mapRegistry";
@@ -406,8 +406,8 @@ export default defineComponent({
       isInitialized = ref(false),
       isLoaded = ref(false),
       boundMapEvents = new Map<
-        string,
-        (ev: MapLayerEventType & unknown) => void
+        keyof MapEventType | `__${keyof MapEventType}`,
+        MapEventHandler<keyof MapEventType>
       >(),
       registryItem = registerMap(component, map, props.mapKey);
 
@@ -557,23 +557,23 @@ export default defineComponent({
         "__load",
         () => ((isLoaded.value = true), (registryItem.isLoaded = true)),
       );
-      map.value.on("load", boundMapEvents.get("__load") as any);
+      map.value.on("load", boundMapEvents.get("__load")!);
       boundMapEvents.set("__moveend", () =>
         ctx.emit("update:center", map.value!.getCenter()),
       );
-      map.value.on("moveend", boundMapEvents.get("__moveend") as any);
+      map.value.on("moveend", boundMapEvents.get("__moveend")!);
       boundMapEvents.set("__zoomend", () =>
         ctx.emit("update:zoom", map.value!.getZoom()),
       );
-      map.value.on("zoomend", boundMapEvents.get("__zoomend") as any);
+      map.value.on("zoomend", boundMapEvents.get("__zoomend")!);
       boundMapEvents.set("__pitchend", () =>
         ctx.emit("update:pitch", map.value!.getPitch()),
       );
-      map.value.on("pitchend", boundMapEvents.get("__pitchend") as any);
+      map.value.on("pitchend", boundMapEvents.get("__pitchend")!);
       boundMapEvents.set("__rotateend", () =>
         ctx.emit("update:bearing", map.value!.getBearing()),
       );
-      map.value.on("rotateend", boundMapEvents.get("__rotateend") as any);
+      map.value.on("rotateend", boundMapEvents.get("__rotateend")!);
 
       // bind events
       if (component.vnode.props) {
@@ -581,7 +581,7 @@ export default defineComponent({
           const event = MapLib.MAP_EVENT_TYPES[i];
           if (component.vnode.props["onMap:" + event]) {
             const eventName = `map:${event}`;
-            const handler = MapLib.createEventHandler(
+            const handler = MapLib.createEventHandler<typeof event>(
               component,
               map.value,
               ctx,
@@ -610,10 +610,7 @@ export default defineComponent({
         });
         isInitialized.value = false;
         boundMapEvents.forEach((func, en) => {
-          map.value!.off(
-            en.startsWith("__") ? en.substring(2) : en,
-            func as any,
-          );
+          map.value!.off(en.startsWith("__") ? en.substring(2) : en, func);
         });
         // destroy map
         map.value.remove();

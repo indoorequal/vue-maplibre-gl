@@ -2,7 +2,9 @@ import type { ComponentInternalInstance, Raw } from "vue";
 import type { Map, MapEventType } from "maplibre-gl";
 import type { MglEvent } from "@/lib/types";
 
-export type MapEventHandler = (e: any) => void;
+export type MapEventHandler<T extends keyof MapEventType> = (
+  e: MapEventType[T],
+) => void;
 
 export type MapEvent = `map:${keyof MapEventType}`;
 
@@ -60,20 +62,20 @@ export class MapLib {
     "terrain",
   ];
 
-  static createEventHandler(
+  static createEventHandler<T extends keyof MapEventType>(
     component: Raw<ComponentInternalInstance>,
     map: Map,
     ctx: {
-      emit: (event: MapEvent, payload: any) => void;
+      emit: (event: MapEvent, payload: MglEvent<T>) => void;
     },
     eventName: MapEvent,
-  ): MapEventHandler {
-    return (payload = {}) =>
+  ): MapEventHandler<T> {
+    return (payload: MapEventType[T]) =>
       ctx.emit(eventName, {
         type: payload.type,
         map,
         component,
         event: payload,
-      } as MglEvent);
+      });
   }
 }

@@ -5,7 +5,12 @@ import type {
   ComponentInternalInstance,
   Raw,
 } from "vue";
-import type { Map, Marker, SourceSpecification } from "maplibre-gl";
+import type {
+  Map,
+  Marker,
+  SourceSpecification,
+  MapEventType,
+} from "maplibre-gl";
 import type { SourceLayerRegistry } from "@/lib/lib/sourceLayer.registry";
 
 export const map = Symbol("map"),
@@ -22,11 +27,11 @@ export const map = Symbol("map"),
     ShallowRef<Marker | undefined>
   >;
 
-export interface MglEvent<T = any> {
+export interface MglEvent<T extends keyof MapEventType> {
   type: string;
   component: Raw<ComponentInternalInstance>;
   map: Map;
-  event: T;
+  event: MapEventType[T];
 }
 
 export type AllProps<T extends object> = { [K in keyof T]: undefined };
