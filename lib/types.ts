@@ -1,6 +1,5 @@
-import type { InjectionKey, Ref, ShallowRef } from "vue";
+import type { InjectionKey, Ref, ShallowRef, ComponentInternalInstance, Raw } from "vue";
 import type { Map, Marker, SourceSpecification } from "maplibre-gl";
-import type { MglMap } from "@/lib/components";
 import type { SourceLayerRegistry } from "@/lib/lib/sourceLayer.registry";
 
 export const map = Symbol("map"),
@@ -19,7 +18,7 @@ export const map = Symbol("map"),
 
 export interface MglEvent<T = any> {
   type: string;
-  component: InstanceType<typeof MglMap>;
+  component: Raw<ComponentInternalInstance>;
   map: Map;
   event: T;
 }

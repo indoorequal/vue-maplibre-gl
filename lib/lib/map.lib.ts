@@ -1,5 +1,5 @@
+import type { ComponentInternalInstance, Raw } from "vue";
 import type { Map } from "maplibre-gl";
-import type { MglMap } from "@/lib/components";
 import type { MglEvent } from "@/lib/types";
 
 export type MapEventHandler = (e: any) => void;
@@ -55,7 +55,7 @@ export class MapLib {
   ];
 
   static createEventHandler(
-    component: InstanceType<typeof MglMap>,
+    component: Raw<ComponentInternalInstance>,
     map: Map,
     ctx: {
       emit: (t: string, payload: any) => void;
