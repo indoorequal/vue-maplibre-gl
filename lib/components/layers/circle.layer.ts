@@ -18,7 +18,7 @@ import { useDisposableLayer } from "@/lib/composable/useDisposableLayer";
 import { LayerLib } from "@/lib/lib/layer.lib";
 import { SourceLib } from "@/lib/lib/source.lib";
 
-export default /*#__PURE__*/ defineComponent({
+export default defineComponent({
   name: "MglCircleLayer",
   props: {
     ...LayerLib.SHARED.props,

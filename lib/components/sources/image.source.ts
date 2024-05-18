@@ -28,7 +28,7 @@ const sourceOpts = AllSourceOptions<ImageSourceSpecification>({
   coordinates: undefined,
 });
 
-export default /*#__PURE__*/ defineComponent({
+export default defineComponent({
   name: "MglImageSource",
   props: {
     sourceId: {

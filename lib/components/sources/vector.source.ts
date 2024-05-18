@@ -35,7 +35,7 @@ const sourceOpts = AllSourceOptions<VectorSourceSpecification>({
   volatile: undefined,
 });
 
-export default /*#__PURE__*/ defineComponent({
+export default defineComponent({
   name: "MglVectorSource",
   props: {
     sourceId: {

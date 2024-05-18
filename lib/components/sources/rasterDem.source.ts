@@ -36,7 +36,7 @@ const sourceOpts = AllSourceOptions<RasterDEMSourceSpecification>({
   baseShift: undefined,
 });
 
-export default /*#__PURE__*/ defineComponent({
+export default defineComponent({
   name: "MglRasterDemSource",
   props: {
     sourceId: {

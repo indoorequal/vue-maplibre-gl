@@ -47,7 +47,7 @@ type DataType =
   | GeoJSON.FeatureCollection<GeoJSON.Geometry>
   | string;
 
-export default /*#__PURE__*/ defineComponent({
+export default defineComponent({
   name: "MglGeoJsonSource",
   props: {
     sourceId: {

@@ -17,7 +17,7 @@ import { LayerLib } from "@/lib/lib/layer.lib";
 import { SourceLib } from "@/lib/lib/source.lib";
 import { useDisposableLayer } from "@/lib/composable/useDisposableLayer";
 
-export default /*#__PURE__*/ defineComponent({
+export default defineComponent({
   name: "MglBackgroundLayer",
   props: {
     ...LayerLib.SHARED.props,

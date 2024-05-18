@@ -29,7 +29,7 @@ const sourceOpts = AllSourceOptions<RasterSourceSpecification>({
   volatile: undefined,
 });
 
-export default /*#__PURE__*/ defineComponent({
+export default defineComponent({
   name: "MglRasterSource",
   props: {
     sourceId: {

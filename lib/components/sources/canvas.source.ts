@@ -29,7 +29,7 @@ const sourceOpts = AllSourceOptions<CanvasSourceSpecification>({
   coordinates: undefined,
 });
 
-export default /*#__PURE__*/ defineComponent({
+export default defineComponent({
   name: "MglCanvasSource",
   props: {
     sourceId: {

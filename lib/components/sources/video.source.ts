@@ -28,7 +28,7 @@ const sourceOpts = AllSourceOptions<VideoSourceSpecification>({
   coordinates: undefined,
 });
 
-export default /*#__PURE__*/ defineComponent({
+export default defineComponent({
   name: "MglVideoSource",
   props: {
     sourceId: {
