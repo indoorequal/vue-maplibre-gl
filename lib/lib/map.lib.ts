@@ -21,6 +21,9 @@ export class MapLib {
     "styledataloading",
     "sourcedata",
     "styledata",
+    "styleimagemissing",
+    "dataabort",
+    "sourcedataabort",
     "boxzoomcancel",
     "boxzoomstart",
     "boxzoomend",
@@ -52,6 +55,7 @@ export class MapLib {
     "pitch",
     "pitchend",
     "wheel",
+    "terrain"
   ];
 
   static createEventHandler(

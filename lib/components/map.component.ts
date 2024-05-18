@@ -346,6 +346,9 @@ export default defineComponent({
     "map:styledataloading",
     "map:sourcedata",
     "map:styledata",
+    "map:styleimagemissing",
+    "map:dataabort",
+    "map:sourcedataabort",
     "map:boxzoomcancel",
     "map:boxzoomstart",
     "map:boxzoomend",
@@ -377,6 +380,7 @@ export default defineComponent({
     "map:pitch",
     "map:pitchend",
     "map:wheel",
+    "map:terrain",
     /**
      * Center property updated
      */
