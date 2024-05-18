@@ -4,6 +4,8 @@ import type { MglEvent } from "@/lib/types";
 
 export type MapEventHandler = (e: any) => void;
 
+export type MapEvent = `map:${keyof MapEventType}`;
+
 export class MapLib {
   static readonly MAP_EVENT_TYPES: Array<keyof MapEventType> = [
     "error",
@@ -55,16 +57,16 @@ export class MapLib {
     "pitch",
     "pitchend",
     "wheel",
-    "terrain"
+    "terrain",
   ];
 
   static createEventHandler(
     component: Raw<ComponentInternalInstance>,
     map: Map,
     ctx: {
-      emit: (t: string, payload: any) => void;
+      emit: (event: MapEvent, payload: any) => void;
     },
-    eventName: string,
+    eventName: MapEvent,
   ): MapEventHandler {
     return (payload = {}) =>
       ctx.emit(eventName, {

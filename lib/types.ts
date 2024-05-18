@@ -1,4 +1,10 @@
-import type { InjectionKey, Ref, ShallowRef, ComponentInternalInstance, Raw } from "vue";
+import type {
+  InjectionKey,
+  Ref,
+  ShallowRef,
+  ComponentInternalInstance,
+  Raw,
+} from "vue";
 import type { Map, Marker, SourceSpecification } from "maplibre-gl";
 import type { SourceLayerRegistry } from "@/lib/lib/sourceLayer.registry";
 
