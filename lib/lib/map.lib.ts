@@ -1,11 +1,11 @@
 import type { ComponentInternalInstance, Raw } from "vue";
-import type { Map } from "maplibre-gl";
+import type { Map, MapEventType } from "maplibre-gl";
 import type { MglEvent } from "@/lib/types";
 
 export type MapEventHandler = (e: any) => void;
 
 export class MapLib {
-  static readonly MAP_EVENT_TYPES = [
+  static readonly MAP_EVENT_TYPES: Array<keyof MapEventType> = [
     "error",
     "load",
     "idle",
