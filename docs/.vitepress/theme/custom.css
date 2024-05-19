@@ -3,3 +3,8 @@
   --vp-button-brand-bg: #285daa;
   --vp-button-brand-hover-bg: #95befa;
 }
+
+// override `.vp-doc p, .vp-doc summary` rule that break the attribution button
+.maplibregl-ctrl-attrib summary.maplibregl-ctrl-attrib-button {
+  margin: 0
+}
