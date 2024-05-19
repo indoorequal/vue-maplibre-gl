@@ -577,8 +577,7 @@ export default defineComponent({
 
       // bind events
       if (component.vnode.props) {
-        for (let i = 0, len = MapLib.MAP_EVENT_TYPES.length; i < len; i++) {
-          const event = MapLib.MAP_EVENT_TYPES[i];
+        for (const event of MapLib.MAP_EVENT_TYPES) {
           if (component.vnode.props["onMap:" + event]) {
             const eventName = `map:${event}`;
             const handler = MapLib.createEventHandler<typeof event>(
