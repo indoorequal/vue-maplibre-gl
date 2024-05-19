@@ -12,8 +12,7 @@
     "vue3-component",
     "maplibre",
     "maplibre-gl",
-    "map",
-    "maptiler"
+    "map"
   ],
   "author": "François de Metz <francois@2metz.fr>",
   "repository": {
