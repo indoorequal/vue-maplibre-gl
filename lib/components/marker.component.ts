@@ -94,7 +94,20 @@ export default defineComponent({
     const map = inject(mapSymbol)!,
       marker = shallowRef<Marker>(),
       markerRoot = ref(),
-      isMounted = ref(false);
+      isMounted = ref(false),
+      boundEvents = new Map();
+
+    function emitEvent(
+      eventName: "dragstart" | "drag" | "dragend",
+      additionalCb?: () => void,
+    ) {
+      const fn = () => {
+        if (additionalCb) additionalCb();
+        emit(eventName);
+      };
+      marker.value!.on(eventName, fn);
+      boundEvents.set(eventName, fn);
+    }
 
     provide(markerSymbol, marker);
 
@@ -106,15 +119,14 @@ export default defineComponent({
       marker.value = new Marker(opts);
       marker.value.setLngLat(props.coordinates).addTo(map.value!);
 
-      marker.value.on("dragstart", () => emit("dragstart"));
-      marker.value.on("drag", () => {
+      emitEvent("dragstart");
+      emitEvent("drag", () => {
         emit("update:coordinates", marker.value?.getLngLat());
-        emit("drag");
       });
-      marker.value.on("dragend", () => {
+      emitEvent("dragend", () => {
         emit("update:coordinates", marker.value?.getLngLat());
-        emit("dragend");
       });
+
       isMounted.value = true;
     });
 
@@ -143,7 +155,12 @@ export default defineComponent({
       (v) => marker.value?.setRotationAlignment(v || "auto"),
     );
 
-    onBeforeUnmount(() => marker.value?.remove());
+    onBeforeUnmount(() => {
+      boundEvents.forEach((fn, eventName) => {
+        marker.value?.off(eventName, fn);
+      });
+      marker.value?.remove();
+    });
 
     return () => [
       h(
