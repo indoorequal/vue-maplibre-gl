@@ -135,6 +135,10 @@ export default defineComponent({
       (v) => marker.value?.setPitchAlignment(v || "auto"),
     );
     watch(
+      () => props.rotation,
+      (v) => marker.value?.setRotation(v),
+    );
+    watch(
       () => props.rotationAlignment,
       (v) => marker.value?.setRotationAlignment(v || "auto"),
     );
