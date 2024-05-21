@@ -22,6 +22,7 @@ import {
   type MapEventType,
   type RequestTransformFunction,
   type StyleSpecification,
+  type CameraUpdateTransformFunction,
 } from "maplibre-gl";
 import {
   componentIdSymbol,
@@ -297,6 +298,10 @@ export default defineComponent({
       type: Function as PropType<RequestTransformFunction>,
       default: defaults.transformRequest,
     },
+    transformCameraUpdate: {
+      type: Function as PropType<CameraUpdateTransformFunction>,
+      default: defaults.transformCameraUpdate,
+    },
     touchZoomRotate: {
       type: Boolean as PropType<boolean>,
       default: () => defaults.touchZoomRotate,
@@ -305,6 +310,7 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
       default: () => defaults.touchPitch,
     },
+
     /**
      * The initial zoom level of the map. If zoom is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to 0. Default Value `0`
      * @model
@@ -324,6 +330,14 @@ export default defineComponent({
     pixelRatio: {
       type: Number as PropType<number>,
       default: () => defaults.pixelRatio,
+    },
+    /**
+     * If false, style validation will be skipped. Useful in production environment.
+     * Default value true
+     */
+    validateStyle: {
+      type: Boolean as PropType<boolean>,
+      default: () => defaults.validateStyle,
     },
     cooperativeGestures: {
       type: [Boolean, Object] as PropType<boolean | GestureOptions>,
