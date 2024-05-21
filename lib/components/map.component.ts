@@ -604,9 +604,6 @@ export default defineComponent({
       if (map.value) {
         // unbind events
         map.value.getCanvas().removeEventListener("webglcontextlost", restart);
-        map.value._controls.forEach((control) => {
-          map.value!.removeControl(control);
-        });
         isInitialized.value = false;
         boundMapEvents.forEach((func, en) => {
           map.value!.off(en.startsWith("__") ? en.substring(2) : en, func);
