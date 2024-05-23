@@ -20,7 +20,7 @@
       <mgl-navigation-control/>
       <mgl-scale-control/>
       <mgl-geolocate-control/>
-      <mgl-custom-control v-if="showCustomControl" :position="controlPosition" :no-classes="!useClasses">
+      <mgl-custom-control v-if="showCustomControl" :position="controlPosition">
         <button class="maplibregl-ctrl-icon" style="color: deepskyblue">
           <svg><path :d="buttonIcon" fill="currentColor" /></svg>
         </button>
@@ -60,10 +60,6 @@
     <label for="four">bottom-right</label>
     <br/>
     <span>Style Position: {{ controlPosition }}</span>
-  </div>
-  <div>
-    <input type="checkbox" v-model="useClasses" id="noclasses">
-    <label for="noclasses">Use Custom Control Classes</label>
   </div>
   <div>
     <input type="checkbox" v-model="showCustomControl" id="showcustom">
@@ -222,7 +218,6 @@ export default defineComponent({
       showMap                   : ref(true),
       center                    : [ 10.288107, 49.405078 ] as LngLatLike,
       zoom                      : 3,
-      useClasses                : ref(true),
       buttonIcon                : mdiCursorDefaultClick,
       layout                    : {
 	'line-join': 'round',
