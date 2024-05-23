@@ -35,23 +35,38 @@ export default defineComponent({
         return PositionValues.indexOf(v) !== -1;
       },
     },
+    /**
+     * A Geolocation API [PositionOptions](https://developer.mozilla.org/en-US/docs/Web/API/PositionOptions) object.
+     */
     positionOptions: {
       type: Object as PropType<PositionOptions>,
       default: () =>
         ({ enableHighAccuracy: false, timeout: 6000 }) as PositionOptions,
     },
+    /**
+     * A options object to use when the map is panned and zoomed to the user's location. The default is to use a maxZoom of 15 to limit how far the map will zoom in for very accurate locations.
+     */
     fitBoundsOptions: {
       type: Object as PropType<FitBoundsOptions>,
       default: () => ({ maxZoom: 15 }) as FitBoundsOptions,
     },
+    /**
+     * If true the GeolocateControl becomes a toggle button and when active the map will receive updates to the user's location as it changes.
+     */
     trackUserLocation: {
       type: Boolean as PropType<boolean>,
       default: false,
     },
+    /**
+     * By default, if showUserLocation is true, a transparent circle will be drawn around the user location indicating the accuracy (95% confidence level) of the user's location. Set to false to disable. Always disabled when showUserLocation is false.
+     */
     showAccuracyCircle: {
       type: Boolean as PropType<boolean>,
       default: true,
     },
+    /**
+     * By default a dot will be shown on the map at the user's location. Set to false to disable.
+     */
     showUserLocation: {
       type: Boolean as PropType<boolean>,
       default: true,

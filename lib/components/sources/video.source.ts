@@ -28,6 +28,9 @@ const sourceOpts = AllSourceOptions<VideoSourceSpecification>({
   coordinates: undefined,
 });
 
+/**
+ * See [VideoSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/VideoSource/)
+ */
 export default defineComponent({
   name: "MglVideoSource",
   props: {

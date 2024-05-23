@@ -35,6 +35,9 @@ const sourceOpts = AllSourceOptions<VectorSourceSpecification>({
   volatile: undefined,
 });
 
+/**
+ * See [VectorTileSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/VectorTileSource/)
+ */
 export default defineComponent({
   name: "MglVectorSource",
   props: {

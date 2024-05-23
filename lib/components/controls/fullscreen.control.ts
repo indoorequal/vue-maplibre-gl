@@ -23,6 +23,9 @@ export default defineComponent({
         return PositionValues.indexOf(v) !== -1;
       },
     },
+    /**
+     * container is the compatible DOM element which should be made full screen. By default, the map container element will be made full screen.
+     */
     container: {
       type: Object as PropType<HTMLElement>,
       default: null,

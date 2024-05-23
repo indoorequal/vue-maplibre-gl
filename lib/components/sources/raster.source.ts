@@ -29,6 +29,9 @@ const sourceOpts = AllSourceOptions<RasterSourceSpecification>({
   volatile: undefined,
 });
 
+/**
+ * See [RasterTileSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/RasterTileSource/)
+ */
 export default defineComponent({
   name: "MglRasterSource",
   props: {

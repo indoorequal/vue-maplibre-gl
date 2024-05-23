@@ -47,6 +47,9 @@ type DataType =
   | GeoJSON.FeatureCollection<GeoJSON.Geometry>
   | string;
 
+/**
+ * See [GeoJSONSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/GeoJSONSource/)
+ */
 export default defineComponent({
   name: "MglGeoJsonSource",
   props: {

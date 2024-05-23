@@ -36,6 +36,9 @@ const sourceOpts = AllSourceOptions<RasterDEMSourceSpecification>({
   baseShift: undefined,
 });
 
+/**
+ * See [RasterDEMTileSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/RasterDEMTileSource/)
+ */
 export default defineComponent({
   name: "MglRasterDemSource",
   props: {

@@ -29,6 +29,9 @@ const sourceOpts = AllSourceOptions<CanvasSourceSpecification>({
   coordinates: undefined,
 });
 
+/**
+ * See [CanvasSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/CanvasSource/)
+ */
 export default defineComponent({
   name: "MglCanvasSource",
   props: {

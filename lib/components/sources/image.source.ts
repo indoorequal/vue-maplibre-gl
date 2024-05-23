@@ -28,6 +28,9 @@ const sourceOpts = AllSourceOptions<ImageSourceSpecification>({
   coordinates: undefined,
 });
 
+/**
+ * See [ImageSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/ImageSource/)
+ */
 export default defineComponent({
   name: "MglImageSource",
   props: {
