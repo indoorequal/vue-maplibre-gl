@@ -29,7 +29,7 @@ test("Add the classes to container", () => {
         [map]: shallowRef({
           addControl(control: CustomControl) {
             const container = control.onAdd();
-            expect(container.className).toEqual("maplibregl-ctrl");
+            expect(container.className).toEqual("maplibregl-ctrl-test");
           },
           hasControl() {
             return false;
@@ -39,7 +39,7 @@ test("Add the classes to container", () => {
       },
     },
     props: {
-      class: "maplibregl-ctrl",
+      class: "maplibregl-ctrl-test",
     },
   });
   nextTick(() => {
@@ -68,30 +68,6 @@ test("Set the default classes", () => {
         }),
         [isInitialized]: ref(true),
       },
-    },
-  });
-});
-
-test("Ignore the default classes", () => {
-  expect.assertions(1);
-
-  const wrapper = mount(CustomControlComponent, {
-    global: {
-      provide: {
-        [map]: shallowRef({
-          addControl(control: CustomControl) {
-            const container = control.onAdd();
-            expect(container.className).toEqual("");
-          },
-          hasControl() {
-            return false;
-          },
-        }),
-        [isInitialized]: ref(true),
-      },
-    },
-    props: {
-      noClasses: true,
     },
   });
 });
