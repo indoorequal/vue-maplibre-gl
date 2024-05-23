@@ -290,22 +290,42 @@ export default defineComponent({
       type: [String, Object] as PropType<string | StyleSpecification>,
       default: () => defaults.style,
     },
+    /**
+     * If `true`, the map will automatically resize when the browser window resizes.
+     * Default value true
+     */
     trackResize: {
       type: Boolean as PropType<boolean>,
       default: () => defaults.trackResize,
     },
+    /**
+     * A callback run before the Map makes a request for an external URL. The callback can be used to modify the url, set headers, or set the credentials property for cross-origin requests.
+     * Expected to return an object with a `url` property and optionally `headers` and `credentials` properties.
+     */
     transformRequest: {
       type: Function as PropType<RequestTransformFunction>,
       default: defaults.transformRequest,
     },
+    /**
+     * A callback run before the map's camera is moved due to user input or animation. The callback can be used to modify the new center, zoom, pitch and bearing.
+     * Expected to return an object containing center, zoom, pitch or bearing values to overwrite.
+     */
     transformCameraUpdate: {
       type: Function as PropType<CameraUpdateTransformFunction>,
       default: defaults.transformCameraUpdate,
     },
+    /**
+     * The map's TwoFingersTouchZoomRotateHandler, which allows the user to zoom or rotate the map with touch gestures.
+     * Find more details and examples using `touchZoomRotate` in the TwoFingersTouchZoomRotateHandler section.
+     */
     touchZoomRotate: {
       type: Boolean as PropType<boolean>,
       default: () => defaults.touchZoomRotate,
     },
+    /**
+     * The map's TwoFingersTouchPitchHandler, which allows the user to pitch the map with touch gestures.
+     * Find more details and examples using `touchPitch` in the TwoFingersTouchPitchHandler section.
+     */
     touchPitch: {
       type: Boolean as PropType<boolean>,
       default: () => defaults.touchPitch,
@@ -316,6 +336,10 @@ export default defineComponent({
      * @model
      */
     zoom: { type: Number as PropType<number>, default: () => defaults.zoom },
+    /**
+     * The maximum number of tiles stored in the tile cache for a given source. If omitted, the cache will be dynamically sized based on the current viewport which can be set using `maxTileCacheZoomLevels` constructor options.
+     * Default value null
+     */
     maxTileCacheSize: {
       type: Number as PropType<number>,
       default: () => defaults.maxTileCacheSize,
@@ -339,6 +363,10 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
       default: () => defaults.validateStyle,
     },
+    /**
+     * The map's {@link CooperativeGesturesHandler}, which allows the user to see cooperative gesture info when user tries to zoom in/out.
+     * Find more details and examples using `cooperativeGestures` in the {@link CooperativeGesturesHandler} section.
+     */
     cooperativeGestures: {
       type: [Boolean, Object] as PropType<boolean | GestureOptions>,
       default: () => defaults.cooperativeGestures,
