@@ -4,8 +4,9 @@ import { createMarkdownRenderer } from 'vitepress';
 function formatProps(props) {
   return props ? '## Props\n\n' + props.map((prop) => {
     const deprecated = formatDeprecated(prop.tags);
+    const since = formatSince(prop.tags);
     return `
-### ${prop.name}
+### ${prop.name} ${since} {#${prop.name}}
 
 ${deprecated}
 
@@ -70,6 +71,13 @@ ${deprecated.description}
 :::
 `;
         }).join('\n') : '';
+}
+
+function formatSince(tags) {
+  return tags?.since ?
+        tags.since.map((s) => {
+          return `(since ${s.description})`;
+        }).join('') : '';
 }
 
 export default {
