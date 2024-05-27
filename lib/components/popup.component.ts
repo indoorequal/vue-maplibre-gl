@@ -109,6 +109,14 @@ export default defineComponent({
       default: "240px",
     },
     /**
+     * If true, rounding is disabled for placement of the popup, allowing for subpixel positioning and smoother movement when the popup is translated.
+     * @since 7.1.0
+     */
+    subpixelPositioning: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
+    /**
      * Sets the popup's content to a string of text.
      */
     text: {
@@ -163,6 +171,10 @@ export default defineComponent({
     watch(
       () => props.maxWidth,
       (v) => popup.setMaxWidth(v),
+    );
+    watch(
+      () => props.subpixelPositioning,
+      (v) => popup.setSubpixelPositioning(v),
     );
 
     onMounted(() => {
