@@ -173,6 +173,17 @@ export default defineComponent({
       (v) => popup.setMaxWidth(v),
     );
     watch(
+      () => props.className,
+      (value, previous) => {
+        if (previous) {
+          popup.removeClassName(p);
+        }
+        if (value) {
+          popup.addClassName(v);
+        }
+      },
+    );
+    watch(
       () => props.subpixelPositioning,
       (v) => popup.setSubpixelPositioning(v),
     );

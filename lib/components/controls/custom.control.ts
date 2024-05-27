@@ -36,7 +36,7 @@ export default defineComponent({
      */
     class: {
       type: String as PropType<string>,
-      default: 'maplibregl-ctrl maplibregl-ctrl-group',
+      default: "maplibregl-ctrl maplibregl-ctrl-group",
     },
   },
   slots: Object as SlotsType<{ default: unknown }>,
