@@ -176,10 +176,10 @@ export default defineComponent({
       () => props.className,
       (value, previous) => {
         if (previous) {
-          popup.removeClassName(p);
+          popup.removeClassName(previous);
         }
         if (value) {
-          popup.addClassName(v);
+          popup.addClassName(value);
         }
       },
     );
