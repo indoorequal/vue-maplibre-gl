@@ -46,7 +46,7 @@ export default defineComponent({
      * Display a close button in the top right corner.
      */
     closeButton: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
       required: false,
       default: true,
     },
@@ -54,7 +54,7 @@ export default defineComponent({
      * The popup will be closed when the map is clicked.
      */
     closeOnClick: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
       required: false,
       default: true,
     },
@@ -62,7 +62,7 @@ export default defineComponent({
      * The popup will be closed when the map moves.
      */
     closeOnMove: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
       required: false,
       default: false,
     },
@@ -70,7 +70,7 @@ export default defineComponent({
      * The popup will try to focus the first focusable element inside the popup.
      */
     focusAfterOpen: {
-      type: Boolean,
+      type: Boolean as PropType<boolean>,
       required: false,
       default: true,
     },
@@ -97,7 +97,7 @@ export default defineComponent({
      * Space-separated CSS class names to add to popup container
      */
     className: {
-      type: String,
+      type: String as PropType<string>,
       required: false,
     },
     /**
@@ -105,14 +105,14 @@ export default defineComponent({
      * To ensure the popup resizes to fit its content, set this property to `'none'`.
      */
     maxWidth: {
-      type: String,
+      type: String as PropType<string>,
       default: "240px",
     },
     /**
      * Sets the popup's content to a string of text.
      */
     text: {
-      type: String,
+      type: String as PropType<string>,
       required: false,
     },
   },
