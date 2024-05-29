@@ -91,11 +91,13 @@ export default defineComponent({
     scale: Number as PropType<number>,
     /**
      * Marker's opacity when it's in clear view (not behind 3d terrain). Default value `1`
+     * @since 7.0.0
      */
     opacity: String as PropType<string>,
     /**
      * Marker's opacity when it's behind 3d terrain
      * @defaultValue `0.2`
+     * @since 7.0.0
      */
     opacityWhenCovered: String as PropType<string>,
   },

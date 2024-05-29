@@ -10,6 +10,7 @@ import { useControl } from "@/lib/composable/useControl";
  * Render Logo Control
  *
  * See [LogoControl](https://maplibre.org/maplibre-gl-js/docs/API/classes/LogoControl/)
+ * @since 6.2.0
  */
 export default defineComponent({
   name: "MglLogoControl",

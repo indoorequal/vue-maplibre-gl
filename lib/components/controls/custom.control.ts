@@ -33,6 +33,7 @@ export default defineComponent({
     },
     /**
      * Set the classes on the control div
+     * @since 6.1.0
      */
     class: {
       type: String as PropType<string>,

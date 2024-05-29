@@ -306,6 +306,7 @@ export default defineComponent({
     /**
      * A callback run before the map's camera is moved due to user input or animation. The callback can be used to modify the new center, zoom, pitch and bearing.
      * Expected to return an object containing center, zoom, pitch or bearing values to overwrite.
+     * @since 6.4.0
      */
     transformCameraUpdate: {
       type: Function as PropType<CameraUpdateTransformFunction>,
@@ -355,6 +356,7 @@ export default defineComponent({
     /**
      * If false, style validation will be skipped. Useful in production environment.
      * Default value true
+     * @since 6.4.0
      */
     validateStyle: {
       type: Boolean as PropType<boolean>,
