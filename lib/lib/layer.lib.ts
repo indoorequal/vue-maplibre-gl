@@ -12,6 +12,7 @@ import type {
   RasterLayerSpecification,
   Source,
   SymbolLayerSpecification,
+  FilterSpecification
 } from "maplibre-gl";
 import { type PropType, unref, type VNode } from "vue";
 
@@ -67,12 +68,12 @@ export class LayerLib {
         required: true,
       },
       source: [String, Object] as PropType<string | Source>,
-      metadata: [Object, Array, String, Number] as PropType<any>,
+      metadata: [Object, Array, String, Number] as PropType<unknown>,
       sourceLayer: String as PropType<string>,
       minzoom: Number as PropType<number>,
       maxzoom: Number as PropType<number>,
       interactive: Boolean as PropType<boolean>,
-      filter: Array as PropType<any[]>,
+      filter: Object as PropType<FilterSpecification>,
       before: String as PropType<string>,
     },
     emits: [
