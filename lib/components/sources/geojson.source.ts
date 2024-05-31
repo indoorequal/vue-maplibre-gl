@@ -9,43 +9,20 @@ import {
   watch,
 } from "vue";
 import {
-  AllSourceOptions,
   componentIdSymbol,
   sourceIdSymbol,
   sourceLayerRegistry,
+  SourceOptionProps,
 } from "@/lib/types";
 import type {
   GeoJSONSource,
-  GeoJSONSourceOptions,
-  GeoJSONSourceSpecification,
   PromoteIdSpecification,
 } from "maplibre-gl";
 import { SourceLayerRegistry } from "@/lib/lib/sourceLayer.registry";
-import type GeoJSON from "geojson";
 import { SourceLib } from "@/lib/lib/source.lib";
 import { useSource } from "@/lib/composable/useSource";
 
-const sourceOpts = AllSourceOptions<GeoJSONSourceSpecification>({
-  data: undefined,
-  maxzoom: undefined,
-  attribution: undefined,
-  buffer: undefined,
-  tolerance: undefined,
-  cluster: undefined,
-  clusterRadius: undefined,
-  clusterMaxZoom: undefined,
-  clusterMinPoints: undefined,
-  clusterProperties: undefined,
-  lineMetrics: undefined,
-  generateId: undefined,
-  promoteId: undefined,
-  filter: undefined,
-});
-
-type DataType =
-  | GeoJSON.Feature<GeoJSON.Geometry>
-  | GeoJSON.FeatureCollection<GeoJSON.Geometry>
-  | string;
+type DataType = GeoJSON.GeoJSON | string;
 
 /**
  * See [GeoJSONSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/GeoJSONSource/)
@@ -57,37 +34,35 @@ export default defineComponent({
       type: String as PropType<string>,
       required: true,
     },
-    data: [Object, String] as PropType<DataType>,
+    data: {
+      type: [Object, String] as PropType<DataType>,
+      required: true,
+    },
     maxzoom: Number as PropType<number>,
     attribution: String as PropType<string>,
     buffer: Number as PropType<number>,
     tolerance: Number as PropType<number>,
-    cluster: [Number, Boolean] as PropType<number | boolean>,
+    cluster: Boolean as PropType<boolean>,
     clusterRadius: Number as PropType<number>,
     clusterMaxZoom: Number as PropType<number>,
     clusterMinPoints: Number as PropType<number>,
-    clusterProperties: Object as PropType<object>,
+    clusterProperties: Object as PropType<unknown>,
     lineMetrics: Boolean as PropType<boolean>,
     generateId: Boolean as PropType<boolean>,
     promoteId: [Object, String] as PropType<PromoteIdSpecification>,
-    filter: [Array, String, Object] as PropType<any>,
+    filter: [Array, String, Object] as PropType<unknown>,
   },
   slots: Object as SlotsType<{ default: unknown }>,
   setup(props, { slots }) {
     const cid = inject(componentIdSymbol)!,
       source = SourceLib.getSourceRef<GeoJSONSource>(cid, props.sourceId),
-      registry = new SourceLayerRegistry();
+      registry = new SourceLayerRegistry(),
+      opts = { ...props, type: "geojson" };
 
     provide(sourceIdSymbol, props.sourceId);
     provide(sourceLayerRegistry, registry);
 
-    useSource<GeoJSONSourceOptions>(
-      source,
-      props,
-      "geojson",
-      sourceOpts,
-      registry,
-    );
+    useSource(source, opts as SourceOptionProps, registry);
 
     watch(
       isRef(props.data) ? props.data : () => props.data,

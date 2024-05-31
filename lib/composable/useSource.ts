@@ -1,14 +1,12 @@
 import { inject, onBeforeUnmount, type Ref, watch } from "vue";
-import type { Source, SourceSpecification } from "maplibre-gl";
-import { isLoadedSymbol, mapSymbol } from "@/lib/types";
+import type { Source } from "maplibre-gl";
+import { isLoadedSymbol, mapSymbol, SourceOptionProps } from "@/lib/types";
 import type { SourceLayerRegistry } from "@/lib/lib/sourceLayer.registry";
 import { SourceLib } from "@/lib/lib/source.lib";
 
-export function useSource<O extends object>(
+export function useSource(
   source: Ref<Source | undefined | null>,
-  props: any,
-  type: string,
-  sourceOpts: Array<keyof O>,
+  props: SourceOptionProps,
   registry: SourceLayerRegistry,
 ) {
   const map = inject(mapSymbol)!,
@@ -16,14 +14,7 @@ export function useSource<O extends object>(
 
   function addSource() {
     if (isLoaded.value) {
-      map.value!.addSource(
-        props.sourceId,
-        SourceLib.genSourceOpts<object, O>(
-          type,
-          props,
-          sourceOpts,
-        ) as SourceSpecification,
-      );
+      map.value!.addSource(props.sourceId, SourceLib.genSourceOpts(props));
       source.value = map.value!.getSource(props.sourceId);
     }
   }

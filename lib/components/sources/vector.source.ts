@@ -9,31 +9,15 @@ import {
   watch,
 } from "vue";
 import {
-  AllSourceOptions,
   componentIdSymbol,
   sourceIdSymbol,
   sourceLayerRegistry,
+  SourceOptionProps,
 } from "@/lib/types";
-import type {
-  PromoteIdSpecification,
-  VectorSourceSpecification,
-  VectorTileSource,
-} from "maplibre-gl";
+import type { PromoteIdSpecification, VectorTileSource } from "maplibre-gl";
 import { SourceLayerRegistry } from "@/lib/lib/sourceLayer.registry";
 import { SourceLib } from "@/lib/lib/source.lib";
 import { useSource } from "@/lib/composable/useSource";
-
-const sourceOpts = AllSourceOptions<VectorSourceSpecification>({
-  url: undefined,
-  tiles: undefined,
-  bounds: undefined,
-  scheme: undefined,
-  minzoom: undefined,
-  maxzoom: undefined,
-  attribution: undefined,
-  promoteId: undefined,
-  volatile: undefined,
-});
 
 /**
  * See [VectorTileSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/VectorTileSource/)
@@ -47,30 +31,30 @@ export default defineComponent({
     },
     url: String as PropType<string>,
     tiles: Array as PropType<string[]>,
-    bounds: Array as PropType<number[]>,
+    bounds: {
+      type: Array as PropType<number[]>,
+      validator: function (v: number[]) {
+        return v.length === 4;
+      },
+    },
     scheme: String as PropType<"xyz" | "tms">,
     minzoom: Number as PropType<number>,
     maxzoom: Number as PropType<number>,
     attribution: String as PropType<string>,
     promoteId: [Object, String] as PropType<PromoteIdSpecification>,
-    volatile: Boolean,
+    volatile: Boolean as PropType<boolean>,
   },
   slots: Object as SlotsType<{ default: unknown }>,
   setup(props, { slots }) {
     const cid = inject(componentIdSymbol)!,
       source = SourceLib.getSourceRef<VectorTileSource>(cid, props.sourceId),
-      registry = new SourceLayerRegistry();
+      registry = new SourceLayerRegistry(),
+      opts = { ...props, type: "vector" };
 
     provide(sourceIdSymbol, props.sourceId);
     provide(sourceLayerRegistry, registry);
 
-    useSource<VectorSourceSpecification>(
-      source,
-      props,
-      "vector",
-      sourceOpts,
-      registry,
-    );
+    useSource(source, opts as SourceOptionProps, registry);
 
     watch(
       isRef(props.tiles) ? props.tiles : () => props.tiles,

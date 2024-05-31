@@ -9,24 +9,15 @@ import {
   watch,
 } from "vue";
 import {
-  AllSourceOptions,
   componentIdSymbol,
   sourceIdSymbol,
   sourceLayerRegistry,
+  SourceOptionProps,
 } from "@/lib/types";
-import type {
-  Coordinates,
-  VideoSource,
-  VideoSourceSpecification,
-} from "maplibre-gl";
+import type { Coordinates, VideoSource } from "maplibre-gl";
 import { SourceLayerRegistry } from "@/lib/lib/sourceLayer.registry";
 import { SourceLib } from "@/lib/lib/source.lib";
 import { useSource } from "@/lib/composable/useSource";
-
-const sourceOpts = AllSourceOptions<VideoSourceSpecification>({
-  urls: undefined,
-  coordinates: undefined,
-});
 
 /**
  * See [VideoSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/VideoSource/)
@@ -45,18 +36,13 @@ export default defineComponent({
   setup(props, { slots }) {
     const cid = inject(componentIdSymbol)!,
       source = SourceLib.getSourceRef<VideoSource>(cid, props.sourceId),
-      registry = new SourceLayerRegistry();
+      registry = new SourceLayerRegistry(),
+      opts = { ...props, type: "video" };
 
     provide(sourceIdSymbol, props.sourceId);
     provide(sourceLayerRegistry, registry);
 
-    useSource<VideoSourceSpecification>(
-      source,
-      props,
-      "video",
-      sourceOpts,
-      registry,
-    );
+    useSource(source, opts as SourceOptionProps, registry);
 
     watch(
       isRef(props.coordinates) ? props.coordinates : () => props.coordinates,

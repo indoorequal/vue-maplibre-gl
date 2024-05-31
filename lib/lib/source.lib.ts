@@ -1,5 +1,6 @@
-import { ref, type Ref, unref } from "vue";
-import type { Source } from "maplibre-gl";
+import { ref, type Ref } from "vue";
+import type { Source, SourceSpecification } from "maplibre-gl";
+import { SourceOptionProps } from "@/lib/types";
 
 export class SourceLib {
   private static readonly REFS = new Map<
@@ -7,29 +8,19 @@ export class SourceLib {
     Ref<Source | undefined | null>
   >();
 
-  static genSourceOpts<T extends object, O extends object>(
-    type: string,
-    props: object,
-    sourceOpts: Array<keyof O>,
-  ): T {
-    return Object.keys(props)
-      .filter(
-        (opt) =>
-          (props as any)[opt] !== undefined &&
-          sourceOpts.indexOf(opt as any) !== -1,
-      )
-      .reduce(
-        (obj, opt) => {
-          (obj as any)[opt] = unref((props as any)[opt]);
-          return obj;
-        },
-        { type } as T,
-      );
+  static genSourceOpts(opts: SourceOptionProps): SourceSpecification {
+    const newOpts = { ...opts };
+    for (const opt of Object.keys(newOpts) as Array<keyof SourceOptionProps>) {
+      if (newOpts[opt] === undefined || opt === "sourceId") {
+        delete newOpts[opt];
+      }
+    }
+    return newOpts;
   }
 
   static getSourceRef<T extends Source>(
     mcid: number,
-    source: any,
+    source: string | Source | undefined,
   ): Ref<T | undefined | null> {
     const isString = typeof source === "string",
       key = String(mcid) + (isString ? source : "");

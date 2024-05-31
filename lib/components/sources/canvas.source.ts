@@ -9,25 +9,15 @@ import {
   watch,
 } from "vue";
 import {
-  AllSourceOptions,
   componentIdSymbol,
   sourceIdSymbol,
   sourceLayerRegistry,
+  SourceOptionProps,
 } from "@/lib/types";
-import type {
-  CanvasSource,
-  CanvasSourceSpecification,
-  Coordinates,
-} from "maplibre-gl";
+import type { CanvasSource, Coordinates } from "maplibre-gl";
 import { SourceLayerRegistry } from "@/lib/lib/sourceLayer.registry";
 import { SourceLib } from "@/lib/lib/source.lib";
 import { useSource } from "@/lib/composable/useSource";
-
-const sourceOpts = AllSourceOptions<CanvasSourceSpecification>({
-  animate: undefined,
-  canvas: undefined,
-  coordinates: undefined,
-});
 
 /**
  * See [CanvasSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/CanvasSource/)
@@ -47,18 +37,13 @@ export default defineComponent({
   setup(props, { slots }) {
     const cid = inject(componentIdSymbol)!,
       source = SourceLib.getSourceRef<CanvasSource>(cid, props.sourceId),
-      registry = new SourceLayerRegistry();
+      registry = new SourceLayerRegistry(),
+      opts = { ...props, type: "canvas" };
 
     provide(sourceIdSymbol, props.sourceId);
     provide(sourceLayerRegistry, registry);
 
-    useSource<CanvasSourceSpecification>(
-      source,
-      props,
-      "canvas",
-      sourceOpts,
-      registry,
-    );
+    useSource(source, opts as SourceOptionProps, registry);
 
     watch(
       isRef(props.coordinates) ? props.coordinates : () => props.coordinates,

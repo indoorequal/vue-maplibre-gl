@@ -7,27 +7,15 @@ import {
   type SlotsType,
 } from "vue";
 import {
-  AllSourceOptions,
+  SourceOptionProps,
   componentIdSymbol,
   sourceIdSymbol,
   sourceLayerRegistry,
 } from "@/lib/types";
-import type { RasterSourceSpecification, RasterTileSource } from "maplibre-gl";
+import type { RasterTileSource } from "maplibre-gl";
 import { SourceLayerRegistry } from "@/lib/lib/sourceLayer.registry";
 import { SourceLib } from "@/lib/lib/source.lib";
 import { useSource } from "@/lib/composable/useSource";
-
-const sourceOpts = AllSourceOptions<RasterSourceSpecification>({
-  url: undefined,
-  tiles: undefined,
-  bounds: undefined,
-  minzoom: undefined,
-  maxzoom: undefined,
-  tileSize: undefined,
-  scheme: undefined,
-  attribution: undefined,
-  volatile: undefined,
-});
 
 /**
  * See [RasterTileSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/RasterTileSource/)
@@ -47,24 +35,19 @@ export default defineComponent({
     tileSize: Number as PropType<number>,
     scheme: String as PropType<"xyz" | "tms">,
     attribution: String as PropType<string>,
-    volatile: Boolean,
+    volatile: Boolean as PropType<boolean>,
   },
   slots: Object as SlotsType<{ default: unknown }>,
   setup(props, { slots }) {
     const cid = inject(componentIdSymbol)!,
       source = SourceLib.getSourceRef<RasterTileSource>(cid, props.sourceId),
-      registry = new SourceLayerRegistry();
+      registry = new SourceLayerRegistry(),
+      opts = { ...props, type: "raster" };
 
     provide(sourceIdSymbol, props.sourceId);
     provide(sourceLayerRegistry, registry);
 
-    useSource<RasterSourceSpecification>(
-      source,
-      props,
-      "raster",
-      sourceOpts,
-      registry,
-    );
+    useSource(source, opts as SourceOptionProps, registry);
 
     return () => [
       createCommentVNode("Raster Source"),
