@@ -97,7 +97,7 @@ export class LayerLib {
     id: string,
     type: string,
     props: any,
-    source: any,
+    source: string | undefined,
   ): T {
     return Object.keys(props)
       .filter(
