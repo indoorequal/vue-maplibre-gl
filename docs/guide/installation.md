@@ -3,7 +3,7 @@
 ## Compatibility
 
 - Vue.js 3.x
-- maplibre-gl-js 3.x
+- maplibre-gl-js 4.x
 
 ## Install
 
