@@ -4,55 +4,47 @@ import {
   defineComponent,
   inject,
   type PropType,
-  warn,
   watch,
 } from "vue";
-import {
-  componentIdSymbol,
-  isLoadedSymbol,
-  mapSymbol,
-  sourceIdSymbol,
-} from "@/lib/types";
+import { isLoadedSymbol, mapSymbol } from "@/lib/types";
 import { LayerLib } from "@/lib/lib/layer.lib";
-import { SourceLib } from "@/lib/lib/source.lib";
 import { useDisposableLayer } from "@/lib/composable/useDisposableLayer";
 
 export default defineComponent({
   name: "MglBackgroundLayer",
   props: {
-    ...LayerLib.SHARED.props,
+    layerId: {
+      type: String as PropType<string>,
+      required: true,
+    },
+    metadata: [Object, Array, String, Number] as PropType<unknown>,
+    minzoom: Number as PropType<number>,
+    maxzoom: Number as PropType<number>,
+    before: String as PropType<string>,
     layout: Object as PropType<BackgroundLayerSpecification["layout"]>,
     paint: Object as PropType<BackgroundLayerSpecification["paint"]>,
   },
   emits: [...LayerLib.SHARED.emits],
   setup(props) {
-    const sourceId = inject(sourceIdSymbol);
-
-    if (!sourceId && !props.source) {
-      warn(
-        "Background Layer: layer must be used inside source tag or source prop must be set",
-      );
-      return;
-    }
-
-    const map = inject(mapSymbol)!,
-      isLoaded = inject(isLoadedSymbol)!,
-      cid = inject(componentIdSymbol)!,
-      sourceRef = SourceLib.getSourceRef(cid, props.source || sourceId);
+    const map = inject(mapSymbol)!;
+    const isLoaded = inject(isLoadedSymbol)!;
 
     useDisposableLayer(props.layerId!);
 
     watch(
-      [isLoaded, sourceRef],
-      ([il, src]) => {
-        if (il && (src || src === undefined)) {
+      isLoaded,
+      (il) => {
+        if (il) {
           map.value!.addLayer(
-            LayerLib.genLayerOpts<BackgroundLayerSpecification>(
-              props.layerId!,
-              "background",
-              props,
-              sourceId,
-            ),
+            {
+              id: props.layerId!,
+              type: "background",
+              metadata: props.metadata,
+              minzoom: props.minzoom,
+              maxzoom: props.maxzoom,
+              layout: props.layout,
+              paint: props.paint,
+            },
             props.before || undefined,
           );
         }

@@ -14,10 +14,7 @@ import {
   sourceLayerRegistry,
   SourceOptionProps,
 } from "@/lib/types";
-import type {
-  GeoJSONSource,
-  PromoteIdSpecification,
-} from "maplibre-gl";
+import type { GeoJSONSource, PromoteIdSpecification } from "maplibre-gl";
 import { SourceLayerRegistry } from "@/lib/lib/sourceLayer.registry";
 import { SourceLib } from "@/lib/lib/source.lib";
 import { useSource } from "@/lib/composable/useSource";

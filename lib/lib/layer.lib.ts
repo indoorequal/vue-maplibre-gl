@@ -1,50 +1,37 @@
 import type {
-  BackgroundLayerSpecification,
   CircleLayerSpecification,
   FillExtrusionLayerSpecification,
   FillLayerSpecification,
   HeatmapLayerSpecification,
   HillshadeLayerSpecification,
-  LayerSpecification,
   LineLayerSpecification,
+  RasterLayerSpecification,
+  SymbolLayerSpecification,
   Map,
   MapLayerEventType,
-  RasterLayerSpecification,
-  Source,
-  SymbolLayerSpecification,
-  FilterSpecification
+  FilterSpecification,
 } from "maplibre-gl";
-import { type PropType, unref, type VNode } from "vue";
+import { type PropType, type VNode } from "vue";
+
+type LayersWithSource =
+  | FillLayerSpecification
+  | LineLayerSpecification
+  | SymbolLayerSpecification
+  | CircleLayerSpecification
+  | HeatmapLayerSpecification
+  | FillExtrusionLayerSpecification
+  | RasterLayerSpecification
+  | HillshadeLayerSpecification;
+
+type LayerProps = Omit<
+  LayersWithSource,
+  "source" | "source-layer" | "id" | "type"
+> & {
+  sourceLayer?: string;
+  source?: string;
+};
 
 export class LayerLib {
-  static readonly SOURCE_OPTS: Array<
-    keyof (Omit<
-      FillLayerSpecification &
-        LineLayerSpecification &
-        SymbolLayerSpecification &
-        CircleLayerSpecification &
-        HeatmapLayerSpecification &
-        FillExtrusionLayerSpecification &
-        RasterLayerSpecification &
-        HillshadeLayerSpecification &
-        BackgroundLayerSpecification,
-      "source-layer"
-    > & {
-      sourceLayer?: string;
-    })
-  > = [
-    "metadata",
-    "ref",
-    "source",
-    "sourceLayer",
-    "minzoom",
-    "maxzoom",
-    "interactive",
-    "filter",
-    "layout",
-    "paint",
-  ];
-
   static readonly LAYER_EVENTS: Array<keyof MapLayerEventType> = [
     "click",
     "dblclick",
@@ -67,12 +54,11 @@ export class LayerLib {
         type: String as PropType<string>,
         required: true,
       },
-      source: [String, Object] as PropType<string | Source>,
+      source: String as PropType<string>,
       metadata: [Object, Array, String, Number] as PropType<unknown>,
       sourceLayer: String as PropType<string>,
       minzoom: Number as PropType<number>,
       maxzoom: Number as PropType<number>,
-      interactive: Boolean as PropType<boolean>,
       filter: Object as PropType<FilterSpecification>,
       before: String as PropType<string>,
     },
@@ -93,27 +79,30 @@ export class LayerLib {
     ],
   };
 
-  static genLayerOpts<T = LayerSpecification>(
+  static genLayerOpts<T extends LayersWithSource>(
     id: string,
     type: string,
-    props: any,
+    props: LayerProps,
     source: string | undefined,
   ): T {
-    return Object.keys(props)
-      .filter(
-        (opt) =>
-          (props as any)[opt] !== undefined &&
-          LayerLib.SOURCE_OPTS.indexOf(opt as any) !== -1,
-      )
-      .reduce(
-        (obj, opt) => {
-          (obj as any)[opt === "sourceLayer" ? "source-layer" : opt] = unref(
-            (props as any)[opt],
-          );
-          return obj;
-        },
-        { type, source: props.source || source, id } as T,
-      );
+    const opts = {
+      id,
+      type,
+      source: props.source || source,
+      metadata: props.metadata,
+      minzoom: props.minzoom,
+      maxzoom: props.maxzoom,
+      "source-layer": props.sourceLayer,
+      filter: props.filter,
+      paint: props.paint,
+      layout: props.layout,
+    } as T;
+    for (const opt of Object.keys(opts) as Array<keyof T>) {
+      if (opts[opt] === undefined) {
+        delete opts[opt];
+      }
+    }
+    return opts;
   }
 
   static registerLayerEvents(map: Map, layerId: string, vn: VNode) {
