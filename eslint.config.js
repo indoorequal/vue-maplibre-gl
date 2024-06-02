@@ -9,9 +9,4 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   ...pluginVue.configs["flat/essential"],
-  {
-    rules: {
-      "@typescript-eslint/no-explicit-any": "off"
-    }
-  },
 ];
