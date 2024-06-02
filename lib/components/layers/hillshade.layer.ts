@@ -45,6 +45,11 @@ export default defineComponent({
     useDisposableLayer(props.layerId!, ci);
 
     watch(
+      () => props.filter,
+      (f) => map.value!.setFilter(props.layerId!, f),
+    );
+
+    watch(
       [isLoaded, sourceRef],
       ([il, src]) => {
         if (il && (src || src === undefined)) {
