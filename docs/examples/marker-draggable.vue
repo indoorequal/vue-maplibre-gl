@@ -17,8 +17,9 @@
       @dragend="console.log('dragend')"
     />
   </mgl-map>
-  <button @click="draggable = !draggable">Toggle draggable state</button>
-  {{ coordinates }}
+  <label><input type="checkbox" v-model="draggable" />Enable draggable marker</label>
+  <br />
+  Marker coordinates: {{ coordinates }}
 </template>
 
 <script setup>
