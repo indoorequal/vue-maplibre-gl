@@ -901,6 +901,7 @@ __metadata:
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
     maplibre-gl: "npm:^4.0.0"
+    maplibre-gl-inspect: "npm:^0.0.6"
     prettier: "npm:3.2.5"
     sass: "npm:^1.71.0"
     ts-jest: "npm:^29.1.2"
@@ -5450,6 +5451,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"maplibre-gl-inspect@npm:^0.0.6":
+  version: 0.0.6
+  resolution: "maplibre-gl-inspect@npm:0.0.6"
+  dependencies:
+    randomcolor: "npm:^0.6.2"
+  peerDependencies:
+    maplibre-gl: ^2.4.0
+  checksum: 10/93f04992458c05fe242bd5d91289a6483d98fa06e6c38c47518803fbb19655732849d7fa4562ee6c99adcd86db124a8f627c9b8ec3b83c8af34faed6db438087
+  languageName: node
+  linkType: hard
+
 "maplibre-gl@npm:^4.0.0":
   version: 4.3.2
   resolution: "maplibre-gl@npm:4.3.2"
@@ -6324,6 +6336,13 @@ __metadata:
   version: 2.0.0
   resolution: "quickselect@npm:2.0.0"
   checksum: 10/ed2e78431050d223fb75da20ee98011aef1a03f7cb04e1a32ee893402e640be3cfb76d72e9dbe01edf3bb457ff6a62e5c2d85748424d1aa531f6ba50daef098c
+  languageName: node
+  linkType: hard
+
+"randomcolor@npm:^0.6.2":
+  version: 0.6.2
+  resolution: "randomcolor@npm:0.6.2"
+  checksum: 10/b1d0eb4d7a19b592668f2827405b5a453fefdbecdbff4a88ab8594249d6b570a3e9e3032383d52bffea5437f4af1ace4f62a002f366fee444c36ac137768e009
   languageName: node
   linkType: hard
 
