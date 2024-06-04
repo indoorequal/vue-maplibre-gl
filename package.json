@@ -59,7 +59,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "maplibre-gl": "^4.0.0",
     "maplibre-gl-inspect": "^0.0.6",
-    "prettier": "3.2.5",
+    "prettier": "3.3.0",
     "sass": "^1.71.0",
     "ts-jest": "^29.1.2",
     "typescript": "^5.3.3",
