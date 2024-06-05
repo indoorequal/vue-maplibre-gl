@@ -33,7 +33,7 @@ import {
   sourceIdSymbol,
 } from "@/lib/types";
 import { defaults } from "@/lib/defaults";
-import { MapLib, MapEvent, MapEventHandler } from "@/lib/lib/map.lib";
+import { MAP_EVENT_TYPES, createEventHandler, type MapEvent, type MapEventHandler } from "@/lib/lib/map.lib";
 import { isLngLatEqual } from "@/lib/lib/lng_lat";
 import { Position } from "@/lib/components/controls/position.enum";
 import { registerMap } from "@/lib/lib/mapRegistry";
@@ -618,10 +618,10 @@ export default defineComponent({
 
       // bind events
       if (component.vnode.props) {
-        for (const event of MapLib.MAP_EVENT_TYPES) {
+        for (const event of MAP_EVENT_TYPES) {
           if (component.vnode.props["onMap:" + event]) {
             const eventName = `map:${event}`;
-            const handler = MapLib.createEventHandler<typeof event>(
+            const handler = createEventHandler<typeof event>(
               component,
               map.value,
               ctx,
