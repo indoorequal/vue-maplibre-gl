@@ -100,13 +100,11 @@ export function registerLayerEvents(map: Map, layerId: string, vn: VNode) {
     return;
   }
 
-  for (let i = 0, len = LAYER_EVENTS.length; i < len; i++) {
+  for (const eventName of LAYER_EVENTS) {
     const evProp =
-      "on" +
-      LAYER_EVENTS[i].charAt(0).toUpperCase() +
-      LAYER_EVENTS[i].substr(1);
+      "on" + eventName.charAt(0).toUpperCase() + eventName.substr(1);
     if (vn.props[evProp]) {
-      map.on(LAYER_EVENTS[i], layerId, vn.props[evProp]);
+      map.on(eventName, layerId, vn.props[evProp]);
     }
   }
 }
@@ -116,13 +114,11 @@ export function unregisterLayerEvents(map: Map, layerId: string, vn: VNode) {
     return;
   }
 
-  for (let i = 0, len = LAYER_EVENTS.length; i < len; i++) {
+  for (const eventName of LAYER_EVENTS) {
     const evProp =
-      "on" +
-      LAYER_EVENTS[i].charAt(0).toUpperCase() +
-      LAYER_EVENTS[i].substr(1);
+      "on" + eventName.charAt(0).toUpperCase() + eventName.substr(1);
     if (vn.props[evProp]) {
-      map.off(LAYER_EVENTS[i], layerId, vn.props[evProp]);
+      map.off(eventName, layerId, vn.props[evProp]);
     }
   }
 }
