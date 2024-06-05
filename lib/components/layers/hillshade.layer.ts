@@ -1,19 +1,12 @@
 import type { HillshadeLayerSpecification } from "maplibre-gl";
-import {
-  defineComponent,
-  type PropType,
-} from "vue";
-import { LayerLib } from "@/lib/lib/layer.lib";
+import { defineComponent } from "vue";
+import { layerProps, LAYER_EVENTS } from "@/lib/lib/layer.lib";
 import { useLayer } from "@/lib/composable/useLayer";
 
 export default defineComponent({
   name: "MglHillshadeLayer",
-  props: {
-    ...LayerLib.SHARED.props,
-    layout: Object as PropType<HillshadeLayerSpecification["layout"]>,
-    paint: Object as PropType<HillshadeLayerSpecification["paint"]>,
-  },
-  emits: [...LayerLib.SHARED.emits],
+  props: { ...layerProps<HillshadeLayerSpecification>() },
+  emits: [...(LAYER_EVENTS as Array<string>)],
   setup(props) {
     return useLayer<HillshadeLayerSpecification>("hillshade", props);
   },

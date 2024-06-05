@@ -33,7 +33,12 @@ import {
   sourceIdSymbol,
 } from "@/lib/types";
 import { defaults } from "@/lib/defaults";
-import { MAP_EVENT_TYPES, createEventHandler, type MapEvent, type MapEventHandler } from "@/lib/lib/map.lib";
+import {
+  MAP_EVENT_TYPES,
+  createEventHandler,
+  type MapEvent,
+  type MapEventHandler,
+} from "@/lib/lib/map.lib";
 import { isLngLatEqual } from "@/lib/lib/lng_lat";
 import { Position } from "@/lib/components/controls/position.enum";
 import { registerMap } from "@/lib/lib/mapRegistry";

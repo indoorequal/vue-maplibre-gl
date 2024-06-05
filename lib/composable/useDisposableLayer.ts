@@ -1,5 +1,5 @@
 import { inject, onBeforeUnmount, type ComponentInternalInstance } from "vue";
-import { LayerLib } from "@/lib/lib/layer.lib";
+import { unregisterLayerEvents } from "@/lib/lib/layer.lib";
 import { isLoadedSymbol, mapSymbol, sourceLayerRegistry } from "@/lib/types";
 
 export function useDisposableLayer(
@@ -13,7 +13,7 @@ export function useDisposableLayer(
   function removeLayer() {
     if (isLoaded.value) {
       if (ci) {
-        LayerLib.unregisterLayerEvents(map.value!, layerId, ci.vnode);
+        unregisterLayerEvents(map.value!, layerId, ci.vnode);
       }
       const layer = map.value!.getLayer(layerId);
       if (layer) {

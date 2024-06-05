@@ -1,19 +1,12 @@
 import type { RasterLayerSpecification } from "maplibre-gl";
-import {
-  defineComponent,
-  type PropType,
-} from "vue";
-import { LayerLib } from "@/lib/lib/layer.lib";
+import { defineComponent } from "vue";
+import { layerProps, LAYER_EVENTS } from "@/lib/lib/layer.lib";
 import { useLayer } from "@/lib/composable/useLayer";
 
 export default defineComponent({
   name: "MglRasterLayer",
-  props: {
-    ...LayerLib.SHARED.props,
-    layout: Object as PropType<RasterLayerSpecification["layout"]>,
-    paint: Object as PropType<RasterLayerSpecification["paint"]>,
-  },
-  emits: [...LayerLib.SHARED.emits],
+  props: { ...layerProps<RasterLayerSpecification>() },
+  emits: [...(LAYER_EVENTS as Array<string>)],
   setup(props) {
     return useLayer<RasterLayerSpecification>("raster", props);
   },

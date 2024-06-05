@@ -12,10 +12,18 @@ import {
   sourceIdSymbol,
 } from "@/lib/types";
 import { useDisposableLayer } from "@/lib/composable/useDisposableLayer";
-import { LayerLib, type LayersWithSource, type LayerProps } from "@/lib/lib/layer.lib";
+import {
+  genLayerOpts,
+  registerLayerEvents,
+  type LayersWithSource,
+  type LayerProps,
+} from "@/lib/lib/layer.lib";
 import { SourceLib } from "@/lib/lib/source.lib";
 
-export function useLayer<T extends LayersWithSource>(name: string, props: LayerProps) {
+export function useLayer<T extends LayersWithSource>(
+  name: string,
+  props: LayerProps,
+) {
   const sourceId = inject(sourceIdSymbol);
 
   if (!sourceId && !props.source) {
@@ -26,10 +34,10 @@ export function useLayer<T extends LayersWithSource>(name: string, props: LayerP
   }
 
   const ci = getCurrentInstance()!,
-  map = inject(mapSymbol)!,
-  isLoaded = inject(isLoadedSymbol)!,
-  cid = inject(componentIdSymbol)!,
-  sourceRef = SourceLib.getSourceRef(cid, props.source || sourceId);
+    map = inject(mapSymbol)!,
+    isLoaded = inject(isLoadedSymbol)!,
+    cid = inject(componentIdSymbol)!,
+    sourceRef = SourceLib.getSourceRef(cid, props.source || sourceId);
   useDisposableLayer(props.layerId!, ci);
 
   watch(
@@ -42,19 +50,14 @@ export function useLayer<T extends LayersWithSource>(name: string, props: LayerP
     ([il, src]) => {
       if (il && (src || src === undefined)) {
         map.value!.addLayer(
-          LayerLib.genLayerOpts<T>(
-            props.layerId!,
-            name,
-            props,
-            sourceId,
-          ),
+          genLayerOpts<T>(props.layerId!, name, props, sourceId),
           props.before || undefined,
         );
-        LayerLib.registerLayerEvents(map.value!, props.layerId!, ci.vnode);
+        registerLayerEvents(map.value!, props.layerId!, ci.vnode);
       }
     },
     { immediate: true },
   );
 
   return () => createCommentVNode(`${name} Layer`);
-};
+}
