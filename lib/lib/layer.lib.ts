@@ -13,7 +13,7 @@ import type {
 } from "maplibre-gl";
 import { type PropType, type VNode } from "vue";
 
-type LayersWithSource =
+export type LayersWithSource =
   | FillLayerSpecification
   | LineLayerSpecification
   | SymbolLayerSpecification
@@ -23,12 +23,14 @@ type LayersWithSource =
   | RasterLayerSpecification
   | HillshadeLayerSpecification;
 
-type LayerProps = Omit<
+export type LayerProps = Omit<
   LayersWithSource,
   "source" | "source-layer" | "id" | "type"
 > & {
+  layerId: string | undefined,
   sourceLayer?: string;
   source?: string;
+  before?: string;
 };
 
 export class LayerLib {
