@@ -41,6 +41,44 @@ export function useLayer<T extends LayersWithSource>(
   useDisposableLayer(props.layerId!, ci);
 
   watch(
+    () => props.minzoom,
+    () =>
+      map.value!.setLayerZoomRange(
+        props.layerId!,
+        props.minzoom || 0,
+        props.maxzoom || 24,
+      ),
+  );
+  watch(
+    () => props.maxzoom,
+    () =>
+      map.value!.setLayerZoomRange(
+        props.layerId!,
+        props.minzoom || 0,
+        props.maxzoom || 24,
+      ),
+  );
+  watch(
+    () => props.layout,
+    (layout) => {
+      if (layout) {
+        for (const [property, value] of Object.entries(layout)) {
+          map.value!.setLayoutProperty(props.layerId!, property, value);
+        }
+      }
+    },
+  );
+  watch(
+    () => props.paint,
+    (paint) => {
+      if (paint) {
+        for (const [property, value] of Object.entries(paint)) {
+          map.value!.setPaintProperty(props.layerId!, property, value);
+        }
+      }
+    },
+  );
+  watch(
     () => props.filter,
     (f) => map.value!.setFilter(props.layerId!, f),
   );

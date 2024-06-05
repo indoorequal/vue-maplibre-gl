@@ -57,6 +57,27 @@ export default defineComponent({
     useDisposableLayer(props.layerId!);
 
     watch(
+      () => props.layout,
+      (layout) => {
+        if (layout) {
+          for (const [property, value] of Object.entries(layout)) {
+            map.value!.setLayoutProperty(props.layerId!, property, value);
+          }
+        }
+      },
+    );
+    watch(
+      () => props.paint,
+      (paint) => {
+        if (paint) {
+          for (const [property, value] of Object.entries(paint)) {
+            map.value!.setPaintProperty(props.layerId!, property, value);
+          }
+        }
+      },
+    );
+
+    watch(
       isLoaded,
       (il) => {
         if (il) {
