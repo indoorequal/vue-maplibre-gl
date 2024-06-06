@@ -37,6 +37,9 @@ export default defineComponent({
      * The maximum zoom level for the layer. At zoom levels equal to or greater than the maxzoom, the layer will be hidden.
      */
     maxzoom: Number as PropType<number>,
+    /**
+     * The ID of an existing layer to insert the new layer before, resulting in the new layer appearing visually beneath the existing layer. If this argument is not specified, the layer will be appended to the end of the layers array and appear visually above all other layers.
+     */
     before: String as PropType<string>,
     /**
      * Layout properties for the layer.

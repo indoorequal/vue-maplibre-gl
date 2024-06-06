@@ -53,18 +53,47 @@ export function layerProps<
   T extends LayersWithSource,
 >(): ComponentPropsOptions {
   return {
+    /**
+     * The id of the layer
+     */
     layerId: {
       type: String as PropType<string>,
       required: true,
     },
     source: String as PropType<string>,
+    /**
+     * Arbitrary properties useful to track with the layer, but do not influence rendering. Properties should be prefixed to avoid collisions, like 'maplibre:'.
+     */
     metadata: [Object, Array, String, Number] as PropType<unknown>,
+    /**
+     * Layer to use from a vector tile source. Required for vector tile sources; prohibited for all other source types, including GeoJSON sources.
+     */
     sourceLayer: String as PropType<string>,
+    /**
+     * The minimum zoom level for the layer. At zoom levels less than the minzoom, the layer will be hidden.
+     */
     minzoom: Number as PropType<number>,
+    /**
+     * The maximum zoom level for the layer. At zoom levels equal to or greater than the maxzoom, the layer will be hidden.
+     */
     maxzoom: Number as PropType<number>,
+    /**
+     * A expression specifying conditions on source features. Only features that match the filter are displayed. Zoom expressions in filters are only evaluated at integer zoom levels. The feature-state expression is not supported in filter expressions.
+     */
     filter: Object as PropType<FilterSpecification>,
+    /**
+     * The ID of an existing layer to insert the new layer before, resulting in the new layer appearing visually beneath the existing layer. If this argument is not specified, the layer will be appended to the end of the layers array and appear visually above all other layers.
+     */
     before: String as PropType<string>,
+    /**
+     * Layout properties for the layer.
+     * See https://maplibre.org/maplibre-style-spec/layers/
+     */
     layout: Object as PropType<T["layout"]>,
+    /**
+     * Default paint properties for this layer.
+     * See https://maplibre.org/maplibre-style-spec/layers/
+     */
     paint: Object as PropType<T["paint"]>,
   };
 }
