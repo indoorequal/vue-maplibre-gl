@@ -1,13 +1,13 @@
 <script setup>
 import { data } from './components.data.js';
-const byType = data.reduce((memo, component) => {
+const byType = new Map([...(data.reduce((memo, component) => {
   const type = component.params.type;
   if (!memo.has(type)) {
     memo.set(type, []);
   }
   memo.get(type).push(component);
   return memo;
-}, new Map());
+}, new Map())).entries()].sort());
 </script>
 
 # API
