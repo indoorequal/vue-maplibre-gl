@@ -17,7 +17,6 @@
 <script setup>
 import {
   MglMap,
-  MglNavigationControl,
   MglVideoSource,
   MglRasterLayer
 } from '@indoorequal/vue-maplibre-gl';

@@ -19,7 +19,6 @@
 <script setup>
 import {
   MglMap,
-  MglNavigationControl,
   MglMarker
 } from '@indoorequal/vue-maplibre-gl';
 
