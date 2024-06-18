@@ -13,6 +13,8 @@ import { useControl } from "@/lib/composable/useControl";
 type GeolocateControlEvent =
   | "trackuserlocationstart"
   | "trackuserlocationend"
+  | "userlocationlostfocus"
+  | "userlocationfocus"
   | "geolocate"
   | "error"
   | "outofmaxbounds";
@@ -75,6 +77,8 @@ export default defineComponent({
   emits: [
     "trackuserlocationstart",
     "trackuserlocationend",
+    "userlocationlostfocus",
+    "userlocationfocus",
     "geolocate",
     "error",
     "outofmaxbounds",
@@ -100,6 +104,8 @@ export default defineComponent({
     }
     emitEvent<undefined>("trackuserlocationstart");
     emitEvent<undefined>("trackuserlocationend");
+    emitEvent<undefined>("userlocationlostfocus");
+    emitEvent<undefined>("userlocationfocus");
     emitEvent<GeolocationPosition>("geolocate");
     emitEvent<GeolocationPositionError>("error");
     emitEvent<GeolocationPosition>("outofmaxbounds");
