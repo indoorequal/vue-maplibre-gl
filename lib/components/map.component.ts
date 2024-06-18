@@ -585,7 +585,7 @@ export default defineComponent({
 
       // build options
       const opts: typeof props & {
-        style: string | StyleSpecification;
+        style?: string | StyleSpecification;
         container: HTMLElement;
       } = { ...props, style: props.mapStyle, container: container.value! };
 
