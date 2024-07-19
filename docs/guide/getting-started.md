@@ -9,7 +9,7 @@ app.use(VueMaplibreGl)
 Add CSS:
 
 ```scss
-@import "~maplibre-gl/dist/maplibre-gl.css";
+@import '~maplibre-gl/dist/maplibre-gl.css';
 ```
 
 Use specific components:
@@ -24,7 +24,7 @@ or in a parent components `.vue` file
 
 ```html
 <template>
-  <mgl-map /
+  <mgl-map />
 </template>
 <script setup>
   import { MglMap } from '@indoorequal/vue-maplibre-gl';
