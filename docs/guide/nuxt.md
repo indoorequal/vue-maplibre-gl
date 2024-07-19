@@ -12,8 +12,8 @@ The easiest way to use is to use a [client component](https://nuxt.com/docs/guid
 </template>
 
 <script setup>
-import "maplibre-gl/dist/maplibre-gl.css";
-import { MglMap, MglNavigationControl } from @indoorequal/vue-maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import { MglMap, MglNavigationControl } from '@indoorequal/vue-maplibre-gl';
 </script>
 ```
 :::
