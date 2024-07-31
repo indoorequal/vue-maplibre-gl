@@ -1,7 +1,14 @@
 # Nuxt
 
-vue-maplibre-gl is compatible with [Nuxt](https://nuxt.com/). Maplibre require access to a window and does not works with server side rendering.
-The easiest way to use is to use a [client component](https://nuxt.com/docs/guide/directory-structure/components#client-components).
+
+## Using the nuxt-maplibre package (recommended)
+
+The easiest way to integrate maplibre and [Nuxt](https://nuxt.com/) is to use the [nuxt-maplibre](https://github.com/Gugustinette/nuxt-maplibre) package. You can read [the documentation](https://gugustinette.github.io/nuxt-maplibre/).
+
+## Manual use
+
+Maplibre require access to a window and does not works with server side rendering.
+To make it works, you can use a [client component](https://nuxt.com/docs/guide/directory-structure/components#client-components).
 
 ::: code-group
 ```vue [map.client.vue]
