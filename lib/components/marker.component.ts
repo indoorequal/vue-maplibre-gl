@@ -100,6 +100,14 @@ export default defineComponent({
      * @since 7.0.0
      */
     opacityWhenCovered: String as PropType<string>,
+    /**
+     * If true, rounding is disabled for placement of the marker, allowing for subpixel positioning and smoother movement when the marker is translated.
+     * @since 7.5.0
+     */
+    subpixelPositioning: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
   },
   setup(props, { slots, emit }) {
     const map = inject(mapSymbol)!,
@@ -172,6 +180,10 @@ export default defineComponent({
     watch(
       () => props.opacityWhenCovered,
       (v) => marker.value?.setOpacity(props.opacity, v),
+    );
+    watch(
+      () => props.subpixelPositioning,
+      (v) => marker.value?.setSubpixelPositioning(v),
     );
 
     onBeforeUnmount(() => {

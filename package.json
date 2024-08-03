@@ -57,7 +57,7 @@
     "globals": "^15.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "maplibre-gl": "^4.0.0",
+    "maplibre-gl": "^4.5.1",
     "maplibre-gl-inspect": "^0.0.6",
     "prettier": "3.3.3",
     "sass": "^1.71.0",
