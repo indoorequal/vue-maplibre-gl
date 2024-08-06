@@ -852,6 +852,7 @@ __metadata:
     "@babel/types": "npm:^7.23.9"
     "@eslint/js": "npm:^9.1.1"
     "@indoorequal/vue-maplibre-gl": "workspace:^"
+    "@maplibre/maplibre-gl-inspect": "npm:^1.7.0"
     "@mdi/js": "npm:^7.4.47"
     "@types/geojson": "npm:^7946.0.14"
     "@types/jest": "npm:^29.5.12"
@@ -866,7 +867,6 @@ __metadata:
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
     maplibre-gl: "npm:^4.5.1"
-    maplibre-gl-inspect: "npm:^0.0.6"
     prettier: "npm:3.3.3"
     sass: "npm:^1.71.0"
     ts-jest: "npm:^29.1.2"
@@ -1245,6 +1245,18 @@ __metadata:
   version: 3.1.0
   resolution: "@mapbox/whoots-js@npm:3.1.0"
   checksum: 10/c1837c04effd205b207f441356d952eae7e8aad6c58f7c4900de50318c2147cf175936fc9434f20dfa409f9e6a78ec604d61e70c1c20572db0cc7655fbb65f50
+  languageName: node
+  linkType: hard
+
+"@maplibre/maplibre-gl-inspect@npm:^1.7.0":
+  version: 1.7.0
+  resolution: "@maplibre/maplibre-gl-inspect@npm:1.7.0"
+  dependencies:
+    lodash.isequal: "npm:^4.5.0"
+    randomcolor: "npm:^0.6.2"
+  peerDependencies:
+    maplibre-gl: ">3.0.0"
+  checksum: 10/030a5ae96a29ba85e0c5bf248c31bceaf2690ae47b27ab68701334a8d5f63bd39d61f69ecd4f63c14f138d37439827bfdb6862f3d170c15a7bb284630a074d37
   languageName: node
   linkType: hard
 
@@ -5545,17 +5557,6 @@ __metadata:
   dependencies:
     tmpl: "npm:1.0.5"
   checksum: 10/4c66ddfc654537333da952c084f507fa4c30c707b1635344eb35be894d797ba44c901a9cebe914aa29a7f61357543ba09b09dddbd7f65b4aee756b450f169f40
-  languageName: node
-  linkType: hard
-
-"maplibre-gl-inspect@npm:^0.0.6":
-  version: 0.0.6
-  resolution: "maplibre-gl-inspect@npm:0.0.6"
-  dependencies:
-    randomcolor: "npm:^0.6.2"
-  peerDependencies:
-    maplibre-gl: ^2.4.0
-  checksum: 10/93f04992458c05fe242bd5d91289a6483d98fa06e6c38c47518803fbb19655732849d7fa4562ee6c99adcd86db124a8f627c9b8ec3b83c8af34faed6db438087
   languageName: node
   linkType: hard
 

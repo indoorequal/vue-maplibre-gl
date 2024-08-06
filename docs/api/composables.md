@@ -23,7 +23,7 @@ The `useControl` composable allow to add a maplibre control that implement the I
 ```vue
 <script setup>
 import { useControl } from '@indoorequal/vue-maplibre-gl';
-import MaplibreInspect from 'maplibre-gl-inspect';
+import MaplibreInspect from '@maplibre/maplibre-gl-inspect';
 
 useControl(() => {
   return new MaplibreInspect();

@@ -19,7 +19,7 @@ import {
 } from '@indoorequal/vue-maplibre-gl';
 import { defineComponent } from 'vue';
 import maplibregl from 'maplibre-gl';
-import MaplibreInspect from 'maplibre-gl-inspect';
+import MaplibreInspect from '@maplibre/maplibre-gl-inspect';
 
 const style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
 const center = [12.550343, 55.665957];
@@ -48,5 +48,5 @@ const InspectControl = defineComponent({
 
 <style lang="scss">
 @import "maplibre-gl/dist/maplibre-gl.css";
-@import "maplibre-gl-inspect/dist/maplibre-gl-inspect.css";
+@import "@maplibre/maplibre-gl-inspect/dist/maplibre-gl-inspect.css";
 </style>
