@@ -866,7 +866,7 @@ __metadata:
     globals: "npm:^15.0.0"
     jest: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
-    maplibre-gl: "npm:^4.5.1"
+    maplibre-gl: "npm:^4.5.2"
     prettier: "npm:3.3.3"
     sass: "npm:^1.71.0"
     ts-jest: "npm:^29.1.2"
@@ -5625,9 +5625,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"maplibre-gl@npm:^4.5.1":
-  version: 4.5.1
-  resolution: "maplibre-gl@npm:4.5.1"
+"maplibre-gl@npm:^4.5.2":
+  version: 4.5.2
+  resolution: "maplibre-gl@npm:4.5.2"
   dependencies:
     "@mapbox/geojson-rewind": "npm:^0.5.2"
     "@mapbox/jsonlint-lines-primitives": "npm:^2.0.2"
@@ -5655,7 +5655,7 @@ __metadata:
     supercluster: "npm:^8.0.1"
     tinyqueue: "npm:^3.0.0"
     vt-pbf: "npm:^3.1.3"
-  checksum: 10/1a689797495dac3da27de95ab22b8d55173b29357aa4e38fb17ebe2d13efc5e030a205f2b68dca8d9b4a3df35e025c7ba4dc889dfb578f51307d7a3cfec72966
+  checksum: 10/112bdb65ced7751cb4ec3d5333e1ef38c6409ca21ad871098c3a6d218fbae21511ea0e6e250f5573ae8d8507e7384b912b9058be255e9a19b077022f9d7b2acc
   languageName: node
   linkType: hard
 

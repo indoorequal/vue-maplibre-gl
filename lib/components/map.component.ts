@@ -427,6 +427,7 @@ export default defineComponent({
     "map:pitchend",
     "map:wheel",
     "map:terrain",
+    "map:cooperativegestureprevented",
     /**
      * Center property updated
      */

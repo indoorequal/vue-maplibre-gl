@@ -59,6 +59,7 @@ export const MAP_EVENT_TYPES: Array<keyof MapEventType> = [
   "pitchend",
   "wheel",
   "terrain",
+  "cooperativegestureprevented"
 ];
 
 export function createEventHandler<T extends keyof MapEventType>(
