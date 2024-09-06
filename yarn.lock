@@ -906,7 +906,7 @@ __metadata:
     typescript: "npm:^5.3.3"
     typescript-eslint: "npm:^8.0.0"
     vite: "npm:^5.1.3"
-    vite-plugin-banner: "npm:^0.7.1"
+    vite-plugin-banner: "npm:^0.8.0"
     vite-plugin-dts: "npm:^4.0.0"
     vitepress: "npm:^1.1.3"
     vue: "npm:^3.4.19"
@@ -7608,10 +7608,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-banner@npm:^0.7.1":
-  version: 0.7.1
-  resolution: "vite-plugin-banner@npm:0.7.1"
-  checksum: 10/8ce54226d911fa58e09d9490e5f842d14691e81ddd0e59aabed9cf4a29910371820c8b0c15064e0e3d19cd1e63cb35edd32aa808749739e466e0a57137d9369c
+"vite-plugin-banner@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "vite-plugin-banner@npm:0.8.0"
+  checksum: 10/d6f5a235040843e005beee602e783ac24f3af10e39457585899068ec2618bf1da9369c8a072796fffc17e047fba12ee3d971d105288635a40219a120121b1216
   languageName: node
   linkType: hard
 
