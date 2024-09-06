@@ -65,7 +65,7 @@
     "typescript": "^5.3.3",
     "typescript-eslint": "^8.0.0",
     "vite": "^5.1.3",
-    "vite-plugin-banner": "^0.7.1",
+    "vite-plugin-banner": "^0.8.0",
     "vite-plugin-dts": "^4.0.0",
     "vitepress": "^1.1.3",
     "vue": "^3.4.19",
