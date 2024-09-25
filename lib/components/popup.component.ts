@@ -33,6 +33,12 @@ export default defineComponent({
      */
     "close",
   ],
+  expose: [
+    /**
+     * Close the popup
+     */
+    "remove",
+  ],
   props: {
     /**
      * The geographical location of the popup's anchor.
@@ -124,7 +130,7 @@ export default defineComponent({
       required: false,
     },
   },
-  setup(props, { slots, emit }) {
+  setup(props, { slots, emit, expose }) {
     const map = inject(mapSymbol);
     const marker = inject(markerSymbol);
     const root = ref();
@@ -151,6 +157,12 @@ export default defineComponent({
 
     emitEvent("open");
     emitEvent("close");
+
+    expose({
+      remove() {
+        popup.remove();
+      },
+    });
 
     watch(
       () => props.coordinates,

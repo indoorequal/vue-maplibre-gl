@@ -10,9 +10,10 @@
   >
     <mgl-navigation-control />
     <mgl-marker :coordinates="coordinates">
-      <mgl-popup>
+      <mgl-popup ref="popup">
         <h1>Hello</h1>
         <p>HTML content</p>
+        <a href="#" @click="closePopup">Close popup</a>
       </mgl-popup>
     </mgl-marker>
   </mgl-map>
@@ -25,11 +26,18 @@ import {
   MglMarker,
   MglPopup,
 } from '@indoorequal/vue-maplibre-gl';
+import { useTemplateRef } from 'vue'
 
 const style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
 const center = [12.550343, 55.665957];
 const zoom = 8;
 const coordinates = [12.550343, 55.665957];
+
+const popupRef = useTemplateRef('popup')
+const closePopup = () => {
+  popupRef.value.remove()
+};
+
 </script>
 
 <style lang="scss">
