@@ -132,7 +132,7 @@ export default defineComponent({
   },
   setup(props, { slots, emit, expose }) {
     const map = inject(mapSymbol);
-    const marker = inject(markerSymbol);
+    const marker = inject(markerSymbol, undefined);
     const root = ref();
 
     const popup = new Popup(props);
