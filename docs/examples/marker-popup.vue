@@ -1,6 +1,6 @@
-// Popup
+// Marker with popup
 //
-// A popup on the map
+// A map with a marker and a popup
 <template>
   <mgl-map
     :map-style="style"
@@ -9,11 +9,13 @@
     height="500px"
   >
     <mgl-navigation-control />
-    <mgl-popup
-      :coordinates="coordinates"
-      :close-button="false"
-      text="The content of the popup"
-    />
+    <mgl-marker :coordinates="coordinates">
+      <mgl-popup ref="popup">
+        <h1>Hello</h1>
+        <p>HTML content</p>
+        <a href="#" @click="closePopup">Close popup</a>
+      </mgl-popup>
+    </mgl-marker>
   </mgl-map>
 </template>
 
@@ -21,6 +23,7 @@
 import {
   MglMap,
   MglNavigationControl,
+  MglMarker,
   MglPopup,
 } from '@indoorequal/vue-maplibre-gl';
 import { useTemplateRef } from 'vue'
@@ -29,6 +32,11 @@ const style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW
 const center = [12.550343, 55.665957];
 const zoom = 8;
 const coordinates = [12.550343, 55.665957];
+
+const popupRef = useTemplateRef('popup')
+const closePopup = () => {
+  popupRef.value.remove()
+};
 
 </script>
 
