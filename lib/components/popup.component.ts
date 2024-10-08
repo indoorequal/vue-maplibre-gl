@@ -33,12 +33,6 @@ export default defineComponent({
      */
     "close",
   ],
-  expose: [
-    /**
-     * Close the popup
-     */
-    "remove",
-  ],
   props: {
     /**
      * The geographical location of the popup's anchor.
