@@ -13,7 +13,7 @@
       <mgl-popup ref="popup">
         <h1>Hello</h1>
         <p>HTML content</p>
-        <a href="#" @click="closePopup">Close popup</a>
+        <a href="#" @click.prevent="closePopup">Close popup</a>
       </mgl-popup>
     </mgl-marker>
   </mgl-map>
