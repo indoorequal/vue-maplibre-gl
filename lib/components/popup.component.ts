@@ -200,6 +200,10 @@ export default defineComponent({
       }
     });
 
+    onBeforeUnmount(() => {
+      popup.remove();
+    });
+
     return () => [
       h("div", { ref: root }, slots.default ? slots.default() : undefined),
     ];

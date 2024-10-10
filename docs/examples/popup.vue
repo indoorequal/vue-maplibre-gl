@@ -2,6 +2,7 @@
 //
 // A popup on the map
 <template>
+  <button @click="togglePopup">Show / Hide the popup</button>
   <mgl-map
     :map-style="style"
     :center="center"
@@ -10,6 +11,7 @@
   >
     <mgl-navigation-control />
     <mgl-popup
+      v-if="displayPopup"
       :coordinates="coordinates"
       :close-button="false"
       text="The content of the popup"
@@ -23,12 +25,17 @@ import {
   MglNavigationControl,
   MglPopup,
 } from '@indoorequal/vue-maplibre-gl';
-import { useTemplateRef } from 'vue'
+import { ref } from 'vue'
 
 const style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
 const center = [12.550343, 55.665957];
 const zoom = 8;
 const coordinates = [12.550343, 55.665957];
+const displayPopup = ref(true);
+
+function togglePopup() {
+  displayPopup.value = !displayPopup.value;
+}
 
 </script>
 
