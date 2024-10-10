@@ -26,21 +26,6 @@
         </button>
       </mgl-custom-control>
       <mgl-marker :coordinates="markerCoordinates" color="#cc0000" :scale="0.5"/>
-
-      <mgl-geo-json-source source-id="geojson" :data="geojsonSource.data">
-	<mgl-line-layer
-	  v-if="geojsonSource.show"
-	  layer-id="geojson"
-	  :layout="layout"
-	  :paint="paint"
-	  @mouseenter="onMouseenter"
-	  />
-      </mgl-geo-json-source>
-
-      <mgl-vector-source source-id="libraries" :tiles="librariesSourceTiles">
-	<mgl-circle-layer layer-id="libraries" source-layer="libraries" :paint="librariesLayerCirclesPaint"/>
-      </mgl-vector-source>
-
     </mgl-map>
   </div>
   <div style="margin-bottom: 20px">Version: {{ mapVersion }}</div>
@@ -87,46 +72,16 @@ import {
   MglGeolocateControl,
   MglCustomControl,
   MglMarker,
-  MglGeoJsonSource,
-  MglLineLayer,
-  MglVectorSource,
-  MglCircleLayer
 } from '@indoorequal/vue-maplibre-gl';
 import { mdiCursorDefaultClick } from '@mdi/js';
-import { CircleLayerSpecification, LineLayerSpecification, LngLatLike, MapLayerMouseEvent } from 'maplibre-gl';
-import { FeatureCollection, LineString } from 'geojson';
+import { LngLatLike, MapLayerMouseEvent } from 'maplibre-gl';
 
 MglDefaults.style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
-console.log('MglDefaults', MglDefaults);
-
-const lineString = [
-  [ -122.483696, 37.833818 ],
-  [ -122.483482, 37.833174 ],
-  [ -122.483396, 37.8327 ],
-  [ -122.483568, 37.832056 ],
-  [ -122.48404, 37.831141 ],
-  [ -122.48404, 37.830497 ],
-  [ -122.483482, 37.82992 ],
-  [ -122.483568, 37.829548 ],
-  [ -122.48507, 37.829446 ],
-  [ -122.4861, 37.828802 ],
-  [ -122.486958, 37.82931 ],
-  [ -122.487001, 37.830802 ],
-  [ -122.487516, 37.831683 ],
-  [ -122.488031, 37.832158 ],
-  [ -122.488889, 37.832971 ],
-  [ -122.489876, 37.832632 ],
-  [ -122.490434, 37.832937 ],
-  [ -122.49125, 37.832429 ],
-  [ -122.491636, 37.832564 ],
-  [ -122.492237, 37.833378 ],
-  [ -122.493782, 37.833683 ]
-];
 
 export default defineComponent({
   name      : 'App',
   components: {
-    MglCircleLayer, MglVectorSource, MglLineLayer, MglGeoJsonSource, MglMarker, MglCustomControl,
+    MglMarker, MglCustomControl,
     MglGeolocateControl, MglScaleControl, MglNavigationControl, MglAttributionControl, MglFullscreenControl, MglMap
   },
   setup() {
@@ -134,69 +89,13 @@ export default defineComponent({
           mapVersion        = ref<string>(),
           showCustomControl = ref(true),
           loaded            = ref(0),
-          markerCoordinates = ref<LngLatLike>([ 13.377507, 52.516267 ]),
-          geojsonSource     = ref({
-            data: <FeatureCollection<LineString>>({
-              type    : 'FeatureCollection',
-              features: [
-                {
-                  type: 'Feature',
-                  properties: {},
-                  geometry  : {
-                    type: 'LineString',
-                    coordinates: [
-                      [ -122.483696, 37.833818 ],
-                      [ -122.483482, 37.833174 ]
-                    ]
-                  }
-                }
-              ]
-            }),
-            show: true
-    });
+          markerCoordinates = ref<LngLatLike>([ 13.377507, 52.516267 ]);
 
     watch(() => map.isLoaded, () => (console.log('IS LOADED', map)), { immediate: true });
     watch(() => map.isMounted, (v: boolean) => (console.log('IS MOUNTED', v)), { immediate: true });
 
     onMounted(() => {
       setTimeout(() => (markerCoordinates.value = [ 13.377507, 42.516267 ]), 5000);
-      setInterval(() => {
-	if (geojsonSource.value.data.features[ 0 ].geometry.coordinates.length >= lineString.length) {
-	  geojsonSource.value.data = <FeatureCollection<LineString>>{
-	    type    : 'FeatureCollection',
-	    features: [
-	      {
-		type      : 'Feature',
-		properties: {},
-		geometry  : {
-		  type       : 'LineString',
-		  coordinates: [
-		    [ -122.483696, 37.833818 ],
-		    [ -122.483482, 37.833174 ]
-		  ]
-		}
-	      }
-	    ]
-	  };
-	} else {
-	  geojsonSource.value.data = <FeatureCollection<LineString>>{
-	    type    : 'FeatureCollection',
-	    features: [
-	      {
-		type      : 'Feature',
-		properties: {},
-		geometry  : {
-		  type       : 'LineString',
-		  coordinates: [
-		    ...geojsonSource.value.data.features[ 0 ].geometry.coordinates,
-		    lineString[ geojsonSource.value.data.features[ 0 ].geometry.coordinates.length ]
-		  ]
-		}
-	      }
-	    ]
-	  };
-	}
-      }, 1000);
     });
 
     function onLoad(e: MglEvent) {
@@ -205,32 +104,14 @@ export default defineComponent({
       console.log(e.type, e, e.map.version);
     }
 
-    function onMouseenter(e: MapLayerMouseEvent) {
-      console.log('EVENT', e.type, e.lngLat);
-    }
-
     return {
-      showCustomControl, loaded, map, mapVersion, markerCoordinates, geojsonSource, onLoad, onMouseenter,
-      geojsonSourceData         : geojsonSource.data,
+      showCustomControl, loaded, map, mapVersion, markerCoordinates, onLoad,
       isZooming                 : ref(false),
       controlPosition           : ref(Position.TOP_LEFT),
       showMap                   : ref(true),
       center                    : [ -122.483696, 37.833818 ] as LngLatLike,
       zoom                      : 15,
       buttonIcon                : mdiCursorDefaultClick,
-      layout                    : {
-	'line-join': 'round',
-	'line-cap' : 'round'
-      } as LineLayerSpecification['layout'],
-      paint                     : {
-	'line-color': '#FF0000',
-	'line-width': 8
-      } as LineLayerSpecification['paint'],
-      librariesSourceTiles      : [ 'https://api.librarydata.uk/libraries/{z}/{x}/{y}.mvt' ],
-      librariesLayerCirclesPaint: {
-	'circle-radius': 5,
-	'circle-color' : '#1b5e20'
-      } as CircleLayerSpecification['paint']
     };
   }
 });
