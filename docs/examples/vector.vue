@@ -30,7 +30,7 @@ import {
 } from '@indoorequal/vue-maplibre-gl';
 import { CircleLayerSpecification, LineLayerSpecification, LngLatLike, MapLayerMouseEvent } from 'maplibre-gl';
 
-const style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
+const style = 'https://api.maptiler.com/maps/streets-v2/style.json?key=cQX2iET1gmOW38bedbUh';
 
 const center = [-3.002233964444031, 53.71773428766181];
 const zoom = 5;

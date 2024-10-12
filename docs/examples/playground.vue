@@ -76,7 +76,7 @@ import {
 import { mdiCursorDefaultClick } from '@mdi/js';
 import { LngLatLike, MapLayerMouseEvent } from 'maplibre-gl';
 
-MglDefaults.style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
+MglDefaults.style = 'https://api.maptiler.com/maps/streets-v2/style.json?key=cQX2iET1gmOW38bedbUh';
 
 export default defineComponent({
   name      : 'App',

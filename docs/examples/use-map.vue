@@ -29,7 +29,7 @@ import {
 } from '@indoorequal/vue-maplibre-gl';
 import { watch } from 'vue';
 
-const style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
+const style = 'https://api.maptiler.com/maps/streets-v2/style.json?key=cQX2iET1gmOW38bedbUh';
 const center = [12.550343, 55.665957];
 const zoom = 8;
 const mapOne = useMap();

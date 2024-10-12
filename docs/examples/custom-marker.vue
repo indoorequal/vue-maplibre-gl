@@ -22,7 +22,7 @@ import {
   MglMarker
 } from '@indoorequal/vue-maplibre-gl';
 
-const style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
+const style = 'https://api.maptiler.com/maps/streets-v2/style.json?key=cQX2iET1gmOW38bedbUh';
 const center = [12.550343, 55.665957];
 const zoom = 8;
 const coordinates = [12.550343, 55.665957];

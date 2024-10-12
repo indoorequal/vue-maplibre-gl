@@ -29,7 +29,7 @@ import {
   MglLineLayer,
 } from '@indoorequal/vue-maplibre-gl';
 
-const style = 'https://api.maptiler.com/maps/streets/style.json?key=cQX2iET1gmOW38bedbUh';
+const style = 'https://api.maptiler.com/maps/streets-v2/style.json?key=cQX2iET1gmOW38bedbUh';
 const center = [ -122.483696, 37.833818 ];
 const zoom = 15;
 
