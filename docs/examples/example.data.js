@@ -16,14 +16,14 @@ export default {
 <script setup>
 import { defineClientComponent } from 'vitepress';
 
-const Example = defineClientComponent(() => {
-  return import('./${path.basename(file)}');
-})
+const Example = defineClientComponent(
+  () => import('./${path.basename(file)}')
+);
 </script>
 
 <Example />
 \`\`\`vue
-${vueContent.slice(3).join('\n')}
+${vueContent.slice(3).join('\n').replaceAll('?key=', '?key=get_your_own_api_key_')}
 \`\`\`
 `;
       return {
