@@ -2,7 +2,6 @@
 //
 // Play with some of the components
 <template>
-<div>
   <div>
     <mgl-map
       v-if="showMap"
@@ -28,11 +27,10 @@
     <input type="checkbox" v-model="showMap" id="showmap">
     <label for="showmap">Show Map</label>
   </div>
-</div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, watch } from 'vue';
+<script setup lang="ts">
+import { ref, watch } from 'vue';
 import {
   MglDefaults,
   MglEvent,
@@ -48,39 +46,23 @@ import { LngLatLike, MapLayerMouseEvent } from 'maplibre-gl';
 
 MglDefaults.style = 'https://api.maptiler.com/maps/streets-v2/style.json?key=3YeFnghdqUJJpIvlgLti';
 
-export default defineComponent({
-  name      : 'App',
-  components: {
-    MglGeolocateControl,
-    MglScaleControl,
-    MglNavigationControl,
-    MglAttributionControl,
-    MglFullscreenControl,
-    MglMap
-  },
-  setup() {
-    const map               = useMap(),
-          mapVersion        = ref<string>(),
-          loaded            = ref(0);
+const map = useMap();
+const mapVersion= ref<string>();
+const loaded = ref(0);
+const isZooming = ref(false);
+const showMap = ref(true);
+const center = [ -122.483696, 37.833818 ] as LngLatLike;
+const zoom = 15;
 
-    watch(() => map.isLoaded, () => (console.log('IS LOADED', map)), { immediate: true });
-    watch(() => map.isMounted, (v: boolean) => (console.log('IS MOUNTED', v)), { immediate: true });
+watch(() => map.isLoaded, () => (console.log('IS LOADED', map)), { immediate: true });
 
-    function onLoad(e: MglEvent) {
-      loaded.value++;
-      mapVersion.value = e.map.version;
-      console.log(e.type, e, e.map.version);
-    }
+watch(() => map.isMounted, (v: boolean) => (console.log('IS MOUNTED', v)), { immediate: true });
 
-    return {
-      loaded, map, mapVersion, onLoad,
-      isZooming                 : ref(false),
-      showMap                   : ref(true),
-      center                    : [ -122.483696, 37.833818 ] as LngLatLike,
-      zoom                      : 15,
-    };
-  }
-});
+function onLoad(e: MglEvent) {
+  loaded.value++;
+  mapVersion.value = e.map.version;
+  console.log(e.type, e, e.map.version);
+}
 </script>
 
 <style lang="scss">
