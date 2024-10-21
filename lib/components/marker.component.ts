@@ -152,6 +152,7 @@ export default defineComponent({
     watch(
       () => props.coordinates,
       (v) => marker.value?.setLngLat(v),
+      { deep: true },
     );
     watch(
       () => props.draggable,
