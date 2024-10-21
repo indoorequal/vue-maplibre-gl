@@ -165,6 +165,7 @@ export default defineComponent({
           popup.setLngLat(v);
         }
       },
+      { deep: true },
     );
     watch(
       () => props.text,
