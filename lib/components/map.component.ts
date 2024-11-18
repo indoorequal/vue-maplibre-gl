@@ -428,6 +428,7 @@ export default defineComponent({
     "map:wheel",
     "map:terrain",
     "map:cooperativegestureprevented",
+    "map:projectiontransition",
     /**
      * Center property updated
      */
