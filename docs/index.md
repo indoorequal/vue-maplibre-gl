@@ -18,7 +18,7 @@ hero:
       link: /api/
 
 features:
-  - title: Support Maplibre-gl-js 4.x
+  - title: Support Maplibre-gl-js 5.x
   - title: Vue 3 support
   - title: Typescript support
 ---

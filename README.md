@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/dm/@indoorequal/vue-maplibre-gl?style=flat-square)](https://www.npmjs.com/package/@indoorequal/vue-maplibre-gl)
 [![size](https://img.shields.io/bundlephobia/minzip/@indoorequal/vue-maplibre-gl?label=size&style=flat-square)](https://bundlephobia.com/package/@indoorequal/vue-maplibre-gl)
 [![vue3](https://img.shields.io/badge/vue-3.x-brightgreen.svg?style=flat-square)](https://vuejs.org/)
-[![MaplibreGL-JS](https://img.shields.io/badge/Maplibre%20GL%20JS-4.x-brightgreen?style=flat-square)](https://maplibre.org/projects/maplibre-gl-js/)
+[![MaplibreGL-JS](https://img.shields.io/badge/Maplibre%20GL%20JS-5.x-brightgreen?style=flat-square)](https://maplibre.org/projects/maplibre-gl-js/)
 [![TypeScript](https://img.shields.io/badge/-TypeScript-informational?style=flat-square)](https://www.typescriptlang.org/)
 
 A small Vue 3 plugin for [maplibre-gl-js](https://github.com/maplibre/maplibre-gl-js).
@@ -13,7 +13,7 @@ This is a fork of [vue-maplibre-gl](https://github.com/razorness/vue-maplibre-gl
 
 ## Features
 
-- Supports MapLibre GL JS v4.x
+- Supports MapLibre GL JS v5.x
 - Typescript support
 - Components for map, controls, sources, markers, popup and layers
 - Support for custom controls
