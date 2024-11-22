@@ -39,7 +39,7 @@ export default defineComponent({
      */
     "dragend",
     /**
-     * Fired when the coordinates have been updated
+     * Fired when the coordinates have been updated when the marker is draggable
      *
      * @property {LgnLatLike} coordinates the new coordinates
      */
