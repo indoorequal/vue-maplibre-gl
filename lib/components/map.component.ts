@@ -1,3 +1,32 @@
+import { Position } from "@/lib/components/controls/position.enum";
+import { defaults } from "@/lib/defaults";
+import { isLngLatEqual } from "@/lib/lib/lng_lat";
+import {
+  MAP_EVENT_TYPES,
+  createEventHandler,
+  type MapEvent,
+  type MapEventHandler,
+} from "@/lib/lib/map.lib";
+import { registerMap } from "@/lib/lib/mapRegistry";
+import {
+  componentIdSymbol,
+  isInitializedSymbol,
+  isLoadedSymbol,
+  mapSymbol,
+  sourceIdSymbol,
+} from "@/lib/types";
+import {
+  Map as MaplibreMap,
+  type AttributionControlOptions,
+  type CameraUpdateTransformFunction,
+  type FitBoundsOptions,
+  type GestureOptions,
+  type LngLatBoundsLike,
+  type LngLatLike,
+  type MapEventType,
+  type RequestTransformFunction,
+  type StyleSpecification,
+} from "maplibre-gl";
 import {
   defineComponent,
   getCurrentInstance,
@@ -6,42 +35,13 @@ import {
   nextTick,
   onBeforeUnmount,
   onMounted,
-  type PropType,
   provide,
   ref,
   shallowRef,
-  type SlotsType,
   watch,
+  type PropType,
+  type SlotsType,
 } from "vue";
-import {
-  Map as MaplibreMap,
-  type FitBoundsOptions,
-  type GestureOptions,
-  type LngLatBoundsLike,
-  type LngLatLike,
-  type MapEventType,
-  type RequestTransformFunction,
-  type StyleSpecification,
-  type CameraUpdateTransformFunction,
-  type AttributionControlOptions,
-} from "maplibre-gl";
-import {
-  componentIdSymbol,
-  isInitializedSymbol,
-  isLoadedSymbol,
-  mapSymbol,
-  sourceIdSymbol,
-} from "@/lib/types";
-import { defaults } from "@/lib/defaults";
-import {
-  MAP_EVENT_TYPES,
-  createEventHandler,
-  type MapEvent,
-  type MapEventHandler,
-} from "@/lib/lib/map.lib";
-import { isLngLatEqual } from "@/lib/lib/lng_lat";
-import { Position } from "@/lib/components/controls/position.enum";
-import { registerMap } from "@/lib/lib/mapRegistry";
 
 /**
  * The map component
@@ -458,6 +458,9 @@ export default defineComponent({
       >(),
       registryItem = registerMap(component, map, props.mapKey);
 
+    // Add resizeObserver ref
+    const resizeObserver = shallowRef<ResizeObserver>();
+
     provide(mapSymbol, map);
     provide(isLoadedSymbol, isLoaded);
     provide(isInitializedSymbol, isInitialized);
@@ -641,6 +644,16 @@ export default defineComponent({
 
       // automatic re-initialization of map on CONTEXT_LOST_WEBGL
       map.value.getCanvas().addEventListener("webglcontextlost", restart);
+
+      // Add resize observer
+      if (props.trackResize && container.value) {
+        resizeObserver.value = new ResizeObserver(() => {
+          if (map.value) {
+            map.value.resize();
+          }
+        });
+        resizeObserver.value.observe(container.value);
+      }
     }
 
     async function dispose() {
@@ -657,6 +670,12 @@ export default defineComponent({
         });
         // destroy map
         map.value.remove();
+      }
+
+      // Add cleanup for resize observer
+      if (resizeObserver.value) {
+        resizeObserver.value.disconnect();
+        resizeObserver.value = undefined;
       }
     }
 
