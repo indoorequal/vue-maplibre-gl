@@ -32,7 +32,6 @@ import {
   mapSymbol,
   sourceIdSymbol,
 } from "@/lib/types";
-import { defaults } from "@/lib/defaults";
 import {
   MAP_EVENT_TYPES,
   createEventHandler,
@@ -70,14 +69,12 @@ export default defineComponent({
      */
     antialias: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.antialias,
     },
     /**
      * If set, an AttributionControl will be added to the map with the provided options. To disable the attribution control, pass false. Note: showing the logo of MapLibre is not required for using MapLibre. Default Value ts compact: true, customAttribution: "MapLibre ...".
      */
     attributionControl: {
       type: [Boolean, Object] as PropType<false | AttributionControlOptions>,
-      default: () => defaults.attributionControl,
     },
     /**
      * The initial bearing (rotation) of the map, measured in degrees counter-clockwise from north. If bearing is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to 0. Default Value `0`
@@ -85,28 +82,24 @@ export default defineComponent({
      */
     bearing: {
       type: Number as PropType<number>,
-      default: () => defaults.bearing,
     },
     /**
      * The threshold, measured in degrees, that determines when the map's bearing will snap to north. For example, with a bearingSnap of 7, if the user rotates the map within 7 degrees of north, the map will automatically snap to exact north. Default Value `7`
      */
     bearingSnap: {
       type: Number as PropType<number>,
-      default: () => defaults.bearingSnap,
     },
     /**
      * The initial bounds of the map. If bounds is specified, it overrides center and zoom constructor options.
      */
     bounds: {
       type: [Array, Object] as PropType<LngLatBoundsLike>,
-      default: () => defaults.bounds,
     },
     /**
      * If true, the "box zoom" interaction is enabled (see BoxZoomHandler). Default Value ts true
      */
     boxZoom: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.boxZoom,
     },
     /**
      *  The initial geographical centerpoint of the map. If center is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to [0, 0] Note: MapLibre GL JS uses longitude, latitude coordinate order (as opposed to latitude, longitude) to match GeoJSON. Default Value ts [0, 0]
@@ -114,102 +107,87 @@ export default defineComponent({
      */
     center: {
       type: [Array, Object] as PropType<LngLatLike>,
-      default: () => defaults.center,
     },
     /**
      * The max number of pixels a user can shift the mouse pointer during a click for it to be considered a valid click (as opposed to a mouse drag). Default Value ts true
      */
     clickTolerance: {
       type: Number as PropType<number>,
-      default: () => defaults.clickTolerance,
     },
     /**
      * If true, Resource Timing API information will be collected for requests made by GeoJSON and Vector Tile web workers (this information is normally inaccessible from the main Javascript thread). Information will be returned in a resourceTiming property of relevant data events. Default Value `false`
      */
     collectResourceTiming: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.collectResourceTiming,
     },
     /**
      * If true, symbols from multiple sources can collide with each other during collision detection. If false, collision detection is run separately for the symbols in each source. Default Value `true`
      */
     crossSourceCollisions: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.crossSourceCollisions,
     },
     /**
      * If true, the "drag to pan" interaction is enabled. An Object value is passed as options to DragPanHandler#enable. Default Value `true`
      */
     dragPan: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.dragPan,
     },
     /**
      * If true, the "drag to rotate" interaction is enabled (see DragRotateHandler). Default Value `true`
      */
     dragRotate: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.dragRotate,
     },
     /**
      * If true, the "double click to zoom" interaction is enabled (see DoubleClickZoomHandler). Default Value `true`
      */
     doubleClickZoom: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.doubleClickZoom,
     },
     /**
      * If true, the map's position (zoom, center latitude, center longitude, bearing, and pitch) will be synced with the hash fragment of the page's URL. For example, http://path/to/my/page.html#2.59/39.26/53.07/-24.1/60. An additional string may optionally be provided to indicate a parameter-styled hash, e.g. http://path/to/my/page.html#map=2.59/39.26/53.07/-24.1/60&foo=bar, where foo is a custom parameter and bar is an arbitrary hash distinct from the map hash. Default Value `false`
      */
     hash: {
       type: [Boolean, String] as PropType<boolean | string>,
-      default: () => defaults.hash,
     },
     /**
      * Controls the duration of the fade-in/fade-out animation for label collisions after initial map load, in milliseconds. This setting affects all symbol layers. This setting does not affect the duration of runtime styling transitions or raster tile cross-fading. Default Value `300`
      */
     fadeDuration: {
       type: Number as PropType<number>,
-      default: () => defaults.fadeDuration,
     },
     /**
      * If true, map creation will fail if the performance of MapLibre GL JS would be dramatically worse than expected (i.e. a software renderer would be used). Default Value `false`
      */
     failIfMajorPerformanceCaveat: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.failIfMajorPerformanceCaveat,
     },
     /**
      * A FitBoundsOptions options object to use only when fitting the initial bounds provided above.
      */
     fitBoundsOptions: {
       type: Object as PropType<FitBoundsOptions>,
-      default: () => defaults.fitBoundsOptions,
     },
     /**
      * If false, no mouse, touch, or keyboard listeners will be attached to the map, so it will not respond to interaction. Default Value `true`
      */
     interactive: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.interactive,
     },
     /**
      * If true, keyboard shortcuts are enabled (see KeyboardHandler). Default Value `true`
      */
     keyboard: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.keyboard,
     },
     /**
      * A patch to apply to the default localization table for UI strings, e.g. control tooltips. The locale object maps namespaced UI string IDs to translated strings in the target language; see src/ui/default_locale.js for an example with all supported string IDs. The object may specify all UI strings (thereby adding support for a new translation) or only a subset of strings (thereby patching the default translation table). Default Value `null`
      */
     locale: {
       type: Object as PropType<Record<string, string>>,
-      default: () => defaults.locale,
     },
     localIdeographFontFamily: {
       type: String as PropType<string>,
-      default: () => defaults.localIdeographFontFamily,
     },
     /**
      * A string representing the position of the MapLibre wordmark on the map. Valid options are top-left,top-right, bottom-left, or bottom-right. Default Value 'bottom-left'
@@ -217,88 +195,77 @@ export default defineComponent({
     logoPosition: {
       type: [String] as PropType<Position>,
       validator: (val: Position) => val in Position,
-      default: () => defaults.logoPosition,
     },
     /**
      * If set, the map will be constrained to the given bounds.
      */
     maxBounds: {
       type: [Array, Object] as PropType<LngLatBoundsLike>,
-      default: () => defaults.maxBounds,
     },
     /**
      * The maximum pitch of the map (0-85). Values greater than 60 degrees are experimental and may result in rendering issues. If you encounter any, please raise an issue with details in the MapLibre project. Default Value `60`
      */
     maxPitch: {
       type: Number as PropType<number>,
-      default: () => defaults.maxPitch,
     },
     /**
      * The maximum zoom level of the map (0-24). Default Value `22`
      */
     maxZoom: {
       type: Number as PropType<number>,
-      default: () => defaults.maxZoom,
     },
     /**
      * The minimum pitch of the map (0-85). Values greater than 60 degrees are experimental and may result in rendering issues. If you encounter any, please raise an issue with details in the MapLibre project. Default Value `0`
      */
     minPitch: {
       type: Number as PropType<number>,
-      default: () => defaults.minPitch,
     },
     /**
      * The minimum zoom level of the map (0-24). Default Value `0`
      */
     minZoom: {
       type: Number as PropType<number>,
-      default: () => defaults.minZoom,
     },
     /**
      * If true, the map's canvas can be exported to a PNG using map.getCanvas().toDataURL(). This is false by default as a performance optimization. Default Value `false`
      */
     preserveDrawingBuffer: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.preserveDrawingBuffer,
     },
     /**
      * The initial pitch (tilt) of the map, measured in degrees away from the plane of the screen (0-85). If pitch is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to 0. Values greater than 60 degrees are experimental and may result in rendering issues. If you encounter any, please raise an issue with details in the MapLibre project. Default Value `0`
      * @model
      */
-    pitch: { type: Number as PropType<number>, default: () => defaults.pitch },
+    pitch: {
+      type: Number as PropType<number>,
+    },
     /**
      * If false, the map's pitch (tilt) control with "drag to rotate" interaction will be disabled. Default Value `true`
      */
     pitchWithRotate: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.pitchWithRotate,
     },
     /**
      * If false, the map won't attempt to re-request tiles once they expire per their HTTP cacheControl/expires headers. Default Value `true`
      */
     refreshExpiredTiles: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.refreshExpiredTiles,
     },
     renderWorldCopies: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.renderWorldCopies,
     },
     scrollZoom: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.scrollZoom,
     },
     mapStyle: {
       type: [String, Object] as PropType<string | StyleSpecification>,
-      default: () => defaults.style,
     },
     /**
      * If `true`, the map will automatically resize when the browser window resizes.
-     * Default value false
+     * Default value true
      */
     trackResize: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.trackResize,
     },
     /**
      * A callback run before the Map makes a request for an external URL. The callback can be used to modify the url, set headers, or set the credentials property for cross-origin requests.
@@ -306,7 +273,6 @@ export default defineComponent({
      */
     transformRequest: {
       type: Function as PropType<RequestTransformFunction>,
-      default: defaults.transformRequest,
     },
     /**
      * A callback run before the map's camera is moved due to user input or animation. The callback can be used to modify the new center, zoom, pitch and bearing.
@@ -315,7 +281,6 @@ export default defineComponent({
      */
     transformCameraUpdate: {
       type: Function as PropType<CameraUpdateTransformFunction>,
-      default: defaults.transformCameraUpdate,
     },
     /**
      * The map's TwoFingersTouchZoomRotateHandler, which allows the user to zoom or rotate the map with touch gestures.
@@ -323,7 +288,6 @@ export default defineComponent({
      */
     touchZoomRotate: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.touchZoomRotate,
     },
     /**
      * The map's TwoFingersTouchPitchHandler, which allows the user to pitch the map with touch gestures.
@@ -331,21 +295,21 @@ export default defineComponent({
      */
     touchPitch: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.touchPitch,
     },
 
     /**
      * The initial zoom level of the map. If zoom is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to 0. Default Value `0`
      * @model
      */
-    zoom: { type: Number as PropType<number>, default: () => defaults.zoom },
+    zoom: {
+      type: Number as PropType<number>,
+    },
     /**
      * The maximum number of tiles stored in the tile cache for a given source. If omitted, the cache will be dynamically sized based on the current viewport which can be set using `maxTileCacheZoomLevels` constructor options.
      * Default value null
      */
     maxTileCacheSize: {
       type: Number as PropType<number>,
-      default: () => defaults.maxTileCacheSize,
     },
     /**
      * The name or symbol to reference a map via useMap composable
@@ -356,7 +320,6 @@ export default defineComponent({
      */
     pixelRatio: {
       type: Number as PropType<number>,
-      default: () => defaults.pixelRatio,
     },
     /**
      * If false, style validation will be skipped. Useful in production environment.
@@ -365,7 +328,6 @@ export default defineComponent({
      */
     validateStyle: {
       type: Boolean as PropType<boolean>,
-      default: () => defaults.validateStyle,
     },
     /**
      * The map's {@link CooperativeGesturesHandler}, which allows the user to see cooperative gesture info when user tries to zoom in/out.
@@ -373,7 +335,6 @@ export default defineComponent({
      */
     cooperativeGestures: {
       type: Object as PropType<GestureOptions>,
-      default: () => defaults.cooperativeGestures,
     },
   },
   emits: [
