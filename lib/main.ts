@@ -21,7 +21,6 @@ export * from "@/lib/components";
 // addition exports
 export * from "@/lib/types";
 export { useMap } from "@/lib/lib/mapRegistry";
-export { defaults as MglDefaults } from "@/lib/defaults";
 export { Position } from "@/lib/components/controls/position.enum";
 export { useControl } from "@/lib/composable/useControl";
 export { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
