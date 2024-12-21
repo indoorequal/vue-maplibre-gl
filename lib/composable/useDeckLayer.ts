@@ -33,9 +33,9 @@ export function useDeckLayer(
   function addLayer() {
     overlay.value = new MapboxOverlay({
       layers: [layerConstructor],
-      ...(props.getTooltip && {
-        getTooltip: (f) => props.getTooltip?.(f),
-      }),
+      getTooltip: props.getTooltip
+        ? (f: PickingInfo) => props.getTooltip!(f)
+        : undefined,
     });
 
     map.value!.addControl(overlay.value);
