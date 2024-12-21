@@ -24,7 +24,7 @@ export default defineConfig({
 */`)
   ],
   ssr    : {
-    external: [ 'vue', 'maplibre-gl', 'geojson' ]
+    external: [ 'vue', 'maplibre-gl', 'geojson', '@deck.gl/core', '@deck.gl/layers', '@deck.gl/mapbox' ]
   },
   build  : {
     sourcemap    : true,
@@ -39,7 +39,10 @@ export default defineConfig({
       external: [
 	'vue',
 	'maplibre-gl',
-	'geojson'
+	'geojson',
+  '@deck.gl/core',
+  '@deck.gl/layers',
+  '@deck.gl/mapbox'
       ],
       output  : {
 	assetFileNames: (assetInfo) => {
@@ -51,7 +54,10 @@ export default defineConfig({
 	globals: {
 	  vue          : 'Vue',
 	  'maplibre-gl': 'maplibregl',
-	  geojson      : 'geojson'
+	  geojson      : 'geojson',
+    '@deck.gl/core'   : 'deckGlCore',
+    '@deck.gl/layers' : 'deckGlLayers',
+    '@deck.gl/mapbox' : 'deckGlMapbox'
 	},
       },
     }
