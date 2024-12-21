@@ -68,7 +68,15 @@ export type PointType =
   | "text+circle"
   | "text+icon";
 
-export type TooltipContent = string | HTMLElement | null;
+export type TooltipContent =
+  | null
+  | string
+  | {
+  text?: string;
+  html?: string;
+  className?: string;
+  style?: Partial<CSSStyleDeclaration>;
+};
 
 export const baseLayerProps: ComponentPropsOptions = {
   // basic props
