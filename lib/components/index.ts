@@ -24,3 +24,8 @@ export { default as MglHillshadeLayer } from "./layers/hillshade.layer";
 export { default as MglLineLayer } from "./layers/line.layer";
 export { default as MglRasterLayer } from "./layers/raster.layer";
 export { default as MglSymbolLayer } from "./layers/symbol.layer";
+
+// deck layers
+export { default as MglDeckGeojsonLayer } from "./deck-layers/geojson.layer";
+export { default as MglDeckArcLayer } from "./deck-layers/arc.layer";
+
