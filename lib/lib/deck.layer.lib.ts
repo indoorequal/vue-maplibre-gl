@@ -72,11 +72,11 @@ export type TooltipContent =
   | null
   | string
   | {
-  text?: string;
-  html?: string;
-  className?: string;
-  style?: Partial<CSSStyleDeclaration>;
-};
+      text?: string;
+      html?: string;
+      className?: string;
+      style?: Partial<CSSStyleDeclaration>;
+    };
 
 export const baseLayerProps: ComponentPropsOptions = {
   // basic props
@@ -214,6 +214,13 @@ export const baseLayerProps: ComponentPropsOptions = {
     type: Number as PropType<number | null>,
     default: undefined,
   },
+
+  // custom tooltip prop
+  getTooltip: {
+    type: Function as unknown as PropType<
+      ((info: PickingInfo) => TooltipContent) | null
+    >,
+  },
 };
 export const baseLayerKeys: (keyof LayerProps)[] = [
   "id",
@@ -297,11 +304,6 @@ export function arcProps(): ComponentPropsOptions {
     getTilt: {
       type: Number as PropType<Accessor<unknown, number>>,
       default: 0,
-    },
-    getTooltip: {
-      type: Function as unknown as PropType<
-        ((info: PickingInfo) => TooltipContent) | null
-      >,
     },
   };
 }
@@ -556,11 +558,6 @@ export function geojsonProps(): ComponentPropsOptions {
     textFontSettings: {
       type: Object,
     },
-    getTooltip: {
-      type: Function as unknown as PropType<
-        ((info: PickingInfo) => TooltipContent) | null
-      >,
-    },
   };
 }
 export const geoJsonPropsKeys: (keyof GeoJsonLayerProps)[] = [
@@ -618,6 +615,158 @@ export const geoJsonPropsKeys: (keyof GeoJsonLayerProps)[] = [
   "textOutlineWidth",
   "textBillboard",
   "textFontSettings",
+];
+
+export function lineProps(): ComponentPropsOptions {
+  return {
+    ...baseLayerProps,
+    widthUnits: {
+      type: String as PropType<Unit>,
+      default: "pixels",
+    },
+
+    widthScale: {
+      type: Number as PropType<number>,
+      default: 1,
+    },
+
+    widthMinPixels: {
+      type: Number as PropType<number>,
+      default: 0,
+    },
+
+    widthMaxPixels: {
+      type: Number as PropType<number>,
+      default: Number.MAX_SAFE_INTEGER,
+    },
+    getSourcePosition: {
+      type: Function as unknown as PropType<Accessor<unknown, Position>>,
+      default: (object: { sourcePosition: Position }) => object.sourcePosition,
+    },
+    getTargetPosition: {
+      type: Function as unknown as PropType<Accessor<unknown, Position>>,
+      default: (object: { targetPosition: Position }) => object.targetPosition,
+    },
+
+    getColor: {
+      type: [Function, Array] as unknown as PropType<Accessor<unknown, Color>>,
+      default: () => [0, 0, 0, 255],
+    },
+    getWidth: {
+      type: Number as PropType<Accessor<unknown, number>>,
+      default: 1,
+    },
+  };
+}
+export const linePropsKeys: (keyof LineLayerProps)[] = [
+  ...baseLayerKeys,
+  "widthUnits",
+  "widthScale",
+  "widthMinPixels",
+  "widthMaxPixels",
+  "getSourcePosition",
+  "getTargetPosition",
+  "getColor",
+  "getWidth",
+];
+
+export function scatteredPlotProps(): ComponentPropsOptions {
+  return {
+    ...baseLayerProps,
+    radiusUnits: {
+      type: String as PropType<Unit>,
+      default: "meters",
+    },
+    radiusScale: {
+      type: Number as PropType<number>,
+      default: 1,
+    },
+    lineWidthUnits: {
+      type: String as PropType<Unit>,
+      default: "meters",
+    },
+    lineWidthScale: {
+      type: Number as PropType<number>,
+      default: 1,
+    },
+    filled: {
+      type: Boolean as PropType<boolean>,
+      default: true,
+    },
+    stroked: {
+      type: Boolean as PropType<boolean>,
+      default: true,
+    },
+    radiusMinPixels: {
+      type: Number as PropType<number>,
+      default: 0,
+    },
+    radiusMaxPixels: {
+      type: Number as PropType<number>,
+      default: Number.MAX_SAFE_INTEGER,
+    },
+    lineWidthMinPixels: {
+      type: Number as PropType<number>,
+      default: 0,
+    },
+    lineWidthMaxPixels: {
+      type: Number as PropType<number>,
+      default: Number.MAX_SAFE_INTEGER,
+    },
+    billboard: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
+    antialiasing: {
+      type: Boolean as PropType<boolean>,
+      default: true,
+    },
+    getPosition: {
+      type: Function as unknown as PropType<Accessor<unknown, Position>>,
+      default: (object: { position: Position }) => object.position,
+    },
+    getRadius: {
+      type: [Number, Function] as PropType<Accessor<unknown, number>>,
+      default: 1,
+    },
+    getColor: {
+      type: [Function, Array] as unknown as PropType<Accessor<unknown, Color>>,
+      default: () => [0, 0, 0, 255],
+    },
+    getFillColor: {
+      type: [Array, Function] as unknown as PropType<Accessor<unknown, Color>>,
+      default: () => [0, 0, 0, 255],
+    },
+    getLineColor: {
+      type: [Array, Function] as unknown as PropType<Accessor<unknown, Color>>,
+      default: () => [0, 0, 0, 255],
+    },
+    getLineWidth: {
+      type: [Number, Function] as PropType<Accessor<unknown, number>>,
+      default: 1,
+    },
+  };
+}
+export const scatteredPlotPropsKeys: (keyof ScatterplotLayerProps)[] = [
+  ...baseLayerKeys,
+  "radiusUnits",
+  "radiusScale",
+  "lineWidthUnits",
+  "lineWidthScale",
+  "filled",
+  "stroked",
+  "radiusMinPixels",
+  "radiusMaxPixels",
+  "lineWidthMinPixels",
+  "lineWidthMaxPixels",
+  "billboard",
+  "antialiasing",
+  "getPosition",
+  "getRadius",
+  "getColor",
+  "getFillColor",
+  "getLineColor",
+  "getLineWidth",
 ];
 
 export function genDeckLayerOpts<T extends DeckLayerProps>(
