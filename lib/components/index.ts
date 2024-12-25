@@ -28,4 +28,6 @@ export { default as MglSymbolLayer } from "./layers/symbol.layer";
 // deck layers
 export { default as MglDeckGeojsonLayer } from "./deck-layers/geojson.layer";
 export { default as MglDeckArcLayer } from "./deck-layers/arc.layer";
+export { default as MglDeckLineLayer } from "./deck-layers/line.layer";
+export { default as MglDeckScatteredPlotLayer } from "./deck-layers/scatteredPlot.layer";
 
