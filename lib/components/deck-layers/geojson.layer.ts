@@ -10,7 +10,7 @@ import {
 } from "@/lib/lib/deck.layer.lib";
 
 /**
- * Deck.gl Arc Layer
+ * Deck.gl Geojson Layer
  *
  * See the [https://deck.gl/docs/api-reference/layers/geojson-layer]
  */
