@@ -1,3 +1,7 @@
+// Deck Geojson Layer
+//
+// A Deck.gl Geojson Layer Example
+
 <template>
   <MglMap height="100vh" :map-style="style" :center :zoom>
     <MglDeckGeojsonLayer

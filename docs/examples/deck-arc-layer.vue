@@ -1,3 +1,7 @@
+// Deck Arc Layer
+//
+// A Deck.gl Arc Layer Example
+
 <template>
   <MglMap
     height="100vh"

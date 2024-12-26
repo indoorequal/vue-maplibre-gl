@@ -1,13 +1,25 @@
+// Deck Scattered Plot Layer
+//
+// A Deck.gl Scattered Plot Layer Example
+
 <template>
-  <MglMap height="100vh" :map-style="style" :center :zoom>
+  <MglMap height="100vh" :map-style="style" :center :zoom :maxZoom :pitch>
     <MglDeckScatteredPlotLayer
-      id="people-in-NY"
+      id="ScatterplotLayer"
       :data="DATA_URL"
-      :radiusScale="radius"
-      :radiusMinPixels="0.25"
-      :getPosition="(d) => [d[0], d[1], 0]"
-      :getFillColor="(d) => (d[2] === 1 ? MALE_COLOR : FEMALE_COLOR)"
-      :getRadius="1"
+      :radiusScale="6"
+      :getPosition="d => d.coordinates"
+      :getFillColor="[255, 140, 0]"
+      :getLineColor="[0, 0, 0]"
+      :getRadius="d => Math.sqrt(d.exits)"
+      :lineWidthMinPixels="1"
+      :radiusMaxPixels="100"
+      :radiusMinPixels="1"
+      :stroked="true"
+      :opacity="0.8"
+      :pickable="true"
+      :getTooltip="({object}) => object && object.name"
+
     />
   </MglMap>
 </template>
@@ -15,15 +27,12 @@
 <script setup lang="ts">
 import {MglMap, MglDeckScatteredPlotLayer} from '@indoorequal/vue-maplibre-gl'
 
-const MALE_COLOR = [0, 128, 255]
-const FEMALE_COLOR = [255, 0, 128]
-
-// Source data CSV
 const DATA_URL =
-  'https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/scatterplot/manhattan.json'
+  'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-stations.json'
 
-const center =[-74, 40.7]
+const center =[-122.4, 37.74]
 const zoom = 11
 const style = 'https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json'
-const radius = 30
+const maxZoom = 20
+const pitch = 30
 </script>
