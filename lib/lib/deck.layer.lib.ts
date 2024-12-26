@@ -214,6 +214,9 @@ export const baseLayerProps: ComponentPropsOptions = {
     type: Number as PropType<number | null>,
     default: undefined,
   },
+  updateTrigger: {
+    type: Object as PropType<Record<string, unknown>>,
+  },
 
   // custom tooltip prop
   getTooltip: {
