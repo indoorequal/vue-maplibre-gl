@@ -12,7 +12,7 @@ import {
 /**
  * Deck.gl Line Layer
  *
- * See the [https://deck.gl/docs/api-reference/layers/line-layer]
+ * See the [Deck.gl Line Layer docs](https://deck.gl/docs/api-reference/layers/line-layer)
  */
 export default defineComponent({
   name: "MglDeckLineLayer",
