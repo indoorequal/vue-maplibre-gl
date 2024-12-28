@@ -12,7 +12,7 @@ import {
 /**
  * Deck.gl ScatteredPlot Layer
  *
- * See the [https://deck.gl/docs/api-reference/layers/scatterplot-layer]
+ * See the [Deck.gl ScatteredPlot Layer docs](https://deck.gl/docs/api-reference/layers/scatterplot-layer)
  */
 export default defineComponent({
   name: "MglDeckScatteredPlotLayer",

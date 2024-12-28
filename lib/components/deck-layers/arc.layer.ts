@@ -12,7 +12,7 @@ import {
 /**
  * Deck.gl Arc Layer
  *
- * See the [https://deck.gl/docs/api-reference/layers/arc-layer]
+ * See the [Deck.gl Arc Layer docs ](https://deck.gl/docs/api-reference/layers/arc-layer)
  */
 export default defineComponent({
   name: "MglDeckArcLayer",

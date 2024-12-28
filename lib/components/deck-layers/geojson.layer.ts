@@ -12,7 +12,7 @@ import {
 /**
  * Deck.gl Geojson Layer
  *
- * See the [https://deck.gl/docs/api-reference/layers/geojson-layer]
+ * See the [Deck.gl Geojson Layer docs](https://deck.gl/docs/api-reference/layers/geojson-layer)
  */
 export default defineComponent({
   name: "MglDeckGeojsonLayer",
