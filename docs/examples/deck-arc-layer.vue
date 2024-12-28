@@ -4,13 +4,13 @@
 
 <template>
   <MglMap
-    height="100vh"
     :map-style="style"
     :center
     :zoom
     :maxZoom
     :pitch
     :bearing
+    height="500px"
   >
     <MglDeckArcLayer
       id="ArcLayer"
@@ -44,3 +44,7 @@ const bearing = ref(0);
 const data =
   "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart-segments.json";
 </script>
+
+<style lang="scss">
+@import "maplibre-gl/dist/maplibre-gl.css";
+</style>

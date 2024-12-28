@@ -3,7 +3,7 @@
 // A Deck.gl Geojson Layer Example
 
 <template>
-  <MglMap height="100vh" :map-style="style" :center :zoom>
+  <MglMap :map-style="style" :center :zoom height="500px">
     <MglDeckGeojsonLayer
       id="deck-gl-geojson"
       :data
@@ -48,3 +48,7 @@ const zoom = ref(11);
 const data =
   "https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/bart.geo.json";
 </script>
+
+<style lang="scss">
+@import "maplibre-gl/dist/maplibre-gl.css";
+</style>
