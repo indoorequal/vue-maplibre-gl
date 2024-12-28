@@ -52,7 +52,6 @@
 </template>
 
 <script setup lang="ts">
-import { MapViewState, PickingInfo } from "@deck.gl/core";
 import {
   MglMap,
   MglDeckScatteredPlotLayer,
@@ -67,21 +66,7 @@ const DATA_URL = {
     "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/line/heathrow-flights.json",
 };
 
-type Airport = {
-  type: "major" | "mid" | "small";
-  name: string;
-  abbrev: string; // airport code
-  coordinates: [longitude: number, latitude: number];
-};
-
-type FlightPath = {
-  start: [longitude: number, latitude: number, altitude: number];
-  end: [longitude: number, latitude: number, altitude: number];
-  country: string;
-  name: string; // tail number
-};
-
-const INITIAL_VIEW_STATE: MapViewState = {
+const INITIAL_VIEW_STATE = {
   latitude: 47.65,
   longitude: 7,
   zoom: 4.5,
@@ -93,11 +78,11 @@ const INITIAL_VIEW_STATE: MapViewState = {
 const MAP_STYLE =
   "https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json";
 
-function getTooltip({ object }: PickingInfo) {
+function getTooltip({ object }) {
   return (
     object &&
     `\
-  ${(object as FlightPath).country || (object as Airport).abbrev || ""}
+  ${object.country || object.abbrev || ""}
   ${object.name.indexOf("0x") >= 0 ? "" : object.name}`
   );
 }
@@ -107,11 +92,8 @@ const flightPaths = DATA_URL.FLIGHT_PATHS;
 const lineWidth = 3;
 
 const mapStyle = MAP_STYLE;
-const center = [INITIAL_VIEW_STATE.longitude, INITIAL_VIEW_STATE.latitude];
-const zoom = INITIAL_VIEW_STATE.zoom;
-const maxZoom = INITIAL_VIEW_STATE.maxZoom;
-const pitch = INITIAL_VIEW_STATE.pitch;
-const bearing = INITIAL_VIEW_STATE.bearing;
+const { longitude, latitude, zoom, maxZoom, pitch, bearing } = INITIAL_VIEW_STATE;
+const center = [longitude, latitude];
 </script>
 
 <style lang="scss">
