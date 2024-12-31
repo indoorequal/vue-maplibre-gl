@@ -2,7 +2,7 @@ import type {
   DeckLayer,
   DeckLayerProps,
   TooltipContent,
-} from "@/lib/lib/deck.layer.lib.ts";
+} from "@/lib/lib/deck.layer.lib";
 import {
   createCommentVNode,
   inject,
