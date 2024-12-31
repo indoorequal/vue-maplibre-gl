@@ -30,10 +30,10 @@ import {
   type LayerProps,
   type LayerData,
   type Accessor,
-  type Material,
+  type Material, AccessorFunction
 } from "@deck.gl/core";
 import type { MjolnirEvent } from "mjolnir.js";
-import type { Feature, Geometry } from "geojson";
+import type { Feature, Geometry, Polygon } from "geojson";
 
 export type DeckLayer =
   | ArcLayer
@@ -771,6 +771,110 @@ export const scatteredPlotPropsKeys: (keyof ScatterplotLayerProps)[] = [
   "getLineColor",
   "getLineWidth",
 ];
+
+export function polygonProps(): ComponentPropsOptions {
+  return {
+    ...baseLayerProps,
+    filled: {
+      type: Boolean as PropType<boolean>,
+      default: true,
+    },
+    stroked: {
+      type: Boolean as PropType<boolean>,
+      default: true,
+    },
+    extruded: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
+    wireframe: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
+    elevationScale: {
+      type: Number as PropType<number>,
+      default: 1,
+    },
+    lineWidthUnits: {
+      type: String as PropType<Unit>,
+      default: "meters",
+    },
+    lineWidthScale: {
+      type: Number as PropType<number>,
+      default: 1,
+    },
+    lineWidthMinPixels: {
+      type: Number as PropType<number>,
+      default: 0,
+    },
+    lineWidthMaxPixels: {
+      type: Number as PropType<number>,
+      default: Number.MAX_SAFE_INTEGER,
+    },
+    lineJointRounded: {
+      type: Boolean as PropType<boolean>,
+      default: false,
+    },
+    lineMiterLimit: {
+      type: Number as PropType<number>,
+      default: 4,
+    },
+    material: {
+      type: [Boolean, Object] as PropType<Material>,
+      default: true,
+    },
+    _normalize: {
+      type: Boolean as PropType<boolean>,
+      default: true,
+    },
+    _windingOrder: {
+      type: String as PropType<'CW' | 'CCW'>,
+      default: "CW",
+    },
+    getPolygon: {
+      type: Function as PropType<AccessorFunction<unknown, unknown>>,
+      default: (object: { polygon: Polygon }) => object.polygon,
+    },
+    getFillColor: {
+      type: [Array, Function] as unknown as PropType<Accessor<unknown, Color>>,
+      default: () => [0, 0, 0, 255],
+    },
+    getLineColor: {
+      type: [Array, Function] as unknown as PropType<Accessor<unknown, Color>>,
+      default: () => [0, 0, 0, 255],
+    },
+    getLineWidth: {
+      type: [Number, Function] as PropType<Accessor<unknown, number>>,
+      default: 1,
+    },
+    getElevation: {
+      type: [Number, Function] as PropType<Accessor<unknown, number>>,
+      default: 1000,
+    }
+  };
+}
+export const polygonPropsKeys: (keyof PolygonLayerProps)[] = [
+  ...baseLayerKeys,
+  'filled',
+  'stroked',
+  'extruded',
+  'wireframe',
+  'elevationScale',
+  'lineWidthUnits',
+  'lineWidthScale',
+  'lineWidthMinPixels',
+  'lineWidthMaxPixels',
+  'lineJointRounded',
+  'lineMiterLimit',
+  'material',
+  '_normalize',
+  '_windingOrder',
+  'getPolygon',
+  'getFillColor',
+  'getLineColor',
+  'getLineWidth',
+  'getElevation'
+]
 
 export function genDeckLayerOpts<T extends DeckLayerProps>(
   props: T & { getTooltip?: ((info: PickingInfo) => TooltipContent) | null },
