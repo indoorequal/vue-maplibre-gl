@@ -278,7 +278,7 @@ export default defineComponent({
     },
     /**
      * If `true`, the map will automatically resize when the browser window resizes.
-     * Default value false
+     * Default value true
      */
     trackResize: {
       type: Boolean as PropType<boolean>,
