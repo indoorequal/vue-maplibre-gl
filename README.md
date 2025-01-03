@@ -9,7 +9,7 @@
 
 A small Vue 3 plugin for [maplibre-gl-js](https://github.com/maplibre/maplibre-gl-js).
 
-This is a fork of [vue-maplibre-gl](https://github.com/razorness/vue-maplibre-gl) with new features, non-core features removed, and support for MapLibre GL JS v4.
+This is a fork of [vue-maplibre-gl](https://github.com/razorness/vue-maplibre-gl) with new features, non-core features removed, and support for MapLibre GL JS > v3.
 
 ## Features
 
