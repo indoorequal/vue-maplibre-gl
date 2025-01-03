@@ -6,6 +6,7 @@
     <mgl-map
       v-if="showMap"
       height="400px"
+      :map-style="style"
       :center="center"
       :zoom="zoom"
       :attribution-control="false"
@@ -44,7 +45,7 @@ import {
 } from '@indoorequal/vue-maplibre-gl';
 import { LngLatLike, MapLayerMouseEvent } from 'maplibre-gl';
 
-MglDefaults.style = 'https://api.maptiler.com/maps/streets-v2/style.json?key=3YeFnghdqUJJpIvlgLti';
+const style = 'https://api.maptiler.com/maps/streets-v2/style.json?key=3YeFnghdqUJJpIvlgLti';
 
 const map = useMap();
 const mapVersion= ref<string>();
