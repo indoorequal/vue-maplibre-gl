@@ -33,7 +33,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import {
-  MglDefaults,
   MglEvent,
   useMap,
   MglMap,
