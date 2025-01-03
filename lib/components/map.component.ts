@@ -228,6 +228,9 @@ export default defineComponent({
     pitchWithRotate: {
       type: Boolean as PropType<boolean>,
     },
+    /**
+     * Set of WebGLContextAttributes that are applied to the WebGL context of the map. See https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext for more details. contextType can be set to webgl2 or webgl to force a WebGL version. Not setting it, Maplibre will do it's best to get a suitable context.
+     */
     canvasContextAttributes: {
       type: Object as PropType<WebGLContextAttributesWithType>,
     },
