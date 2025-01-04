@@ -70,6 +70,7 @@ export default defineComponent({
      */
     attributionControl: {
       type: [Boolean, Object] as PropType<false | AttributionControlOptions>,
+      default: undefined,
     },
     /**
      * The initial bearing (rotation) of the map, measured in degrees counter-clockwise from north. If bearing is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to 0. Default Value `0`
@@ -95,6 +96,7 @@ export default defineComponent({
      */
     boxZoom: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     /**
      *  The initial geographical centerpoint of the map. If center is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to [0, 0] Note: MapLibre GL JS uses longitude, latitude coordinate order (as opposed to latitude, longitude) to match GeoJSON. Default Value ts [0, 0]
@@ -114,36 +116,42 @@ export default defineComponent({
      */
     collectResourceTiming: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     /**
      * If true, symbols from multiple sources can collide with each other during collision detection. If false, collision detection is run separately for the symbols in each source. Default Value `true`
      */
     crossSourceCollisions: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     /**
      * If true, the "drag to pan" interaction is enabled. An Object value is passed as options to DragPanHandler#enable. Default Value `true`
      */
     dragPan: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     /**
      * If true, the "drag to rotate" interaction is enabled (see DragRotateHandler). Default Value `true`
      */
     dragRotate: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     /**
      * If true, the "double click to zoom" interaction is enabled (see DoubleClickZoomHandler). Default Value `true`
      */
     doubleClickZoom: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     /**
      * If true, the map's position (zoom, center latitude, center longitude, bearing, and pitch) will be synced with the hash fragment of the page's URL. For example, http://path/to/my/page.html#2.59/39.26/53.07/-24.1/60. An additional string may optionally be provided to indicate a parameter-styled hash, e.g. http://path/to/my/page.html#map=2.59/39.26/53.07/-24.1/60&foo=bar, where foo is a custom parameter and bar is an arbitrary hash distinct from the map hash. Default Value `false`
      */
     hash: {
       type: [Boolean, String] as PropType<boolean | string>,
+      default: undefined,
     },
     /**
      * Controls the duration of the fade-in/fade-out animation for label collisions after initial map load, in milliseconds. This setting affects all symbol layers. This setting does not affect the duration of runtime styling transitions or raster tile cross-fading. Default Value `300`
@@ -162,12 +170,14 @@ export default defineComponent({
      */
     interactive: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     /**
      * If true, keyboard shortcuts are enabled (see KeyboardHandler). Default Value `true`
      */
     keyboard: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     /**
      * A patch to apply to the default localization table for UI strings, e.g. control tooltips. The locale object maps namespaced UI string IDs to translated strings in the target language; see src/ui/default_locale.js for an example with all supported string IDs. The object may specify all UI strings (thereby adding support for a new translation) or only a subset of strings (thereby patching the default translation table). Default Value `null`
@@ -227,6 +237,7 @@ export default defineComponent({
      */
     pitchWithRotate: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     /**
      * Set of WebGLContextAttributes that are applied to the WebGL context of the map. See https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext for more details. contextType can be set to webgl2 or webgl to force a WebGL version. Not setting it, Maplibre will do it's best to get a suitable context.
@@ -239,12 +250,15 @@ export default defineComponent({
      */
     refreshExpiredTiles: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     renderWorldCopies: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     scrollZoom: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     mapStyle: {
       type: [String, Object] as PropType<string | StyleSpecification>,
@@ -255,6 +269,7 @@ export default defineComponent({
      */
     trackResize: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     /**
      * A callback run before the Map makes a request for an external URL. The callback can be used to modify the url, set headers, or set the credentials property for cross-origin requests.
@@ -277,6 +292,7 @@ export default defineComponent({
      */
     touchZoomRotate: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     /**
      * The map's TwoFingersTouchPitchHandler, which allows the user to pitch the map with touch gestures.
@@ -284,6 +300,7 @@ export default defineComponent({
      */
     touchPitch: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
 
     /**
@@ -317,6 +334,7 @@ export default defineComponent({
      */
     validateStyle: {
       type: Boolean as PropType<boolean>,
+      default: undefined,
     },
     /**
      * The map's {@link CooperativeGesturesHandler}, which allows the user to see cooperative gesture info when user tries to zoom in/out.
