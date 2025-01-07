@@ -57,16 +57,16 @@ export default defineComponent({
     useSource(source, opts as SourceOptionProps, registry);
 
     watch(
-      isRef(props.tiles) ? props.tiles : () => props.tiles,
-      (v) => {
-        source.value?.setTiles((v as string[]) || []);
+      [isRef(props.tiles) ? props.tiles : () => props.tiles, source],
+      ([v, src]) => {
+        src?.setTiles((v as string[]) || []);
       },
       { immediate: true },
     );
     watch(
-      isRef(props.url) ? props.url : () => props.url,
-      (v) => {
-        source.value?.setUrl((v as string) || "");
+      [isRef(props.url) ? props.url : () => props.url, source],
+      ([v, src]) => {
+        src?.setUrl((v as string) || "");
       },
       { immediate: true },
     );

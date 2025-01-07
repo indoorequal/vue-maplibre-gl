@@ -62,9 +62,9 @@ export default defineComponent({
     useSource(source, opts as SourceOptionProps, registry);
 
     watch(
-      isRef(props.data) ? props.data : () => props.data,
-      (v) => {
-        source.value?.setData(
+      [isRef(props.data) ? props.data : () => props.data, source],
+      ([v, src]) => {
+        src?.setData(
           (v as DataType) || { type: "FeatureCollection", features: [] },
         );
       },

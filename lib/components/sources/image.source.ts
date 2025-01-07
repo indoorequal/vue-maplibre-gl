@@ -45,9 +45,12 @@ export default defineComponent({
     useSource(source, opts as SourceOptionProps, registry);
 
     watch(
-      isRef(props.coordinates) ? props.coordinates : () => props.coordinates,
-      (v) => {
-        source.value?.setCoordinates(v as Coordinates);
+      [
+        isRef(props.coordinates) ? props.coordinates : () => props.coordinates,
+        source,
+      ],
+      ([v, src]) => {
+        src?.setCoordinates(v as Coordinates);
       },
       { immediate: true },
     );
