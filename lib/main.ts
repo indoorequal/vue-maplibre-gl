@@ -20,7 +20,7 @@ export * from "@/lib/components";
 
 // addition exports
 export * from "@/lib/types";
-export { useMap } from "@/lib/lib/mapRegistry";
+export { useMap, type MapInstance } from "@/lib/lib/mapRegistry";
 export { Position } from "@/lib/components/controls/position.enum";
 export { useControl } from "@/lib/composable/useControl";
 export { usePositionWatcher } from "@/lib/composable/usePositionWatcher";
