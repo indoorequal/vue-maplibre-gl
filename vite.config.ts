@@ -55,9 +55,9 @@ export default defineConfig({
 	  vue          : 'Vue',
 	  'maplibre-gl': 'maplibregl',
 	  geojson      : 'geojson',
-    '@deck.gl/core'   : 'deckGlCore',
-    '@deck.gl/layers' : 'deckGlLayers',
-    '@deck.gl/mapbox' : 'deckGlMapbox'
+    '@deck.gl/core'   : 'deck',
+    '@deck.gl/layers' : 'deck.layers',
+    '@deck.gl/mapbox' : 'deck.mapbox'
 	},
       },
     }
