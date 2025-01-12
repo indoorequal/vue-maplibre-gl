@@ -42,9 +42,6 @@
   },
   "devDependencies": {
     "@babel/types": "^7.23.9",
-    "@deck.gl/core": "^9.0.35",
-    "@deck.gl/layers": "^9.0.35",
-    "@deck.gl/mapbox": "^9.0.35",
     "@eslint/js": "^9.1.1",
     "@indoorequal/vue-maplibre-gl": "workspace:^",
     "@maplibre/maplibre-gl-inspect": "^1.7.0",
@@ -78,6 +75,9 @@
   },
   "peerDependencies": {
     "maplibre-gl": "^5.0.0",
+    "@deck.gl/core": "^9.0.35",
+    "@deck.gl/layers": "^9.0.35",
+    "@deck.gl/mapbox": "^9.0.35",
     "vue": "^3.4.18"
   },
   "engines": {
