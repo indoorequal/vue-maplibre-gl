@@ -6,6 +6,7 @@ import { mapSymbol } from "@/lib/types";
  * Load an image to maplibre to use in the style
  *
  * See [#addImage](https://maplibre.org/maplibre-gl-js/docs/API/classes/Map/#addimage) and [#loadImage](https://maplibre.org/maplibre-gl-js/docs/API/classes/Map/#loadimage)
+ * @since 8.2.0
  */
 export default defineComponent({
   name: "MglImage",
