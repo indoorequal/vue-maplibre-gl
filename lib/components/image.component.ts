@@ -1,4 +1,4 @@
-import { defineComponent, inject, type PropType } from "vue";
+import { defineComponent, inject, type PropType, warn } from "vue";
 import { type StyleImageInterface, type StyleImageMetadata } from "maplibre-gl";
 import { mapSymbol } from "@/lib/types";
 
@@ -46,13 +46,16 @@ export default defineComponent({
   },
   setup(props) {
     const map = inject(mapSymbol);
+    if (!props.url && !props.image) {
+      warn(`${props.id} image: missing prop url or image`);
+      return () => [];
+    }
     (async () => {
+      let image = props.image;
       if (props.url) {
-        const response = await map?.value?.loadImage(props.url);
-        map!.value!.addImage(props.id, response!.data, props.options);
-      } else if (props.image) {
-        map!.value!.addImage(props.id, props.image, props.options);
+        image = (await map!.value!.loadImage(props.url)).data;
       }
+      map!.value!.addImage(props.id, image!, props.options);
     })();
 
     return () => [];
