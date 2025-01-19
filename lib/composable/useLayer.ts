@@ -67,6 +67,7 @@ export function useLayer<T extends LayersWithSource>(
         }
       }
     },
+    { deep: true }
   );
   watch(
     () => props.paint,
@@ -77,10 +78,12 @@ export function useLayer<T extends LayersWithSource>(
         }
       }
     },
+    { deep: true }
   );
   watch(
     () => props.filter,
     (f) => map.value!.setFilter(props.layerId!, f),
+    { deep: true }
   );
 
   watch(
