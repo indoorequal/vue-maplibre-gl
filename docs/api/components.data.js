@@ -96,12 +96,14 @@ export default {
       const eventsMarkdown = formatEvents(componentInfo.events);
       const slotsMarkdown = formatSlots(componentInfo.slots);
       const deprecated = formatDeprecated(componentInfo.tags);
+      const since = formatSince(componentInfo.tags);
 
       return {
         params: {
           component: componentInfo.displayName,
           title: componentInfo.displayName,
           description: markdownRenderer.render(componentInfo.description),
+          since,
           type,
         },
         content: `
