@@ -5,6 +5,8 @@ function formatProps(props) {
   return props ? '## Props\n\n' + props.map((prop) => {
     const deprecated = formatDeprecated(prop.tags);
     const since = formatSince(prop.tags);
+    const vmodel = formatVmodel(prop.tags);
+
     return `
 ### ${prop.name} ${since} {#${prop.name}}
 
@@ -13,6 +15,7 @@ ${deprecated}
 - **Type**: \`${prop.type?.name}\`
 - **Required**: \`${prop.required || false}\`
 - **Default**: \`${prop.defaultValue?.value}\`
+${vmodel}
 
 ${prop.description || ''}
 `
@@ -77,6 +80,13 @@ function formatSince(tags) {
   return tags?.since ?
         tags.since.map((s) => {
           return `(since ${s.description})`;
+        }).join('') : '';
+}
+
+function formatVmodel(tags) {
+  return tags?.vmodel ?
+        tags.vmodel.map((s) => {
+          return `- **Sincable**: ${s.description}`;
         }).join('') : '';
 }
 

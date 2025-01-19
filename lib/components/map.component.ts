@@ -74,6 +74,7 @@ export default defineComponent({
     },
     /**
      * The initial bearing (rotation) of the map, measured in degrees counter-clockwise from north. If bearing is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to 0. Default Value `0`
+     * @vmodel v-model:bearing
      */
     bearing: {
       type: Number as PropType<number>,
@@ -99,6 +100,7 @@ export default defineComponent({
     },
     /**
      *  The initial geographical centerpoint of the map. If center is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to [0, 0] Note: MapLibre GL JS uses longitude, latitude coordinate order (as opposed to latitude, longitude) to match GeoJSON. Default Value ts [0, 0]
+     * @vmodel v-model:center
      */
     center: {
       type: [Array, Object] as PropType<LngLatLike>,
@@ -225,6 +227,7 @@ export default defineComponent({
     },
     /**
      * The initial pitch (tilt) of the map, measured in degrees away from the plane of the screen (0-85). If pitch is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to 0. Values greater than 60 degrees are experimental and may result in rendering issues. If you encounter any, please raise an issue with details in the MapLibre project. Default Value `0`
+     * @vmodel v-model:pitch
      */
     pitch: {
       type: Number as PropType<number>,
@@ -303,6 +306,7 @@ export default defineComponent({
 
     /**
      * The initial zoom level of the map. If zoom is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to 0. Default Value `0`
+     * @vmodel v-model:zoom
      */
     zoom: {
       type: Number as PropType<number>,
