@@ -238,6 +238,7 @@ export default defineComponent({
     },
     /**
      * Set of WebGLContextAttributes that are applied to the WebGL context of the map. See https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext for more details. contextType can be set to webgl2 or webgl to force a WebGL version. Not setting it, Maplibre will do it's best to get a suitable context.
+     * @since 8.0.0
      */
     canvasContextAttributes: {
       type: Object as PropType<WebGLContextAttributesWithType>,
