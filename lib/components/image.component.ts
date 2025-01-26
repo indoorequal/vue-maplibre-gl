@@ -3,7 +3,8 @@ import { type StyleImageInterface, type StyleImageMetadata } from "maplibre-gl";
 import { mapSymbol } from "@/lib/types";
 
 /**
- * Load an image to maplibre to use in the style
+ * Load an image to maplibre to use in the style.
+ * If the image id already exist, nothing is done.
  *
  * See [#addImage](https://maplibre.org/maplibre-gl-js/docs/API/classes/Map/#addimage) and [#loadImage](https://maplibre.org/maplibre-gl-js/docs/API/classes/Map/#loadimage)
  * @since 8.2.0
