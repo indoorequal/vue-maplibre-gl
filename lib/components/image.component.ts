@@ -50,6 +50,7 @@ export default defineComponent({
       warn(`${props.id} image: missing prop url or image`);
       return () => [];
     }
+    if (map!.value!.hasImage(props.id)) return;
     (async () => {
       let image = props.image;
       if (props.url) {
