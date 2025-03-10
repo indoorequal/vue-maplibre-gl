@@ -1122,6 +1122,7 @@ __metadata:
     vue: "npm:^3.4.19"
     vue-docgen-api: "npm:^4.78.0"
     vue-docgen-web-types: "npm:^0.1.8"
+    vue-eslint-parser: "npm:^10.1.1"
     vue-tsc: "npm:^2.0.0"
   peerDependencies:
     maplibre-gl: ^5.0.0
@@ -4172,7 +4173,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-scope@npm:^8.3.0":
+"eslint-scope@npm:^8.2.0, eslint-scope@npm:^8.3.0":
   version: 8.3.0
   resolution: "eslint-scope@npm:8.3.0"
   dependencies:
@@ -4274,7 +4275,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esquery@npm:^1.5.0":
+"esquery@npm:^1.5.0, esquery@npm:^1.6.0":
   version: 1.6.0
   resolution: "esquery@npm:1.6.0"
   dependencies:
@@ -6042,7 +6043,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.20, lodash@npm:~4.17.15":
+"lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:~4.17.15":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 10/c08619c038846ea6ac754abd6dd29d2568aa705feb69339e836dfa8d8b09abbb2f859371e86863eda41848221f9af43714491467b5b0299122431e202bb0c532
@@ -8459,6 +8460,23 @@ __metadata:
   bin:
     vue-docgen-web-types: lib/cli.js
   checksum: 10/ab08258b2e65bd8984e92280b98e0834a08d2e1ed63f0f3a3f04a3ad0a5f75cb3b45b35b1ffa2187a82ad1e03720833f63c3d8d4a1a3eef2aa8b8de0adcc6d01
+  languageName: node
+  linkType: hard
+
+"vue-eslint-parser@npm:^10.1.1":
+  version: 10.1.1
+  resolution: "vue-eslint-parser@npm:10.1.1"
+  dependencies:
+    debug: "npm:^4.4.0"
+    eslint-scope: "npm:^8.2.0"
+    eslint-visitor-keys: "npm:^4.2.0"
+    espree: "npm:^10.3.0"
+    esquery: "npm:^1.6.0"
+    lodash: "npm:^4.17.21"
+    semver: "npm:^7.6.3"
+  peerDependencies:
+    eslint: ^8.57.0 || ^9.0.0
+  checksum: 10/d5ffdb76aaf63f12352476e51b764a19d181539f05fda1aa531bbd10af026040a3d12d5867bf7531c276931ab6b4b8cb8dc1d3999d782ef532862373be7b0785
   languageName: node
   linkType: hard
 
