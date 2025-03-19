@@ -54,6 +54,11 @@ export default defineComponent({
       required: true,
     },
     /**
+     * Space-separated CSS class names to add to marker container
+     * @since 8.3.0
+     */
+    className: String as PropType<string>,
+    /**
      * The offset in pixels as a PointLike object to apply relative to the element's center. Negatives indicate left and up.
      */
     offset: [Object, Array] as PropType<PointLike>,
@@ -185,6 +190,17 @@ export default defineComponent({
     watch(
       () => props.subpixelPositioning,
       (v) => marker.value?.setSubpixelPositioning(v),
+    );
+    watch(
+      () => props.className,
+      (value, previous) => {
+        if (previous) {
+          marker.value?.removeClassName(previous);
+        }
+        if (value) {
+          marker.value?.addClassName(value);
+        }
+      },
     );
 
     onBeforeUnmount(() => {
