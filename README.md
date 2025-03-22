@@ -15,7 +15,7 @@ This is a fork of [vue-maplibre-gl](https://github.com/razorness/vue-maplibre-gl
 
 - Supports MapLibre GL JS v5.x
 - Typescript support
-- Components for map, controls, sources, markers, popup and layers
+- Components for map, controls, sources, markers, popups and layers
 - Support for custom controls
 - Support for multiple instances and global access by `useMap(key: string | symbol)`
 - Automatic restart on CONTEXT_LOST_WEBGL which can happen on mobile devices when tab was in background for longer time
