@@ -1,4 +1,4 @@
-# Nuxt
+# Nuxt support
 
 
 ## Using the nuxt-maplibre package (recommended)

@@ -1,32 +1,49 @@
 # Getting started
 
+## Import
+
+### All components
+
 ```typescript
+import 'maplibre-gl/dist/maplibre-gl.css';
 import VueMaplibreGl from '@indoorequal/vue-maplibre-gl'
 
 app.use(VueMaplibreGl)
 ```
 
-Add CSS:
-
-```scss
-@import '~maplibre-gl/dist/maplibre-gl.css';
-```
-
-Use specific components:
+### Specific components
 
 ```typescript
-import { MglMap } from '@indoorequal/vue-maplibre-gl'
+import 'maplibre-gl/dist/maplibre-gl.css';
+import { MglMap } from '@indoorequal/vue-maplibre-gl';
 
-app.component('MglMap', MglMap)
+app.component('MglMap', MglMap);
 ```
 
-or in a parent components `.vue` file
+### Single-File-Components
 
 ```html
 <template>
-  <mgl-map />
+  <mgl-map ... />
 </template>
 <script setup>
   import { MglMap } from '@indoorequal/vue-maplibre-gl';
 </script>
+<style lang="css">
+  @import "maplibre-gl/dist/maplibre-gl.css";
+</style>
+```
+
+## Displaying a map
+
+```html
+<template>
+  <mgl-map map-style="https://demotiles.maplibre.org/style.json" />
+</template>
+<script setup>
+  import { MglMap } from '@indoorequal/vue-maplibre-gl';
+</script>
+<style lang="css">
+  @import "maplibre-gl/dist/maplibre-gl.css";
+</style>
 ```

@@ -48,7 +48,9 @@ export default defineConfig({
         items: [
           { text: 'Installation', link: '/guide/installation' },
           { text: 'Getting started', link: '/guide/getting-started' },
-          { text: 'Nuxt', link: '/guide/nuxt' }
+          { text: 'Adding controls', link: '/guide/controls' },
+          { text: 'Adding source and layer', link: '/guide/source-layer' },
+          { text: 'Nuxt support', link: '/guide/nuxt' }
         ]
       },
       {
