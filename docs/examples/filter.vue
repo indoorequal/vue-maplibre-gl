@@ -1,6 +1,6 @@
-// Filter
-//
 // Filter features
+//
+// Using filter in layer
 <template>
   <mgl-map
     :map-style="style"
