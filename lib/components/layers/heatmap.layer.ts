@@ -11,7 +11,7 @@ import { useLayer } from "@/lib/composable/useLayer";
 export default defineComponent({
   name: "MglHeatmapLayer",
   props: layerProps<HeatmapLayerSpecification>(),
-  emits: [...(LAYER_EVENTS as Array<LayerEventType>)],
+  emits: [...LAYER_EVENTS] as LayerEventType[],
   setup(props: LayerProps<HeatmapLayerSpecification>) {
     return useLayer<HeatmapLayerSpecification>("heatmap", props);
   },

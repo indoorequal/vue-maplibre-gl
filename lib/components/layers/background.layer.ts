@@ -52,7 +52,7 @@ export default defineComponent({
      */
     paint: Object as PropType<BackgroundLayerSpecification["paint"]>,
   },
-  emits: [...LAYER_EVENTS],
+  emits: [...LAYER_EVENTS] as LayerEventType[],
   setup(props) {
     const map = inject(mapSymbol)!;
     const isLoaded = inject(isLoadedSymbol)!;

@@ -11,7 +11,7 @@ import { useLayer } from "@/lib/composable/useLayer";
 export default defineComponent({
   name: "MglFillExtrusionLayer",
   props: layerProps<FillExtrusionLayerSpecification>(),
-  emits: [...(LAYER_EVENTS as Array<LayerEventType>)],
+  emits: [...LAYER_EVENTS] as LayerEventType[],
   setup(props: LayerProps<FillExtrusionLayerSpecification>) {
     return useLayer<FillExtrusionLayerSpecification>("fill-extrusion", props);
   },

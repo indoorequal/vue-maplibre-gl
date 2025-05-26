@@ -11,7 +11,7 @@ import { useLayer } from "@/lib/composable/useLayer";
 export default defineComponent({
   name: "MglLineLayer",
   props: layerProps<LineLayerSpecification>(),
-  emits: [...(LAYER_EVENTS as Array<LayerEventType>)],
+  emits: [...LAYER_EVENTS] as LayerEventType[],
   setup(props: LayerProps<LineLayerSpecification>) {
     return useLayer<LineLayerSpecification>("line", props);
   },

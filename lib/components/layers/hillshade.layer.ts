@@ -11,7 +11,7 @@ import { useLayer } from "@/lib/composable/useLayer";
 export default defineComponent({
   name: "MglHillshadeLayer",
   props: layerProps<HillshadeLayerSpecification>(),
-  emits: [...(LAYER_EVENTS as Array<LayerEventType>)],
+  emits: [...LAYER_EVENTS] as LayerEventType[],
   setup(props: LayerProps<HillshadeLayerSpecification>) {
     return useLayer<HillshadeLayerSpecification>("hillshade", props);
   },

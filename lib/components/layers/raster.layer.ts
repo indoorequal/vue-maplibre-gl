@@ -11,7 +11,7 @@ import { useLayer } from "@/lib/composable/useLayer";
 export default defineComponent({
   name: "MglRasterLayer",
   props: layerProps<RasterLayerSpecification>(),
-  emits: [...(LAYER_EVENTS as Array<LayerEventType>)],
+  emits: [...LAYER_EVENTS] as LayerEventType[],
   setup(props: LayerProps<RasterLayerSpecification>) {
     return useLayer<RasterLayerSpecification>("raster", props);
   },
