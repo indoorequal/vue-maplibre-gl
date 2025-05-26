@@ -1,6 +1,6 @@
 import type { CircleLayerSpecification } from "maplibre-gl";
 import { defineComponent } from "vue";
-import { layerProps, LAYER_EVENTS } from "@/lib/lib/layer.lib";
+import { layerProps, LAYER_EVENTS, LayerEventType, LayerProps } from "@/lib/lib/layer.lib";
 import { useLayer } from "@/lib/composable/useLayer";
 
 /**
@@ -10,9 +10,9 @@ import { useLayer } from "@/lib/composable/useLayer";
  */
 export default defineComponent({
   name: "MglCircleLayer",
-  props: { ...layerProps<CircleLayerSpecification>() },
-  emits: [...(LAYER_EVENTS as Array<string>)],
-  setup(props) {
+  props: layerProps<CircleLayerSpecification>(),
+  emits: [...(LAYER_EVENTS as Array<LayerEventType>)],
+  setup(props: LayerProps<CircleLayerSpecification>) {
     return useLayer<CircleLayerSpecification>("circle", props);
   },
 });

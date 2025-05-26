@@ -10,6 +10,7 @@ import type {
   Map,
   MapLayerEventType,
   FilterSpecification,
+  BackgroundLayerSpecification,
 } from "maplibre-gl";
 import { type PropType, type VNode, type ComponentPropsOptions } from "vue";
 
@@ -23,8 +24,10 @@ export type LayersWithSource =
   | RasterLayerSpecification
   | HillshadeLayerSpecification;
 
-export type LayerProps = Omit<
-  LayersWithSource,
+export type LayersWithoutSource = BackgroundLayerSpecification;
+
+export type LayerProps<T extends LayersWithSource> = Omit<
+  T,
   "source" | "source-layer" | "id" | "type"
 > & {
   layerId?: string;
@@ -33,7 +36,9 @@ export type LayerProps = Omit<
   before?: string;
 };
 
-export const LAYER_EVENTS: Array<keyof MapLayerEventType> = [
+export type LayerEventType = keyof MapLayerEventType
+
+export const LAYER_EVENTS: Array<LayerEventType> = [
   "click",
   "dblclick",
   "mousedown",
@@ -47,11 +52,11 @@ export const LAYER_EVENTS: Array<keyof MapLayerEventType> = [
   "touchstart",
   "touchend",
   "touchcancel",
-];
+] as const;
 
 export function layerProps<
   T extends LayersWithSource,
->(): ComponentPropsOptions {
+>(): ComponentPropsOptions<LayerProps<T>> {
   return {
     /**
      * The id of the layer
@@ -95,13 +100,13 @@ export function layerProps<
      * See https://maplibre.org/maplibre-style-spec/layers/
      */
     paint: Object as PropType<T["paint"]>,
-  };
+  } as ComponentPropsOptions<LayerProps<T>>;
 }
 
 export function genLayerOpts<T extends LayersWithSource>(
   id: string,
   type: string,
-  props: LayerProps,
+  props: LayerProps<T>,
   source: string | undefined,
 ): T {
   const opts = {

@@ -1,6 +1,6 @@
 import type { HeatmapLayerSpecification } from "maplibre-gl";
 import { defineComponent } from "vue";
-import { layerProps, LAYER_EVENTS } from "@/lib/lib/layer.lib";
+import { layerProps, LAYER_EVENTS, LayerProps } from "@/lib/lib/layer.lib";
 import { useLayer } from "@/lib/composable/useLayer";
 
 /**
@@ -10,9 +10,9 @@ import { useLayer } from "@/lib/composable/useLayer";
  */
 export default defineComponent({
   name: "MglHeatmapLayer",
-  props: { ...layerProps<HeatmapLayerSpecification>() },
+  props: layerProps<HeatmapLayerSpecification>(),
   emits: [...(LAYER_EVENTS as Array<string>)],
-  setup(props) {
+  setup(props: LayerProps<HeatmapLayerSpecification>) {
     return useLayer<HeatmapLayerSpecification>("heatmap", props);
   },
 });
