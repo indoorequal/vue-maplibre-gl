@@ -33,10 +33,7 @@ export type AddedProperties = {
   before?: string;
 }
 
-export type LayerProps<T extends LayersWithSource> = Omit<
-  (AddedProperties & T),
-  "source-layer" | "id" | "type"
->;
+export type LayerProps<T extends LayersWithSource> = AddedProperties & Omit<T, "source" | "source-layer" | "id" | "type">
 
 export type LayerEventType = keyof MapLayerEventType
 
@@ -60,9 +57,14 @@ export type LayerPropTypeNaive<T extends LayersWithSource> = {
   [K in keyof LayerProps<T>]: { type: PropType<LayerProps<T>[K]>, required?: boolean | undefined }
 }
 
-export type LayerPropTypeAdded = {layerId: {type: PropType<string>}, sourceLayer: { type: PropType<string>}, before: { type: PropType<string>}, source: { type: PropType<string>}}
+export type LayerPropTypeAdded<T extends LayersWithSource> = {
+  layerId: {type: PropType<T['id']>}, 
+  sourceLayer: { type: PropType<T['source-layer']>}, 
+  before: { type: PropType<string>}, 
+  source: { type: PropType<T['source']>}
+}
 
-export type LayerPropType<T extends LayersWithSource> = LayerPropTypeNaive<T> & LayerPropTypeAdded
+export type LayerPropType<T extends LayersWithSource> = LayerPropTypeNaive<T> & LayerPropTypeAdded<T>
 
 export function layerProps<
   T extends LayersWithSource,
