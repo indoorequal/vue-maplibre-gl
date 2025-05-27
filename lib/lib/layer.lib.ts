@@ -126,7 +126,7 @@ export function genLayerOpts<T extends LayersWithSource>(
   const opts = {
     id,
     type,
-    source: source,
+    source: props.source || source,
     metadata: props.metadata,
     minzoom: props.minzoom,
     maxzoom: props.maxzoom,
