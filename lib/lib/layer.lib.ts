@@ -9,7 +9,6 @@ import type {
   SymbolLayerSpecification,
   Map,
   MapLayerEventType,
-  FilterSpecification,
   BackgroundLayerSpecification,
 } from "maplibre-gl";
 import { type PropType, type VNode } from "vue";
