@@ -1,6 +1,6 @@
 import type { CircleLayerSpecification } from "maplibre-gl";
 import { defineComponent } from "vue";
-import { layerProps, LAYER_EVENTS, LayerEventType, LayerProps } from "@/lib/lib/layer.lib";
+import { layerProps, type LayerProps, LAYER_EVENTS, type LayerEventType } from "@/lib/lib/layer.lib";
 import { useLayer } from "@/lib/composable/useLayer";
 
 /**
