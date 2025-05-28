@@ -7,7 +7,7 @@ import {
   watch,
 } from "vue";
 import { isLoadedSymbol, mapSymbol } from "@/lib/types";
-import { LAYER_EVENTS, LayerEventType } from "@/lib/lib/layer.lib";
+import { LAYER_EVENTS, type LayerEventType } from "@/lib/lib/layer.lib";
 import { useDisposableLayer } from "@/lib/composable/useDisposableLayer";
 
 /**
