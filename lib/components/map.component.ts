@@ -262,7 +262,9 @@ export default defineComponent({
       default: undefined,
     },
     /**
-     * An optional link to a URL, or an inlined JSON object containing a MapLibre Style specification object.
+     * An optional string link to a URL, or an inlined JSON object containing a MapLibre Style Specification.
+     * 
+     * Documentation: https://maplibre.org/maplibre-style-spec
      * 
      * Example: https://demotiles.maplibre.org/style.json
      */
