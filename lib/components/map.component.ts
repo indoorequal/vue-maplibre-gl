@@ -261,6 +261,13 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
       default: undefined,
     },
+    /**
+     * An optional string link to a URL, or an inlined JSON object containing a MapLibre Style Specification.
+     * 
+     * Documentation: https://maplibre.org/maplibre-style-spec
+     * 
+     * Example: https://demotiles.maplibre.org/style.json
+     */
     mapStyle: {
       type: [String, Object] as PropType<string | StyleSpecification>,
     },
