@@ -26,7 +26,7 @@ export type LayersWithSource =
 export type LayersWithoutSource = BackgroundLayerSpecification;
 
 export type AddedProperties = {
-  layerId?: string;
+  layerId: string;
   sourceLayer?: string;
   source?: string;
   before?: string;
