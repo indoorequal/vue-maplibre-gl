@@ -57,10 +57,10 @@ export type LayerPropTypeNaive<T extends LayersWithSource> = {
 }
 
 export type LayerPropTypeAdded<T extends LayersWithSource> = {
-  layerId: {type: PropType<T['id']>}, 
-  sourceLayer: { type: PropType<T['source-layer']>}, 
-  before: { type: PropType<string>}, 
-  source: { type: PropType<T['source']>}
+  layerId: { type: PropType<T['id']> },
+  sourceLayer: { type: PropType<T['source-layer']> },
+  before: { type: PropType<string> },
+  source: { type: PropType<T['source']> }
 }
 
 export type LayerPropType<T extends LayersWithSource> = LayerPropTypeNaive<T> & LayerPropTypeAdded<T>
@@ -88,7 +88,7 @@ export function layerProps<
     /**
      * Layer to use from a vector tile source. Required for vector tile sources; prohibited for all other source types, including GeoJSON sources.
      */
-    sourceLayer: {type: String as PropType<T['source-layer']>},
+    sourceLayer: { type: String as PropType<T['source-layer']> },
     /**
      * The minimum zoom level for the layer. At zoom levels less than the minzoom, the layer will be hidden.
      */
