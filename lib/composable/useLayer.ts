@@ -22,7 +22,7 @@ import { SourceLib } from "@/lib/lib/source.lib";
 
 export function useLayer<T extends LayersWithSource>(
   name: string,
-  props: LayerProps,
+  props: LayerProps<T>,
 ) {
   const sourceId = inject(sourceIdSymbol);
 

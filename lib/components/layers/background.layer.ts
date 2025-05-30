@@ -7,7 +7,7 @@ import {
   watch,
 } from "vue";
 import { isLoadedSymbol, mapSymbol } from "@/lib/types";
-import { LAYER_EVENTS } from "@/lib/lib/layer.lib";
+import { LAYER_EVENTS, type LayerEventType } from "@/lib/lib/layer.lib";
 import { useDisposableLayer } from "@/lib/composable/useDisposableLayer";
 
 /**
@@ -52,7 +52,7 @@ export default defineComponent({
      */
     paint: Object as PropType<BackgroundLayerSpecification["paint"]>,
   },
-  emits: [...LAYER_EVENTS],
+  emits: [...LAYER_EVENTS] as LayerEventType[],
   setup(props) {
     const map = inject(mapSymbol)!;
     const isLoaded = inject(isLoadedSymbol)!;
