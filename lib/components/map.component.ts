@@ -25,6 +25,7 @@ import {
   type CameraUpdateTransformFunction,
   type AttributionControlOptions,
   type WebGLContextAttributesWithType,
+  LngLat,
 } from "maplibre-gl";
 import {
   componentIdSymbol,
@@ -409,7 +410,7 @@ export default defineComponent({
     /**
      * Center property updated
      */
-    "update:center": (value: LngLatLike) => true,
+    "update:center": (value: LngLat) => true,
     /**
      * Zoom property updated
      */
