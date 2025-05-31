@@ -39,6 +39,7 @@ import {
   createEventHandler,
   type MapEvent,
   type MapEventHandler,
+  MapEventEmits
 } from "@/lib/lib/map.lib";
 import { isLngLatEqual } from "@/lib/lib/lng_lat";
 import { Position } from "@/lib/components/controls/position.enum";
@@ -353,77 +354,7 @@ export default defineComponent({
       type: Object as PropType<GestureOptions>,
     },
   },
-  emits: {
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    "map:error": (event: MapEventType["error"]) => true,
-    "map:load": (event: MapEventType["load"]) => true,
-    "map:idle": (event: MapEventType["remove"]) => true,
-    "map:remove": (event: MapEventType["remove"]) => true,
-    "map:render": (event: MapEventType["render"]) => true,
-    "map:resize": (event: MapEventType["resize"]) => true,
-    "map:webglcontextlost": (event: MapEventType["webglcontextlost"]) => true,
-    "map:webglcontextrestored": (event: MapEventType["webglcontextrestored"]) => true,
-    "map:dataloading": (event: MapEventType["dataloading"]) => true,
-    "map:data": (event: MapEventType["data"]) => true,
-    "map:tiledataloading": (event: MapEventType["tiledataloading"]) => true,
-    "map:sourcedataloading": (event: MapEventType["sourcedataloading"]) => true,
-    "map:styledataloading": (event: MapEventType["styledataloading"]) => true,
-    "map:sourcedata": (event: MapEventType["sourcedata"]) => true,
-    "map:styledata": (event: MapEventType["styledata"]) => true,
-    "map:styleimagemissing": (event: MapEventType["styleimagemissing"]) => true,
-    "map:dataabort": (event: MapEventType["dataabort"]) => true,
-    "map:sourcedataabort": (event: MapEventType["sourcedataabort"]) => true,
-    "map:boxzoomcancel": (event: MapEventType["boxzoomcancel"]) => true,
-    "map:boxzoomstart": (event: MapEventType["boxzoomstart"]) => true,
-    "map:boxzoomend": (event: MapEventType["boxzoomend"]) => true,
-    "map:touchcancel": (event: MapEventType["touchcancel"]) => true,
-    "map:touchmove": (event: MapEventType["touchmove"]) => true,
-    "map:touchend": (event: MapEventType["touchend"]) => true,
-    "map:touchstart": (event: MapEventType["touchstart"]) => true,
-    "map:click": (event: MapEventType["click"]) => true,
-    "map:contextmenu": (event: MapEventType["contextmenu"]) => true,
-    "map:dblclick": (event: MapEventType["dblclick"]) => true,
-    "map:mousemove": (event: MapEventType["mousemove"]) => true,
-    "map:mouseup": (event: MapEventType["mouseup"]) => true,
-    "map:mousedown": (event: MapEventType["mousedown"]) => true,
-    "map:mouseout": (event: MapEventType["mouseout"]) => true,
-    "map:mouseover": (event: MapEventType["mouseover"]) => true,
-    "map:movestart": (event: MapEventType["movestart"]) => true,
-    "map:move": (event: MapEventType["move"]) => true,
-    "map:moveend": (event: MapEventType["moveend"]) => true,
-    "map:zoomstart": (event: MapEventType["zoomstart"]) => true,
-    "map:zoom": (event: MapEventType["zoom"]) => true,
-    "map:zoomend": (event: MapEventType["zoomend"]) => true,
-    "map:rotatestart": (event: MapEventType["rotatestart"]) => true,
-    "map:rotate": (event: MapEventType["rotate"]) => true,
-    "map:rotateend": (event: MapEventType["rotateend"]) => true,
-    "map:dragstart": (event: MapEventType["dragstart"]) => true,
-    "map:drag": (event: MapEventType["drag"]) => true,
-    "map:dragend": (event: MapEventType["dragend"]) => true,
-    "map:pitchstart": (event: MapEventType["pitchstart"]) => true,
-    "map:pitch": (event: MapEventType["pitch"]) => true,
-    "map:pitchend": (event: MapEventType["pitchend"]) => true,
-    "map:wheel": (event: MapEventType["wheel"]) => true,
-    "map:terrain": (event: MapEventType["terrain"]) => true,
-    "map:cooperativegestureprevented": (event: MapEventType["cooperativegestureprevented"]) => true,
-    "map:projectiontransition": (event: MapEventType["projectiontransition"]) => true,
-    /**
-     * Center property updated
-     */
-    "update:center": (value: LngLat) => true,
-    /**
-     * Zoom property updated
-     */
-    "update:zoom": (value: Number) => true,
-    /**
-     * Pitch property updated
-     */
-    "update:pitch": (value: number) => true,
-    /**
-     * Bearing property updated
-     */
-    "update:bearing": (value: number) => true,
-  },
+  emits: MapEventEmits,
   slots: Object as SlotsType<{ default: unknown }>,
   setup(props, ctx) {
     const component = markRaw(getCurrentInstance()!),
@@ -583,37 +514,42 @@ export default defineComponent({
         "__load",
         () => ((isLoaded.value = true), (registryItem.isLoaded = true)),
       );
-      map.value.on("load", boundMapEvents.get("__load")!);
-      boundMapEvents.set("__moveend", () =>
-        ctx.emit("update:center", map.value!.getCenter()),
-      );
-      map.value.on("moveend", boundMapEvents.get("__moveend")!);
-      boundMapEvents.set("__zoomend", () =>
-        ctx.emit("update:zoom", map.value!.getZoom()),
-      );
-      map.value.on("zoomend", boundMapEvents.get("__zoomend")!);
-      boundMapEvents.set("__pitchend", () =>
-        ctx.emit("update:pitch", map.value!.getPitch()),
-      );
-      map.value.on("pitchend", boundMapEvents.get("__pitchend")!);
-      boundMapEvents.set("__rotateend", () =>
-        ctx.emit("update:bearing", map.value!.getBearing()),
-      );
-      map.value.on("rotateend", boundMapEvents.get("__rotateend")!);
+      // map.value.on("load", boundMapEvents.get("__load")!);
+      // boundMapEvents.set("__moveend", () =>
+      //   ctx.emit("update:center", map.value!.getCenter()),
+      // );
+      // map.value.on("moveend", boundMapEvents.get("__moveend")!);
+      // boundMapEvents.set("__zoomend", () =>
+      //   ctx.emit("update:zoom", map.value!.getZoom()),
+      // );
+      // map.value.on("zoomend", boundMapEvents.get("__zoomend")!);
+      // boundMapEvents.set("__pitchend", () =>
+      //   ctx.emit("update:pitch", map.value!.getPitch()),
+      // );
+      // map.value.on("pitchend", boundMapEvents.get("__pitchend")!);
+      // boundMapEvents.set("__rotateend", () =>
+      //   ctx.emit("update:bearing", map.value!.getBearing()),
+      // );
+      // map.value.on("rotateend", boundMapEvents.get("__rotateend")!);
 
       // bind events
+
+      // createEventHandler<"click">(component, map.value, ctx, "click")
       if (component.vnode.props) {
         for (const event of MAP_EVENT_TYPES) {
           if (component.vnode.props["onMap:" + event]) {
-            const eventName = `map:${event}`;
+            const eventName: MapEvent<typeof event> = `map:${event}`;
+
             const handler = createEventHandler<typeof event>(
               component,
               map.value,
+              // # @ts-ignore
               ctx,
-              eventName as MapEvent,
+              eventName,
             );
             boundMapEvents.set(event, handler);
             map.value.on(event, handler);
+
           }
         }
       }
