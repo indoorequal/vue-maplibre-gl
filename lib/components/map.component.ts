@@ -38,6 +38,7 @@ import {
   createEventHandler,
   type MapEvent,
   type MapEventHandler,
+  MapEventEmits
 } from "@/lib/lib/map.lib";
 import { isLngLatEqual } from "@/lib/lib/lng_lat";
 import { Position } from "@/lib/components/controls/position.enum";
@@ -352,76 +353,7 @@ export default defineComponent({
       type: Object as PropType<GestureOptions>,
     },
   },
-  emits: [
-    "map:error",
-    "map:load",
-    "map:idle",
-    "map:remove",
-    "map:render",
-    "map:resize",
-    "map:webglcontextlost",
-    "map:webglcontextrestored",
-    "map:dataloading",
-    "map:data",
-    "map:tiledataloading",
-    "map:sourcedataloading",
-    "map:styledataloading",
-    "map:sourcedata",
-    "map:styledata",
-    "map:styleimagemissing",
-    "map:dataabort",
-    "map:sourcedataabort",
-    "map:boxzoomcancel",
-    "map:boxzoomstart",
-    "map:boxzoomend",
-    "map:touchcancel",
-    "map:touchmove",
-    "map:touchend",
-    "map:touchstart",
-    "map:click",
-    "map:contextmenu",
-    "map:dblclick",
-    "map:mousemove",
-    "map:mouseup",
-    "map:mousedown",
-    "map:mouseout",
-    "map:mouseover",
-    "map:movestart",
-    "map:move",
-    "map:moveend",
-    "map:zoomstart",
-    "map:zoom",
-    "map:zoomend",
-    "map:rotatestart",
-    "map:rotate",
-    "map:rotateend",
-    "map:dragstart",
-    "map:drag",
-    "map:dragend",
-    "map:pitchstart",
-    "map:pitch",
-    "map:pitchend",
-    "map:wheel",
-    "map:terrain",
-    "map:cooperativegestureprevented",
-    "map:projectiontransition",
-    /**
-     * Center property updated
-     */
-    "update:center",
-    /**
-     * Zoom property updated
-     */
-    "update:zoom",
-    /**
-     * Pitch property updated
-     */
-    "update:pitch",
-    /**
-     * Bearing property updated
-     */
-    "update:bearing",
-  ],
+  emits: MapEventEmits,
   slots: Object as SlotsType<{ default: unknown }>,
   setup(props, ctx) {
     const component = markRaw(getCurrentInstance()!),
@@ -600,18 +532,22 @@ export default defineComponent({
       map.value.on("rotateend", boundMapEvents.get("__rotateend")!);
 
       // bind events
+
       if (component.vnode.props) {
         for (const event of MAP_EVENT_TYPES) {
           if (component.vnode.props["onMap:" + event]) {
-            const eventName = `map:${event}`;
+            const eventName: MapEvent<typeof event> = `map:${event}`;
             const handler = createEventHandler<typeof event>(
               component,
               map.value,
+              // @ts-expect-error the vue type inference from the props declaration
+              // seems to be having a hard time with type narrowing the event signatures.
               ctx,
-              eventName as MapEvent,
+              eventName,
             );
             boundMapEvents.set(event, handler);
             map.value.on(event, handler);
+
           }
         }
       }
