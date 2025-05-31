@@ -409,19 +409,19 @@ export default defineComponent({
     /**
      * Center property updated
      */
-    "update:center": (event: MapEventType['moveend']) => true,
+    "update:center": (value: LngLatLike) => true,
     /**
      * Zoom property updated
      */
-    "update:zoom": (event: MapEventType['zoomend']) => true,
+    "update:zoom": (value: Number) => true,
     /**
      * Pitch property updated
      */
-    "update:pitch": (event: MapEventType['pitchend']) => true,
+    "update:pitch": (value: number) => true,
     /**
      * Bearing property updated
      */
-    "update:bearing": (event: MapEventType['rotateend']) => true,
+    "update:bearing": (value: number) => true,
   },
   slots: Object as SlotsType<{ default: unknown }>,
   setup(props, ctx) {
