@@ -132,7 +132,7 @@ export type UpdateMapEventEmitType = {
   "update:bearing": (value: number) => true,
 }
 
-export const UpdateMapEvents: UpdateMapEventEmitType = {
+export const UpdateMapEventEmits: UpdateMapEventEmitType = {
     /**
      * Center property updated
      */
@@ -153,7 +153,7 @@ export const UpdateMapEvents: UpdateMapEventEmitType = {
 
 export type MapEventEmitTypes = MapWrapEventEmitsType & UpdateMapEventEmitType
 
-export const MapEventEmits: MapEventEmitTypes = {...UpdateMapEvents, ...MapWrapEventEmits}
+export const MapEventEmits: MapEventEmitTypes = {...UpdateMapEventEmits, ...MapWrapEventEmits}
 
 export function createEventHandler<T extends keyof MapEventType>(
   component: Raw<ComponentInternalInstance>,
