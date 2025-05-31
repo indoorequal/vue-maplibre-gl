@@ -540,7 +540,8 @@ export default defineComponent({
             const handler = createEventHandler<typeof event>(
               component,
               map.value,
-              // @ts-ignore
+              // @ts-expect-error the vue type inference from the props declaration
+              // seems to be having a hard time with type narrowing the event signatures.
               ctx,
               eventName,
             );
