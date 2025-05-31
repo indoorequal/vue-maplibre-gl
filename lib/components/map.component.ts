@@ -25,7 +25,6 @@ import {
   type CameraUpdateTransformFunction,
   type AttributionControlOptions,
   type WebGLContextAttributesWithType,
-  LngLat,
 } from "maplibre-gl";
 import {
   componentIdSymbol,
@@ -514,36 +513,34 @@ export default defineComponent({
         "__load",
         () => ((isLoaded.value = true), (registryItem.isLoaded = true)),
       );
-      // map.value.on("load", boundMapEvents.get("__load")!);
-      // boundMapEvents.set("__moveend", () =>
-      //   ctx.emit("update:center", map.value!.getCenter()),
-      // );
-      // map.value.on("moveend", boundMapEvents.get("__moveend")!);
-      // boundMapEvents.set("__zoomend", () =>
-      //   ctx.emit("update:zoom", map.value!.getZoom()),
-      // );
-      // map.value.on("zoomend", boundMapEvents.get("__zoomend")!);
-      // boundMapEvents.set("__pitchend", () =>
-      //   ctx.emit("update:pitch", map.value!.getPitch()),
-      // );
-      // map.value.on("pitchend", boundMapEvents.get("__pitchend")!);
-      // boundMapEvents.set("__rotateend", () =>
-      //   ctx.emit("update:bearing", map.value!.getBearing()),
-      // );
-      // map.value.on("rotateend", boundMapEvents.get("__rotateend")!);
+      map.value.on("load", boundMapEvents.get("__load")!);
+      boundMapEvents.set("__moveend", () =>
+        ctx.emit("update:center", map.value!.getCenter()),
+      );
+      map.value.on("moveend", boundMapEvents.get("__moveend")!);
+      boundMapEvents.set("__zoomend", () =>
+        ctx.emit("update:zoom", map.value!.getZoom()),
+      );
+      map.value.on("zoomend", boundMapEvents.get("__zoomend")!);
+      boundMapEvents.set("__pitchend", () =>
+        ctx.emit("update:pitch", map.value!.getPitch()),
+      );
+      map.value.on("pitchend", boundMapEvents.get("__pitchend")!);
+      boundMapEvents.set("__rotateend", () =>
+        ctx.emit("update:bearing", map.value!.getBearing()),
+      );
+      map.value.on("rotateend", boundMapEvents.get("__rotateend")!);
 
       // bind events
 
-      // createEventHandler<"click">(component, map.value, ctx, "click")
       if (component.vnode.props) {
         for (const event of MAP_EVENT_TYPES) {
           if (component.vnode.props["onMap:" + event]) {
             const eventName: MapEvent<typeof event> = `map:${event}`;
-
             const handler = createEventHandler<typeof event>(
               component,
               map.value,
-              // # @ts-ignore
+              // @ts-ignore
               ctx,
               eventName,
             );
