@@ -8,8 +8,6 @@ export type MapEventHandler<T extends keyof MapEventType> = (
 
 export type MapEvent<T extends keyof MapEventType = keyof MapEventType> = `map:${T}`;
 
-// export type EventType = `map:${keyof MapEventType}`
-
 export const MAP_EVENT_TYPES: Array<keyof MapEventType> = [
   "error",
   "load",
