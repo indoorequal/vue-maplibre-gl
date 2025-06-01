@@ -31,6 +31,7 @@ import {
   isInitializedSymbol,
   isLoadedSymbol,
   mapSymbol,
+  MglEvent,
   sourceIdSymbol,
 } from "@/lib/types";
 import {
@@ -43,7 +44,6 @@ import {
 import { isLngLatEqual } from "@/lib/lib/lng_lat";
 import { Position } from "@/lib/components/controls/position.enum";
 import { registerMap } from "@/lib/lib/mapRegistry";
-
 /**
  * The map component
  *
@@ -534,19 +534,17 @@ export default defineComponent({
       // bind events
 
       if (component.vnode.props) {
-        for (const event of MAP_EVENT_TYPES) {
-          if (component.vnode.props["onMap:" + event]) {
-            const eventName: MapEvent<typeof event> = `map:${event}`;
-            const handler = createEventHandler<typeof event>(
+        for (const mapEvent of MAP_EVENT_TYPES) {
+          if (component.vnode.props["onMap:" + mapEvent]) {
+            const eventName: MapEvent<typeof mapEvent> = `map:${mapEvent}`;
+            const handler = createEventHandler(
               component,
               map.value,
-              // @ts-expect-error the vue type inference from the props declaration
-              // seems to be having a hard time with type narrowing the event signatures.
-              ctx,
+              ctx as {emit: (event: MapEvent<typeof mapEvent>, payload: MglEvent<typeof mapEvent>) => void},
               eventName,
             );
-            boundMapEvents.set(event, handler);
-            map.value.on(event, handler);
+            boundMapEvents.set(mapEvent, handler);
+            map.value.on(mapEvent, handler);
 
           }
         }
