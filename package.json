@@ -47,7 +47,7 @@
     "@maplibre/maplibre-gl-inspect": "^1.7.0",
     "@mdi/js": "^7.4.47",
     "@types/geojson": "^7946.0.14",
-    "@types/jest": "^29.5.12",
+    "@types/jest": "^30.0.0",
     "@types/node": "^22.0.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/test-utils": "^2.4.6",
