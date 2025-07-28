@@ -16,7 +16,6 @@ import {
 import {
   Map as MaplibreMap,
   type FitBoundsOptions,
-  type GestureOptions,
   type LngLatBoundsLike,
   type LngLatLike,
   type MapEventType,
