@@ -349,7 +349,7 @@ export default defineComponent({
      * Find more details and examples using `cooperativeGestures` in the {@link CooperativeGesturesHandler} section.
      */
     cooperativeGestures: {
-      type: Object as PropType<GestureOptions>,
+      type: Boolean as PropType<boolean>,
     },
   },
   emits: [
