@@ -15,6 +15,7 @@ import {
   Marker,
   type PointLike,
   type PositionAnchor,
+  type Event
 } from "maplibre-gl";
 import { mapSymbol, markerSymbol } from "@/lib/types";
 
@@ -125,9 +126,9 @@ export default defineComponent({
       eventName: "dragstart" | "drag" | "dragend",
       additionalCb?: () => void,
     ) {
-      const fn = () => {
+      const fn = (e: Event) => {
         if (additionalCb) additionalCb();
-        emit(eventName);
+        emit(eventName, e);
       };
       marker.value!.on(eventName, fn);
       boundEvents.set(eventName, fn);
