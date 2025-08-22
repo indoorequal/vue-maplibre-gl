@@ -148,6 +148,7 @@ export default defineComponent({
         emit("update:coordinates", marker.value?.getLngLat());
       });
       emitEvent("dragend", () => {
+        emit("dragend", marker.value?.getLngLat());
         emit("update:coordinates", marker.value?.getLngLat());
       });
 
