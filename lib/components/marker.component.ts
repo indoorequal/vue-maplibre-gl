@@ -44,6 +44,12 @@ export default defineComponent({
      * @property {LgnLatLike} coordinates the new coordinates
      */
     "update:coordinates",
+    /**
+     * Fired when the marker is finished being dragged
+     *
+     * @property {LgnLatLike} coordinates the new coordinates
+     */
+    "update:dragend",
   ],
   props: {
     /**
@@ -148,7 +154,7 @@ export default defineComponent({
         emit("update:coordinates", marker.value?.getLngLat());
       });
       emitEvent("dragend", () => {
-        emit("dragend", marker.value?.getLngLat());
+        emit("update:dragend", marker.value?.getLngLat());
         emit("update:coordinates", marker.value?.getLngLat());
       });
 
