@@ -3,7 +3,7 @@
 * (c) 2025 François de Metz <francois@2metz.fr>
 * @license MIT
 */
-import { reactive as W, defineComponent as d, markRaw as H, getCurrentInstance as V, shallowRef as E, ref as B, provide as y, watch as u, onMounted as q, onBeforeUnmount as M, h as A, nextTick as F, inject as m, createCommentVNode as S, Teleport as X, warn as G, isRef as w } from "vue";
+import { reactive as W, defineComponent as d, markRaw as H, getCurrentInstance as V, shallowRef as E, ref as B, provide as y, watch as s, onMounted as q, onBeforeUnmount as M, h as A, nextTick as F, inject as m, createCommentVNode as S, Teleport as X, warn as G, isRef as w } from "vue";
 import { LngLat as U, Map as ee, AttributionControl as te, FullscreenControl as oe, GeolocateControl as ae, NavigationControl as re, ScaleControl as ne, LogoControl as ie, Marker as le, Popup as ue } from "maplibre-gl";
 const se = Symbol("map"), h = se, P = Symbol("isLoaded"), ce = Symbol("isInitialized"), D = ce, L = Symbol("componentId"), O = Symbol("sourceId"), C = Symbol(
   "sourceLayerRegistry"
@@ -457,74 +457,74 @@ const ye = d({
   ],
   slots: Object,
   setup(e, t) {
-    const r = H(V()), a = E(), o = E(), l = B(!1), c = B(!1), s = /* @__PURE__ */ new Map(), g = fe(r, o, e.mapKey);
-    y(h, o), y(P, c), y(D, l), y(L, r.uid), y(O, ""), u(
+    const r = H(V()), a = E(), o = E(), l = B(!1), c = B(!1), u = /* @__PURE__ */ new Map(), g = fe(r, o, e.mapKey);
+    y(h, o), y(P, c), y(D, l), y(L, r.uid), y(O, ""), s(
       () => e.bearing,
       (i) => {
         i && o.value?.setBearing(i);
       }
-    ), u(
+    ), s(
       () => e.bounds,
       (i) => {
         i && o.value?.fitBounds(i, e.fitBoundsOptions);
       }
-    ), u(
+    ), s(
       () => e.center,
       (i) => {
         const v = o.value?.getCenter();
         i && v && !ge(i, v) && o.value?.setCenter(i);
       }
-    ), u(
+    ), s(
       () => e.maxBounds,
       (i) => {
         i && o.value?.setMaxBounds(i);
       }
-    ), u(
+    ), s(
       () => e.maxPitch,
       (i) => {
         i && o.value?.setMaxPitch(i);
       }
-    ), u(
+    ), s(
       () => e.maxZoom,
       (i) => {
         i && o.value?.setMaxZoom(i);
       }
-    ), u(
+    ), s(
       () => e.minPitch,
       (i) => {
         i && o.value?.setMinPitch(i);
       }
-    ), u(
+    ), s(
       () => e.minZoom,
       (i) => {
         i && o.value?.setMinZoom(i);
       }
-    ), u(
+    ), s(
       () => e.pitch,
       (i) => {
         i && o.value?.setPitch(i);
       }
-    ), u(
+    ), s(
       () => e.renderWorldCopies,
       (i) => {
         i && o.value?.setRenderWorldCopies(i);
       }
-    ), u(
+    ), s(
       () => e.mapStyle,
       (i) => {
         i && o.value?.setStyle(i);
       }
-    ), u(
+    ), s(
       () => e.transformRequest,
       (i) => {
         i && o.value?.setTransformRequest(i);
       }
-    ), u(
+    ), s(
       () => e.zoom,
       (i) => {
         i && o.value?.setZoom(i);
       }
-    ), u(
+    ), s(
       () => e.zoom,
       (i) => {
         i && o.value?.setZoom(i);
@@ -535,22 +535,22 @@ const ye = d({
       const i = { ...e, style: e.mapStyle, container: a.value };
       for (const v of Object.keys(i))
         i[v] === void 0 && delete i[v];
-      if (o.value = H(new ee(i)), g.map = o.value, l.value = !0, s.set(
+      if (o.value = H(new ee(i)), g.map = o.value, l.value = !0, u.set(
         "__load",
         () => (c.value = !0, g.isLoaded = !0)
-      ), o.value.on("load", s.get("__load")), s.set(
+      ), o.value.on("load", u.get("__load")), u.set(
         "__moveend",
         () => t.emit("update:center", o.value.getCenter())
-      ), o.value.on("moveend", s.get("__moveend")), s.set(
+      ), o.value.on("moveend", u.get("__moveend")), u.set(
         "__zoomend",
         () => t.emit("update:zoom", o.value.getZoom())
-      ), o.value.on("zoomend", s.get("__zoomend")), s.set(
+      ), o.value.on("zoomend", u.get("__zoomend")), u.set(
         "__pitchend",
         () => t.emit("update:pitch", o.value.getPitch())
-      ), o.value.on("pitchend", s.get("__pitchend")), s.set(
+      ), o.value.on("pitchend", u.get("__pitchend")), u.set(
         "__rotateend",
         () => t.emit("update:bearing", o.value.getBearing())
-      ), o.value.on("rotateend", s.get("__rotateend")), r.vnode.props) {
+      ), o.value.on("rotateend", u.get("__rotateend")), r.vnode.props) {
         for (const v of de)
           if (r.vnode.props["onMap:" + v]) {
             const Q = `map:${v}`, Z = me(
@@ -559,13 +559,13 @@ const ye = d({
               t,
               Q
             );
-            s.set(v, Z), o.value.on(v, Z);
+            u.set(v, Z), o.value.on(v, Z);
           }
       }
       o.value.getCanvas().addEventListener("webglcontextlost", R);
     }
     async function f() {
-      g.isMounted = !1, g.isLoaded = !1, c.value = !1, o.value && (o.value.getCanvas().removeEventListener("webglcontextlost", R), l.value = !1, s.forEach((i, v) => {
+      g.isMounted = !1, g.isLoaded = !1, c.value = !1, o.value && (o.value.getCanvas().removeEventListener("webglcontextlost", R), l.value = !1, u.forEach((i, v) => {
         o.value.off(v.startsWith("__") ? v.substring(2) : v, i);
       }), o.value.remove());
     }
@@ -589,7 +589,7 @@ const ye = d({
   }
 });
 function ve(e, t, r) {
-  u(
+  s(
     e,
     (a) => {
       a && x.indexOf(a) === -1 || (t.value?.hasControl(r) && t.value.removeControl(r), t.value?.addControl(r, a));
@@ -672,7 +672,7 @@ const Se = d({
   slots: Object,
   setup(e, { slots: t }) {
     const r = B(!1), { control: a } = N(() => new be(r, e.class), e);
-    return u(
+    return s(
       () => e.class,
       () => a.value.setClasses(e.class)
     ), () => r.value ? A(X, { to: a.value.container }, t.default?.({})) : S("custom-component");
@@ -977,12 +977,12 @@ const Oe = Object.values(K), Ce = d({
     }
   },
   setup(e, { slots: t, emit: r }) {
-    const a = m(h), o = E(), l = B(), c = B(!1), s = /* @__PURE__ */ new Map();
+    const a = m(h), o = E(), l = B(), c = B(!1), u = /* @__PURE__ */ new Map();
     function g(n, f) {
       const R = (i) => {
         f && f(), r(n, i);
       };
-      o.value.on(n, R), s.set(n, R);
+      o.value.on(n, R), u.set(n, R);
     }
     return y($, o), q(() => {
       const n = { ...e };
@@ -991,41 +991,41 @@ const Oe = Object.values(K), Ce = d({
       }), g("dragend", () => {
         r("update:coordinates", o.value?.getLngLat());
       }), c.value = !0;
-    }), u(
+    }), s(
       () => e.coordinates,
       (n) => o.value?.setLngLat(n),
       { deep: !0 }
-    ), u(
+    ), s(
       () => e.draggable,
       (n) => o.value?.setDraggable(n)
-    ), u(
+    ), s(
       () => e.offset,
       (n) => o.value?.setOffset(n || [0, 0])
-    ), u(
+    ), s(
       () => e.pitchAlignment,
       (n) => o.value?.setPitchAlignment(n || "auto")
-    ), u(
+    ), s(
       () => e.rotation,
       (n) => o.value?.setRotation(n)
-    ), u(
+    ), s(
       () => e.rotationAlignment,
       (n) => o.value?.setRotationAlignment(n || "auto")
-    ), u(
+    ), s(
       () => e.opacity,
       (n) => o.value?.setOpacity(n, e.opacityWhenCovered)
-    ), u(
+    ), s(
       () => e.opacityWhenCovered,
       (n) => o.value?.setOpacity(e.opacity, n)
-    ), u(
+    ), s(
       () => e.subpixelPositioning,
       (n) => o.value?.setSubpixelPositioning(n)
-    ), u(
+    ), s(
       () => e.className,
       (n, f) => {
         f && o.value?.removeClassName(f), n && o.value?.addClassName(n);
       }
     ), M(() => {
-      s.forEach((n, f) => {
+      u.forEach((n, f) => {
         o.value?.off(f, n);
       }), o.value?.remove();
     }), () => [
@@ -1151,45 +1151,45 @@ const Oe = Object.values(K), Ce = d({
     }
   },
   setup(e, { slots: t, emit: r, expose: a }) {
-    const o = m(h), l = m($, void 0), c = B(), s = new ue(e);
-    l && l.value ? l.value.setPopup(s) : e.coordinates && o && s.setLngLat(e.coordinates).addTo(o.value), e.text && s.setText(e.text);
+    const o = m(h), l = m($, void 0), c = B(), u = new ue(e);
+    l && l.value ? l.value.setPopup(u) : e.coordinates && o && u.setLngLat(e.coordinates).addTo(o.value), e.text && u.setText(e.text);
     function g(n) {
       const f = () => r(n);
-      s.on(n, f), M(() => {
-        s.off(n, f);
+      u.on(n, f), M(() => {
+        u.off(n, f);
       });
     }
     return g("open"), g("close"), a({
       remove() {
-        s.remove();
+        u.remove();
       }
-    }), u(
+    }), s(
       () => e.coordinates,
       (n) => {
-        n && s.setLngLat(n);
+        n && u.setLngLat(n);
       },
       { deep: !0 }
-    ), u(
+    ), s(
       () => e.text,
-      (n) => s.setText(n || "")
-    ), u(
+      (n) => u.setText(n || "")
+    ), s(
       () => e.offset,
-      (n) => s.setOffset(n)
-    ), u(
+      (n) => u.setOffset(n)
+    ), s(
       () => e.maxWidth,
-      (n) => s.setMaxWidth(n)
-    ), u(
+      (n) => u.setMaxWidth(n)
+    ), s(
       () => e.className,
       (n, f) => {
-        f && s.removeClassName(f), n && s.addClassName(n);
+        f && u.removeClassName(f), n && u.addClassName(n);
       }
-    ), u(
+    ), s(
       () => e.subpixelPositioning,
-      (n) => s.setSubpixelPositioning(n)
+      (n) => u.setSubpixelPositioning(n)
     ), q(() => {
-      c.value && !e.text && s.setDOMContent(c.value);
+      c.value && !e.text && u.setDOMContent(c.value);
     }), M(() => {
-      s.remove();
+      u.remove();
     }), () => [
       A("div", { ref: c }, t.default ? t.default() : void 0)
     ];
@@ -1267,10 +1267,10 @@ class p {
 function j(e, t, r) {
   const a = m(h), o = m(P);
   function l() {
-    o.value && a.value?.isStyleLoaded() && (a.value.addSource(t.sourceId, p.genSourceOpts(t)), e.value = a.value.getSource(t.sourceId));
+    o.value && a.value?.isStyleLoaded() && !a.value.getSource(t.sourceId) && (a.value.addSource(t.sourceId, p.genSourceOpts(t)), e.value = a.value.getSource(t.sourceId));
   }
-  return u(o, l, { immediate: !0 }), a.value.on("styledata", l), M(() => {
-    o.value && (r.unmount(), a.value.removeSource(t.sourceId)), a.value.off("styledata", l);
+  return s(o, l, { immediate: !0 }), a.value.on("styledata", l), M(() => {
+    o.value && a.value?.getSource(t.sourceId) && (r.unmount(), a.value.removeSource(t.sourceId)), a.value.off("styledata", l);
   });
 }
 const Ne = d({
@@ -1287,13 +1287,13 @@ const Ne = d({
   slots: Object,
   setup(e, { slots: t }) {
     const r = m(L), a = p.getSourceRef(r, e.sourceId), o = new _(), l = { ...e, type: "canvas" };
-    return y(O, e.sourceId), y(C, o), j(a, l, o), u(
+    return y(O, e.sourceId), y(C, o), j(a, l, o), s(
       [
         w(e.coordinates) ? e.coordinates : () => e.coordinates,
         a
       ],
-      ([c, s]) => {
-        s?.setCoordinates(c);
+      ([c, u]) => {
+        u?.setCoordinates(c);
       },
       { immediate: !0 }
     ), () => [
@@ -1329,10 +1329,10 @@ const Ne = d({
   slots: Object,
   setup(e, { slots: t }) {
     const r = m(L), a = p.getSourceRef(r, e.sourceId), o = new _(), l = { ...e, type: "geojson" };
-    return y(O, e.sourceId), y(C, o), j(a, l, o), u(
+    return y(O, e.sourceId), y(C, o), j(a, l, o), s(
       [w(e.data) ? e.data : () => e.data, a],
-      ([c, s]) => {
-        s?.setData(
+      ([c, u]) => {
+        u?.loaded() && u?.setData(
           c || { type: "FeatureCollection", features: [] }
         );
       },
@@ -1355,13 +1355,13 @@ const Ne = d({
   slots: Object,
   setup(e, { slots: t }) {
     const r = m(L), a = p.getSourceRef(r, e.sourceId), o = new _(), l = { ...e, type: "image" };
-    return y(O, e.sourceId), y(C, o), j(a, l, o), u(
+    return y(O, e.sourceId), y(C, o), j(a, l, o), s(
       [
         w(e.coordinates) ? e.coordinates : () => e.coordinates,
         a
       ],
-      ([c, s]) => {
-        s?.setCoordinates(c);
+      ([c, u]) => {
+        u?.setCoordinates(c);
       },
       { immediate: !0 }
     ), () => [
@@ -1448,16 +1448,16 @@ const Ne = d({
   slots: Object,
   setup(e, { slots: t }) {
     const r = m(L), a = p.getSourceRef(r, e.sourceId), o = new _(), l = { ...e, type: "vector" };
-    return y(O, e.sourceId), y(C, o), j(a, l, o), u(
+    return y(O, e.sourceId), y(C, o), j(a, l, o), s(
       [w(e.tiles) ? e.tiles : () => e.tiles, a],
-      ([c, s]) => {
-        s?.loaded() && s.setTiles(c || []);
+      ([c, u]) => {
+        u?.loaded() && u.setTiles(c || []);
       },
       { immediate: !0 }
-    ), u(
+    ), s(
       [w(e.url) ? e.url : () => e.url, a],
-      ([c, s]) => {
-        s?.loaded() && s.setUrl(c || "");
+      ([c, u]) => {
+        u?.loaded() && u.setUrl(c || "");
       },
       { immediate: !0 }
     ), () => [
@@ -1478,13 +1478,13 @@ const Ne = d({
   slots: Object,
   setup(e, { slots: t }) {
     const r = m(L), a = p.getSourceRef(r, e.sourceId), o = new _(), l = { ...e, type: "video" };
-    return y(O, e.sourceId), y(C, o), j(a, l, o), u(
+    return y(O, e.sourceId), y(C, o), j(a, l, o), s(
       [
         w(e.coordinates) ? e.coordinates : () => e.coordinates,
         a
       ],
-      ([c, s]) => {
-        s?.setCoordinates(c);
+      ([c, u]) => {
+        u?.setCoordinates(c);
       },
       { immediate: !0 }
     ), () => [
@@ -1637,21 +1637,21 @@ const qe = d({
   emits: [...b],
   setup(e) {
     const t = m(h), r = m(P);
-    return Y(e.layerId), u(
+    return Y(e.layerId), s(
       () => e.layout,
       (a) => {
         if (a)
           for (const [o, l] of Object.entries(a))
             t.value.setLayoutProperty(e.layerId, o, l);
       }
-    ), u(
+    ), s(
       () => e.paint,
       (a) => {
         if (a)
           for (const [o, l] of Object.entries(a))
             t.value.setPaintProperty(e.layerId, o, l);
       }
-    ), u(
+    ), s(
       r,
       (a) => {
         a && t.value.addLayer(
@@ -1679,22 +1679,22 @@ function z(e, t) {
     );
     return;
   }
-  const a = V(), o = m(h), l = m(P), c = m(L), s = p.getSourceRef(c, t.source || r);
-  return Y(t.layerId, a), u(
+  const a = V(), o = m(h), l = m(P), c = m(L), u = p.getSourceRef(c, t.source || r);
+  return Y(t.layerId, a), s(
     () => t.minzoom,
     () => o.value.setLayerZoomRange(
       t.layerId,
       t.minzoom || 0,
       t.maxzoom || 24
     )
-  ), u(
+  ), s(
     () => t.maxzoom,
     () => o.value.setLayerZoomRange(
       t.layerId,
       t.minzoom || 0,
       t.maxzoom || 24
     )
-  ), u(
+  ), s(
     () => t.layout,
     (g) => {
       if (g)
@@ -1702,7 +1702,7 @@ function z(e, t) {
           o.value.setLayoutProperty(t.layerId, n, f);
     },
     { deep: !0 }
-  ), u(
+  ), s(
     () => t.paint,
     (g) => {
       if (g)
@@ -1710,12 +1710,12 @@ function z(e, t) {
           o.value.setPaintProperty(t.layerId, n, f);
     },
     { deep: !0 }
-  ), u(
+  ), s(
     () => t.filter,
     (g) => o.value.setFilter(t.layerId, g),
     { deep: !0 }
-  ), u(
-    [l, s],
+  ), s(
+    [l, u],
     ([g, n]) => {
       g && (n || n === void 0) && (o.value.addLayer(
         ke(t.layerId, e, t, r),
