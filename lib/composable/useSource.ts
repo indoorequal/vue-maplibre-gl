@@ -13,7 +13,7 @@ export function useSource(
     isLoaded = inject(isLoadedSymbol)!;
 
   function addSource() {
-    if (isLoaded.value && map.value?.isStyleLoaded()) {
+    if (isLoaded.value && map.value?.isStyleLoaded() && !map.value.getSource(props.sourceId)) {
       map.value!.addSource(props.sourceId, SourceLib.genSourceOpts(props));
       source.value = map.value!.getSource(props.sourceId);
     }
@@ -23,7 +23,7 @@ export function useSource(
   map.value!.on("styledata", addSource);
 
   return onBeforeUnmount(() => {
-    if (isLoaded.value) {
+    if (isLoaded.value && !!map.value?.getSource(props.sourceId)) {
       registry.unmount();
       map.value!.removeSource(props.sourceId);
     }

@@ -648,10 +648,10 @@ var L = n({
 function q(e, t, n) {
 	let r = a(S), i = a(C);
 	function o() {
-		i.value && r.value?.isStyleLoaded() && (r.value.addSource(t.sourceId, K.genSourceOpts(t)), e.value = r.value.getSource(t.sourceId));
+		i.value && r.value?.isStyleLoaded() && !r.value.getSource(t.sourceId) && (r.value.addSource(t.sourceId, K.genSourceOpts(t)), e.value = r.value.getSource(t.sourceId));
 	}
 	return g(i, o, { immediate: !0 }), r.value.on("styledata", o), l(() => {
-		i.value && (n.unmount(), r.value.removeSource(t.sourceId)), r.value.off("styledata", o);
+		i.value && r.value?.getSource(t.sourceId) && (n.unmount(), r.value.removeSource(t.sourceId)), r.value.off("styledata", o);
 	});
 }
 //#endregion
@@ -713,7 +713,7 @@ var _e = n({
 			type: "geojson"
 		};
 		return d(D, e.sourceId), d(O, s), q(i, c, s), g([o(e.data) ? e.data : () => e.data, i], ([e, t]) => {
-			t?.setData(e || {
+			t?.loaded() && t?.setData(e || {
 				type: "FeatureCollection",
 				features: []
 			});
