@@ -651,7 +651,7 @@ function q(e, t, n) {
 		i.value && r.value?.isStyleLoaded() && !r.value.getSource(t.sourceId) && (r.value.addSource(t.sourceId, K.genSourceOpts(t)), e.value = r.value.getSource(t.sourceId));
 	}
 	return g(i, o, { immediate: !0 }), r.value.on("styledata", o), l(() => {
-		i.value && r.value?.getSource(t.sourceId) && (n.unmount(), r.value.removeSource(t.sourceId)), r.value.off("styledata", o);
+		i.value && r.value?.getSource(t.sourceId) && (n.unmount(), r.value.removeSource(t.sourceId)), r.value.off("styledata", o), e.value = void 0;
 	});
 }
 //#endregion
