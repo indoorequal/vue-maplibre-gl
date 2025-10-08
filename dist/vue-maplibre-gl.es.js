@@ -1270,7 +1270,7 @@ function j(e, t, r) {
     o.value && a.value?.isStyleLoaded() && !a.value.getSource(t.sourceId) && (a.value.addSource(t.sourceId, p.genSourceOpts(t)), e.value = a.value.getSource(t.sourceId));
   }
   return s(o, l, { immediate: !0 }), a.value.on("styledata", l), M(() => {
-    o.value && a.value?.getSource(t.sourceId) && (r.unmount(), a.value.removeSource(t.sourceId)), a.value.off("styledata", l);
+    o.value && a.value?.getSource(t.sourceId) && (r.unmount(), a.value.removeSource(t.sourceId)), a.value.off("styledata", l), e.value = void 0;
   });
 }
 const Ne = d({

@@ -28,5 +28,6 @@ export function useSource(
       map.value!.removeSource(props.sourceId);
     }
     map.value!.off("styledata", addSource);
+    source.value = undefined;
   });
 }
