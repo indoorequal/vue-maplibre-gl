@@ -64,9 +64,11 @@ export default defineComponent({
     watch(
       [isRef(props.data) ? props.data : () => props.data, source],
       ([v, src]) => {
-        src?.setData(
-          (v as DataType) || { type: "FeatureCollection", features: [] },
-        );
+        if (src?.loaded()) {
+          src?.setData(
+            (v as DataType) || { type: "FeatureCollection", features: [] },
+          );
+        }
       },
       { immediate: true },
     );
