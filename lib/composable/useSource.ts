@@ -13,7 +13,7 @@ export function useSource(
     isLoaded = inject(isLoadedSymbol)!;
 
   function addSource() {
-    if (isLoaded.value && map.value?.isStyleLoaded() && !map.value.getSource(props.sourceId)) {
+    if (isLoaded.value && !map.value?.getSource(props.sourceId)) {
       map.value!.addSource(props.sourceId, SourceLib.genSourceOpts(props));
       source.value = map.value!.getSource(props.sourceId);
     }
