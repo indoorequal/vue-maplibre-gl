@@ -199,7 +199,6 @@ export function unregisterLayerEvents(map: Map, layerId: string, vn: VNode) {
   if (!vn.props) {
     return;
   }
-  map._getMapId();
 
   for (const eventName of LAYER_EVENTS) {
     unsubscribeLayerEvent(map, layerId, eventName);
