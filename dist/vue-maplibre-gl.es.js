@@ -464,7 +464,7 @@ var L = n({
 	render() {
 		return null;
 	}
-}), W = n({
+}), he = n({
 	name: "MglMarker",
 	emits: [
 		"dragstart",
@@ -520,7 +520,7 @@ var L = n({
 	render() {
 		return null;
 	}
-}), he = n({
+}), ge = n({
 	name: "MglPopup",
 	emits: ["open", "close"],
 	props: {
@@ -601,7 +601,7 @@ var L = n({
 	render() {
 		return null;
 	}
-}), ge = n({
+}), _e = n({
 	name: "MglImage",
 	props: {
 		id: {
@@ -620,7 +620,7 @@ var L = n({
 			e.url && (n = (await t.value.loadImage(e.url)).data), t.value.addImage(e.id, n, e.options);
 		})(), () => [];
 	}
-}), G = class {
+}), W = class {
 	unmountHandlers = /* @__PURE__ */ new Map();
 	registerUnmountHandler(e, t) {
 		this.unmountHandlers.set(e, t);
@@ -631,7 +631,7 @@ var L = n({
 	unmount() {
 		this.unmountHandlers.forEach((e) => e());
 	}
-}, K = class e {
+}, G = class e {
 	static REFS = /* @__PURE__ */ new Map();
 	static genSourceOpts(e) {
 		let t = { ...e };
@@ -645,10 +645,10 @@ var L = n({
 };
 //#endregion
 //#region lib/composable/useSource.ts
-function q(e, t, n) {
+function K(e, t, n) {
 	let r = a(S), i = a(C);
 	function o() {
-		i.value && !r.value?.getSource(t.sourceId) && (r.value.addSource(t.sourceId, K.genSourceOpts(t)), e.value = r.value.getSource(t.sourceId));
+		i.value && !r.value?.getSource(t.sourceId) && (r.value.addSource(t.sourceId, G.genSourceOpts(t)), e.value = r.value.getSource(t.sourceId));
 	}
 	return g(i, o, { immediate: !0 }), r.value.on("styledata", o), l(() => {
 		i.value && r.value?.getSource(t.sourceId) && (n.unmount(), r.value.removeSource(t.sourceId)), r.value.off("styledata", o), e.value = void 0;
@@ -656,7 +656,7 @@ function q(e, t, n) {
 }
 //#endregion
 //#region lib/components/sources/canvas.source.ts
-var _e = n({
+var ve = n({
 	name: "MglCanvasSource",
 	props: {
 		sourceId: {
@@ -669,15 +669,15 @@ var _e = n({
 	},
 	slots: Object,
 	setup(e, { slots: n }) {
-		let r = a(E), i = K.getSourceRef(r, e.sourceId), s = new G(), c = {
+		let r = a(E), i = G.getSourceRef(r, e.sourceId), s = new W(), c = {
 			...e,
 			type: "canvas"
 		};
-		return d(D, e.sourceId), d(O, s), q(i, c, s), g([o(e.coordinates) ? e.coordinates : () => e.coordinates, i], ([e, t]) => {
+		return d(D, e.sourceId), d(O, s), K(i, c, s), g([o(e.coordinates) ? e.coordinates : () => e.coordinates, i], ([e, t]) => {
 			t?.setCoordinates(e);
 		}, { immediate: !0 }), () => [t("Canvas Source"), i.value && n.default ? n.default({}) : void 0];
 	}
-}), ve = n({
+}), ye = n({
 	name: "MglGeoJsonSource",
 	props: {
 		sourceId: {
@@ -708,18 +708,18 @@ var _e = n({
 	},
 	slots: Object,
 	setup(e, { slots: n }) {
-		let r = a(E), i = K.getSourceRef(r, e.sourceId), s = new G(), c = {
+		let r = a(E), i = G.getSourceRef(r, e.sourceId), s = new W(), c = {
 			...e,
 			type: "geojson"
 		};
-		return d(D, e.sourceId), d(O, s), q(i, c, s), g([o(e.data) ? e.data : () => e.data, i], ([e, t]) => {
+		return d(D, e.sourceId), d(O, s), K(i, c, s), g([o(e.data) ? e.data : () => e.data, i], ([e, t]) => {
 			t?.loaded() && t?.setData(e || {
 				type: "FeatureCollection",
 				features: []
 			});
 		}, { immediate: !0 }), () => [t("GeoJSON Source"), i.value && n.default ? n.default({}) : void 0];
 	}
-}), ye = n({
+}), be = n({
 	name: "MglImageSource",
 	props: {
 		sourceId: {
@@ -731,15 +731,15 @@ var _e = n({
 	},
 	slots: Object,
 	setup(e, { slots: n }) {
-		let r = a(E), i = K.getSourceRef(r, e.sourceId), s = new G(), c = {
+		let r = a(E), i = G.getSourceRef(r, e.sourceId), s = new W(), c = {
 			...e,
 			type: "image"
 		};
-		return d(D, e.sourceId), d(O, s), q(i, c, s), g([o(e.coordinates) ? e.coordinates : () => e.coordinates, i], ([e, t]) => {
+		return d(D, e.sourceId), d(O, s), K(i, c, s), g([o(e.coordinates) ? e.coordinates : () => e.coordinates, i], ([e, t]) => {
 			t?.setCoordinates(e);
 		}, { immediate: !0 }), () => [t("Image Source"), i.value && n.default ? n.default({}) : void 0];
 	}
-}), be = n({
+}), xe = n({
 	name: "MglRasterSource",
 	props: {
 		sourceId: {
@@ -758,13 +758,13 @@ var _e = n({
 	},
 	slots: Object,
 	setup(e, { slots: n }) {
-		let r = a(E), i = K.getSourceRef(r, e.sourceId), o = new G(), s = {
+		let r = a(E), i = G.getSourceRef(r, e.sourceId), o = new W(), s = {
 			...e,
 			type: "raster"
 		};
-		return d(D, e.sourceId), d(O, o), q(i, s, o), () => [t("Raster Source"), i.value && n.default ? n.default({}) : void 0];
+		return d(D, e.sourceId), d(O, o), K(i, s, o), () => [t("Raster Source"), i.value && n.default ? n.default({}) : void 0];
 	}
-}), xe = n({
+}), Se = n({
 	name: "MglRasterDemSource",
 	props: {
 		sourceId: {
@@ -787,13 +787,13 @@ var _e = n({
 	},
 	slots: Object,
 	setup(e, { slots: n }) {
-		let r = a(E), i = K.getSourceRef(r, e.sourceId), o = new G(), s = {
+		let r = a(E), i = G.getSourceRef(r, e.sourceId), o = new W(), s = {
 			...e,
 			type: "raster-dem"
 		};
-		return d(D, e.sourceId), d(O, o), q(i, s, o), () => [t("RasterDem Source"), i.value && n.default ? n.default({}) : void 0];
+		return d(D, e.sourceId), d(O, o), K(i, s, o), () => [t("RasterDem Source"), i.value && n.default ? n.default({}) : void 0];
 	}
-}), Se = n({
+}), Ce = n({
 	name: "MglVectorSource",
 	props: {
 		sourceId: {
@@ -817,17 +817,17 @@ var _e = n({
 	},
 	slots: Object,
 	setup(e, { slots: n }) {
-		let r = a(E), i = K.getSourceRef(r, e.sourceId), s = new G(), c = {
+		let r = a(E), i = G.getSourceRef(r, e.sourceId), s = new W(), c = {
 			...e,
 			type: "vector"
 		};
-		return d(D, e.sourceId), d(O, s), q(i, c, s), g([o(e.tiles) ? e.tiles : () => e.tiles, i], ([e, t]) => {
+		return d(D, e.sourceId), d(O, s), K(i, c, s), g([o(e.tiles) ? e.tiles : () => e.tiles, i], ([e, t]) => {
 			t?.loaded() && t.setTiles(e || []);
 		}, { immediate: !0 }), g([o(e.url) ? e.url : () => e.url, i], ([e, t]) => {
 			t?.loaded() && t.setUrl(e || "");
 		}, { immediate: !0 }), () => [t("Vector Source"), i.value && n.default ? n.default({}) : void 0];
 	}
-}), Ce = n({
+}), we = n({
 	name: "MglVideoSource",
 	props: {
 		sourceId: {
@@ -839,15 +839,15 @@ var _e = n({
 	},
 	slots: Object,
 	setup(e, { slots: n }) {
-		let r = a(E), i = K.getSourceRef(r, e.sourceId), s = new G(), c = {
+		let r = a(E), i = G.getSourceRef(r, e.sourceId), s = new W(), c = {
 			...e,
 			type: "video"
 		};
-		return d(D, e.sourceId), d(O, s), q(i, c, s), g([o(e.coordinates) ? e.coordinates : () => e.coordinates, i], ([e, t]) => {
+		return d(D, e.sourceId), d(O, s), K(i, c, s), g([o(e.coordinates) ? e.coordinates : () => e.coordinates, i], ([e, t]) => {
 			t?.setCoordinates(e);
 		}, { immediate: !0 }), () => [t("Video Source"), i.value && n.default ? n.default({}) : void 0];
 	}
-}), J = [
+}), q = [
 	"click",
 	"dblclick",
 	"mousedown",
@@ -862,7 +862,7 @@ var _e = n({
 	"touchend",
 	"touchcancel"
 ];
-function Y() {
+function J() {
 	return {
 		layerId: {
 			type: String,
@@ -884,7 +884,7 @@ function Y() {
 		paint: { type: Object }
 	};
 }
-function we(e, t, n, r) {
+function Te(e, t, n, r) {
 	let i = {
 		id: e,
 		type: t,
@@ -900,24 +900,32 @@ function we(e, t, n, r) {
 	for (let e of Object.keys(i)) i[e] === void 0 && delete i[e];
 	return i;
 }
-function Te(e, t, n) {
-	if (n.props) for (let r of J) {
-		let i = "on" + r.charAt(0).toUpperCase() + r.substr(1);
-		n.props[i] && e.on(r, t, n.props[i]);
+var Y = {};
+function Ee(e, t, n) {
+	return `${e._getMapId()}:${t}:${n}`;
+}
+function De(e, t, n) {
+	let r = Ee(e, t, n);
+	r in Y && (Y[r].unsubscribe(), delete Y[r]);
+}
+function Oe(e, t, n, r) {
+	De(e, t, n), Y[Ee(e, t, n)] = r;
+}
+function ke(e, t, n) {
+	if (n.props) for (let r of q) {
+		let i = "on" + r.charAt(0).toUpperCase() + r.substring(1);
+		n.props[i] && Oe(e, t, r, e.on(r, t, n.props[i]));
 	}
 }
-function Ee(e, t, n) {
-	if (n.props) for (let r of J) {
-		let i = "on" + r.charAt(0).toUpperCase() + r.substr(1);
-		n.props[i] && e.off(r, t, n.props[i]);
-	}
+function Ae(e, t, n) {
+	if (n.props) for (let n of q) De(e, t, n);
 }
 //#endregion
 //#region lib/composable/useDisposableLayer.ts
 function X(e, t) {
 	let n = a(S), r = a(C), i = a(O);
 	function o() {
-		r.value && (t && Ee(n.value, e, t.vnode), n.value.getLayer(e) && n.value.removeLayer(e));
+		r.value && (t && Ae(n.value, e, t.vnode), n.value.getLayer(e) && n.value.removeLayer(e));
 	}
 	i.registerUnmountHandler(e, o), l(() => {
 		i.unregisterUnmountHandler(e), o();
@@ -925,7 +933,7 @@ function X(e, t) {
 }
 //#endregion
 //#region lib/components/layers/background.layer.ts
-var De = n({
+var je = n({
 	name: "MglBackgroundLayer",
 	props: {
 		layerId: {
@@ -944,7 +952,7 @@ var De = n({
 		layout: Object,
 		paint: Object
 	},
-	emits: [...J],
+	emits: [...q],
 	setup(e) {
 		let n = a(S), r = a(C);
 		return X(e.layerId), g(() => e.layout, (t) => {
@@ -972,107 +980,107 @@ function Z(e, n) {
 		h(`${e} Layer: layer must be used inside source tag or source prop must be set`);
 		return;
 	}
-	let o = r(), s = a(S), c = a(C), l = a(E), u = K.getSourceRef(l, n.source || i);
+	let o = r(), s = a(S), c = a(C), l = a(E), u = G.getSourceRef(l, n.source || i);
 	return X(n.layerId, o), g(() => n.minzoom, () => s.value.setLayerZoomRange(n.layerId, n.minzoom || 0, n.maxzoom || 24)), g(() => n.maxzoom, () => s.value.setLayerZoomRange(n.layerId, n.minzoom || 0, n.maxzoom || 24)), g(() => n.layout, (e) => {
 		if (e) for (let [t, r] of Object.entries(e)) s.value.setLayoutProperty(n.layerId, t, r);
 	}, { deep: !0 }), g(() => n.paint, (e) => {
 		if (e) for (let [t, r] of Object.entries(e)) s.value.setPaintProperty(n.layerId, t, r);
 	}, { deep: !0 }), g(() => n.filter, (e) => s.value.setFilter(n.layerId, e), { deep: !0 }), g([c, u], ([t, r]) => {
-		t && (r || r === void 0) && (s.value.addLayer(we(n.layerId, e, n, i), n.before || void 0), Te(s.value, n.layerId, o.vnode));
+		t && (r || r === void 0) && (s.value.addLayer(Te(n.layerId, e, n, i), n.before || void 0), ke(s.value, n.layerId, o.vnode));
 	}, { immediate: !0 }), () => t(`${e} Layer`);
 }
 //#endregion
 //#region lib/components/layers/circle.layer.ts
-var Oe = n({
+var Q = n({
 	name: "MglCircleLayer",
-	props: Y(),
-	emits: [...J],
+	props: J(),
+	emits: [...q],
 	setup(e) {
 		return Z("circle", e);
 	}
-}), ke = n({
+}), Me = n({
 	name: "MglFillLayer",
-	props: Y(),
-	emits: [...J],
+	props: J(),
+	emits: [...q],
 	setup(e) {
 		return Z("fill", e);
 	}
-}), Ae = n({
+}), Ne = n({
 	name: "MglFillExtrusionLayer",
-	props: Y(),
-	emits: [...J],
+	props: J(),
+	emits: [...q],
 	setup(e) {
 		return Z("fill-extrusion", e);
 	}
-}), je = n({
+}), Pe = n({
 	name: "MglHeatmapLayer",
-	props: Y(),
-	emits: [...J],
+	props: J(),
+	emits: [...q],
 	setup(e) {
 		return Z("heatmap", e);
 	}
-}), Q = n({
+}), Fe = n({
 	name: "MglHillshadeLayer",
-	props: Y(),
-	emits: [...J],
+	props: J(),
+	emits: [...q],
 	setup(e) {
 		return Z("hillshade", e);
 	}
-}), Me = n({
+}), Ie = n({
 	name: "MglLineLayer",
-	props: Y(),
-	emits: [...J],
+	props: J(),
+	emits: [...q],
 	setup(e) {
 		return Z("line", e);
 	}
-}), Ne = n({
+}), Le = n({
 	name: "MglRasterLayer",
-	props: Y(),
-	emits: [...J],
+	props: J(),
+	emits: [...q],
 	setup(e) {
 		return Z("raster", e);
 	}
 }), $ = n({
 	name: "MglSymbolLayer",
-	props: Y(),
-	emits: [...J],
+	props: J(),
+	emits: [...q],
 	setup(e) {
 		return Z("symbol", e);
 	}
-}), Pe = /* @__PURE__ */ oe({
+}), Re = /* @__PURE__ */ oe({
 	MglAttributionControl: () => L,
-	MglBackgroundLayer: () => De,
-	MglCanvasSource: () => _e,
-	MglCircleLayer: () => Oe,
+	MglBackgroundLayer: () => je,
+	MglCanvasSource: () => ve,
+	MglCircleLayer: () => Q,
 	MglCustomControl: () => R,
-	MglFillExtrusionLayer: () => Ae,
-	MglFillLayer: () => ke,
+	MglFillExtrusionLayer: () => Ne,
+	MglFillLayer: () => Me,
 	MglFullscreenControl: () => z,
-	MglGeoJsonSource: () => ve,
+	MglGeoJsonSource: () => ye,
 	MglGeolocateControl: () => B,
-	MglHeatmapLayer: () => je,
-	MglHillshadeLayer: () => Q,
-	MglImage: () => ge,
-	MglImageSource: () => ye,
-	MglLineLayer: () => Me,
+	MglHeatmapLayer: () => Pe,
+	MglHillshadeLayer: () => Fe,
+	MglImage: () => _e,
+	MglImageSource: () => be,
+	MglLineLayer: () => Ie,
 	MglLogoControl: () => U,
 	MglMap: () => P,
-	MglMarker: () => W,
+	MglMarker: () => he,
 	MglNavigationControl: () => V,
-	MglPopup: () => he,
-	MglRasterDemSource: () => xe,
-	MglRasterLayer: () => Ne,
-	MglRasterSource: () => be,
+	MglPopup: () => ge,
+	MglRasterDemSource: () => Se,
+	MglRasterLayer: () => Le,
+	MglRasterSource: () => xe,
 	MglScaleControl: () => H,
 	MglSymbolLayer: () => $,
-	MglVectorSource: () => Se,
-	MglVideoSource: () => Ce
-}), Fe = function(e) {
-	Object.entries(Pe).forEach(([t, n]) => {
+	MglVectorSource: () => Ce,
+	MglVideoSource: () => we
+}), ze = function(e) {
+	Object.entries(Re).forEach(([t, n]) => {
 		e.component(t, n);
 	});
 };
 //#endregion
-export { L as MglAttributionControl, De as MglBackgroundLayer, _e as MglCanvasSource, Oe as MglCircleLayer, R as MglCustomControl, Ae as MglFillExtrusionLayer, ke as MglFillLayer, z as MglFullscreenControl, ve as MglGeoJsonSource, B as MglGeolocateControl, je as MglHeatmapLayer, Q as MglHillshadeLayer, ge as MglImage, ye as MglImageSource, Me as MglLineLayer, U as MglLogoControl, P as MglMap, W as MglMarker, V as MglNavigationControl, he as MglPopup, xe as MglRasterDemSource, Ne as MglRasterLayer, be as MglRasterSource, H as MglScaleControl, $ as MglSymbolLayer, Se as MglVectorSource, Ce as MglVideoSource, A as Position, E as componentIdSymbol, Fe as default, w as isInitialized, T as isInitializedSymbol, C as isLoadedSymbol, se as map, S as mapSymbol, k as markerSymbol, D as sourceIdSymbol, O as sourceLayerRegistry, I as useControl, X as useDisposableLayer, de as useMap, F as usePositionWatcher, q as useSource };
+export { L as MglAttributionControl, je as MglBackgroundLayer, ve as MglCanvasSource, Q as MglCircleLayer, R as MglCustomControl, Ne as MglFillExtrusionLayer, Me as MglFillLayer, z as MglFullscreenControl, ye as MglGeoJsonSource, B as MglGeolocateControl, Pe as MglHeatmapLayer, Fe as MglHillshadeLayer, _e as MglImage, be as MglImageSource, Ie as MglLineLayer, U as MglLogoControl, P as MglMap, he as MglMarker, V as MglNavigationControl, ge as MglPopup, Se as MglRasterDemSource, Le as MglRasterLayer, xe as MglRasterSource, H as MglScaleControl, $ as MglSymbolLayer, Ce as MglVectorSource, we as MglVideoSource, A as Position, E as componentIdSymbol, ze as default, w as isInitialized, T as isInitializedSymbol, C as isLoadedSymbol, se as map, S as mapSymbol, k as markerSymbol, D as sourceIdSymbol, O as sourceLayerRegistry, I as useControl, X as useDisposableLayer, de as useMap, F as usePositionWatcher, K as useSource };
 
 //# sourceMappingURL=vue-maplibre-gl.es.js.map
