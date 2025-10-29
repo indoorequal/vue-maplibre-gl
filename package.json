@@ -48,7 +48,7 @@
     "@mdi/js": "^7.4.47",
     "@types/geojson": "^7946.0.14",
     "@types/jest": "^30.0.0",
-    "@types/node": "^22.0.0",
+    "@types/node": "^24.0.0",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vue/test-utils": "^2.4.6",
     "eslint": "^9.1.1",
