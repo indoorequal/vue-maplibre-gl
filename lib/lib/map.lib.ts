@@ -131,21 +131,9 @@ export type UpdateMapEventEmitType = {
 }
 
 export const UpdateMapEventEmits: UpdateMapEventEmitType = {
-    /**
-     * Center property updated
-     */
     "update:center": (value: LngLat) => true,
-    /**
-     * Zoom property updated
-     */
     "update:zoom": (value: number) => true,
-    /**
-     * Pitch property updated
-     */
     "update:pitch": (value: number) => true,
-    /**
-     * Bearing property updated
-     */
     "update:bearing": (value: number) => true,
 }
 
