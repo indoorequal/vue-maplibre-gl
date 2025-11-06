@@ -1,5 +1,5 @@
 /*!
-* @indoorequal/vue-maplibre-gl v8.4.3
+* @indoorequal/vue-maplibre-gl v8.4.2+tfk.0
 * (c) 2025 François de Metz <francois@2metz.fr>
 * @license MIT
 */

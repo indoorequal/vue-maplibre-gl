@@ -1,7 +1,7 @@
 {
   "framework": "vue",
   "name": "@indoorequal/vue-maplibre-gl",
-  "version": "8.4.3",
+  "version": "8.4.2+tfk.0",
   "contributions": {
     "html": {
       "description-markup": "markdown",
