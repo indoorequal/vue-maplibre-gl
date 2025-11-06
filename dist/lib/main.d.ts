@@ -1,0 +1,11 @@
+import { Plugin } from 'vue';
+declare const install: Exclude<Plugin["install"], undefined>;
+export default install;
+export * from './components';
+export * from './types';
+export { useMap, type MapInstance } from './lib/mapRegistry';
+export { Position } from './components/controls/position.enum';
+export { useControl } from './composable/useControl';
+export { usePositionWatcher } from './composable/usePositionWatcher';
+export { useSource } from './composable/useSource';
+export { useDisposableLayer } from './composable/useDisposableLayer';

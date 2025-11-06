@@ -1,0 +1,1813 @@
+{
+  "framework": "vue",
+  "name": "@indoorequal/vue-maplibre-gl",
+  "version": "8.4.2+tfk.0",
+  "contributions": {
+    "html": {
+      "description-markup": "markdown",
+      "types-syntax": "typescript",
+      "tags": [
+        {
+          "name": "MglAttributionControl",
+          "description": "Render Attribution Control\n\nSee [AttributionControl](https://maplibre.org/maplibre-gl-js/docs/API/classes/AttributionControl/)",
+          "attributes": [
+            {
+              "name": "position",
+              "description": "Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'bottom-right'.",
+              "value": {
+                "kind": "expression",
+                "type": "ControlPosition"
+              }
+            },
+            {
+              "name": "compact",
+              "description": "If true, the attribution control will always collapse when moving the map. If false, force the expanded attribution control. The default is a responsive attribution that collapses when the user moves the map on maps less than 640 pixels wide. Attribution should not be collapsed if it can comfortably fit on the map. compact should only be used to modify default attribution when map size makes it impossible to fit default attribution and when the automatic compact resizing for default settings are not sufficient.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "customAttribution",
+              "description": "Attributions to show in addition to any other attributions.",
+              "value": {
+                "kind": "expression",
+                "type": "any"
+              }
+            }
+          ],
+          "source": {
+            "module": "./lib/components/controls/attribution.control.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglBackgroundLayer",
+          "description": "Background Layer\n\nSee the [layer style specification](https://maplibre.org/maplibre-style-spec/layers/)",
+          "attributes": [
+            {
+              "name": "layerId",
+              "required": true,
+              "description": "The id of the layer",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "metadata",
+              "description": "Arbitrary properties useful to track with the layer, but do not influence rendering. Properties should be prefixed to avoid collisions, like 'maplibre:'.",
+              "value": {
+                "kind": "expression",
+                "type": "any"
+              }
+            },
+            {
+              "name": "minzoom",
+              "description": "The minimum zoom level for the layer. At zoom levels less than the minzoom, the layer will be hidden.",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "maxzoom",
+              "description": "The maximum zoom level for the layer. At zoom levels equal to or greater than the maxzoom, the layer will be hidden.",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "before",
+              "description": "The ID of an existing layer to insert the new layer before, resulting in the new layer appearing visually beneath the existing layer. If this argument is not specified, the layer will be appended to the end of the layers array and appear visually above all other layers.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "layout",
+              "description": "Layout properties for the layer.\nSee https://maplibre.org/maplibre-style-spec/layers/#background",
+              "value": {
+                "kind": "expression",
+                "type": "BackgroundLayerSpecification[\"layout\"]"
+              }
+            },
+            {
+              "name": "paint",
+              "description": "Default paint properties for this layer.\nSee https://maplibre.org/maplibre-style-spec/layers/#background",
+              "value": {
+                "kind": "expression",
+                "type": "BackgroundLayerSpecification[\"paint\"]"
+              }
+            }
+          ],
+          "source": {
+            "module": "./lib/components/layers/background.layer.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglCanvasSource",
+          "description": "See [CanvasSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/CanvasSource/)",
+          "attributes": [
+            {
+              "name": "sourceId",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "coordinates",
+              "value": {
+                "kind": "expression",
+                "type": "Coordinates"
+              }
+            },
+            {
+              "name": "animate",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "canvas",
+              "value": {
+                "kind": "expression",
+                "type": "any"
+              }
+            }
+          ],
+          "source": {
+            "module": "./lib/components/sources/canvas.source.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglCircleLayer",
+          "description": "Circle Layer\n\nSee the [layer style specification](https://maplibre.org/maplibre-style-spec/layers/)",
+          "source": {
+            "module": "./lib/components/layers/circle.layer.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglCustomControl",
+          "description": "Render a custom control with your content in the default slot",
+          "attributes": [
+            {
+              "name": "position",
+              "description": "Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'top-left'.",
+              "value": {
+                "kind": "expression",
+                "type": "ControlPosition"
+              }
+            },
+            {
+              "name": "class",
+              "description": "Set the classes on the control div",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "\"maplibregl-ctrl maplibregl-ctrl-group\""
+            }
+          ],
+          "slots": [
+            {
+              "name": "default",
+              "description": "Slot to render the content of the control"
+            }
+          ],
+          "source": {
+            "module": "./lib/components/controls/custom.control.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglFillExtrusionLayer",
+          "description": "Fill Extrusion Layer\n\nSee the [layer style specification](https://maplibre.org/maplibre-style-spec/layers/)",
+          "source": {
+            "module": "./lib/components/layers/fillExtrusion.layer.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglFillLayer",
+          "description": "Fill Layer\n\nSee the [layer style specification](https://maplibre.org/maplibre-style-spec/layers/)",
+          "source": {
+            "module": "./lib/components/layers/fill.layer.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglFullscreenControl",
+          "description": "Render Fullscreen Control\n\nSee [FullscreenControl](https://maplibre.org/maplibre-gl-js/docs/API/classes/FullscreenControl/)",
+          "attributes": [
+            {
+              "name": "position",
+              "description": "Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'top-right'.",
+              "value": {
+                "kind": "expression",
+                "type": "ControlPosition"
+              }
+            },
+            {
+              "name": "container",
+              "description": "container is the compatible DOM element which should be made full screen. By default, the map container element will be made full screen.",
+              "value": {
+                "kind": "expression",
+                "type": "HTMLElement"
+              },
+              "default": "null"
+            }
+          ],
+          "source": {
+            "module": "./lib/components/controls/fullscreen.control.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglGeoJsonSource",
+          "description": "See [GeoJSONSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/GeoJSONSource/)",
+          "attributes": [
+            {
+              "name": "sourceId",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "data",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "DataType"
+              }
+            },
+            {
+              "name": "maxzoom",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "attribution",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "buffer",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "tolerance",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "cluster",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "clusterRadius",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "clusterMaxZoom",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "clusterMinPoints",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "clusterProperties",
+              "value": {
+                "kind": "expression",
+                "type": "unknown"
+              }
+            },
+            {
+              "name": "lineMetrics",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "generateId",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "promoteId",
+              "value": {
+                "kind": "expression",
+                "type": "any"
+              }
+            },
+            {
+              "name": "filter",
+              "value": {
+                "kind": "expression",
+                "type": "any"
+              }
+            }
+          ],
+          "source": {
+            "module": "./lib/components/sources/geojson.source.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglGeolocateControl",
+          "description": "Render GeolocateControl\n\nSee [GeolocateControl](https://maplibre.org/maplibre-gl-js/docs/API/classes/GeolocateControl/)",
+          "attributes": [
+            {
+              "name": "position",
+              "description": "Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'top-right'.",
+              "value": {
+                "kind": "expression",
+                "type": "ControlPosition"
+              },
+              "default": "Position.TOP_RIGHT"
+            },
+            {
+              "name": "positionOptions",
+              "description": "A Geolocation API [PositionOptions](https://developer.mozilla.org/en-US/docs/Web/API/PositionOptions) object.",
+              "value": {
+                "kind": "expression",
+                "type": "PositionOptions"
+              },
+              "default": "() =>\n  (({\n    enableHighAccuracy: false,\n    timeout: 6000\n  }) as PositionOptions)"
+            },
+            {
+              "name": "fitBoundsOptions",
+              "description": "A options object to use when the map is panned and zoomed to the user's location. The default is to use a maxZoom of 15 to limit how far the map will zoom in for very accurate locations.",
+              "value": {
+                "kind": "expression",
+                "type": "FitBoundsOptions"
+              },
+              "default": "() => (({\n  maxZoom: 15\n}) as FitBoundsOptions)"
+            },
+            {
+              "name": "trackUserLocation",
+              "description": "If true the GeolocateControl becomes a toggle button and when active the map will receive updates to the user's location as it changes.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "showAccuracyCircle",
+              "description": "By default, if showUserLocation is true, a transparent circle will be drawn around the user location indicating the accuracy (95% confidence level) of the user's location. Set to false to disable. Always disabled when showUserLocation is false.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "showUserLocation",
+              "description": "By default a dot will be shown on the map at the user's location. Set to false to disable.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            }
+          ],
+          "events": [
+            {
+              "name": "trackuserlocationstart"
+            },
+            {
+              "name": "trackuserlocationend"
+            },
+            {
+              "name": "userlocationlostfocus"
+            },
+            {
+              "name": "userlocationfocus"
+            },
+            {
+              "name": "geolocate"
+            },
+            {
+              "name": "error"
+            },
+            {
+              "name": "outofmaxbounds"
+            }
+          ],
+          "source": {
+            "module": "./lib/components/controls/geolocate.control.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglHeatmapLayer",
+          "description": "Heatmap Layer\n\nSee the [layer style specification](https://maplibre.org/maplibre-style-spec/layers/)",
+          "source": {
+            "module": "./lib/components/layers/heatmap.layer.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglHillshadeLayer",
+          "description": "Hill shade Layer\n\nSee the [layer style specification](https://maplibre.org/maplibre-style-spec/layers/)",
+          "source": {
+            "module": "./lib/components/layers/hillshade.layer.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglImage",
+          "description": "Load an image to maplibre to use in the style.\nIf the image id already exist, nothing is done.\n\nSee [#addImage](https://maplibre.org/maplibre-gl-js/docs/API/classes/Map/#addimage) and [#loadImage](https://maplibre.org/maplibre-gl-js/docs/API/classes/Map/#loadimage)",
+          "attributes": [
+            {
+              "name": "id",
+              "required": true,
+              "description": "Image id",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "image",
+              "description": "The image data to add\nThe image as an HTMLImageElement, ImageData, ImageBitmap or object with width, height, and data properties with the same format as ImageData.\nRequired if the url props is not set",
+              "value": {
+                "kind": "expression",
+                "type": "| HTMLImageElement\n| ImageBitmap\n| ImageData\n| {\n    width: number;\n    height: number;\n    data: Uint8Array | Uint8ClampedArray;\n  }\n| StyleImageInterface"
+              }
+            },
+            {
+              "name": "url",
+              "description": "The image url to load via map#loadImage\nRequired if the image props is not set",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "options",
+              "description": "The options",
+              "value": {
+                "kind": "expression",
+                "type": "Partial<StyleImageMetadata>"
+              }
+            }
+          ],
+          "source": {
+            "module": "./lib/components/image.component.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglImageSource",
+          "description": "See [ImageSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/ImageSource/)",
+          "attributes": [
+            {
+              "name": "sourceId",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "url",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "coordinates",
+              "value": {
+                "kind": "expression",
+                "type": "Coordinates"
+              }
+            }
+          ],
+          "source": {
+            "module": "./lib/components/sources/image.source.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglLineLayer",
+          "description": "Line Layer\n\nSee the [layer style specification](https://maplibre.org/maplibre-style-spec/layers/)",
+          "source": {
+            "module": "./lib/components/layers/line.layer.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglLogoControl",
+          "description": "Render Logo Control\n\nSee [LogoControl](https://maplibre.org/maplibre-gl-js/docs/API/classes/LogoControl/)",
+          "attributes": [
+            {
+              "name": "position",
+              "description": "Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'bottom-left'.",
+              "value": {
+                "kind": "expression",
+                "type": "ControlPosition"
+              }
+            },
+            {
+              "name": "compact",
+              "description": "If true, force a compact logo. If false, force the full logo. The default is a responsive logo that collapses when the map is less than 640 pixels wide.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            }
+          ],
+          "source": {
+            "module": "./lib/components/controls/logo.control.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglMap",
+          "description": "The map component\n\nSee [Map](https://maplibre.org/maplibre-gl-js/docs/API/classes/Map/).",
+          "attributes": [
+            {
+              "name": "width",
+              "description": "Width of the map container",
+              "value": {
+                "kind": "expression",
+                "type": "number | string"
+              },
+              "default": "\"100%\""
+            },
+            {
+              "name": "height",
+              "description": "Height of the map container",
+              "value": {
+                "kind": "expression",
+                "type": "number | string"
+              },
+              "default": "\"100%\""
+            },
+            {
+              "name": "attributionControl",
+              "description": "If set, an AttributionControl will be added to the map with the provided options. To disable the attribution control, pass false. Note: showing the logo of MapLibre is not required for using MapLibre. Default Value ts compact: true, customAttribution: \"MapLibre ...\".",
+              "value": {
+                "kind": "expression",
+                "type": "false | AttributionControlOptions"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "bearing",
+              "description": "The initial bearing (rotation) of the map, measured in degrees counter-clockwise from north. If bearing is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to 0. Default Value `0`",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "bearingSnap",
+              "description": "The threshold, measured in degrees, that determines when the map's bearing will snap to north. For example, with a bearingSnap of 7, if the user rotates the map within 7 degrees of north, the map will automatically snap to exact north. Default Value `7`",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "bounds",
+              "description": "The initial bounds of the map. If bounds is specified, it overrides center and zoom constructor options.",
+              "value": {
+                "kind": "expression",
+                "type": "LngLatBoundsLike"
+              }
+            },
+            {
+              "name": "boxZoom",
+              "description": "If true, the \"box zoom\" interaction is enabled (see BoxZoomHandler). Default Value ts true",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "center",
+              "description": "The initial geographical centerpoint of the map. If center is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to [0, 0] Note: MapLibre GL JS uses longitude, latitude coordinate order (as opposed to latitude, longitude) to match GeoJSON. Default Value ts [0, 0]",
+              "value": {
+                "kind": "expression",
+                "type": "LngLatLike"
+              }
+            },
+            {
+              "name": "clickTolerance",
+              "description": "The max number of pixels a user can shift the mouse pointer during a click for it to be considered a valid click (as opposed to a mouse drag). Default Value ts true",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "collectResourceTiming",
+              "description": "If true, Resource Timing API information will be collected for requests made by GeoJSON and Vector Tile web workers (this information is normally inaccessible from the main Javascript thread). Information will be returned in a resourceTiming property of relevant data events. Default Value `false`",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "crossSourceCollisions",
+              "description": "If true, symbols from multiple sources can collide with each other during collision detection. If false, collision detection is run separately for the symbols in each source. Default Value `true`",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "dragPan",
+              "description": "If true, the \"drag to pan\" interaction is enabled. An Object value is passed as options to DragPanHandler#enable. Default Value `true`",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "dragRotate",
+              "description": "If true, the \"drag to rotate\" interaction is enabled (see DragRotateHandler). Default Value `true`",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "doubleClickZoom",
+              "description": "If true, the \"double click to zoom\" interaction is enabled (see DoubleClickZoomHandler). Default Value `true`",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "hash",
+              "description": "If true, the map's position (zoom, center latitude, center longitude, bearing, and pitch) will be synced with the hash fragment of the page's URL. For example, http://path/to/my/page.html#2.59/39.26/53.07/-24.1/60. An additional string may optionally be provided to indicate a parameter-styled hash, e.g. http://path/to/my/page.html#map=2.59/39.26/53.07/-24.1/60&foo=bar, where foo is a custom parameter and bar is an arbitrary hash distinct from the map hash. Default Value `false`",
+              "value": {
+                "kind": "expression",
+                "type": "boolean | string"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "fadeDuration",
+              "description": "Controls the duration of the fade-in/fade-out animation for label collisions after initial map load, in milliseconds. This setting affects all symbol layers. This setting does not affect the duration of runtime styling transitions or raster tile cross-fading. Default Value `300`",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "fitBoundsOptions",
+              "description": "A FitBoundsOptions options object to use only when fitting the initial bounds provided above.",
+              "value": {
+                "kind": "expression",
+                "type": "FitBoundsOptions"
+              }
+            },
+            {
+              "name": "interactive",
+              "description": "If false, no mouse, touch, or keyboard listeners will be attached to the map, so it will not respond to interaction. Default Value `true`",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "keyboard",
+              "description": "If true, keyboard shortcuts are enabled (see KeyboardHandler). Default Value `true`",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "locale",
+              "description": "A patch to apply to the default localization table for UI strings, e.g. control tooltips. The locale object maps namespaced UI string IDs to translated strings in the target language; see src/ui/default_locale.js for an example with all supported string IDs. The object may specify all UI strings (thereby adding support for a new translation) or only a subset of strings (thereby patching the default translation table). Default Value `null`",
+              "value": {
+                "kind": "expression",
+                "type": "Record<string, string>"
+              }
+            },
+            {
+              "name": "localIdeographFontFamily",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "logoPosition",
+              "description": "A string representing the position of the MapLibre wordmark on the map. Valid options are top-left,top-right, bottom-left, or bottom-right. Default Value 'bottom-left'",
+              "value": {
+                "kind": "expression",
+                "type": "Position"
+              }
+            },
+            {
+              "name": "maxBounds",
+              "description": "If set, the map will be constrained to the given bounds.",
+              "value": {
+                "kind": "expression",
+                "type": "LngLatBoundsLike"
+              }
+            },
+            {
+              "name": "maxPitch",
+              "description": "The maximum pitch of the map (0-85). Values greater than 60 degrees are experimental and may result in rendering issues. If you encounter any, please raise an issue with details in the MapLibre project. Default Value `60`",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "maxZoom",
+              "description": "The maximum zoom level of the map (0-24). Default Value `22`",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "minPitch",
+              "description": "The minimum pitch of the map (0-85). Values greater than 60 degrees are experimental and may result in rendering issues. If you encounter any, please raise an issue with details in the MapLibre project. Default Value `0`",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "minZoom",
+              "description": "The minimum zoom level of the map (0-24). Default Value `0`",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "pitch",
+              "description": "The initial pitch (tilt) of the map, measured in degrees away from the plane of the screen (0-85). If pitch is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to 0. Values greater than 60 degrees are experimental and may result in rendering issues. If you encounter any, please raise an issue with details in the MapLibre project. Default Value `0`",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "pitchWithRotate",
+              "description": "If false, the map's pitch (tilt) control with \"drag to rotate\" interaction will be disabled. Default Value `true`",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "canvasContextAttributes",
+              "description": "Set of WebGLContextAttributes that are applied to the WebGL context of the map. See https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext for more details. contextType can be set to webgl2 or webgl to force a WebGL version. Not setting it, Maplibre will do it's best to get a suitable context.",
+              "value": {
+                "kind": "expression",
+                "type": "WebGLContextAttributesWithType"
+              }
+            },
+            {
+              "name": "refreshExpiredTiles",
+              "description": "If false, the map won't attempt to re-request tiles once they expire per their HTTP cacheControl/expires headers. Default Value `true`",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "renderWorldCopies",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "scrollZoom",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "mapStyle",
+              "description": "An optional string link to a URL, or an inlined JSON object containing a MapLibre Style Specification.\n\nDocumentation: https://maplibre.org/maplibre-style-spec\n\nExample: https://demotiles.maplibre.org/style.json",
+              "value": {
+                "kind": "expression",
+                "type": "string | StyleSpecification"
+              }
+            },
+            {
+              "name": "trackResize",
+              "description": "If `true`, the map will automatically resize when the browser window resizes.\nDefault value true",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "transformRequest",
+              "description": "A callback run before the Map makes a request for an external URL. The callback can be used to modify the url, set headers, or set the credentials property for cross-origin requests.\nExpected to return an object with a `url` property and optionally `headers` and `credentials` properties.",
+              "value": {
+                "kind": "expression",
+                "type": "RequestTransformFunction"
+              }
+            },
+            {
+              "name": "transformCameraUpdate",
+              "description": "A callback run before the map's camera is moved due to user input or animation. The callback can be used to modify the new center, zoom, pitch and bearing.\nExpected to return an object containing center, zoom, pitch or bearing values to overwrite.",
+              "value": {
+                "kind": "expression",
+                "type": "CameraUpdateTransformFunction"
+              }
+            },
+            {
+              "name": "touchZoomRotate",
+              "description": "The map's TwoFingersTouchZoomRotateHandler, which allows the user to zoom or rotate the map with touch gestures.\nFind more details and examples using `touchZoomRotate` in the TwoFingersTouchZoomRotateHandler section.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "touchPitch",
+              "description": "The map's TwoFingersTouchPitchHandler, which allows the user to pitch the map with touch gestures.\nFind more details and examples using `touchPitch` in the TwoFingersTouchPitchHandler section.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "zoom",
+              "description": "The initial zoom level of the map. If zoom is not specified in the constructor options, MapLibre GL JS will look for it in the map's style object. If it is not specified in the style, either, it will default to 0. Default Value `0`",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "maxTileCacheSize",
+              "description": "The maximum number of tiles stored in the tile cache for a given source. If omitted, the cache will be dynamically sized based on the current viewport which can be set using `maxTileCacheZoomLevels` constructor options.\nDefault value null",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "mapKey",
+              "description": "The name or symbol to reference a map via useMap composable",
+              "value": {
+                "kind": "expression",
+                "type": "string | symbol"
+              }
+            },
+            {
+              "name": "pixelRatio",
+              "description": "The pixel ratio. The canvas' width attribute will be container.clientWidth * pixelRatio and its height attribute will be container.clientHeight * pixelRatio. Defaults to devicePixelRatio if not specified.",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "validateStyle",
+              "description": "If false, style validation will be skipped. Useful in production environment.\nDefault value true",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "undefined"
+            },
+            {
+              "name": "cooperativeGestures",
+              "description": "The map's {@link CooperativeGesturesHandler}, which allows the user to see cooperative gesture info when user tries to zoom in/out.\nFind more details and examples using `cooperativeGestures` in the {@link CooperativeGesturesHandler} section.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "map:error"
+            },
+            {
+              "name": "map:load"
+            },
+            {
+              "name": "map:idle"
+            },
+            {
+              "name": "map:remove"
+            },
+            {
+              "name": "map:render"
+            },
+            {
+              "name": "map:resize"
+            },
+            {
+              "name": "map:webglcontextlost"
+            },
+            {
+              "name": "map:webglcontextrestored"
+            },
+            {
+              "name": "map:dataloading"
+            },
+            {
+              "name": "map:data"
+            },
+            {
+              "name": "map:tiledataloading"
+            },
+            {
+              "name": "map:sourcedataloading"
+            },
+            {
+              "name": "map:styledataloading"
+            },
+            {
+              "name": "map:sourcedata"
+            },
+            {
+              "name": "map:styledata"
+            },
+            {
+              "name": "map:styleimagemissing"
+            },
+            {
+              "name": "map:dataabort"
+            },
+            {
+              "name": "map:sourcedataabort"
+            },
+            {
+              "name": "map:boxzoomcancel"
+            },
+            {
+              "name": "map:boxzoomstart"
+            },
+            {
+              "name": "map:boxzoomend"
+            },
+            {
+              "name": "map:touchcancel"
+            },
+            {
+              "name": "map:touchmove"
+            },
+            {
+              "name": "map:touchend"
+            },
+            {
+              "name": "map:touchstart"
+            },
+            {
+              "name": "map:click"
+            },
+            {
+              "name": "map:contextmenu"
+            },
+            {
+              "name": "map:dblclick"
+            },
+            {
+              "name": "map:mousemove"
+            },
+            {
+              "name": "map:mouseup"
+            },
+            {
+              "name": "map:mousedown"
+            },
+            {
+              "name": "map:mouseout"
+            },
+            {
+              "name": "map:mouseover"
+            },
+            {
+              "name": "map:movestart"
+            },
+            {
+              "name": "map:move"
+            },
+            {
+              "name": "map:moveend"
+            },
+            {
+              "name": "map:zoomstart"
+            },
+            {
+              "name": "map:zoom"
+            },
+            {
+              "name": "map:zoomend"
+            },
+            {
+              "name": "map:rotatestart"
+            },
+            {
+              "name": "map:rotate"
+            },
+            {
+              "name": "map:rotateend"
+            },
+            {
+              "name": "map:dragstart"
+            },
+            {
+              "name": "map:drag"
+            },
+            {
+              "name": "map:dragend"
+            },
+            {
+              "name": "map:pitchstart"
+            },
+            {
+              "name": "map:pitch"
+            },
+            {
+              "name": "map:pitchend"
+            },
+            {
+              "name": "map:wheel"
+            },
+            {
+              "name": "map:terrain"
+            },
+            {
+              "name": "map:cooperativegestureprevented"
+            },
+            {
+              "name": "map:projectiontransition"
+            },
+            {
+              "name": "update:center",
+              "description": "Center property updated"
+            },
+            {
+              "name": "update:zoom",
+              "description": "Zoom property updated"
+            },
+            {
+              "name": "update:pitch",
+              "description": "Pitch property updated"
+            },
+            {
+              "name": "update:bearing",
+              "description": "Bearing property updated"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default",
+              "description": "Slot for controls, sources, marker and popup"
+            }
+          ],
+          "source": {
+            "module": "./lib/components/map.component.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglMarker",
+          "description": "Creates a marker component\n\nSee [Marker](https://maplibre.org/maplibre-gl-js/docs/API/classes/Marker).",
+          "attributes": [
+            {
+              "name": "coordinates",
+              "required": true,
+              "description": "Marker coordinates",
+              "value": {
+                "kind": "expression",
+                "type": "LngLatLike"
+              }
+            },
+            {
+              "name": "className",
+              "description": "Space-separated CSS class names to add to marker container",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "offset",
+              "description": "The offset in pixels as a PointLike object to apply relative to the element's center. Negatives indicate left and up.",
+              "value": {
+                "kind": "expression",
+                "type": "any"
+              }
+            },
+            {
+              "name": "anchor",
+              "description": "A string indicating the part of the Marker that should be positioned closest to the coordinate set via Marker#setLngLat. Options are 'center', 'top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Default Value 'center'",
+              "value": {
+                "kind": "expression",
+                "type": "PositionAnchor"
+              }
+            },
+            {
+              "name": "color",
+              "description": "The color to use for the default marker if options.element is not provided. The default is light blue. Default Value '#3FB1CE'",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "draggable",
+              "description": "A boolean indicating whether or not a marker is able to be dragged to a new position on the map. Default Value false",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "clickTolerance",
+              "description": "The max number of pixels a user can shift the mouse pointer during a click on the marker for it to be considered a valid click (as opposed to a marker drag). The default is to inherit map's clickTolerance. Default Value 0",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "rotation",
+              "description": "The rotation angle of the marker in degrees, relative to its respective rotationAlignment setting. A positive value will rotate the marker clockwise. Default Value 0",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "rotationAlignment",
+              "description": "map aligns the Marker's rotation relative to the map, maintaining a bearing as the map rotates. viewport aligns the Marker's rotation relative to the viewport, agnostic to map rotations. auto is equivalent to viewport. Default Value 'auto'",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "pitchAlignment",
+              "description": "map aligns the Marker to the plane of the map. viewport aligns the Marker to the plane of the viewport. auto automatically matches the value of rotationAlignment. Default Value 'auto'",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "scale",
+              "description": "The scale to use for the default marker if options.element is not provided. The default scale corresponds to a height of 41px and a width of 27px. Default Value 1",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "opacity",
+              "description": "Marker's opacity when it's in clear view (not behind 3d terrain). Default value `1`",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "opacityWhenCovered",
+              "description": "Marker's opacity when it's behind 3d terrain",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "subpixelPositioning",
+              "description": "If true, rounding is disabled for placement of the marker, allowing for subpixel positioning and smoother movement when the marker is translated.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            }
+          ],
+          "events": [
+            {
+              "name": "dragstart",
+              "description": "Fired when dragging starts"
+            },
+            {
+              "name": "drag",
+              "description": "Fired while dragging"
+            },
+            {
+              "name": "dragend",
+              "description": "Fired when the marker is finished being dragged"
+            },
+            {
+              "name": "update:coordinates",
+              "description": "Fired when the coordinates have been updated when the marker is draggable"
+            }
+          ],
+          "slots": [
+            {
+              "name": "marker",
+              "description": "Slot for custom marker"
+            },
+            {
+              "name": "default",
+              "description": "Slot for popup component"
+            }
+          ],
+          "source": {
+            "module": "./lib/components/marker.component.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglNavigationControl",
+          "description": "Render Navigation Control\n\nSee [NavigationControl](https://maplibre.org/maplibre-gl-js/docs/API/classes/NavigationControl/)",
+          "attributes": [
+            {
+              "name": "position",
+              "description": "Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'top-right'.",
+              "value": {
+                "kind": "expression",
+                "type": "ControlPosition"
+              }
+            },
+            {
+              "name": "showCompass",
+              "description": "If true the compass button is included.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "showZoom",
+              "description": "If true the zoom-in and zoom-out buttons are included.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "visualizePitch",
+              "description": "If true the pitch is visualized by rotating X-axis of compass.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            }
+          ],
+          "source": {
+            "module": "./lib/components/controls/navigation.control.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglPopup",
+          "description": "A popup component\n\nSee [Popup](https://maplibre.org/maplibre-gl-js/docs/API/classes/Popup/).",
+          "attributes": [
+            {
+              "name": "coordinates",
+              "required": false,
+              "description": "The geographical location of the popup's anchor.\nUnused when placed inside a marker.",
+              "value": {
+                "kind": "expression",
+                "type": "LngLatLike"
+              }
+            },
+            {
+              "name": "closeButton",
+              "required": false,
+              "description": "Display a close button in the top right corner.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "closeOnClick",
+              "required": false,
+              "description": "The popup will be closed when the map is clicked.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "closeOnMove",
+              "required": false,
+              "description": "The popup will be closed when the map moves.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "focusAfterOpen",
+              "required": false,
+              "description": "The popup will try to focus the first focusable element inside the popup.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "anchor",
+              "required": false,
+              "description": "A string indicating the part of the Popup that should\nbe positioned closest to the coordinate.\nOptions are `'center'`, `'top'`, `'bottom'`, `'left'`, `'right'`, `'top-left'`,\n`'top-right'`, `'bottom-left'`, and `'bottom-right'`. If unset the anchor will be\ndynamically set to ensure the popup falls within the map container with a preference\nfor `'bottom'`.",
+              "value": {
+                "kind": "expression",
+                "type": "PositionAnchor"
+              }
+            },
+            {
+              "name": "offset",
+              "required": false,
+              "description": "A pixel offset applied to the popup's location",
+              "value": {
+                "kind": "expression",
+                "type": "Offset"
+              }
+            },
+            {
+              "name": "className",
+              "required": false,
+              "description": "Space-separated CSS class names to add to popup container",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "maxWidth",
+              "description": "A string that sets the CSS property of the popup's maximum width, eg `'300px'`.\nTo ensure the popup resizes to fit its content, set this property to `'none'`.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              },
+              "default": "\"240px\""
+            },
+            {
+              "name": "subpixelPositioning",
+              "description": "If true, rounding is disabled for placement of the popup, allowing for subpixel positioning and smoother movement when the popup is translated.",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "text",
+              "required": false,
+              "description": "Sets the popup's content to a string of text.",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            }
+          ],
+          "events": [
+            {
+              "name": "open",
+              "description": "Fired when the popup is opened manually or programmatically."
+            },
+            {
+              "name": "close",
+              "description": "Fired when the popup is closed manually or programmatically."
+            }
+          ],
+          "slots": [
+            {
+              "name": "default",
+              "description": "Slot for popup content"
+            }
+          ],
+          "source": {
+            "module": "./lib/components/popup.component.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglRasterDemSource",
+          "description": "See [RasterDEMTileSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/RasterDEMTileSource/)",
+          "attributes": [
+            {
+              "name": "sourceId",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "url",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "tiles",
+              "value": {
+                "kind": "expression",
+                "type": "string[]"
+              }
+            },
+            {
+              "name": "bounds",
+              "value": {
+                "kind": "expression",
+                "type": "number[]"
+              }
+            },
+            {
+              "name": "minzoom",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "maxzoom",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "tileSize",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "attribution",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "encoding",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "volatile",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "redFactor",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "blueFactor",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "greenFactor",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "baseShift",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            }
+          ],
+          "source": {
+            "module": "./lib/components/sources/rasterDem.source.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglRasterLayer",
+          "description": "Raster Layer\n\nSee the [layer style specification](https://maplibre.org/maplibre-style-spec/layers/)",
+          "source": {
+            "module": "./lib/components/layers/raster.layer.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglRasterSource",
+          "description": "See [RasterTileSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/RasterTileSource/)",
+          "attributes": [
+            {
+              "name": "sourceId",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "url",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "tiles",
+              "value": {
+                "kind": "expression",
+                "type": "string[]"
+              }
+            },
+            {
+              "name": "bounds",
+              "value": {
+                "kind": "expression",
+                "type": "number[]"
+              }
+            },
+            {
+              "name": "minzoom",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "maxzoom",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "tileSize",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "scheme",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "attribution",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "volatile",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            }
+          ],
+          "source": {
+            "module": "./lib/components/sources/raster.source.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglScaleControl",
+          "description": "Render Scale Control\n\nSee [ScaleControl](https://maplibre.org/maplibre-gl-js/docs/API/classes/ScaleControl/)",
+          "attributes": [
+            {
+              "name": "position",
+              "description": "Position on the map to which the control will be added. Valid values are 'top-left', 'top-right', 'bottom-left', and 'bottom-right'. Defaults to 'bottom-left'.",
+              "value": {
+                "kind": "expression",
+                "type": "ControlPosition"
+              }
+            },
+            {
+              "name": "maxWidth",
+              "description": "The maximum length of the scale control in pixels. Default Value `100`",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              },
+              "default": "100"
+            },
+            {
+              "name": "unit",
+              "description": "Set the scale's unit of the distance ('imperial', 'metric' or 'nautical').",
+              "value": {
+                "kind": "expression",
+                "type": "UnitValue"
+              },
+              "default": "ScaleControlUnit.METRIC"
+            }
+          ],
+          "source": {
+            "module": "./lib/components/controls/scale.control.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglSymbolLayer",
+          "description": "Symbol Layer\n\nSee the [layer style specification](https://maplibre.org/maplibre-style-spec/layers/)",
+          "source": {
+            "module": "./lib/components/layers/symbol.layer.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglVectorSource",
+          "description": "See [VectorTileSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/VectorTileSource/)",
+          "attributes": [
+            {
+              "name": "sourceId",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "url",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "tiles",
+              "value": {
+                "kind": "expression",
+                "type": "string[]"
+              }
+            },
+            {
+              "name": "bounds",
+              "value": {
+                "kind": "expression",
+                "type": "number[]"
+              }
+            },
+            {
+              "name": "scheme",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "minzoom",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "maxzoom",
+              "value": {
+                "kind": "expression",
+                "type": "number"
+              }
+            },
+            {
+              "name": "attribution",
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "promoteId",
+              "value": {
+                "kind": "expression",
+                "type": "any"
+              }
+            },
+            {
+              "name": "volatile",
+              "value": {
+                "kind": "expression",
+                "type": "boolean"
+              }
+            }
+          ],
+          "source": {
+            "module": "./lib/components/sources/vector.source.ts",
+            "symbol": "default"
+          }
+        },
+        {
+          "name": "MglVideoSource",
+          "description": "See [VideoSource](https://maplibre.org/maplibre-gl-js/docs/API/classes/VideoSource/)",
+          "attributes": [
+            {
+              "name": "sourceId",
+              "required": true,
+              "value": {
+                "kind": "expression",
+                "type": "string"
+              }
+            },
+            {
+              "name": "urls",
+              "value": {
+                "kind": "expression",
+                "type": "string[]"
+              }
+            },
+            {
+              "name": "coordinates",
+              "value": {
+                "kind": "expression",
+                "type": "Coordinates"
+              }
+            }
+          ],
+          "source": {
+            "module": "./lib/components/sources/video.source.ts",
+            "symbol": "default"
+          }
+        }
+      ]
+    }
+  }
+}

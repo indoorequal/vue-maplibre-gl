@@ -1,6 +1,6 @@
 {
   "name": "@indoorequal/vue-maplibre-gl",
-  "version": "8.4.2",
+  "version": "8.4.2+tfk.0",
   "description": "Vue 3 plugin for maplibre-gl",
   "keywords": [
     "vue",
@@ -43,7 +43,7 @@
   "devDependencies": {
     "@babel/types": "^7.23.9",
     "@eslint/js": "^9.1.1",
-    "@indoorequal/vue-maplibre-gl": "workspace:^",
+    "@indoorequal/vue-maplibre-gl": "file:.",
     "@maplibre/maplibre-gl-inspect": "^1.7.0",
     "@mdi/js": "^7.4.47",
     "@types/geojson": "^7946.0.14",
