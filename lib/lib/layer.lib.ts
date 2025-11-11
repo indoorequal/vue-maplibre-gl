@@ -10,6 +10,8 @@ import type {
   Map,
   MapLayerEventType,
   BackgroundLayerSpecification,
+  MapLayerMouseEvent,
+  MapLayerTouchEvent,
 } from "maplibre-gl";
 import { type PropType, type VNode } from "vue";
 
@@ -116,6 +118,29 @@ export function layerProps<
      */
     paint: { type: Object as PropType<T["paint"]> },
   };
+}
+
+export type MapLayerEmitTypes = {
+  [K in LayerEventType]: (event: MapLayerEventType[K]) => true;
+}
+
+
+// typemap to pass to vue to infer the type signatures of the layer events.
+/* eslint-disable @typescript-eslint/no-unused-vars */
+export const MapLayerEmits: MapLayerEmitTypes = {
+  click: (event: MapLayerMouseEvent) => true,
+  contextmenu: (event: MapLayerMouseEvent) => true,
+  dblclick: (event: MapLayerMouseEvent) => true,
+  mousedown: (event: MapLayerMouseEvent) => true,
+  mouseenter: (event: MapLayerMouseEvent) => true,
+  mouseleave: (event: MapLayerMouseEvent) => true,
+  mousemove: (event: MapLayerMouseEvent) => true,
+  mouseout: (event: MapLayerMouseEvent) => true,
+  mouseover: (event: MapLayerMouseEvent) => true,
+  mouseup: (event: MapLayerMouseEvent) => true,
+  touchstart: (event: MapLayerTouchEvent) => true,
+  touchcancel: (event: MapLayerTouchEvent) => true,
+  touchend: (event: MapLayerTouchEvent) => true
 }
 
 export function genLayerOpts<T extends LayersWithSource>(
