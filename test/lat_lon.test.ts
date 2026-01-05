@@ -1,6 +1,7 @@
 window.URL.createObjectURL = (obj) => {
   return "";
 };
+window.TextDecoder = class {};
 
 import { type LngLatLike, LngLat } from "maplibre-gl";
 import { isLngLatEqual } from "../lib/lib/lng_lat";
