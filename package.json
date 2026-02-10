@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@babel/types": "^7.23.9",
-    "@eslint/js": "^9.1.1",
+    "@eslint/js": "^10.0.0",
     "@indoorequal/vue-maplibre-gl": "workspace:^",
     "@maplibre/maplibre-gl-inspect": "^1.7.0",
     "@mdi/js": "^7.4.47",
@@ -51,7 +51,7 @@
     "@types/node": "^24.0.0",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vue/test-utils": "^2.4.6",
-    "eslint": "^9.1.1",
+    "eslint": "^10.0.0",
     "eslint-plugin-vue": "^10.0.0",
     "geojson": "^0.5.0",
     "glob": "^13.0.0",
