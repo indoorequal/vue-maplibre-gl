@@ -1,6 +1,6 @@
 import type { LineLayerSpecification } from "maplibre-gl";
 import { defineComponent } from "vue";
-import { layerProps, type LayerProps, LAYER_EVENTS, type LayerEventType } from "@/lib/lib/layer.lib";
+import { layerProps, type LayerProps, MapLayerEmits } from "@/lib/lib/layer.lib";
 import { useLayer } from "@/lib/composable/useLayer";
 
 /**
@@ -11,7 +11,7 @@ import { useLayer } from "@/lib/composable/useLayer";
 export default defineComponent({
   name: "MglLineLayer",
   props: layerProps<LineLayerSpecification>(),
-  emits: [...LAYER_EVENTS] as LayerEventType[],
+  emits: MapLayerEmits,
   setup(props: LayerProps<LineLayerSpecification>) {
     return useLayer<LineLayerSpecification>("line", props);
   },
