@@ -109,11 +109,15 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/indoorequal/vue-maplibre-gl' }
     ]
   },
+
   vite: {
+    build: {
+      target: 'es2022'
+    },
     optimizeDeps: {
-      include: ["maplibre-gl"],
+      include: ['maplibre-gl'],
       esbuildOptions: {
-        target: "es2022",
+        target: 'es2022',
       },
     },
   }
