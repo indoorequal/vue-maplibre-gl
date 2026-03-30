@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl"                : ".",
     "target"                 : "ESNext",
     "useDefineForClassFields": true,
-    "module"                 : "ESNext",
-    "moduleResolution"       : "Node",
+    "module"                 : "nodenext",
+    "moduleResolution"       : "nodenext",
     "strict"                 : true,
     "jsx"                    : "preserve",
     "sourceMap"              : true,
