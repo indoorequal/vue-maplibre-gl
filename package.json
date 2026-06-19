@@ -41,7 +41,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/types": "^7.23.9",
+    "@babel/types": "^8.0.0",
     "@eslint/js": "^10.0.0",
     "@indoorequal/vue-maplibre-gl": "workspace:^",
     "@maplibre/maplibre-gl-inspect": "^1.7.0",
