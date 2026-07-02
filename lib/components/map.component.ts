@@ -30,6 +30,7 @@ import {
   isInitializedSymbol,
   isLoadedSymbol,
   mapSymbol,
+  MglEvent,
   sourceIdSymbol,
 } from "@/lib/types";
 import {
@@ -37,11 +38,11 @@ import {
   createEventHandler,
   type MapEvent,
   type MapEventHandler,
+  MapEventEmits
 } from "@/lib/lib/map.lib";
 import { isLngLatEqual } from "@/lib/lib/lng_lat";
 import { Position } from "@/lib/components/controls/position.enum";
 import { registerMap } from "@/lib/lib/mapRegistry";
-
 /**
  * The map component
  *
@@ -351,76 +352,7 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
     },
   },
-  emits: [
-    "map:error",
-    "map:load",
-    "map:idle",
-    "map:remove",
-    "map:render",
-    "map:resize",
-    "map:webglcontextlost",
-    "map:webglcontextrestored",
-    "map:dataloading",
-    "map:data",
-    "map:tiledataloading",
-    "map:sourcedataloading",
-    "map:styledataloading",
-    "map:sourcedata",
-    "map:styledata",
-    "map:styleimagemissing",
-    "map:dataabort",
-    "map:sourcedataabort",
-    "map:boxzoomcancel",
-    "map:boxzoomstart",
-    "map:boxzoomend",
-    "map:touchcancel",
-    "map:touchmove",
-    "map:touchend",
-    "map:touchstart",
-    "map:click",
-    "map:contextmenu",
-    "map:dblclick",
-    "map:mousemove",
-    "map:mouseup",
-    "map:mousedown",
-    "map:mouseout",
-    "map:mouseover",
-    "map:movestart",
-    "map:move",
-    "map:moveend",
-    "map:zoomstart",
-    "map:zoom",
-    "map:zoomend",
-    "map:rotatestart",
-    "map:rotate",
-    "map:rotateend",
-    "map:dragstart",
-    "map:drag",
-    "map:dragend",
-    "map:pitchstart",
-    "map:pitch",
-    "map:pitchend",
-    "map:wheel",
-    "map:terrain",
-    "map:cooperativegestureprevented",
-    "map:projectiontransition",
-    /**
-     * Center property updated
-     */
-    "update:center",
-    /**
-     * Zoom property updated
-     */
-    "update:zoom",
-    /**
-     * Pitch property updated
-     */
-    "update:pitch",
-    /**
-     * Bearing property updated
-     */
-    "update:bearing",
-  ],
+  emits: MapEventEmits,
   slots: Object as SlotsType<{ default: unknown }>,
   setup(props, ctx) {
     const component = markRaw(getCurrentInstance()!),
@@ -599,18 +531,20 @@ export default defineComponent({
       map.value.on("rotateend", boundMapEvents.get("__rotateend")!);
 
       // bind events
+
       if (component.vnode.props) {
-        for (const event of MAP_EVENT_TYPES) {
-          if (component.vnode.props["onMap:" + event]) {
-            const eventName = `map:${event}`;
-            const handler = createEventHandler<typeof event>(
+        for (const mapEvent of MAP_EVENT_TYPES) {
+          if (component.vnode.props["onMap:" + mapEvent]) {
+            const eventName: MapEvent<typeof mapEvent> = `map:${mapEvent}`;
+            const handler = createEventHandler(
               component,
               map.value,
-              ctx,
-              eventName as MapEvent,
+              ctx as {emit: (event: MapEvent<typeof mapEvent>, payload: MglEvent<typeof mapEvent>) => void},
+              eventName,
             );
-            boundMapEvents.set(event, handler);
-            map.value.on(event, handler);
+            boundMapEvents.set(mapEvent, handler);
+            map.value.on(mapEvent, handler);
+
           }
         }
       }
