@@ -1,5 +1,4 @@
 import { ref, shallowRef, nextTick } from "vue";
-import type { IControl, Map } from "maplibre-gl";
 import { mount } from "@vue/test-utils";
 import { CustomControl } from "@/lib/components/controls/custom";
 import CustomControlComponent from "@/lib/components/controls/custom.control";

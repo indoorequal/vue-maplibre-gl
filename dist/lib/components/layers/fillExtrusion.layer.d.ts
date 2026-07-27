@@ -260,6 +260,7 @@ declare const _default: import('vue').DefineComponent<{
     metadata?: unknown;
     layout?: {
         "visibility"?: import('maplibre-gl').VisibilitySpecification;
+        "fill-extrusion-rounded-corner-distance"?: number;
     } | undefined;
     paint?: {
         "fill-extrusion-opacity"?: import('maplibre-gl').PropertyValueSpecification<number>;
@@ -536,6 +537,7 @@ declare const _default: import('vue').DefineComponent<{
     metadata?: unknown;
     layout?: {
         "visibility"?: import('maplibre-gl').VisibilitySpecification;
+        "fill-extrusion-rounded-corner-distance"?: number;
     } | undefined;
     paint?: {
         "fill-extrusion-opacity"?: import('maplibre-gl').PropertyValueSpecification<number>;

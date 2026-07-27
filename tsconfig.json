@@ -29,7 +29,7 @@
       "vue",
       "geojson",
       "maplibre-gl",
-      "jest"
+      "vitest/globals"
     ]
   },
   "include"        : [

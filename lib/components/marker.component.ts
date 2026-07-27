@@ -15,7 +15,7 @@ import {
   Marker,
   type PointLike,
   type PositionAnchor,
-  type Event
+  type Event,
 } from "maplibre-gl";
 import { mapSymbol, markerSymbol } from "@/lib/types";
 

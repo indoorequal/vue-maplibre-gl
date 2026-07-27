@@ -262,9 +262,9 @@ export default defineComponent({
     },
     /**
      * An optional string link to a URL, or an inlined JSON object containing a MapLibre Style Specification.
-     * 
+     *
      * Documentation: https://maplibre.org/maplibre-style-spec
-     * 
+     *
      * Example: https://demotiles.maplibre.org/style.json
      */
     mapStyle: {
@@ -362,9 +362,9 @@ export default defineComponent({
     "map:webglcontextrestored",
     "map:dataloading",
     "map:data",
-    "map:tiledataloading",
     "map:sourcedataloading",
     "map:styledataloading",
+    "map:style.load",
     "map:sourcedata",
     "map:styledata",
     "map:styleimagemissing",
@@ -391,6 +391,9 @@ export default defineComponent({
     "map:zoomstart",
     "map:zoom",
     "map:zoomend",
+    "map:rollstart",
+    "map:roll",
+    "map:rollend",
     "map:rotatestart",
     "map:rotate",
     "map:rotateend",
@@ -629,7 +632,8 @@ export default defineComponent({
         map.value.getCanvas().removeEventListener("webglcontextlost", restart);
         isInitialized.value = false;
         boundMapEvents.forEach((func, en) => {
-          map.value!.off(en.startsWith("__") ? en.substring(2) : en, func);
+          const eventName = en.startsWith("__") ? en.substring(2) : en;
+          map.value!.off(eventName as keyof MapEventType, func);
         });
         // destroy map
         map.value.remove();

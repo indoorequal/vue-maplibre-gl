@@ -22,36 +22,36 @@ export default defineConfig({
 * @license ${pkg.license}
 */`)
   ],
-  ssr    : {
-    external: [ 'vue', 'maplibre-gl', 'geojson' ]
+  ssr: {
+    external: ['vue', 'maplibre-gl', 'geojson']
   },
-  build  : {
-    sourcemap    : true,
-    lib          : {
-      entry   : resolve(__dirname, 'lib/main.ts'),
-      name    : 'VueMaplibreGl',
+  build: {
+    sourcemap: true,
+    lib: {
+      entry: resolve(__dirname, 'lib/main.ts'),
+      name: 'VueMaplibreGl',
       fileName: format => `vue-maplibre-gl.${format}.js`
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
       // into your library
       external: [
-	'vue',
-	'maplibre-gl',
-	'geojson'
+        'vue',
+        'maplibre-gl',
+        'geojson'
       ],
-      output  : {
-	assetFileNames: (assetInfo) => {
-	  return assetInfo.name;
-	},
-	exports       : 'named',
-	// Provide global variables to use in the UMD build
-	// for externalized deps
-	globals: {
-	  vue          : 'Vue',
-	  'maplibre-gl': 'maplibregl',
-	  geojson      : 'geojson'
-	},
+      output: {
+        assetFileNames: (assetInfo) => {
+          return assetInfo.name;
+        },
+        exports: 'named',
+        // Provide global variables to use in the UMD build
+        // for externalized deps
+        globals: {
+          vue: 'Vue',
+          'maplibre-gl': 'maplibregl',
+          geojson: 'geojson'
+        },
       },
     }
   },

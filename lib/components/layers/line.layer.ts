@@ -1,6 +1,11 @@
 import type { LineLayerSpecification } from "maplibre-gl";
 import { defineComponent } from "vue";
-import { layerProps, type LayerProps, LAYER_EVENTS, type LayerEventType } from "@/lib/lib/layer.lib";
+import {
+  layerProps,
+  type LayerProps,
+  LAYER_EVENTS,
+  type LayerEventType,
+} from "@/lib/lib/layer.lib";
 import { useLayer } from "@/lib/composable/useLayer";
 
 /**

@@ -97,11 +97,14 @@ export default defineComponent({
       const fun = (arg: A) => {
         ctx.emit(event, arg);
       };
-      control.value.on(event, fun);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      control.value.on(event, fun as any);
       onBeforeUnmount(() => {
-        control.value.off(event, fun);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        control.value.off(event, fun as any);
       });
     }
+
     emitEvent<undefined>("trackuserlocationstart");
     emitEvent<undefined>("trackuserlocationend");
     emitEvent<undefined>("userlocationlostfocus");
