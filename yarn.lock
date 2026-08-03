@@ -369,11 +369,11 @@ __metadata:
 
 "@indoorequal/vue-maplibre-gl@file:.::locator=%40indoorequal%2Fvue-maplibre-gl%40workspace%3A.":
   version: 8.4.3+tfk.0
-  resolution: "@indoorequal/vue-maplibre-gl@file:.#.::hash=9e1ad3&locator=%40indoorequal%2Fvue-maplibre-gl%40workspace%3A."
+  resolution: "@indoorequal/vue-maplibre-gl@file:.#.::hash=eb11c7&locator=%40indoorequal%2Fvue-maplibre-gl%40workspace%3A."
   peerDependencies:
     maplibre-gl: ^6.0.0
     vue: ^3.4.18 || ^3.5.0
-  checksum: 10/09a6c0dc17562f903c10fe2c74522a67110a9a7cdfa86f86e638b341590bbf86d5a6d18a98cf85412764bcd49208a44f9106d57bf49ba095d8f0ea64034f4584
+  checksum: 10/3e71e6b86fee82d35c3f728b0b636211dbf2173a697489eb8fa785c21dcc758f2faeeebd9b1ccb4f724d944b1bcbf1c17e58b1e43ee459ef2b5996f2aadeb0a4
   languageName: node
   linkType: hard
 
