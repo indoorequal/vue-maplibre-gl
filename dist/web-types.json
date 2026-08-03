@@ -974,13 +974,13 @@
               "name": "map:data"
             },
             {
-              "name": "map:tiledataloading"
-            },
-            {
               "name": "map:sourcedataloading"
             },
             {
               "name": "map:styledataloading"
+            },
+            {
+              "name": "map:style.load"
             },
             {
               "name": "map:sourcedata"
@@ -1059,6 +1059,15 @@
             },
             {
               "name": "map:zoomend"
+            },
+            {
+              "name": "map:rollstart"
+            },
+            {
+              "name": "map:roll"
+            },
+            {
+              "name": "map:rollend"
             },
             {
               "name": "map:rotatestart"

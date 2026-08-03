@@ -1,4 +1,8 @@
-import type { BackgroundLayerSpecification } from "maplibre-gl";
+import type {
+  AllLayoutProperties,
+  AllPaintProperties,
+  BackgroundLayerSpecification,
+} from "maplibre-gl";
 import {
   createCommentVNode,
   defineComponent,
@@ -64,7 +68,11 @@ export default defineComponent({
       (layout) => {
         if (layout) {
           for (const [property, value] of Object.entries(layout)) {
-            map.value!.setLayoutProperty(props.layerId!, property, value);
+            map.value!.setLayoutProperty(
+              props.layerId!,
+              property as keyof AllLayoutProperties,
+              value,
+            );
           }
         }
       },
@@ -74,7 +82,11 @@ export default defineComponent({
       (paint) => {
         if (paint) {
           for (const [property, value] of Object.entries(paint)) {
-            map.value!.setPaintProperty(props.layerId!, property, value);
+            map.value!.setPaintProperty(
+              props.layerId!,
+              property as keyof AllPaintProperties,
+              value,
+            );
           }
         }
       },

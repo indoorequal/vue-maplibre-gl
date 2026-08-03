@@ -3,10 +3,10 @@ window.URL.createObjectURL = (obj) => {
 };
 window.TextDecoder = class {};
 
-import { type LngLatLike, LngLat } from "maplibre-gl";
+import { LngLat, LngLatLike } from "maplibre-gl";
 import { isLngLatEqual } from "../lib/lib/lng_lat";
 
-const tests: [LngLatLike, LngLatLike, Boolean][] = [
+const tests: [LngLatLike, LngLatLike, boolean][] = [
   [[-122, 37], [-122, 37], true],
   [[-122, 37], new LngLat(-122, 37), true],
   [[1, 37], [-122, 37], false],

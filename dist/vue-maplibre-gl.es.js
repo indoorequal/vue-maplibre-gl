@@ -13,7 +13,7 @@ var ae = Object.defineProperty, oe = (e, t) => {
 		enumerable: !0
 	});
 	return t || ae(n, Symbol.toStringTag, { value: "Module" }), n;
-}, se = Symbol("map"), S = se, C = Symbol("isLoaded"), w = Symbol("isInitialized"), T = w, E = Symbol("componentId"), D = Symbol("sourceId"), O = Symbol("sourceLayerRegistry"), k = Symbol("marker"), ce = /* @__PURE__ */ "error.load.idle.remove.render.resize.webglcontextlost.webglcontextrestored.dataloading.data.tiledataloading.sourcedataloading.styledataloading.sourcedata.styledata.styleimagemissing.dataabort.sourcedataabort.boxzoomcancel.boxzoomstart.boxzoomend.touchcancel.touchmove.touchend.touchstart.click.contextmenu.dblclick.mousemove.mouseup.mousedown.mouseout.mouseover.movestart.move.moveend.zoomstart.zoom.zoomend.rotatestart.rotate.rotateend.dragstart.drag.dragend.pitchstart.pitch.pitchend.wheel.terrain.cooperativegestureprevented".split(".");
+}, se = Symbol("map"), S = se, C = Symbol("isLoaded"), w = Symbol("isInitialized"), T = w, E = Symbol("componentId"), D = Symbol("sourceId"), O = Symbol("sourceLayerRegistry"), k = Symbol("marker"), ce = /* @__PURE__ */ "error.load.idle.remove.render.resize.webglcontextlost.webglcontextrestored.dataloading.data.sourcedataloading.styledataloading.sourcedata.styledata.styleimagemissing.dataabort.sourcedataabort.boxzoomcancel.boxzoomstart.boxzoomend.touchcancel.touchmove.touchend.touchstart.click.contextmenu.dblclick.mousemove.mouseup.mousedown.mouseout.mouseover.movestart.move.moveend.zoomstart.zoom.zoomend.rotatestart.rotate.rotateend.dragstart.drag.dragend.pitchstart.pitch.pitchend.wheel.terrain.cooperativegestureprevented".split(".");
 function le(e, t, n, r) {
 	return (i) => n.emit(r, {
 		type: i.type,
@@ -163,7 +163,7 @@ var P = n({
 		},
 		cooperativeGestures: { type: Boolean }
 	},
-	emits: /* @__PURE__ */ "map:error.map:load.map:idle.map:remove.map:render.map:resize.map:webglcontextlost.map:webglcontextrestored.map:dataloading.map:data.map:tiledataloading.map:sourcedataloading.map:styledataloading.map:sourcedata.map:styledata.map:styleimagemissing.map:dataabort.map:sourcedataabort.map:boxzoomcancel.map:boxzoomstart.map:boxzoomend.map:touchcancel.map:touchmove.map:touchend.map:touchstart.map:click.map:contextmenu.map:dblclick.map:mousemove.map:mouseup.map:mousedown.map:mouseout.map:mouseover.map:movestart.map:move.map:moveend.map:zoomstart.map:zoom.map:zoomend.map:rotatestart.map:rotate.map:rotateend.map:dragstart.map:drag.map:dragend.map:pitchstart.map:pitch.map:pitchend.map:wheel.map:terrain.map:cooperativegestureprevented.map:projectiontransition.update:center.update:zoom.update:pitch.update:bearing".split("."),
+	emits: /* @__PURE__ */ "map:error,map:load,map:idle,map:remove,map:render,map:resize,map:webglcontextlost,map:webglcontextrestored,map:dataloading,map:data,map:sourcedataloading,map:styledataloading,map:style.load,map:sourcedata,map:styledata,map:styleimagemissing,map:dataabort,map:sourcedataabort,map:boxzoomcancel,map:boxzoomstart,map:boxzoomend,map:touchcancel,map:touchmove,map:touchend,map:touchstart,map:click,map:contextmenu,map:dblclick,map:mousemove,map:mouseup,map:mousedown,map:mouseout,map:mouseover,map:movestart,map:move,map:moveend,map:zoomstart,map:zoom,map:zoomend,map:rollstart,map:roll,map:rollend,map:rotatestart,map:rotate,map:rotateend,map:dragstart,map:drag,map:dragend,map:pitchstart,map:pitch,map:pitchend,map:wheel,map:terrain,map:cooperativegestureprevented,map:projectiontransition,update:center,update:zoom,update:pitch,update:bearing".split(","),
 	slots: Object,
 	setup(e, t) {
 		let n = s(r()), a = m(), o = m(), f = p(!1), h = p(!1), _ = /* @__PURE__ */ new Map(), v = fe(n, o, e.mapKey);
@@ -215,7 +215,8 @@ var P = n({
 		}
 		async function b() {
 			v.isMounted = !1, v.isLoaded = !1, h.value = !1, o.value && (o.value.getCanvas().removeEventListener("webglcontextlost", x), f.value = !1, _.forEach((e, t) => {
-				o.value.off(t.startsWith("__") ? t.substring(2) : t, e);
+				let n = t.startsWith("__") ? t.substring(2) : t;
+				o.value.off(n, e);
 			}), o.value.remove());
 		}
 		function x() {
