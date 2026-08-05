@@ -6,6 +6,7 @@ import {
   type PropType,
   watch,
 } from "vue";
+import { AllLayoutProperties, AllPaintProperties } from "maplibre-gl";
 import { isLoadedSymbol, mapSymbol } from "@/lib/types";
 import { LAYER_EVENTS, type LayerEventType } from "@/lib/lib/layer.lib";
 import { useDisposableLayer } from "@/lib/composable/useDisposableLayer";
@@ -64,7 +65,11 @@ export default defineComponent({
       (layout) => {
         if (layout) {
           for (const [property, value] of Object.entries(layout)) {
-            map.value!.setLayoutProperty(props.layerId!, property, value);
+            map.value!.setLayoutProperty(
+              props.layerId!,
+              property as keyof AllLayoutProperties,
+              value,
+            );
           }
         }
       },
@@ -74,7 +79,11 @@ export default defineComponent({
       (paint) => {
         if (paint) {
           for (const [property, value] of Object.entries(paint)) {
-            map.value!.setPaintProperty(props.layerId!, property, value);
+            map.value!.setPaintProperty(
+              props.layerId!,
+              property as keyof AllPaintProperties,
+              value,
+            );
           }
         }
       },

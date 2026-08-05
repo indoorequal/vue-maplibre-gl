@@ -362,7 +362,6 @@ export default defineComponent({
     "map:webglcontextrestored",
     "map:dataloading",
     "map:data",
-    "map:tiledataloading",
     "map:sourcedataloading",
     "map:styledataloading",
     "map:sourcedata",
@@ -404,6 +403,10 @@ export default defineComponent({
     "map:terrain",
     "map:cooperativegestureprevented",
     "map:projectiontransition",
+    "map:style.load",
+    "map:rollstart",
+    "map:roll",
+    "map:rollend",
     /**
      * Center property updated
      */
@@ -429,7 +432,11 @@ export default defineComponent({
       isInitialized = ref(false),
       isLoaded = ref(false),
       boundMapEvents = new Map<
-        keyof MapEventType | `__${keyof MapEventType}`,
+        keyof MapEventType,
+        MapEventHandler<keyof MapEventType>
+      >(),
+      internalBoundMapEvents = new Map<
+        keyof MapEventType,
         MapEventHandler<keyof MapEventType>
       >(),
       registryItem = registerMap(component, map, props.mapKey);
@@ -576,27 +583,27 @@ export default defineComponent({
       map.value = markRaw(new MaplibreMap(opts));
       registryItem.map = map.value;
       isInitialized.value = true;
-      boundMapEvents.set(
-        "__load",
+      internalBoundMapEvents.set(
+        "load",
         () => ((isLoaded.value = true), (registryItem.isLoaded = true)),
       );
-      map.value.on("load", boundMapEvents.get("__load")!);
-      boundMapEvents.set("__moveend", () =>
+      map.value.on("load", internalBoundMapEvents.get("load")!);
+      internalBoundMapEvents.set("moveend", () =>
         ctx.emit("update:center", map.value!.getCenter()),
       );
-      map.value.on("moveend", boundMapEvents.get("__moveend")!);
-      boundMapEvents.set("__zoomend", () =>
+      map.value.on("moveend", internalBoundMapEvents.get("moveend")!);
+      internalBoundMapEvents.set("zoomend", () =>
         ctx.emit("update:zoom", map.value!.getZoom()),
       );
-      map.value.on("zoomend", boundMapEvents.get("__zoomend")!);
-      boundMapEvents.set("__pitchend", () =>
+      map.value.on("zoomend", internalBoundMapEvents.get("zoomend")!);
+      internalBoundMapEvents.set("pitchend", () =>
         ctx.emit("update:pitch", map.value!.getPitch()),
       );
-      map.value.on("pitchend", boundMapEvents.get("__pitchend")!);
-      boundMapEvents.set("__rotateend", () =>
+      map.value.on("pitchend", internalBoundMapEvents.get("pitchend")!);
+      internalBoundMapEvents.set("rotateend", () =>
         ctx.emit("update:bearing", map.value!.getBearing()),
       );
-      map.value.on("rotateend", boundMapEvents.get("__rotateend")!);
+      map.value.on("rotateend", internalBoundMapEvents.get("rotateend")!);
 
       // bind events
       if (component.vnode.props) {
@@ -629,7 +636,10 @@ export default defineComponent({
         map.value.getCanvas().removeEventListener("webglcontextlost", restart);
         isInitialized.value = false;
         boundMapEvents.forEach((func, en) => {
-          map.value!.off(en.startsWith("__") ? en.substring(2) : en, func);
+          map.value!.off(en, func);
+        });
+        internalBoundMapEvents.forEach((func, en) => {
+          map.value!.off(en, func);
         });
         // destroy map
         map.value.remove();

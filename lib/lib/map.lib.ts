@@ -19,7 +19,6 @@ export const MAP_EVENT_TYPES: Array<keyof MapEventType> = [
   "webglcontextrestored",
   "dataloading",
   "data",
-  "tiledataloading",
   "sourcedataloading",
   "styledataloading",
   "sourcedata",
@@ -60,6 +59,11 @@ export const MAP_EVENT_TYPES: Array<keyof MapEventType> = [
   "wheel",
   "terrain",
   "cooperativegestureprevented",
+  "projectiontransition",
+  "style.load",
+  "rollstart",
+  "roll",
+  "rollend",
 ];
 
 export function createEventHandler<T extends keyof MapEventType>(
