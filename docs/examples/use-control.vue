@@ -18,7 +18,7 @@ import {
   useControl,
 } from '@indoorequal/vue-maplibre-gl';
 import { defineComponent } from 'vue';
-import maplibregl from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
 import MaplibreInspect from '@maplibre/maplibre-gl-inspect';
 
 const style = 'https://api.maptiler.com/maps/streets-v2/style.json?key=3YeFnghdqUJJpIvlgLti';
