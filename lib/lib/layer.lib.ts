@@ -30,11 +30,12 @@ export type AddedProperties = {
   sourceLayer?: string;
   source?: string;
   before?: string;
-}
+};
 
-export type LayerProps<T extends LayersWithSource> = AddedProperties & Omit<T, "source" | "source-layer" | "id" | "type">
+export type LayerProps<T extends LayersWithSource> = AddedProperties &
+  Omit<T, "source" | "source-layer" | "id" | "type">;
 
-export type LayerEventType = keyof MapLayerEventType
+export type LayerEventType = keyof MapLayerEventType;
 
 export const LAYER_EVENTS: Array<LayerEventType> = [
   "click",
@@ -53,54 +54,56 @@ export const LAYER_EVENTS: Array<LayerEventType> = [
 ] as const;
 
 export type LayerPropTypeNaive<T extends LayersWithSource> = {
-  [K in keyof LayerProps<T>]: { type: PropType<LayerProps<T>[K]>, required?: boolean | undefined }
-}
+  [K in keyof LayerProps<T>]: {
+    type: PropType<LayerProps<T>[K]>;
+    required?: boolean | undefined;
+  };
+};
 
 export type LayerPropTypeAdded<T extends LayersWithSource> = {
-  layerId: { type: PropType<T['id']> },
-  sourceLayer: { type: PropType<T['source-layer']> },
-  before: { type: PropType<string> },
-  source: { type: PropType<T['source']> }
-}
+  layerId: { type: PropType<T["id"]> };
+  sourceLayer: { type: PropType<T["source-layer"]> };
+  before: { type: PropType<string> };
+  source: { type: PropType<T["source"]> };
+};
 
-export type LayerPropType<T extends LayersWithSource> = LayerPropTypeNaive<T> & LayerPropTypeAdded<T>
+export type LayerPropType<T extends LayersWithSource> = LayerPropTypeNaive<T> &
+  LayerPropTypeAdded<T>;
 
-export function layerProps<
-  T extends LayersWithSource,
->() {
+export function layerProps<T extends LayersWithSource>() {
   return {
     /**
      * The id of the layer
      */
     layerId: {
-      type: String as PropType<T['id']>,
+      type: String as PropType<T["id"]>,
       required: true,
     },
     source: {
-      type: String as PropType<T['source']>
+      type: String as PropType<T["source"]>,
     },
     /**
      * Arbitrary properties useful to track with the layer, but do not influence rendering. Properties should be prefixed to avoid collisions, like 'maplibre:'.
      */
     metadata: {
-      type: [Object, Array, String, Number] as PropType<T['metadata']>
+      type: [Object, Array, String, Number] as PropType<T["metadata"]>,
     },
     /**
      * Layer to use from a vector tile source. Required for vector tile sources; prohibited for all other source types, including GeoJSON sources.
      */
-    sourceLayer: { type: String as PropType<T['source-layer']> },
+    sourceLayer: { type: String as PropType<T["source-layer"]> },
     /**
      * The minimum zoom level for the layer. At zoom levels less than the minzoom, the layer will be hidden.
      */
-    minzoom: { type: Number as PropType<T['minzoom']> },
+    minzoom: { type: Number as PropType<T["minzoom"]> },
     /**
      * The maximum zoom level for the layer. At zoom levels equal to or greater than the maxzoom, the layer will be hidden.
      */
-    maxzoom: { type: Number as PropType<T['maxzoom']> },
+    maxzoom: { type: Number as PropType<T["maxzoom"]> },
     /**
      * A expression specifying conditions on source features. Only features that match the filter are displayed. Zoom expressions in filters are only evaluated at integer zoom levels. The feature-state expression is not supported in filter expressions.
      */
-    filter: { type: Object as PropType<T['filter']> },
+    filter: { type: Object as PropType<T["filter"]> },
     /**
      * The ID of an existing layer to insert the new layer before, resulting in the new layer appearing visually beneath the existing layer. If this argument is not specified, the layer will be appended to the end of the layers array and appear visually above all other layers.
      */
