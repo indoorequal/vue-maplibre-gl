@@ -1,12 +1,13 @@
-import { ref, shallowRef, nextTick } from "vue";
+import { expect, test } from "vitest";
+import { render } from "vitest-browser-vue";
+import { ref, shallowRef } from "vue";
 import type { IControl, Map } from "maplibre-gl";
-import { mount } from "@vue/test-utils";
-import { CustomControl } from "@/lib/components/controls/custom";
-import CustomControlComponent from "@/lib/components/controls/custom.control";
-import { map, isInitialized } from "@/lib/types";
+import { CustomControl } from "../lib/components/controls/custom";
+import CustomControlComponent from "../lib/components/controls/custom.control";
+import { map, isInitialized } from "../lib/types";
 
-test("Render nothing when the control was not attached", () => {
-  const wrapper = mount(CustomControlComponent, {
+test("Render nothing when the control was not attached", async () => {
+  const screen = await render(CustomControlComponent, {
     global: {
       provide: {
         [map]: {},
@@ -15,15 +16,13 @@ test("Render nothing when the control was not attached", () => {
     },
   });
 
-  nextTick(() => {
-    expect(wrapper.html()).toEqual("<!--custom-component-->");
-  });
+  expect(screen.container.innerHTML).toEqual("<!--custom-component-->");
 });
 
-test("Add the classes to container", () => {
+test("Add the classes to container", async () => {
   expect.assertions(2);
 
-  const wrapper = mount(CustomControlComponent, {
+  const screen = await render(CustomControlComponent, {
     global: {
       provide: {
         [map]: shallowRef({
@@ -34,6 +33,7 @@ test("Add the classes to container", () => {
           hasControl() {
             return false;
           },
+          removeControl() {},
         }),
         [isInitialized]: ref(true),
       },
@@ -42,17 +42,15 @@ test("Add the classes to container", () => {
       class: "maplibregl-ctrl-test",
     },
   });
-  nextTick(() => {
-    expect(wrapper.html()).toEqual(
-      "<!--teleport start-->\n<!--teleport end-->",
-    );
-  });
+  expect(screen.container.innerHTML).toEqual(
+    "<!--teleport start--><!--teleport end-->",
+  );
 });
 
-test("Set the default classes", () => {
+test("Set the default classes", async () => {
   expect.assertions(1);
 
-  const wrapper = mount(CustomControlComponent, {
+  await render(CustomControlComponent, {
     global: {
       provide: {
         [map]: shallowRef({
@@ -65,6 +63,7 @@ test("Set the default classes", () => {
           hasControl() {
             return false;
           },
+          removeControl() {},
         }),
         [isInitialized]: ref(true),
       },
