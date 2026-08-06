@@ -28,7 +28,7 @@ export default defineConfig({
   build  : {
     sourcemap    : true,
     lib          : {
-      entry   : resolve(__dirname, 'lib/main.ts'),
+      entry   : resolve(import.meta.dirname, 'lib/main.ts'),
       name    : 'VueMaplibreGl',
       fileName: format => `vue-maplibre-gl.${format}.js`
     },
