@@ -1,10 +1,8 @@
-window.URL.createObjectURL = (obj) => {
-  return "";
-};
-window.TextDecoder = class {};
+import { expect, test } from "vitest";
 
 import { type LngLatLike, LngLat } from "maplibre-gl";
 import { isLngLatEqual } from "../lib/lib/lng_lat";
+
 
 const tests: [LngLatLike, LngLatLike, Boolean][] = [
   [[-122, 37], [-122, 37], true],

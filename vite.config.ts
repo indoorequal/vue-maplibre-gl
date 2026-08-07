@@ -4,15 +4,11 @@ import dts from 'vite-plugin-dts';
 import banner from 'vite-plugin-banner';
 import { resolve } from 'path';
 import pkg from './package.json' with { type: 'json' };
-import { fileURLToPath } from 'url';
+import { playwright } from '@vitest/browser-playwright';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  resolve: {
-    alias: [
-      { find: '@', replacement: fileURLToPath(new URL('.', import.meta.url)) }
-    ]
-  },
+  resolve: { tsconfigPaths: true },
   plugins: [
     vue(),
     dts({ insertTypesEntry: true }),
@@ -54,5 +50,15 @@ export default defineConfig({
 	},
       },
     }
+  },
+  test: {
+    browser: {
+      enabled: true,
+      headless: true,
+      provider: playwright(),
+      instances: [
+        { browser: 'firefox' },
+      ],
+    },
   },
 });
