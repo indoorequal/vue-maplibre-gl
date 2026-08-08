@@ -19,4 +19,4 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: yarn install --immutable
       - run: yarn build
-      - run: yarn npm publish --provenance --access public
+      - run: npm publish --provenance --access public
