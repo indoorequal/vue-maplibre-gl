@@ -15,6 +15,10 @@ export default {
       const content = `
 <script setup>
 import { defineClientComponent } from 'vitepress';
+import {setWorkerUrl} from 'maplibre-gl';
+import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
+
+setWorkerUrl(workerUrl);
 
 const Example = defineClientComponent(
   () => import('./${path.basename(file)}')
