@@ -5,6 +5,7 @@ import {
   warn,
   watch,
 } from "vue";
+import { AllLayoutProperties, AllPaintProperties } from "maplibre-gl";
 import {
   componentIdSymbol,
   isLoadedSymbol,
@@ -63,7 +64,11 @@ export function useLayer<T extends LayersWithSource>(
     (layout) => {
       if (layout) {
         for (const [property, value] of Object.entries(layout)) {
-          map.value!.setLayoutProperty(props.layerId!, property, value);
+          map.value!.setLayoutProperty(
+            props.layerId!,
+            property as keyof AllLayoutProperties,
+            value,
+          );
         }
       }
     },
@@ -74,7 +79,11 @@ export function useLayer<T extends LayersWithSource>(
     (paint) => {
       if (paint) {
         for (const [property, value] of Object.entries(paint)) {
-          map.value!.setPaintProperty(props.layerId!, property, value);
+          map.value!.setPaintProperty(
+            props.layerId!,
+            property as keyof AllPaintProperties,
+            value,
+          );
         }
       }
     },

@@ -3,21 +3,16 @@ import {
   type FitBoundsOptions,
   type ControlPosition,
   GeolocateControl,
+  type GeolocateControlEventType,
+  type GeolocateErrorEvent,
+  type GeolocateEvent,
+  type GeolocatePositionEvent,
 } from "maplibre-gl";
 import {
   Position,
   PositionValues,
 } from "@/lib/components/controls/position.enum";
 import { useControl } from "@/lib/composable/useControl";
-
-type GeolocateControlEvent =
-  | "trackuserlocationstart"
-  | "trackuserlocationend"
-  | "userlocationlostfocus"
-  | "userlocationfocus"
-  | "geolocate"
-  | "error"
-  | "outofmaxbounds";
 
 /**
  * Render GeolocateControl
@@ -93,8 +88,10 @@ export default defineComponent({
         showUserLocation: props.showUserLocation,
       });
     }, props);
-    function emitEvent<A>(event: GeolocateControlEvent): void {
-      const fun = (arg: A) => {
+    function emitEvent(event: keyof GeolocateControlEventType): void {
+      const fun = (
+        arg: GeolocateErrorEvent | GeolocateEvent | GeolocatePositionEvent,
+      ) => {
         ctx.emit(event, arg);
       };
       control.value.on(event, fun);
@@ -102,13 +99,13 @@ export default defineComponent({
         control.value.off(event, fun);
       });
     }
-    emitEvent<undefined>("trackuserlocationstart");
-    emitEvent<undefined>("trackuserlocationend");
-    emitEvent<undefined>("userlocationlostfocus");
-    emitEvent<undefined>("userlocationfocus");
-    emitEvent<GeolocationPosition>("geolocate");
-    emitEvent<GeolocationPositionError>("error");
-    emitEvent<GeolocationPosition>("outofmaxbounds");
+    emitEvent("trackuserlocationstart");
+    emitEvent("trackuserlocationend");
+    emitEvent("userlocationlostfocus");
+    emitEvent("userlocationfocus");
+    emitEvent("geolocate");
+    emitEvent("error");
+    emitEvent("outofmaxbounds");
   },
   render() {
     return null;
