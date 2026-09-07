@@ -656,7 +656,7 @@ __metadata:
     vite-plugin-dts: "npm:^5.0.0"
     vitepress: "npm:^1.1.3"
     vitest: "npm:^5.0.0"
-    vitest-browser-vue: "npm:^2.1.0"
+    vitest-browser-vue: "npm:^3.0.0"
     vue: "npm:^3.4.19"
     vue-docgen-api: "npm:^4.78.0"
     vue-docgen-web-types: "npm:^0.1.8"
@@ -5278,15 +5278,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest-browser-vue@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "vitest-browser-vue@npm:2.1.0"
+"vitest-browser-vue@npm:^3.0.0":
+  version: 3.1.0
+  resolution: "vitest-browser-vue@npm:3.1.0"
   dependencies:
     "@vue/test-utils": "npm:^2.4.6"
   peerDependencies:
-    vitest: ^4.0.0-0
+    vitest: ^4.0.0 || ^5.0.0
     vue: ^3.0.0
-  checksum: 10/45d5586270fa6e92a645fcfcf2f7953bc08beff63a9046834da3a47008ecac5b7029ad5cc6a573bec0236f15310a80bbf1dabaa1896c46a1f048d3f112f29704
+  checksum: 10/e1b372f631ec69d5e6aa1b4c18e47ece4e33e13c0687de06e0660d674220ad795b057baa2ba1e0bf173e0862a3153c52c4b5ac7de018f6642c0a6d35843c47f7
   languageName: node
   linkType: hard
 
