@@ -59,14 +59,18 @@ export default defineComponent({
     watch(
       [isRef(props.tiles) ? props.tiles : () => props.tiles, source],
       ([v, src]) => {
-        src?.setTiles((v as string[]) || []);
+        if (src?.loaded()) {
+          src.setTiles((v as string[]) || []);
+        }
       },
       { immediate: true },
     );
     watch(
       [isRef(props.url) ? props.url : () => props.url, source],
       ([v, src]) => {
-        src?.setUrl((v as string) || "");
+        if (src?.loaded()) {
+          src.setUrl((v as string) || "");
+        }
       },
       { immediate: true },
     );
